@@ -1,0 +1,43 @@
+<div class="auth-container text-center">
+  <h4>{{ isRegister ? 'Créer un compte' : 'Connexion' }}</h4>
+  <p>{{ isRegister ? 'Remplissez vos informations pour créer un compte' : 'Connectez-vous à votre compte' }}</p>
+
+  <form (ngSubmit)="submit()">
+    <div class="mb-3" *ngIf="isRegister">
+      <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="utilisateur.nom" name="nom" required>
+    </div>
+    <div class="mb-3" *ngIf="isRegister">
+      <input type="text" class="form-control" placeholder="Prénom" [(ngModel)]="utilisateur.prenom" name="prenom" required>
+    </div>
+    <div class="mb-3" *ngIf="isRegister">
+      <input type="text" class="form-control" placeholder="Téléphone" [(ngModel)]="utilisateur.telephone" name="telephone">
+    </div>
+    <div class="mb-3" *ngIf="isRegister">
+      <input type="text" class="form-control" placeholder="Bio" [(ngModel)]="utilisateur.bio" name="bio">
+    </div>
+    <div class="mb-3" *ngIf="isRegister">
+      <input type="text" class="form-control" placeholder="Localisation" [(ngModel)]="utilisateur.localisation" name="localisation">
+    </div>
+
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="utilisateur.email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <input type="password" class="form-control" 
+             placeholder="{{ isRegister ? 'Créer un mot de passe' : 'Mot de passe' }}" 
+             [(ngModel)]="motDePasse" name="motDePasse" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+      {{ isRegister ? 'Créer un compte' : 'Se connecter' }}
+    </button>
+  </form>
+
+  <p class="mt-3">
+    {{ isRegister ? 'Vous avez déjà un compte ?' : 'Vous n\'avez pas de compte ?' }}
+    <span class="toggle-link" (click)="toggle()">
+      {{ isRegister ? 'Se connecter' : 'Créer un compte' }}
+    </span>
+  </p>
+</div>

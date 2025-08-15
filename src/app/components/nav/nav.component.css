@@ -1,0 +1,65 @@
+/* Navbar dégradée */
+.custom-navbar {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  padding: 0.75rem 1.5rem;
+}
+
+/* Brand */
+.custom-navbar .navbar-brand {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* Lien de navigation */
+.custom-navbar .nav-link {
+  color: #fff !important;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #ffd700 !important; /* Jaune doré */
+}
+
+/* Lien actif */
+.custom-navbar .nav-link.active {
+  font-weight: 600;
+  text-decoration: underline;
+  color: #ffd700 !important;
+}
+
+/* Boutons */
+.custom-navbar .btn {
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.2s;
+}
+
+.custom-navbar .btn-outline-light {
+  color: #fff;
+  border-color: #fff;
+}
+
+.custom-navbar .btn-outline-light:hover {
+  background-color: #fff;
+  color: #1d4ed8;
+}
+
+/* Texte du rôle */
+.custom-navbar .role-text {
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  color: #f1f5f9;
+}
+
+/* Responsive: menu hamburger */
+.navbar-toggler {
+  border-color: #fff;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}

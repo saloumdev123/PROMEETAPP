@@ -1,0 +1,14 @@
+<h3>Changer le rôle d'un utilisateur</h3>
+<div>
+  <label>ID Utilisateur:</label>
+  <input type="number" [(ngModel)]="userId">
+</div>
+<div>
+  <label>Nouveau rôle:</label>
+  <select [(ngModel)]="nouveauRole">
+    <option value="CLIENT">CLIENT</option>
+    <option value="ADMIN">ADMIN</option>
+    <option value="ADMIN">PRESTATAIRE</option>
+  </select>
+</div>
+<button (click)="changerRole()">Mettre à jour le rôle</button>

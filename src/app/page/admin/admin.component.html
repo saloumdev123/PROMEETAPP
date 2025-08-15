@@ -1,0 +1,31 @@
+<div class="admin-container">
+  <h2>Gestion des utilisateurs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of utilisateurs">
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <select #roleSelect>
+            <option value="CLIENT">CLIENT</option>
+            <option value="PRESTATAIRE">PRESTATAIRE</option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
+          <button (click)="changerRoleFromSelect(user.id, roleSelect.value)">Changer</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

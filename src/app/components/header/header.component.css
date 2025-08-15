@@ -1,0 +1,52 @@
+.promeet-header {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSptTtRhH5xqFQGPGajEelnbpxO8T6NTZzcw&s') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* semi-transparent overlay pour lisibilité */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  color: #fff;
+  text-align: center;
+  max-width: 700px;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-content .btn {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.header-content .btn:hover {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
+}

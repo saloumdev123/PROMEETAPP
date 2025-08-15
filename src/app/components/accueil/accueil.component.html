@@ -1,0 +1,31 @@
+<div class="page-container text-center p-4">
+  <h2>Bienvenue sur votre tableau de bord</h2>
+  <p *ngIf="isLoggedIn">Vous êtes connecté en tant que <strong>{{ userRole }}</strong></p>
+
+  <!-- Cartes -->
+  <div class="role-cards d-flex justify-content-center gap-4 mt-4">
+    <div class="card role-card" *ngIf="userRole === 'ADMIN'">
+      <div class="card-body">
+        <h5 class="card-title">Admin</h5>
+        <p class="card-text">Gestion complète des utilisateurs et du système.</p>
+      </div>
+    </div>
+    <div class="card role-card" *ngIf="userRole === 'CLIENT'">
+      <div class="card-body">
+        <h5 class="card-title">Client</h5>
+        <p class="card-text">Voir et gérer vos réservations.</p>
+      </div>
+    </div>
+    <div class="card role-card" *ngIf="userRole === 'PRESTATAIRE'">
+      <div class="card-body">
+        <h5 class="card-title">Prestataire</h5>
+        <p class="card-text">Gérer vos services et demandes des clients.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Liste des utilisateurs affichée uniquement pour l’ADMIN -->
+  <div *ngIf="userRole === 'ADMIN'" class="mt-4">
+    <app-utilisateur></app-utilisateur>
+  </div>
+</div>

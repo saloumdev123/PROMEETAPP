@@ -1,0 +1,99 @@
+.dashboard-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg,#2563eb,#1d4ed8);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  background: white;
+  color: #2563eb;
+  list-style: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.menu-dropdown li {
+  margin: 0.5rem 0;
+}
+
+.menu-dropdown li a, .menu-dropdown li button {
+  color: #2563eb;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dashboard-main {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.roles-selection {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.role-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.role-btn:hover {
+  background: #1d4ed8;
+}
+
+.dashboard-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.dash-card {
+  padding: 2rem 3rem;
+  background: #e0e7ff;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.dash-card:hover {
+  background: #c7d2fe;
+}
