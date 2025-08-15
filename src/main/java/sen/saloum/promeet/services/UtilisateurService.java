@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UtilisateurService {
     UtilisateurDTO createUtilisateur(UtilisateurDTO utilisateurDto);
     UtilisateurDTO updateUtilisateur(Long id, UtilisateurDTO utilisateurDto);
-    void deleteUtilisateur(Long id);
+    boolean deleteUtilisateur(Long id);
     Optional<UtilisateurDTO> getUtilisateurById(Long id);
     List<UtilisateurDTO> getAllUtilisateurs();
     List<UtilisateurDTO> searchUtilisateurs(String keyword);

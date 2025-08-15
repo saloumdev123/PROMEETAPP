@@ -2,8 +2,6 @@ package sen.saloum.promeet.services.Impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,12 @@ public class ReservationServiceImpl implements ReservationService {
     private final UtilisateurRepository utilisateurRepository;
     private final OffreRepository offreRepository;
 
-    public ReservationServiceImpl(ReservationRepository reservationRepository, ReservationMapper reservationMapper, JMSReservationService jmsReservationService, UtilisateurRepository utilisateurRepository, OffreRepository offreRepository) {
+    public ReservationServiceImpl(
+            ReservationRepository reservationRepository,
+            ReservationMapper reservationMapper,
+            JMSReservationService jmsReservationService,
+            UtilisateurRepository utilisateurRepository,
+            OffreRepository offreRepository) {
         this.reservationRepository = reservationRepository;
         this.reservationMapper = reservationMapper;
         this.jmsReservationService = jmsReservationService;
@@ -40,24 +43,45 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public ReservationDTO createReservation(ReservationDTO reservationDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) {
+            throw new EntityNotFoundException("Impossible de récupérer le client connecté");
+        }
+
+        String email;
+
+        // Le principal peut être ton objet UserDetails ou ton DTO Utilisateur
+        if (auth.getPrincipal() instanceof org.springframework.security.core.userdetails.User userDetails) {
+            email = userDetails.getUsername(); // ici c'est l'email
+        } else if (auth.getPrincipal() instanceof Utilisateur utilisateur) {
+            email = utilisateur.getEmail();
+        } else {
+            throw new EntityNotFoundException("Impossible de récupérer l'email du client connecté");
+        }
+
+        Utilisateur client = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("Client introuvable avec l'email : " + email));
+
+        // Mapper la DTO en entité
         Reservation reservation = reservationMapper.toEntity(reservationDto);
+
+        // Associer le client
+        reservation.setClient(client);
 
         // Statut par défaut
         reservation.setStatut(StatutReservation.EN_ATTENTE);
 
-        // Associer le client complet
-        Utilisateur client = utilisateurRepository.findById(reservationDto.getClientId())
-                .orElseThrow(() -> new EntityNotFoundException("Client not found with id " + reservationDto.getClientId()));
-        reservation.setClient(client);
-
-        // Associer l'offre complète pour éviter les null
+        // Associer l'offre complète
         Offre offre = offreRepository.findById(reservationDto.getOffreId())
-                .orElseThrow(() -> new EntityNotFoundException("Offre not found with id " + reservationDto.getOffreId()));
+                .orElseThrow(() -> new EntityNotFoundException("Offre introuvable avec l'id : " + reservationDto.getOffreId()));
         reservation.setOffre(offre);
 
+        // Sauvegarder
         Reservation saved = reservationRepository.save(reservation);
-        return reservationMapper.toDTO(saved); // Pas d'email envoyé ici !
+
+        return reservationMapper.toDTO(saved);
     }
+
 
 
     @Override
@@ -65,14 +89,15 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation existing = reservationRepository.findByIdWithOffre(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reservation not found with id " + id));
 
-        // Sauvegarder l'ancien statut avant de modifier
+        // Sauvegarder l'ancien statut
         StatutReservation oldStatus = existing.getStatut();
 
+        // L'admin peut seulement changer le statut
         existing.setStatut(reservationDto.getStatut());
 
         Reservation saved = reservationRepository.save(existing);
 
-        // Envoi d'email si passage EN_ATTENTE -> CONFIRMEE
+        // Envoi d'email si statut passe EN_ATTENTE -> CONFIRMEE
         if (saved.getStatut() == StatutReservation.CONFIRMEE
                 && oldStatus != StatutReservation.CONFIRMEE) {
             if (saved.getClient() != null && saved.getClient().getEmail() != null) {
@@ -83,13 +108,10 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationMapper.toDTO(saved);
     }
 
-
-
     @Override
     public ReservationDTO getReservationById(Long id) {
         Reservation reservation = reservationRepository.findByIdWithOffre(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reservation not found with id " + id));
-
         return reservationMapper.toDTO(reservation);
     }
 
@@ -99,8 +121,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void deleteReservation(Long id) {
+    public boolean deleteReservation(Long id) {
         reservationRepository.deleteById(id);
+        return false;
     }
 
     @Override

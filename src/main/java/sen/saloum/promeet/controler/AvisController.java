@@ -1,11 +1,13 @@
 package sen.saloum.promeet.controler;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.promeet.dto.AvisDTO;
 import sen.saloum.promeet.services.AvisService;
 import sen.saloum.promeet.services.Impl.AvisServiceImpl;
+import sen.saloum.promeet.utils.ApiResponseStatus;
 
 import java.util.List;
 
@@ -18,39 +20,60 @@ public class AvisController {
     public AvisController(AvisServiceImpl avisService) {
         this.avisService = avisService;
     }
-
     @GetMapping
     public ResponseEntity<List<AvisDTO>> getAllAvis() {
-        return ResponseEntity.ok(avisService.getAllAvis());
+        List<AvisDTO> avis = avisService.getAllAvis();
+        if (avis.isEmpty()) {
+            return ResponseEntity.status(ApiResponseStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(ApiResponseStatus.OK).body(avis);
     }
 
+    // GET by ID
     @GetMapping("/{id}")
     public ResponseEntity<AvisDTO> getAvisById(@PathVariable Long id) {
         AvisDTO avis = avisService.getAvisById(id);
-        return ResponseEntity.ok(avis);
+        if (avis == null) {
+            return ResponseEntity.status(ApiResponseStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(ApiResponseStatus.OK).body(avis);
     }
 
+    // POST create
     @PostMapping
     public ResponseEntity<AvisDTO> createAvis(@RequestBody AvisDTO avisDTO) {
         AvisDTO created = avisService.createAvis(avisDTO);
-        return ResponseEntity.ok(created);
+        return ResponseEntity.status(ApiResponseStatus.CREATED).body(created);
     }
 
+    // PUT update
     @PutMapping("/{id}")
     public ResponseEntity<AvisDTO> updateAvis(@PathVariable Long id, @RequestBody AvisDTO avisDTO) {
         AvisDTO updated = avisService.updateAvis(id, avisDTO);
-        return ResponseEntity.ok(updated);
+        if (updated == null) {
+            return ResponseEntity.status(ApiResponseStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(ApiResponseStatus.OK).body(updated);
     }
 
+    // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAvis(@PathVariable Long id) {
-        avisService.deleteAvis(id);
-        return ResponseEntity.noContent().build();
+        try {
+            avisService.deleteAvis(id);
+            return ResponseEntity.status(ApiResponseStatus.NO_CONTENT).build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(ApiResponseStatus.NOT_FOUND).build();
+        }
     }
 
+    // GET by offre
     @GetMapping("/offre/{offreId}")
     public ResponseEntity<List<AvisDTO>> getAvisByOffre(@PathVariable Long offreId) {
         List<AvisDTO> avis = avisService.getAvisByOffre(offreId);
-        return ResponseEntity.ok(avis);
+        if (avis.isEmpty()) {
+            return ResponseEntity.status(ApiResponseStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(ApiResponseStatus.OK).body(avis);
     }
 }

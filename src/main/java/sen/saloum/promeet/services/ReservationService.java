@@ -11,6 +11,6 @@ public interface ReservationService {
     ReservationDTO updateReservation(Long id, ReservationDTO reservationDto) throws MessagingException;
     ReservationDTO getReservationById(Long id);
     List<ReservationDTO> getAllReservations();
-    void deleteReservation(Long id);
+    boolean deleteReservation(Long id);
     List<ReservationDTO> getReservationsByUtilisateur(Long utilisateurId);
 }

@@ -1,7 +1,6 @@
 package sen.saloum.promeet.services.Impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,17 +47,30 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public UtilisateurDTO updateUtilisateur(Long id, UtilisateurDTO utilisateurDto) {
         Utilisateur existing = utilisateurRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Utilisateur introuvable avec id " + id));
-        Utilisateur updated = utilisateurMapper.toEntity(utilisateurDto);
-        updated.setId(existing.getId());
-        return utilisateurMapper.toDTO(utilisateurRepository.save(updated));
+
+        // Mise à jour des champs manuellement
+        existing.setNom(utilisateurDto.getNom());
+        existing.setPrenom(utilisateurDto.getPrenom());
+        existing.setEmail(utilisateurDto.getEmail());
+        existing.setTelephone(utilisateurDto.getTelephone());
+        existing.setRole(utilisateurMapper.mapRole(utilisateurDto.getRole()));
+        existing.setBio(utilisateurDto.getBio());
+        existing.setLocalisation(utilisateurDto.getLocalisation());
+
+        if (utilisateurDto.getMotDePasse() != null && !utilisateurDto.getMotDePasse().isBlank()) {
+            existing.setMotDePasse(passwordEncoder.encode(utilisateurDto.getMotDePasse()));
+        }
+
+        return utilisateurMapper.toDTO(utilisateurRepository.save(existing));
     }
 
     @Override
-    public void deleteUtilisateur(Long id) {
+    public boolean deleteUtilisateur(Long id) {
         if (!utilisateurRepository.existsById(id)) {
             throw new EntityNotFoundException("Utilisateur introuvable avec id " + id);
         }
         utilisateurRepository.deleteById(id);
+        return false;
     }
 
     @Override

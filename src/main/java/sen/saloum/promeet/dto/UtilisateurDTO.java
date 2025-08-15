@@ -1,5 +1,6 @@
 package sen.saloum.promeet.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class UtilisateurDTO {
     private String role;
     private String bio;
     private String localisation;
+    @JsonIgnore
     private String motDePasse;
 
     public Long getId() {

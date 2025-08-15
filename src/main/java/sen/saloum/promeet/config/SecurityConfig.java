@@ -44,44 +44,30 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
 
-                        // Avis : lecture & écriture pour CLIENT, PRESTATAIRE, ADMIN
+
                         .requestMatchers(HttpMethod.GET, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/avis/**").hasAnyRole("CLIENT", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
 
-                        // Utilisateurs et admin
+
                         .requestMatchers(HttpMethod.GET, "/api/utilisateurs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/utilisateurs").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
 
-                        // Offres réservés à PRESTATAIRE ou ADMIN
                         .requestMatchers(HttpMethod.POST, "/api/offres/**").hasAnyRole("PRESTATAIRE", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/offres/**").hasAnyRole("PRESTATAIRE", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/offres/**").hasRole("ADMIN")
 
-                        // Paiements : CLIENT et ADMIN
                         .requestMatchers(HttpMethod.POST,"/api/paiements/**").hasAnyRole("CLIENT", "ADMIN")
 
-                        // Réservations : règles détaillées
-
-                        // 1) Créer réservation => POST autorisé CLIENT, ADMIN
                         .requestMatchers(HttpMethod.POST, "/api/reservations/**").hasAnyRole("CLIENT", "ADMIN")
-
-                        // 2) Modifier réservation => PUT autorisé CLIENT, ADMIN
-                        // Attention : vérifier dans service que CLIENT ne modifie que ses réservations
-                        .requestMatchers(HttpMethod.PUT, "/api/reservations/**").hasAnyRole("CLIENT", "ADMIN")
-
-                        // 3) Valider réservation (exemple : POST /api/reservations/validation/**) autorisé ADMIN et PRESTATAIRE
+                        .requestMatchers(HttpMethod.PUT, "/api/reservations/**").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/reservations/validation/**").hasAnyRole("ADMIN", "PRESTATAIRE")
-
-                        // 4) Consulter réservation => GET autorisé CLIENT, ADMIN
                         .requestMatchers(HttpMethod.GET, "/api/reservations/**").hasAnyRole("CLIENT", "ADMIN")
-
-                        // 5) Supprimer réservation => DELETE autorisé ADMIN seulement (ou selon besoin)
                         .requestMatchers(HttpMethod.DELETE, "/api/reservations/**").hasRole("ADMIN")
 
-                        // Autres endpoints doivent être authentifiés
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

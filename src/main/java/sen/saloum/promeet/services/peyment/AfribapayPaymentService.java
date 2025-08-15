@@ -15,7 +15,7 @@ public class AfribapayPaymentService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private static final String PAYIN_URL = "https://api-sandbox.afribapay.com/v1/pay/payin";
-    private static final String MERCHANT_KEY = "mk_sandbox_Dv2c9Us240920061620";
+    private static final String MERCHANT_KEY = "mk_Dv2c9Us240920061620";
 
     private final AfribapayAuthService authService;
 
@@ -35,7 +35,7 @@ public class AfribapayPaymentService {
         body.put("country", currency.equals("XOF") ? "SN" : "CM");
         body.put("phone_number", phone);
         body.put("amount", montant);
-        body.put("currency", currency); // "XOF" ou "XAF"
+        body.put("currency", currency);
         body.put("order_id", orderId);
         body.put("merchant_key", MERCHANT_KEY);
         body.put("reference_id", "REF-" + orderId);

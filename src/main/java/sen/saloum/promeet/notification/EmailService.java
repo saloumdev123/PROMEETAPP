@@ -3,16 +3,16 @@ package sen.saloum.promeet.notification;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-
     private final JavaMailSender mailSender;
 
-    public EmailService(JavaMailSender mailSender) {
+    public EmailService(@Qualifier("mailSubscriptionMailSender") JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
@@ -39,6 +39,7 @@ public class EmailService {
         <p>Merci d'avoir effectué une réservation via notre plateforme Promeet. Voici le récapitulatif de votre demande :</p>
         <ul>
             <li><strong>Email :</strong> %s</li>
+            <li><strong>Offer Title:</strong> %s</li>
             <li><strong>Date de la réservation :</strong> %s</li>
             <li><strong>Message :</strong> %s</li>
         </ul>
@@ -54,5 +55,4 @@ public class EmailService {
                 jmsReservation.getBody()
         );
     }
-
 }
