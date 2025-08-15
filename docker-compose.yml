@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-promeet
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: saloum
+      MYSQL_DATABASE: promeet_db
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - promeet-net
+
+  springboot-app:
+    build: .
+    container_name: springboot-promeet
+    depends_on:
+      - mysql
+    ports:
+      - "8091:8091"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/promeet_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: saloum
+    networks:
+      - promeet-net
+
+volumes:
+  mysql_data:
+
+networks:
+  promeet-net:
