@@ -1,4 +1,4 @@
-package sen.saloum.promeet.exceptions;
+package sen.saloum.promeet.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
