@@ -1,14 +1,18 @@
 package sen.saloum.promeet.controler;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.promeet.dto.UtilisateurDTO;
 import sen.saloum.promeet.enums.Role;
-import sen.saloum.promeet.exceptions.EntityNotFoundCustomException;
+import sen.saloum.promeet.exception.EntityNotFoundCustomException;
 import sen.saloum.promeet.services.Impl.UtilisateurServiceImpl;
+import sen.saloum.promeet.services.UtilisateurService;
 import sen.saloum.promeet.utils.ApiResponseStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/utilisateurs")

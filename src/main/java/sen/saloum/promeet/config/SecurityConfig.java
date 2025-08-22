@@ -43,6 +43,7 @@ public class SecurityConfig {
                         // Auth open endpoints
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 
 
                         .requestMatchers(HttpMethod.GET, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")

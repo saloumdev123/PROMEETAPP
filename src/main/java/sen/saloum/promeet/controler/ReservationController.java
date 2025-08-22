@@ -1,11 +1,13 @@
 package sen.saloum.promeet.controler;
 
 import jakarta.mail.MessagingException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.promeet.dto.ReservationDTO;
-import sen.saloum.promeet.exceptions.EntityNotFoundCustomException;
+import sen.saloum.promeet.exception.EntityNotFoundCustomException;
 import sen.saloum.promeet.services.Impl.ReservationServiceImpl;
+import sen.saloum.promeet.services.ReservationService;
 import sen.saloum.promeet.utils.ApiResponseStatus;
 
 import java.util.List;

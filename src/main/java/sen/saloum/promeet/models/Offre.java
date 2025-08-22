@@ -14,7 +14,6 @@ public class Offre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String titre;
     private String description;
     private Double prix;

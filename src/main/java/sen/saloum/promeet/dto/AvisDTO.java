@@ -14,7 +14,6 @@ public class AvisDTO {
     private Long utilisateurId;
     private String utilisateurNom;
     private String utilisateurPrenom;
-
     private Long offreId;
     private String offreTitre;
 
