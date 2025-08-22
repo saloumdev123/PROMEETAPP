@@ -1,4 +1,4 @@
-package sen.saloum.promeet.exceptions;
+package sen.saloum.promeet.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
