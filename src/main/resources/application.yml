@@ -46,9 +46,9 @@ jwt:
 
 
 
-afribapay:
-  api:
-    url: ${AFRIBAPAY_API_URL:https://api-sandbox.afribapay.com/v1}
-    user: ${AFRIBAPAY_API_USER:pk_sandbox_6c47d814-8647-4201-a650-a2afff6247ae}
-    key: ${AFRIBAPAY_API_KEY:sk_sandbox_NRwBOQDCunv3C1W4PK9kfH04TI6738Q3gBx}
-    merchant-key: ${AFRIBAPAY_MERCHANT_KEY:mk_Dv2c9Us240920061620}
+paydunya:
+  master-key: Hn9WgeTw-G9Il-j0Th-hysI-RCNsjazNmqdy
+  public-key: test_public_igOfRjRATlOfMeDgTGJnwaVjiM3
+  private-key: test_private_B3CHyMNviDMFayXRdcK2otagCXs
+  token: BBzBkW9JZzLVOFb0JFIV
+  mode: test
