@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -12,6 +11,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.css'
 })
 export class Home {
+
  partenaires = [
     { nom: 'Partenaire 1', logo: 'https://avatars.mds.yandex.net/i?id=b48acf55d8cf8d52253655f2af76c11fc0599925-9858868-images-thumbs&n=13', description: 'Description du partenaire 1' },
     { nom: 'Partenaire 2', logo: 'https://avatars.mds.yandex.net/i?id=472a0d927a7fa5f4c3d6374b65495347996031c9-4102221-images-thumbs&n=13', description: 'Description du partenaire 2' },
@@ -24,5 +24,7 @@ export class Home {
     { nom: 'Partenaire 9', logo: 'https://avatars.mds.yandex.net/i?id=7ae77da9f43940d648364d971f15a342e9c8cf56-5427399-images-thumbs&n=13', description: 'Description du partenaire 9' },
     { nom: 'Partenaire 10', logo: 'https://avatars.mds.yandex.net/i?id=8007e7167627e45095da622269a9437d8f46397d-5094289-images-thumbs&n=13', description: 'Description du partenaire 10' }
   ];
+
+
 
 }

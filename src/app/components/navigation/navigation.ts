@@ -3,7 +3,8 @@ import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls:  ['./navigation.css']
 })
 export class Navigation implements OnInit {
+
   currentUser: User | null = null;
+
 
   constructor(
     private authService: AuthService,
@@ -29,7 +32,7 @@ export class Navigation implements OnInit {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 scrollToContact(event: Event): void {
     event.preventDefault(); 
@@ -39,4 +42,12 @@ scrollToContact(event: Event): void {
     event.preventDefault(); 
     this.viewportScroller.scrollToAnchor('about'); 
   }
+toggleDropdown(event: Event) {
+  event.preventDefault();
+  const target = event.currentTarget as HTMLElement;
+  const dropdown = new bootstrap.Dropdown(target);
+  dropdown.toggle();
+}
+
+
 }

@@ -12,10 +12,12 @@ import { OfferDetail } from './components/offre/offer-detail/offer-detail';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { Component } from '@angular/core';
 import { PaiementComponent } from './components/paiement/paiement.component ';
+import { ProfileEdit } from './components/profile-edit/profile-edit';
+import { Profile } from './components/profile/profile';
 export const routes: Routes = [
   
-  { path: 'auth/login', component: LoginComponent },
-  { path: 'auth/register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {path:  'dashboard', component: Dashboard},
   { path: 'offres', component: OffreList },
   { path: 'mes-offres', component: OffreList },
@@ -26,7 +28,9 @@ export const routes: Routes = [
   {path: 'reservations/:id', component: ReservationComponent},
    { path: 'reset-password', component: ResetPasswordComponent },
    {path: 'paiement', component: PaiementComponent} ,
-    {path: 'home', component: Home},
+    {path: 'home', component: Home, canActivate: [AuthGuard]},
+    { path: 'profile', component: Profile, canActivate: [AuthGuard] },
+  { path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },
   { path: 'avis', component: Avis },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

@@ -1,11 +1,12 @@
 export interface User {
-  id?: number;
+   id: number;
   nom: string;
+  prenom: string;
   email: string;
-  password?: string;
-  role: 'CLIENT' | 'PRESTATAIRE' | 'ADMIN';
-  createdAt?: Date;
-  updatedAt?: Date;
+  telephone: string;
+  role: string;
+  bio?: string;
+  localisation?: string;
 }
 
 export enum UserRole {

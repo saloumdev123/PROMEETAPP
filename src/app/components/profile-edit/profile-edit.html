@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>Modifier mon profil</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input class="form-control" [formControl]="nom">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Prénom</label>
+      <input class="form-control" [formControl]="prenom">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" [formControl]="email">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Téléphone</label>
+      <input class="form-control" [formControl]="telephone">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Bio</label>
+      <textarea class="form-control" [formControl]="bio"></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Localisation</label>
+      <input class="form-control" [formControl]="localisation">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Enregistrer</button>
+  </form>
+</div>
+<br><br><br><br><br>

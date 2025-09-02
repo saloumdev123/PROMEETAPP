@@ -1,0 +1,36 @@
+<div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mon profil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form #profileForm="ngForm" (ngSubmit)="updateProfile()">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input class="form-control" [(ngModel)]="user.nom" name="nom">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prénom</label>
+            <input class="form-control" [(ngModel)]="user.prenom" name="prenom">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" [(ngModel)]="user.email" name="email" disabled>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Téléphone</label>
+            <input class="form-control" [(ngModel)]="user.telephone" name="telephone">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Bio</label>
+            <textarea class="form-control" [(ngModel)]="user.bio" name="bio"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

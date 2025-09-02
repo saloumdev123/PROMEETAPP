@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Logo + Nom application -->
     <a class="navbar-brand d-flex align-items-center" routerLink="/">
-      <img src="assets/images/logofibem.jpg" alt="SenFibem France" height="40" class="me-2">
+      <img src="assets/images/logofibem.png" alt="SenFibem France" height="40" class="me-2">
       <span>SenFibem</span>
     </a>
 
@@ -21,28 +21,24 @@
         <li class="nav-item" *ngIf="currentUser"><a class="nav-link" routerLink="/offres" routerLinkActive="active">Offres</a></li>
       </ul>
     </div>
-
-    <!-- Menu utilisateur à droite -->
     <ul class="navbar-nav ms-auto">
-      <!-- Si l'utilisateur est connecté -->
       <li class="nav-item dropdown" *ngIf="currentUser; else loginNav">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" 
-           data-bs-toggle="dropdown">
-          <img src="assets/images/user-avatar.png" alt="Avatar" class="rounded-circle me-2" width="30" height="30">
-          {{ currentUser.nom }}
-        </a>
+        <a class="nav-link dropdown-toggle d-flex align-items-center" 
+   role="button"
+   (click)="toggleDropdown($event)">
+   <img src="https://avatars.mds.yandex.net/i?id=19903bf3f3baf8215bbc3f10137534675f8e8bc5-9095341-images-thumbs&n=13" class="rounded-circle me-2" width="50" height="50">
+   {{ currentUser.nom }}
+</a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" routerLink="/profile"><i class="bi bi-person me-2"></i>Profil</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i>Profil</a></li>
           <li><a class="dropdown-item" routerLink="/profile/edit"><i class="bi bi-pencil-square me-2"></i>Modifier Profil</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a></li>
         </ul>
       </li>
-
-      <!-- Si l'utilisateur n'est pas connecté -->
       <ng-template #loginNav>
-        <li class="nav-item"><a class="nav-link" routerLink="/auth/login"><i class="bi bi-box-arrow-in-right me-1"></i>Connexion</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/auth/register"><i class="bi bi-person-plus me-1"></i>Inscription</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Connexion</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/register"><i class="bi bi-person-plus me-1"></i>Inscription</a></li>
       </ng-template>
     </ul>
   </div>

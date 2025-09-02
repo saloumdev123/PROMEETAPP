@@ -48,4 +48,12 @@ export class UserService {
     
     return throwError(() => new Error(errorMessage));
   }
+
+updateProfile(user: User): Observable<User> {
+  const token = localStorage.getItem('accessToken');
+  const headers = { Authorization: `Bearer ${token}` };
+  return this.http.put<User>('http://localhost:8091/api/auth/profile', user, { headers });
+}
+
+
 }

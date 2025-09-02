@@ -47,12 +47,12 @@
             </div>
 
             <div class="mb-3">
-              <label for="motDePasse" class="form-label">Mot de passe</label>
+              <label for="password" class="form-label">Mot de passe</label>
               <input type="password"
                      class="form-control"
-                     id="motDePasse"
-                     formControlName="motDePasse">
-              <div *ngIf="registerForm.get('motDePasse')?.invalid && registerForm.get('motDePasse')?.touched"
+                     id="password"
+                     formControlName="password">
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
                    class="text-danger small mt-1">
                 Mot de passe requis (minimum 6 caractères)
               </div>

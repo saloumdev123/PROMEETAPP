@@ -23,5 +23,38 @@
     </div>
   </div>
 </div>
+<div class="card mt-4" *ngIf="offre">
+  <div class="card-body">
+    <h5>Laisser un avis</h5>
+
+    <!-- Si non connecté, invite à se connecter -->
+    <div *ngIf="!authService.isAuthenticated()" class="alert alert-warning">
+      Vous devez vous connecter pour laisser un avis.
+      <a routerLink="/login" class="btn btn-sm btn-primary ms-2">Se connecter</a>
+    </div>
+
+    <!-- Formulaire avis si connecté -->
+    <form *ngIf="authService.isAuthenticated()" (ngSubmit)="submitAvis()" #avisForm="ngForm">
+      <div class="mb-2">
+        <label class="form-label">Note</label>
+        <select class="form-select" required [(ngModel)]="newAvis.note" name="note">
+          <option [value]="1">1 étoile</option>
+          <option [value]="2">2 étoiles</option>
+          <option [value]="3">3 étoiles</option>
+          <option [value]="4">4 étoiles</option>
+          <option [value]="5">5 étoiles</option>
+        </select>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Commentaire</label>
+        <textarea class="form-control" required [(ngModel)]="newAvis.contenu" name="contenu" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="avisForm.invalid">Publier l'avis</button>
+    </form>
+  </div>
+</div>
+
 
 <br><br><br><br><br><br><br><br>

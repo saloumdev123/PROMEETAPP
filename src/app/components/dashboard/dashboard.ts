@@ -17,7 +17,8 @@ import { HttpClient } from '@angular/common/http';
 
 })
 export class Dashboard implements OnInit{
- currentUser$: Observable<User | null>;
+ currentUser: User | null = null;
+
   offresCount = 0;
   reservationsCount = 0;
   avisCount = 0;
@@ -28,30 +29,27 @@ export class Dashboard implements OnInit{
     private offreService: OffreService,
     private reservationService: ReservationService,
     private avisService: AvisService
-  ) {
-    this.currentUser$ = this.authService.currentUser$;
-  }
+  ) {}
 
   ngOnInit(): void {
-    // Récupérer le user actuel et charger les stats
-    this.currentUser$.subscribe(user => {
+    // S'abonner à currentUser$ et stocker dans currentUser
+    this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+
       if (!user) return;
 
       if (user.role === 'CLIENT') {
-        // Nombre de réservations
         this.reservationService.getByClient(user.id!).subscribe(res => {
           this.reservationsCount = res.length;
         });
       }
 
       if (user.role === 'PRESTATAIRE') {
-        // Nombre d’offres
         this.offreService.getByPrestataire(user.id!).subscribe(res => {
           this.offresCount = res.length;
         });
       }
 
-      // Avis visible pour tous
       this.avisService.getAll().subscribe(res => {
         this.avisCount = res.length;
       });

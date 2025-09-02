@@ -138,5 +138,8 @@ export class AuthService {
       tap(user => this.setCurrentUser(user))
     );
   }
+get currentUser(): User | null {
+  return this.currentUserSubject.value;
+}
 
 }
