@@ -1,0 +1,7 @@
+/* footer.component.css ou global styles.css */
+.navbar-brand img {
+  display: block;           /* assure que l'image est visible */
+  max-height: 50px;         /* taille maximale */
+  width: auto;              /* garde les proportions */
+  object-fit: contain;      /* l'image s'ajuste sans être déformée */
+}

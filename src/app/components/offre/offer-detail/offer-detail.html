@@ -1,0 +1,27 @@
+<div class="container mt-4" *ngIf="!isLoading && offre">
+  <div class="card mb-4">
+    <div class="row g-0">
+      <div class="col-md-4" *ngIf="offre.image">
+        <img [src]="offre.image" class="img-fluid rounded-start" alt="{{ offre.titre }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ offre.titre }}</h2>
+          <p class="card-text">{{ offre.description }}</p>
+          <p><strong>Prix:</strong> {{ offre.prix }}€</p>
+          <p *ngIf="offre.categorie"><strong>Catégorie:</strong> {{ offre.categorie }}</p>
+          <p *ngIf="offre.prestataire"><strong>Prestataire:</strong> {{ offre.prestataire.nom }}</p>
+          <p *ngIf="offre.createdAt"><small class="text-muted">Créé le {{ offre.createdAt | date:'dd/MM/yyyy HH:mm' }}</small></p>
+          <p *ngIf="offre.updatedAt"><small class="text-muted">Mis à jour le {{ offre.updatedAt | date:'dd/MM/yyyy HH:mm' }}</small></p>
+          <p *ngIf="offre.reservationsId"><strong>Réservation ID:</strong> {{ offre.reservationsId }}</p>
+          <button class="btn btn-warning mt-3" (click)="reserver(offre.id, offre.prix)">
+            <i class="bi bi-calendar-plus me-2"></i>Réserver
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br>

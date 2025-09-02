@@ -1,0 +1,21 @@
+
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title mb-3">Paiement de l'offre</h3>
+
+      <p><strong>Montant :</strong> {{ montant }} €</p>
+
+      <div class="mb-3">
+        <label for="modePaiement" class="form-label">Choisir le moyen de paiement</label>
+        <select class="form-select" id="modePaiement" [(ngModel)]="modePaiement" name="modePaiement">
+          <option *ngFor="let moyen of moyensPaiement" [value]="moyen">{{ moyen }}</option>
+        </select>
+      </div>
+
+      <button class="btn btn-success w-100" (click)="payer()" [disabled]="loading">
+        {{ loading ? 'Traitement...' : 'Payer' }}
+      </button>
+    </div>
+  </div>
+</div>

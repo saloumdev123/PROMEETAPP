@@ -1,0 +1,56 @@
+<div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+          <i class="bi bi-star me-2"></i>Avis et commentaires
+        </h2>
+      </div>
+      
+      <div *ngIf="isLoading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+      </div>
+      
+      <div *ngIf="!isLoading && avis.length === 0" class="text-center">
+        <div class="card">
+          <div class="card-body py-5">
+            <i class="bi bi-chat-square-text fs-1 text-muted mb-3"></i>
+            <h5>Aucun avis</h5>
+            <p class="text-muted">Aucun avis n'a encore été publié.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12" *ngFor="let avisItem of avis">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="card-title mb-1">{{ avisItem.utilisateur?.nom || 'Utilisateur anonyme' }}</h6>
+                  <div class="mb-2">
+                    <span *ngFor="let star of getStars(avisItem.note)" 
+                          class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                    </span>
+                    <span *ngFor="let star of getEmptyStars(avisItem.note)" 
+                          class="text-muted">
+                      <i class="bi bi-star"></i>
+                    </span>
+                    <small class="text-muted ms-2">({{ avisItem.note }}/5)</small>
+                  </div>
+                </div>
+                <small class="text-muted">{{ formatDate(avisItem.createdAt) }}</small>
+              </div>
+              
+              <p class="card-text">{{ avisItem.contenu }}</p>
+              
+              <div class="text-muted small">
+                <i class="bi bi-briefcase me-1"></i>
+                Offre: {{ avisItem.offre?.titre || '#' + avisItem.offreId }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

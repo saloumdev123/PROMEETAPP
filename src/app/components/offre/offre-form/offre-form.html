@@ -1,0 +1,77 @@
+<div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow fade-in">
+            <div class="card-header">
+              <h3 class="mb-0">
+                <i class="bi bi-briefcase me-2"></i>
+                {{ isEdit ? 'Modifier l\'offre' : 'Créer une offre' }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="onSubmit()" #offreForm="ngForm">
+                <div class="mb-3">
+                  <label for="titre" class="form-label">Titre de l'offre *</label>
+                  <input type="text" 
+                         class="form-control" 
+                         id="titre"
+                         name="titre"
+                         [(ngModel)]="offre.titre"
+                         required 
+                         minlength="3"
+                         #titre="ngModel">
+                  <div *ngIf="titre.invalid && titre.touched" class="text-danger small mt-1">
+                    Titre requis (minimum 3 caractères)
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description *</label>
+                  <textarea class="form-control" 
+                            id="description"
+                            name="description"
+                            rows="4"
+                            [(ngModel)]="offre.description"
+                            required 
+                            minlength="10"
+                            #description="ngModel"></textarea>
+                  <div *ngIf="description.invalid && description.touched" class="text-danger small mt-1">
+                    Description requise (minimum 10 caractères)
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="prix" class="form-label">Prix (€) *</label>
+                  <input type="number" 
+                         class="form-control" 
+                         id="prix"
+                         name="prix"
+                         min="0"
+                         step="0.01"
+                         [(ngModel)]="offre.prix"
+                         required 
+                         #prix="ngModel">
+                  <div *ngIf="prix.invalid && prix.touched" class="text-danger small mt-1">
+                    Prix requis et doit être positif
+                  </div>
+                </div>
+                
+                <div class="d-flex gap-2">
+                  <button type="submit" 
+                          class="btn btn-primary"
+                          [disabled]="offreForm.invalid || isLoading">
+                    <span *ngIf="isLoading" class="loading-spinner me-2"></span>
+                    {{ isEdit ? 'Modifier' : 'Créer' }}
+                  </button>
+                  <button type="button" 
+                          class="btn btn-secondary"
+                          (click)="cancel()">
+                    Annuler
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
