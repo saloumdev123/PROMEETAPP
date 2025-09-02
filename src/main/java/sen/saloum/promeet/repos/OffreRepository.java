@@ -11,18 +11,25 @@ import java.util.List;
 public interface OffreRepository extends JpaRepository<Offre, Long> {
 
     @Query("""
-    SELECT o FROM Offre o 
-    WHERE (:categorie IS NULL OR LOWER(o.categorie) = LOWER(:categorie))
-    AND (:minPrix IS NULL OR o.prix >= :minPrix)
-    AND (:maxPrix IS NULL OR o.prix <= :maxPrix)
-    AND (:localisation IS NULL OR LOWER(o.prestataire.localisation) LIKE LOWER(CONCAT('%', :localisation, '%')))
-          """)
+        SELECT o FROM Offre o 
+        WHERE (:categorie IS NULL OR LOWER(o.categorie) = LOWER(:categorie))
+        AND (:minPrix IS NULL OR o.prix >= :minPrix)
+        AND (:maxPrix IS NULL OR o.prix <= :maxPrix)
+        AND (:localisation IS NULL OR LOWER(o.prestataire.localisation) LIKE LOWER(CONCAT('%', :localisation, '%')))
+    """)
     List<Offre> searchOffres(String categorie, Double minPrix, Double maxPrix, String localisation);
-
 
     @Query("SELECT o FROM Offre o WHERE o.prestataire.id = :prestataireId")
     List<Offre> findByPrestataire(Long prestataireId);
 
     @Query("SELECT o FROM Offre o WHERE o.prestataire.localisation LIKE %:localisation%")
     List<Offre> findByLocalisationPrestataire(String localisation);
+
+    @Query("""
+        SELECT o FROM Offre o
+        WHERE LOWER(o.titre) LIKE LOWER(CONCAT('%', :keyword, '%'))
+           OR LOWER(o.description) LIKE LOWER(CONCAT('%', :keyword, '%'))
+           OR LOWER(o.categorie) LIKE LOWER(CONCAT('%', :keyword, '%'))
+    """)
+    List<Offre> searchByKeyword(String keyword);
 }

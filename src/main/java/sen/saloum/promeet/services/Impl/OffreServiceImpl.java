@@ -27,22 +27,24 @@ public class OffreServiceImpl implements OffreService {
         this.offreMapper = offreMapper;
         this.utilisateurRepository = utilisateurRepository;
     }
-
     @Override
     public OffreDTO createOffre(OffreDTO offreDto) {
         Offre offre = offreMapper.toEntity(offreDto);
 
-        // Charger le prestataire complet
         if (offreDto.getPrestataireId() != null) {
             Utilisateur prestataire = utilisateurRepository.findById(offreDto.getPrestataireId())
                     .orElseThrow(() -> new EntityNotFoundException("Prestataire non trouvé avec id " + offreDto.getPrestataireId()));
             offre.setPrestataire(prestataire);
         }
 
+        // Optionnel : gérer la réservation si fournie
+        if (offreDto.getReservationsId() != null) {
+            // TODO: Charger la réservation depuis le repository si nécessaire
+        }
+
         Offre saved = offreRepository.save(offre);
         return offreMapper.toDTO(saved);
     }
-
 
     @Override
     public OffreDTO updateOffre(Long id, OffreDTO offreDto) {
@@ -52,6 +54,8 @@ public class OffreServiceImpl implements OffreService {
         updated.setId(existing.getId());
         return offreMapper.toDTO(offreRepository.save(updated));
     }
+
+
     @Override
     public List<OffreDTO> searchOffresAvancee(String categorie, Double minPrix, Double maxPrix, String localisation) {
         return offreMapper.toDTOList(
@@ -93,4 +97,6 @@ public class OffreServiceImpl implements OffreService {
     public List<OffreDTO> getOffresByPrestataire(Long prestataireId) {
         return offreMapper.toDTOList(offreRepository.findByPrestataire(prestataireId));
     }
+
+
 }

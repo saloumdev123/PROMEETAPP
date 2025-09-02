@@ -1,6 +1,9 @@
 package sen.saloum.promeet.dto;
 
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 public class OffreDTO {
     private Long id;
     private String titre;
@@ -8,8 +11,26 @@ public class OffreDTO {
     private Double prix;
     private String categorie;
     private String image;
-    
+    private OffsetDateTime createdAt;
+    private OffsetDateTime updatedAt;
     private Long prestataireId;
+    private Long reservationsId;
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public OffsetDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public Long getId() {
         return id;
@@ -67,5 +88,11 @@ public class OffreDTO {
         this.prestataireId = prestataireId;
     }
 
+    public Long getReservationsId() {
+        return reservationsId;
+    }
 
+    public void setReservationsId(Long reservationsId) {
+        this.reservationsId = reservationsId;
+    }
 }

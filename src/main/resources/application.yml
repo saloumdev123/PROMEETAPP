@@ -47,8 +47,6 @@ jwt:
 
 
 paydunya:
-  master-key: Hn9WgeTw-G9Il-j0Th-hysI-RCNsjazNmqdy
   public-key: test_public_igOfRjRATlOfMeDgTGJnwaVjiM3
   private-key: test_private_B3CHyMNviDMFayXRdcK2otagCXs
   token: BBzBkW9JZzLVOFb0JFIV
-  mode: test

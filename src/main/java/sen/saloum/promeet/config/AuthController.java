@@ -6,12 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sen.saloum.promeet.enums.Role;
+import sen.saloum.promeet.exception.InvalidTokenException;
 import sen.saloum.promeet.exception.UserNotFoundException;
 import sen.saloum.promeet.models.Utilisateur;
 import sen.saloum.promeet.models.security.AuthResponse;
@@ -96,12 +96,30 @@ public class AuthController {
         }
     }
 
-    // ✅ 2. Réinitialisation
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> request) {
-        authService.resetPassword(request.get("token"), request.get("newPassword"));
-        return ResponseEntity.ok("Mot de passe réinitialisé avec succès.");
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request) {
+        try {
+            authService.resetPassword(request.get("token"), request.get("newPassword"));
+            return ResponseEntity.ok(Map.of("message", "Mot de passe réinitialisé avec succès."));
+        } catch (InvalidTokenException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Token invalide ou expiré."));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", "Erreur serveur."));
+        }
     }
+    @GetMapping("/profile")
+    public ResponseEntity<Utilisateur> getProfile(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String email = authentication.getName(); // récupère l’email du token
+        Utilisateur user = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+
+        return ResponseEntity.ok(user);
+    }
+
 }
 
 

@@ -1,6 +1,8 @@
 package sen.saloum.promeet.dto;
 
 import lombok.Data;
+import sen.saloum.promeet.enums.StatutPaiement;
+
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
@@ -11,7 +13,7 @@ public class PaiementDTO {
     private OffsetDateTime datePaiement;
     private String modePaiement;
     private String referenceTransaction;
-    private String statut;
+    private StatutPaiement statut;
     private String devise;
     private String telephone;
     private String lienPaiement;
@@ -81,11 +83,11 @@ public class PaiementDTO {
     public void setReferenceTransaction(String referenceTransaction) {
         this.referenceTransaction = referenceTransaction;
     }
-    public String getStatut() {
+    public StatutPaiement getStatut() {
         return statut;
     }
 
-    public void setStatut(String statut) {
+    public void setStatut(StatutPaiement statut) {
         this.statut = statut;
     }
 

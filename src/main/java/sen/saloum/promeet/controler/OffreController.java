@@ -5,12 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sen.saloum.promeet.dto.OffreDTO;
 import sen.saloum.promeet.models.Offre;
 import sen.saloum.promeet.services.Impl.OffreServiceImpl;
 import sen.saloum.promeet.services.OffreService;
 import sen.saloum.promeet.utils.ApiResponseStatus;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +45,19 @@ public class OffreController {
         }
         return ResponseEntity.status(ApiResponseStatus.OK).body(offre);
     }
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        try {
+            String uploadDir = "uploads/";
+            Path path = Paths.get(uploadDir + file.getOriginalFilename());
+            Files.createDirectories(path.getParent());
+            Files.write(path, file.getBytes());
 
+            return ResponseEntity.ok("/" + path.toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur upload image");
+        }
+    }
     @PostMapping
     public ResponseEntity<OffreDTO> createOffre(@RequestBody OffreDTO offreDTO) {
         OffreDTO created = offreService.createOffre(offreDTO);

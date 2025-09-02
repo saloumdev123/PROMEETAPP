@@ -7,29 +7,37 @@ import sen.saloum.promeet.enums.StatutPaiement;
 
 import java.time.OffsetDateTime;
 
-@Entity
-@Table(name = "paiements")
-@AllArgsConstructor
-@NoArgsConstructor
-public class Paiement {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Entity
+    @Table(name = "paiements")
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Paiement {
 
-    private Double montant;
-    private OffsetDateTime datePaiement;
-    private String modePaiement;
-    private String referenceTransaction;
-    private String devise;
-    private String telephone;
-    private String lienPaiement;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private StatutPaiement statut;
+        private Double montant;
+        private OffsetDateTime datePaiement;
+        private String modePaiement;
+        private String referenceTransaction;
+        private String devise;
+        private String telephone;
+        @Column(length = 512)
+        private String lienPaiement;
 
-    @OneToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+        @Enumerated(EnumType.STRING)
+        private StatutPaiement statut;
+
+        @OneToOne
+        @JoinColumn(name = "reservation_id")
+        private Reservation reservation;
+        @PrePersist
+        public void prePersist() {
+            if (datePaiement == null) {
+                datePaiement = OffsetDateTime.now();
+            }
+        }
 
     public Long getId() {
         return id;
