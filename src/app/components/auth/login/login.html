@@ -1,92 +1,58 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-4">
-      <div class="card shadow fade-in">
-        <div class="card-body p-4">
-          <h2 class="card-title text-center mb-4">
-            <i class="bi bi-box-arrow-in-right me-2"></i>Connexion
-          </h2>
-          
-          <!-- Formulaire de connexion -->
-          <form *ngIf="!showForgotPassword" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" 
-                     class="form-control" 
-                     id="email"
-                     name="email"
-                     [(ngModel)]="credentials.email"
-                     required 
-                     email
-                     #email="ngModel">
-              <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
-                Email invalide
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <label for="password" class="form-label">Mot de passe</label>
-              <input type="password" 
-                     class="form-control" 
-                     id="password"
-                     name="password"
-                     [(ngModel)]="credentials.password"
-                     required
-                     minlength="6"
-                     #password="ngModel">
-              <div *ngIf="password.invalid && password.touched" class="text-danger small mt-1">
-                Mot de passe requis (minimum 6 caractères)
-              </div>
-            </div>
-            
-            <button type="submit" 
-                    class="btn btn-primary w-100"
-                    [disabled]="loginForm.invalid || isLoading">
-              <span *ngIf="isLoading" class="loading-spinner me-2"></span>
-              Se connecter
-            </button>
+<form *ngIf="!showForgotPassword" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+  <!-- Email -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email"
+           class="form-control"
+           id="email"
+           name="email"
+           [(ngModel)]="credentials.email"
+           required
+           pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+           #email="ngModel">
+    
+    <!-- Messages erreurs email -->
+    <div *ngIf="email.touched && email.invalid" class="text-danger small mt-1">
+      <div *ngIf="email.errors?.['required']">L'email est requis.</div>
+      <div *ngIf="email.errors?.['pattern']">Format email invalide.</div>
+    </div>
+  </div>
 
-            <div class="text-center mt-2">
-              <a href="#" (click)="toggleForgotPassword($event)">Mot de passe oublié ?</a>
-            </div>
-          </form>
+  <!-- Mot de passe -->
+  <div class="mb-3">
+    <label for="password" class="form-label">Mot de passe</label>
+    <input type="password"
+           class="form-control"
+           id="password"
+           name="password"
+           [(ngModel)]="credentials.password"
+           required
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{4,8}$"
+           #password="ngModel">
 
-          <!-- Formulaire mot de passe oublié -->
-          <form *ngIf="showForgotPassword" (ngSubmit)="onForgotPassword()" #forgotForm="ngForm">
-            <div class="mb-3">
-              <label for="forgotEmail" class="form-label">Votre email</label>
-              <input type="email" 
-                     class="form-control" 
-                     id="forgotEmail"
-                     name="forgotEmail"
-                     [(ngModel)]="forgotEmail"
-                     required
-                     email
-                     #femail="ngModel">
-              <div *ngIf="femail.invalid && femail.touched" class="text-danger small mt-1">
-                Email invalide
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-warning w-100" [disabled]="forgotForm.invalid || isLoading">
-              <span *ngIf="isLoading" class="loading-spinner me-2"></span>
-              Envoyer le lien
-            </button>
-
-            <div class="text-center mt-2">
-              <a href="#" (click)="toggleForgotPassword($event)">Retour à la connexion</a>
-            </div>
-          </form>
-
-          <div class="text-center mt-3">
-            <p class="mb-0">Pas encore de compte ?</p>
-            <a routerLink="/register" class="text-decoration-none">
-              Créer un compte
-            </a>
-          </div>
-        </div>
+    <!-- Messages erreurs password -->
+    <div *ngIf="password.touched && password.invalid" class="text-danger small mt-1">
+      <div *ngIf="password.errors?.['required']">Le mot de passe est requis.</div>
+      <div *ngIf="password.errors?.['pattern']">
+        Le mot de passe doit contenir entre 4 et 8 caractères, avec au moins :
+        une majuscule, une minuscule, un chiffre et un caractère spécial.
       </div>
     </div>
   </div>
-</div>
-<br><br><br><br>
+
+  <!-- Erreur backend -->
+  <div *ngIf="loginError" class="alert alert-danger small text-center">
+    {{ loginError }}
+  </div>
+
+  <button type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="loginForm.invalid || isLoading">
+    <span *ngIf="isLoading" class="loading-spinner me-2"></span>
+    Se connecter
+  </button>
+
+  <div class="text-center mt-2">
+    <a href="#" (click)="toggleForgotPassword($event)">Mot de passe oublié ?</a>
+  </div>
+</form>

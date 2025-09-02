@@ -12,8 +12,9 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./register.css'] 
 })
 export class RegisterComponent {
- registerForm!: FormGroup;
+  registerForm!: FormGroup;
   isLoading = false;
+  registerError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -23,14 +24,17 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],   // correspond à "password" du backend
-      nom: ['', Validators.required],
+      nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{4,8}$')
+      ]],
       telephone: ['', Validators.required],
       bio: [''],
       localisation: [''],
-      role: ['CLIENT'] // valeur par défaut
+      role: ['CLIENT']
     });
   }
 
@@ -38,15 +42,22 @@ export class RegisterComponent {
     if (this.isLoading || this.registerForm.invalid) return;
 
     this.isLoading = true;
+    this.registerError = null;
+
     this.authService.register(this.registerForm.value).subscribe({
-      next: (response) => {
-        console.log('Inscription réussie :', response);
-        this.router.navigate(['/login']);
+      next: () => {
+        this.router.navigate(['/auth/login']);
         this.isLoading = false;
       },
-      error: (error) => {
-        console.error('Erreur lors de l\'inscription :', error);
+      error: (err) => {
         this.isLoading = false;
+
+        // Gestion erreurs backend
+        if (err.status === 409) {
+          this.registerError = "Email déjà utilisé.";
+        } else {
+          this.registerError = "Erreur lors de l'inscription. Veuillez réessayer.";
+        }
       }
     });
   }

@@ -1,108 +1,78 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
-      <div class="card shadow fade-in">
-        <div class="card-body p-4">
-          <h2 class="card-title text-center mb-4">
-            <i class="bi bi-person-plus me-2"></i>Inscription
-          </h2>
-          
-          <!-- Formulaire Reactive Forms -->
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+  <!-- Nom -->
+  <div class="mb-3">
+    <label for="nom" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="nom" formControlName="nom">
+    <div *ngIf="registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid" class="text-danger small mt-1">
+      Nom requis (minimum 2 caractères)
+    </div>
+  </div>
 
-            <div class="mb-3">
-              <label for="nom" class="form-label">Nom</label>
-              <input type="text"
-                     class="form-control"
-                     id="nom"
-                     formControlName="nom">
-              <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched" 
-                   class="text-danger small mt-1">
-                Nom requis (minimum 2 caractères)
-              </div>
-            </div>
+  <!-- Prénom -->
+  <div class="mb-3">
+    <label for="prenom" class="form-label">Prénom</label>
+    <input type="text" class="form-control" id="prenom" formControlName="prenom">
+    <div *ngIf="registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid" class="text-danger small mt-1">
+      Prénom requis
+    </div>
+  </div>
 
-            <div class="mb-3">
-              <label for="prenom" class="form-label">Prénom</label>
-              <input type="text"
-                     class="form-control"
-                     id="prenom"
-                     formControlName="prenom">
-              <div *ngIf="registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched" 
-                   class="text-danger small mt-1">
-                Prénom requis
-              </div>
-            </div>
+  <!-- Email -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger small mt-1">
+      <div *ngIf="registerForm.get('email')?.errors?.['required']">Email requis.</div>
+      <div *ngIf="registerForm.get('email')?.errors?.['email']">Format email invalide.</div>
+    </div>
+  </div>
 
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email"
-                     class="form-control"
-                     id="email"
-                     formControlName="email">
-              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
-                   class="text-danger small mt-1">
-                Email invalide
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="password" class="form-label">Mot de passe</label>
-              <input type="password"
-                     class="form-control"
-                     id="password"
-                     formControlName="password">
-              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-                   class="text-danger small mt-1">
-                Mot de passe requis (minimum 6 caractères)
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="telephone" class="form-label">Téléphone</label>
-              <input type="text"
-                     class="form-control"
-                     id="telephone"
-                     formControlName="telephone">
-            </div>
-
-            <div class="mb-3">
-              <label for="bio" class="form-label">Bio</label>
-              <textarea class="form-control"
-                        id="bio"
-                        formControlName="bio"></textarea>
-            </div>
-
-            <div class="mb-3">
-              <label for="localisation" class="form-label">Localisation</label>
-              <input type="text"
-                     class="form-control"
-                     id="localisation"
-                     formControlName="localisation">
-            </div>
-
-            <div class="mb-3">
-              <label for="role" class="form-label">Type de compte</label>
-              <select class="form-select" id="role" formControlName="role">
-                <option value="CLIENT">Client</option>
-                <option value="PRESTATAIRE">Prestataire</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100" 
-                    [disabled]="registerForm.invalid || isLoading">
-              <span *ngIf="isLoading" class="loading-spinner me-2"></span>
-              S'inscrire
-            </button>
-
-          </form>
-
-          <div class="text-center mt-3">
-            <p class="mb-0">Déjà un compte ?</p>
-            <a routerLink="/auth/login" class="text-decoration-none">Se connecter</a>
-          </div>
-        </div>
+  <!-- Mot de passe -->
+  <div class="mb-3">
+    <label for="password" class="form-label">Mot de passe</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger small mt-1">
+      <div *ngIf="registerForm.get('password')?.errors?.['required']">Mot de passe requis.</div>
+      <div *ngIf="registerForm.get('password')?.errors?.['pattern']">
+        Le mot de passe doit contenir 4-8 caractères, avec au moins : une majuscule, une minuscule, un chiffre et un caractère spécial.
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Téléphone -->
+  <div class="mb-3">
+    <label for="telephone" class="form-label">Téléphone</label>
+    <input type="text" class="form-control" id="telephone" formControlName="telephone">
+  </div>
+
+  <!-- Bio -->
+  <div class="mb-3">
+    <label for="bio" class="form-label">Bio</label>
+    <textarea class="form-control" id="bio" formControlName="bio"></textarea>
+  </div>
+
+  <!-- Localisation -->
+  <div class="mb-3">
+    <label for="localisation" class="form-label">Localisation</label>
+    <input type="text" class="form-control" id="localisation" formControlName="localisation">
+  </div>
+
+  <!-- Type de compte -->
+  <div class="mb-3">
+    <label for="role" class="form-label">Type de compte</label>
+    <select class="form-select" id="role" formControlName="role">
+      <option value="CLIENT">Client</option>
+      <option value="PRESTATAIRE">Prestataire</option>
+    </select>
+  </div>
+
+  <!-- Erreur backend -->
+  <div *ngIf="registerError" class="alert alert-danger text-center small mt-2">
+    {{ registerError }}
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid || isLoading">
+    <span *ngIf="isLoading" class="loading-spinner me-2"></span>
+    S'inscrire
+  </button>
+</form>
