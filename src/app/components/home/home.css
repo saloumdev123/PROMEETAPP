@@ -29,7 +29,7 @@
   transform: translateY(-5px);
 }
 .stats-section {
-  background: #f8f9fa;
+  background: #f19b0f;
 }
 
 .stat-card {
@@ -42,6 +42,8 @@
 
 .stat-card:hover {
   transform: translateY(-5px);
+  color: #e9a30b;
+  background-color: #e9a30b;
 }
 
 .stat-card h3 {

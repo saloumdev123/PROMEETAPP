@@ -13,48 +13,35 @@
           <p *ngIf="offre.prestataire"><strong>Prestataire:</strong> {{ offre.prestataire.nom }}</p>
           <p *ngIf="offre.createdAt"><small class="text-muted">Créé le {{ offre.createdAt | date:'dd/MM/yyyy HH:mm' }}</small></p>
           <p *ngIf="offre.updatedAt"><small class="text-muted">Mis à jour le {{ offre.updatedAt | date:'dd/MM/yyyy HH:mm' }}</small></p>
-          <p *ngIf="offre.reservationsId"><strong>Réservation ID:</strong> {{ offre.reservationsId }}</p>
+
+          <!-- Note moyenne -->
+          <div *ngIf="avisList.length > 0" class="mb-2">
+            <strong>Note moyenne:</strong>
+            <ng-container *ngFor="let star of [1,2,3,4,5]">
+              <i class="bi" [ngClass]="star <= averageNote() ? 'bi-star-fill text-warning' : 'bi-star text-secondary'"></i>
+            </ng-container>
+            ({{ avisList.length }} avis)
+          </div>
+
+          <!-- Étoiles interactives pour l'utilisateur -->
+          <div class="mb-3" *ngIf="authService.isAuthenticated()">
+            <strong>Votre note :</strong>
+            <ng-container *ngFor="let star of [1,2,3,4,5]">
+              <i 
+                class="bi"
+                [ngClass]="star <= userNote ? 'bi-star-fill text-warning' : 'bi-star text-secondary'"
+                (click)="setNote(star)"
+                style="cursor: pointer; font-size: 1.5rem; margin-right: 2px;">
+              </i>
+            </ng-container>
+            <span *ngIf="userNote">({{ userNote }}/5)</span>
+          </div>
+
           <button class="btn btn-warning mt-3" (click)="reserver(offre.id, offre.prix)">
             <i class="bi bi-calendar-plus me-2"></i>Réserver
           </button>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="card mt-4" *ngIf="offre">
-  <div class="card-body">
-    <h5>Laisser un avis</h5>
-
-    <!-- Si non connecté, invite à se connecter -->
-    <div *ngIf="!authService.isAuthenticated()" class="alert alert-warning">
-      Vous devez vous connecter pour laisser un avis.
-      <a routerLink="/login" class="btn btn-sm btn-primary ms-2">Se connecter</a>
-    </div>
-
-    <!-- Formulaire avis si connecté -->
-    <form *ngIf="authService.isAuthenticated()" (ngSubmit)="submitAvis()" #avisForm="ngForm">
-      <div class="mb-2">
-        <label class="form-label">Note</label>
-        <select class="form-select" required [(ngModel)]="newAvis.note" name="note">
-          <option [value]="1">1 étoile</option>
-          <option [value]="2">2 étoiles</option>
-          <option [value]="3">3 étoiles</option>
-          <option [value]="4">4 étoiles</option>
-          <option [value]="5">5 étoiles</option>
-        </select>
-      </div>
-
-      <div class="mb-2">
-        <label class="form-label">Commentaire</label>
-        <textarea class="form-control" required [(ngModel)]="newAvis.contenu" name="contenu" rows="3"></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="avisForm.invalid">Publier l'avis</button>
-    </form>
-  </div>
-</div>
-
-
-<br><br><br><br><br><br><br><br>

@@ -20,10 +20,9 @@ export class OfferDetail {
  offre: Offre | null = null;
   isLoading = false;
   errorMessage = '';
-  Role = Role;
 
   avisList: AvisModel[] = [];
-  newAvis: { note: number; contenu: string } = { note: 5, contenu: '' }; 
+  userNote: number = 0; // note que l'utilisateur clique
 
   constructor(
     private route: ActivatedRoute,
@@ -49,53 +48,40 @@ export class OfferDetail {
         this.offre = offre;
         this.isLoading = false;
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Impossible de charger l’offre.';
         this.isLoading = false;
       }
     });
   }
 
- loadAvis(offreId: number): void {
-  this.avisService.getByOffre(offreId).subscribe({
-    next: (data: any[]) => {
-      // Mapper chaque objet reçu vers AvisModel
-      this.avisList = data.map(item => ({
-        id: item.id,
-        contenu: item.contenu,
-        note: item.note,
-        utilisateurId: item.utilisateurId,
-        offreId: item.offreId,
-        utilisateur: item.utilisateur,
-        offre: item.offre,
-        createdAt: item.createdAt ? new Date(item.createdAt) : undefined
-      }));
-    },
-    error: (err) => console.error(err)
-  });
-}
-
-
-  submitAvis(): void {
-    if (!this.authService.isAuthenticated() || !this.offre) return;
-
-    const avisToSend: AvisModel = {
-      note: this.newAvis.note,
-      contenu: this.newAvis.contenu,
-      offreId: this.offre.id!,
-      utilisateurId: this.authService.currentUser?.id!,
-      createdAt: new Date()
-    };
-
-    this.avisService.create(avisToSend).subscribe({
-      next: () => {
-        // Réinitialiser le formulaire
-        this.newAvis = { note: 5, contenu: '' };
-        // Recharger les avis
-        this.loadAvis(this.offre!.id!);
+  loadAvis(offreId: number): void {
+    this.avisService.getByOffre(offreId).subscribe({
+      next: (data: any[]) => {
+        this.avisList = data.map(item => ({
+          id: item.id,
+          contenu: item.contenu,
+          note: item.note,
+          utilisateurId: item.utilisateurId,
+          offreId: item.offreId,
+          utilisateur: item.utilisateur,
+          offre: item.offre,
+          createdAt: item.createdAt ? new Date(item.createdAt) : undefined
+        }));
       },
-      error: (err) => console.error('Erreur lors de l’ajout de l’avis', err)
+      error: (err) => console.error(err)
     });
+  }
+
+  averageNote(): number {
+    if (this.avisList.length === 0) return 0;
+    const total = this.avisList.reduce((sum, avis) => sum + avis.note, 0);
+    return Math.round(total / this.avisList.length);
+  }
+
+  setNote(star: number): void {
+    this.userNote = star;
+    console.log(`Vous avez donné une note de ${this.userNote}`);
   }
 
   reserver(offreId: number | undefined, montant: number | undefined) {
@@ -105,6 +91,4 @@ export class OfferDetail {
       this.router.navigate(['/paiement'], { queryParams: { id: offreId, montant } });
     }
   }
-
-
 }
