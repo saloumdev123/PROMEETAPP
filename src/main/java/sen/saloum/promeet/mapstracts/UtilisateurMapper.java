@@ -16,6 +16,7 @@ public interface UtilisateurMapper {
     @Mapping(target = "motDePasse", source = "dto.motDePasse")
     Utilisateur toEntity(UtilisateurDTO dto);
 
+    @Mapping(target = "role", expression = "java(utilisateur.getRole().name())")
     UtilisateurDTO toDTO(Utilisateur utilisateur);
 
     List<UtilisateurDTO> toDTOList(List<Utilisateur> utilisateurs);

@@ -7,19 +7,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "paydunya")
 public class PayDunyaConfig {
 
-    private String masterKey;
     private String publicKey;
     private String privateKey;
     private String token;
-    private String mode;
 
-    public String getMasterKey() {
-        return masterKey;
-    }
-
-    public void setMasterKey(String masterKey) {
-        this.masterKey = masterKey;
-    }
 
     public String getPublicKey() {
         return publicKey;
@@ -45,11 +36,5 @@ public class PayDunyaConfig {
         this.token = token;
     }
 
-    public String getMode() {
-        return mode;
-    }
 
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
 }

@@ -32,9 +32,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // ✅ Ignorer certaines routes publiques
         String path = request.getServletPath();
-        if (path.startsWith("/api/auth") ||
+
+        // ✅ Ignorer uniquement les endpoints publics
+        if (path.equals("/api/auth/login") ||
+                path.equals("/api/auth/register") ||
+                path.equals("/api/auth/forgot-password") ||
+                path.equals("/api/auth/reset-password") ||
                 (path.equals("/api/utilisateurs") && request.getMethod().equalsIgnoreCase("POST"))) {
             filterChain.doFilter(request, response);
             return;
@@ -55,7 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Utilisateur utilisateur = utilisateurRepository.findByEmail(username).orElse(null);
             if (utilisateur != null) {
                 UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(utilisateur, null,
+                        new UsernamePasswordAuthenticationToken(utilisateur.getEmail(), null,
                                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + utilisateur.getRole().name())));
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);

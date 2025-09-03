@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import sen.saloum.promeet.dto.UtilisateurDTO;
 import sen.saloum.promeet.enums.Role;
 import sen.saloum.promeet.exception.InvalidTokenException;
 import sen.saloum.promeet.exception.UserNotFoundException;
@@ -20,6 +21,7 @@ import sen.saloum.promeet.repos.UtilisateurRepository;
 import sen.saloum.promeet.services.security.AuthService;
 
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -45,23 +47,30 @@ public class AuthController {
 
     @Operation(summary = "Créer un nouvel utilisateur")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<Map<String, Object>> register(@RequestBody RegisterRequest request) {
         if (utilisateurRepository.existsByEmail(request.getEmail())) {
-            return ResponseEntity.badRequest().body("Email déjà utilisé");
+            return ResponseEntity.badRequest().body(Map.of("message", "Email déjà utilisé"));
         }
 
         Utilisateur user = new Utilisateur();
         user.setEmail(request.getEmail());
         user.setMotDePasse(passwordEncoder.encode(request.getPassword()));
         user.setNom(request.getNom());
+        user.setPrenom(request.getPrenom());
         user.setTelephone(request.getTelephone());
-
-
+        user.setBio(request.getBio());
+        user.setLocalisation(request.getLocalisation());
         user.setRole(Role.CLIENT);
 
         utilisateurRepository.save(user);
-        return ResponseEntity.ok("Utilisateur créé avec succès");
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Utilisateur créé avec succès",
+                "userId", user.getId(),
+                "email", user.getEmail()
+        ));
     }
+
 
     @Operation(summary = "Rafraîchir le token")
     @PostMapping("/refresh-token")
@@ -108,16 +117,58 @@ public class AuthController {
         }
     }
     @GetMapping("/profile")
-    public ResponseEntity<Utilisateur> getProfile(Authentication authentication) {
+    public ResponseEntity<UtilisateurDTO> getProfile(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        String email = authentication.getName(); // récupère l’email du token
+        String email = authentication.getName();
         Utilisateur user = utilisateurRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
 
-        return ResponseEntity.ok(user);
+        UtilisateurDTO dto = new UtilisateurDTO();
+        dto.setId(user.getId());
+        dto.setNom(user.getNom());
+        dto.setPrenom(user.getPrenom());
+        dto.setEmail(user.getEmail());
+        dto.setTelephone(user.getTelephone());
+        dto.setRole(user.getRole().name());
+        dto.setBio(user.getBio());
+        dto.setLocalisation(user.getLocalisation());
+        return ResponseEntity.ok(dto);
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<UtilisateurDTO> updateProfile(
+            Authentication authentication,
+            @RequestBody UtilisateurDTO dto
+    ) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String email = authentication.getName();
+        Utilisateur user = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+
+        user.setNom(dto.getNom());
+        user.setPrenom(dto.getPrenom());
+        user.setTelephone(dto.getTelephone());
+        user.setBio(dto.getBio());
+        user.setLocalisation(dto.getLocalisation());
+
+        utilisateurRepository.save(user);
+
+        UtilisateurDTO updated = new UtilisateurDTO();
+        updated.setId(user.getId());
+        updated.setNom(user.getNom());
+        updated.setPrenom(user.getPrenom());
+        updated.setEmail(user.getEmail());
+        updated.setTelephone(user.getTelephone());
+        updated.setRole(user.getRole().name());
+        updated.setBio(user.getBio());
+        updated.setLocalisation(user.getLocalisation());
+
+        return ResponseEntity.ok(updated);
     }
 
 }

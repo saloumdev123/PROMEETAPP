@@ -43,6 +43,17 @@ public class SecurityConfig {
                         // Auth open endpoints
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/forgot-password").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/reset-password").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/avis/**").permitAll()
+
+
+
+                        .requestMatchers(HttpMethod.GET, "/api/auth/profile").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/utilisateurs/**").hasAnyRole("ADMIN", "CLIENT", "PRESTATAIRE")
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/profile").hasAnyRole("CLIENT","PRESTATAIRE","ADMIN")
+
+
                         .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/paiements/callback").permitAll()
@@ -95,7 +106,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of("http://localhost:4300"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
