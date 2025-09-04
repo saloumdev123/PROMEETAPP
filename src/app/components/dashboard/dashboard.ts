@@ -55,4 +55,14 @@ export class Dashboard implements OnInit{
       });
     });
   }
+  get isAdmin() {
+  return this.currentUser?.role === 'ADMIN';
+}
+
+get isPrestataire() {
+  return this.currentUser?.role === 'PRESTATAIRE';
+}
+get isClient(): boolean {
+  return this.currentUser?.role === 'CLIENT';
+}
 }

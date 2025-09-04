@@ -10,10 +10,10 @@ import { Home } from './components/home/home';
 import { RegisterComponent } from './components/auth/register/register';
 import { OfferDetail } from './components/offre/offer-detail/offer-detail';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { Component } from '@angular/core';
 import { PaiementComponent } from './components/paiement/paiement.component ';
 import { ProfileEdit } from './components/profile-edit/profile-edit';
 import { Profile } from './components/profile/profile';
+import { Utilisateurs } from './components/utilisateurs/utilisateurs';
 export const routes: Routes = [
   
   { path: 'login', component: LoginComponent },
@@ -24,6 +24,7 @@ export const routes: Routes = [
   { path: 'offres/create', component: OffreForm },
   { path: 'offres/edit/:id', component: OffreForm },
   { path: 'offres/:id', component: OfferDetail },
+  { path: 'admin/users', component: Utilisateurs, canActivate: [AuthGuard] },
   { path: 'reservations', component: ReservationComponent },
   {path: 'reservations/:id', component: ReservationComponent},
    { path: 'reset-password', component: ResetPasswordComponent },

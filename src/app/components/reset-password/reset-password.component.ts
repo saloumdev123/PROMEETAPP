@@ -22,6 +22,10 @@ export class ResetPasswordComponent {
   confirmPassword = '';
   loading = false;
 
+  // 🔹 Pour gérer la visibilité des mots de passe
+  showNewPassword = false;
+  showConfirmPassword = false;
+
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -33,20 +37,29 @@ export class ResetPasswordComponent {
     });
   }
 
+  // 🔹 Toggle visibilité pour le champ "Nouveau mot de passe"
+  toggleNewPassword(): void {
+    this.showNewPassword = !this.showNewPassword;
+  }
+
+  // 🔹 Toggle visibilité pour le champ "Confirmer mot de passe"
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
   onSubmit(): void {
     if (!this.newPassword || !this.confirmPassword) {
-      window.alert('Please fill all fields.');
+      window.alert('Veuillez remplir tous les champs.');
       return;
     }
 
     if (this.newPassword !== this.confirmPassword) {
-      window.alert('Passwords do not match.');
+      window.alert('Les mots de passe ne correspondent pas.');
       return;
     }
 
     this.loading = true;
 
-    // 🔹 Construire l'objet ResetPasswordRequest
     const request: ResetPasswordRequest = {
       token: this.token,
       newPassword: this.newPassword
@@ -55,15 +68,13 @@ export class ResetPasswordComponent {
     this.authService.resetPassword(request).subscribe({
       next: (response: any) => {
         this.loading = false;
-        // 🔹 Affiche le message du backend
-        window.alert(response.message || 'Password reset successfully! Please login.');
-        // 🔹 Redirection vers la page login
+        window.alert(response.message || 'Mot de passe réinitialisé avec succès ! Connectez-vous.');
         this.router.navigate(['/login']);
       },
       error: (err) => {
         this.loading = false;
         console.error('Reset password error:', err);
-        window.alert('Failed to reset password. Token may be invalid or expired.');
+        window.alert('Échec de la réinitialisation. Le token est peut-être invalide ou expiré.');
       }
     });
   }

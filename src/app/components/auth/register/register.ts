@@ -15,6 +15,7 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   isLoading = false;
   registerError: string | null = null;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,7 @@ export class RegisterComponent {
 
     this.authService.register(this.registerForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
         this.isLoading = false;
       },
       error: (err) => {
@@ -61,4 +62,8 @@ export class RegisterComponent {
       }
     });
   }
+
+  togglePassword(): void {
+  this.showPassword = !this.showPassword;
+}
 }

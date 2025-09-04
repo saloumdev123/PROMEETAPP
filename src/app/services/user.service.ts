@@ -8,14 +8,17 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly API_URL = 'http://localhost:8091/api/users';
+  private readonly API_URL = 'http://localhost:8091/api/utilisateurs';
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.API_URL)
-      .pipe(catchError(this.handleError));
-  }
+getAll(): Observable<User[]> {
+  const token = localStorage.getItem('accessToken'); 
+  const headers = { Authorization: `Bearer ${token}` };
+  return this.http.get<User[]>(this.API_URL, { headers })
+    .pipe(catchError(this.handleError));
+}
+
 
   getById(id: number): Observable<User> {
     return this.http.get<User>(`${this.API_URL}/${id}`)

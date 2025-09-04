@@ -14,13 +14,24 @@
     </div>
 
     <div class="mb-3">
-      <label for="password" class="form-label">Mot de passe</label>
-      <input type="password"
-             class="form-control"
-             id="password"
-             [(ngModel)]="credentials.password"
-             name="password">
-    </div>
+  <label for="password" class="form-label">Mot de passe</label>
+  <div class="input-group">
+    <input 
+      [type]="showPassword ? 'text' : 'password'"
+      class="form-control"
+      id="password"
+      [(ngModel)]="credentials.password"
+      name="password">
+    <button 
+      type="button" 
+      class="btn btn-outline-secondary" 
+      (click)="togglePassword()" 
+      tabindex="-1">
+      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+    </button>
+  </div>
+</div>
+
 
     <div *ngIf="loginError" class="alert alert-danger small text-center">
       {{ loginError }}
@@ -48,6 +59,7 @@
              id="forgotEmail"
              [(ngModel)]="forgotEmail"
              name="forgotEmail">
+             
     </div>
 
     <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">

@@ -19,6 +19,7 @@ export class LoginComponent {
   showForgotPassword: boolean = false;
   isLoading = false;
   loginError: string | null = null;
+  showPassword: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
  
@@ -63,5 +64,9 @@ export class LoginComponent {
         this.isLoading = false;
       }
     });
+  }
+
+    togglePassword(): void {
+  this.showPassword = !this.showPassword;
   }
 }

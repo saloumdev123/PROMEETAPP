@@ -1,6 +1,6 @@
 <div class="container mt-4">
+  <!-- Dashboard privé -->
   <div *ngIf="currentUser; else publicDashboard">
-    <!-- Dashboard privé -->
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <h1 class="h3">Tableau de bord</h1>
@@ -8,12 +8,59 @@
       </div>
     </div>
 
-    <!-- Cartes pour CLIENT / PRESTATAIRE / ADMIN -->
-    ...
+    <!-- Cartes visibles pour tous (CLIENT, PRESTATAIRE, ADMIN) -->
+    <div class="row mb-4">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-star fs-1 text-warning mb-3"></i>
+            <h5 class="card-title">Avis et notes</h5>
+            <p class="card-text">Consultez les avis</p>
+            <a routerLink="/avis" class="btn btn-outline-warning">Voir les avis</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-info-circle fs-1 text-info mb-3"></i>
+            <h5 class="card-title">Nos services</h5>
+            <p class="card-text">Découvrez ce que nous proposons</p>
+            <a routerLink="/offres" class="btn btn-info">Voir les offres</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cartes réservées PRESTATAIRE / ADMIN -->
+    <div class="row mb-4">
+      <div *ngIf="isPrestataire || isAdmin" class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-plus-circle fs-1 text-success mb-3"></i>
+            <h5 class="card-title">Ajouter une offre</h5>
+            <p class="card-text">Créez une nouvelle offre de service</p>
+            <a routerLink="/offres/ajouter" class="btn btn-success">Ajouter</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isAdmin" class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-people fs-1 text-primary mb-3"></i>
+            <h5 class="card-title">Tous les utilisateurs</h5>
+            <p class="card-text">Voir et gérer tous les utilisateurs</p>
+            <a routerLink="/admin/users" class="btn btn-primary">Voir les utilisateurs</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Dashboard public -->
   <ng-template #publicDashboard>
-    <!-- Dashboard public -->
     <div class="row mb-4">
       <div class="col-12 text-center">
         <h1 class="h3">Bienvenue sur notre plateforme</h1>
@@ -21,8 +68,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <!-- Cartes visibles pour tous -->
+    <!-- Cartes publiques -->
+    <div class="row mb-4">
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="card h-100 text-center">
           <div class="card-body">
