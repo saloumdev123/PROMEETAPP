@@ -1,0 +1,42 @@
+<section class="team-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">{{ 'Notre Équipe' }}</h2>
+      <p class="section-subtitle">
+        Une équipe multidisciplinaire qui travaille main dans la main pour connecter 
+        les professionnels et les clients dans tous les secteurs.
+      </p>
+      <!-- Texte explicatif supplémentaire -->
+      <p class="team-intro">
+        Chez <strong>SenFibem</strong>, notre force réside dans la diversité des talents. 
+        Chaque membre de l’équipe apporte son expertise pour assurer un service de mise en relation 
+        fiable, innovant et adapté à vos besoins. Ensemble, nous construisons un réseau 
+        qui favorise la collaboration, l’innovation et la réussite dans tous les domaines.
+      </p>
+    </div>
+
+    <div class="row">
+      <!-- Cartes des membres -->
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let member of teamMembers">
+        <div class="team-card text-center p-3">
+          <div class="team-img mb-3">
+            <img [src]="member.photo" alt="{{ member.nom }}" class="img-fluid rounded-circle">
+          </div>
+          <h5 class="team-name">{{ member.nom }}</h5>
+          <p class="team-role">{{ member.poste }}</p>
+          <p class="team-desc">{{ member.description }}</p>
+          <div class="team-social">
+            <a *ngIf="member.linkedin" [href]="member.linkedin" target="_blank" class="me-2">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a *ngIf="member.twitter" [href]="member.twitter" target="_blank">
+              <i class="bi bi-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Fin carte membre -->
+    </div>
+  </div>
+</section>
+

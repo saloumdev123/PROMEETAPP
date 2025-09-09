@@ -1,1 +1,75 @@
+/* Footer background bleu */
+footer {
+  background-color: #096198; /* bleu foncé */
+  color: #fff;
+  font-size: 0.95rem;
+}
 
+/* Titres H5 avec fond bleu */
+footer h5 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  background-color: #ffd500; /* bleu */
+  box-shadow: 5px 5px 5px rgb(255, 255, 255);
+}
+
+/* Décoration après H5 */
+footer h5::after {
+  content: "";
+  position: absolute;
+  width:100%;
+  height: 3px;
+  background: linear-gradient(90deg, #df2b03, #0083b0, #ffd500 ); /* dégradé bleu */
+  left: 0;
+  bottom: -6px;
+  border-radius: 2px;
+}
+
+/* Texte et liens */
+footer p, 
+footer a {
+  color: #e0e0e0;
+}
+
+footer a:hover {
+  color: #ffcc00; /* jaune vif au hover */
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Boutons réseaux sociaux */
+footer .btn-outline-light {
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+footer .btn-outline-light:hover {
+  background: #b06700; /* bleu au hover */
+  border-color: #0083b0;
+  color: #fff;
+}
+
+footer hr {
+  border-top: 1px solid rgb(248, 251, 251);
+}
+
+footer .text-end {
+  font-style: italic;
+  color: #cccccc;
+}
+
+footer .social-icon {
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  color: #e0e0e0;
+}
+
+/* Logo */
+.navbar-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}

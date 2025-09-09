@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { OffreService } from '../../services/offre.service';
 import { ReservationService } from '../../services/reservation.service';
 import { AvisService } from '../../services/avis.service';
-import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,10 +17,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Dashboard implements OnInit{
  currentUser: User | null = null;
-
+isSidebarOpen: boolean = false;
   offresCount = 0;
   reservationsCount = 0;
   avisCount = 0;
+
+   toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+  commonCards = [
+    {
+      title: 'Avis et notes',
+      text: 'Consultez les avis',
+      link: '/avis',
+      icon: 'bi bi-star'
+    },
+    {
+      title: 'Nos services',
+      text: 'Découvrez ce que nous proposons',
+      link: '/offres',
+      icon: 'bi bi-info-circle'
+    },
+    {
+      title: 'Nos produits',
+      text: 'Découvrez tous nos produits disponibles',
+      link: '/produits',
+      icon: 'bi bi-box-seam'
+    }
+  ];
 
   constructor(
     private http: HttpClient,
@@ -38,13 +61,13 @@ export class Dashboard implements OnInit{
 
       if (!user) return;
 
-      if (user.role === 'CLIENT') {
+      if (user.role === 'PARTICULIER') {
         this.reservationService.getByClient(user.id!).subscribe(res => {
           this.reservationsCount = res.length;
         });
       }
 
-      if (user.role === 'PRESTATAIRE') {
+      if (user.role === 'PROFESSIONNEL') {
         this.offreService.getByPrestataire(user.id!).subscribe(res => {
           this.offresCount = res.length;
         });
@@ -60,9 +83,9 @@ export class Dashboard implements OnInit{
 }
 
 get isPrestataire() {
-  return this.currentUser?.role === 'PRESTATAIRE';
+  return this.currentUser?.role === 'PROFESSIONNEL';
 }
 get isClient(): boolean {
-  return this.currentUser?.role === 'CLIENT';
+  return this.currentUser?.role === 'PARTICULIER';
 }
 }

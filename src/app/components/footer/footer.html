@@ -1,59 +1,63 @@
-<body class="d-flex flex-column min-vh-100">
-  <!-- Contenu principal -->
-  <main class="flex-grow-1">
-    <!-- Ton contenu ici -->
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-danger text-warning pt-5 pb-4 mt-auto">
-    <div class="container text-md-left">
-      <div class="row text-md-left">
-        <!-- À propos -->
-        <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold">SenFibem France</h5>
-          <p>
-            SenFibem France est votre partenaire pour la mise en relation, l’innovation et le développement de projets professionnels et éducatifs.
-          </p>
+<footer class="pt-5 pb-4 mt-auto text-white w-100">
+  <div class="container-fluid px-5"> <!-- container-fluid pour largeur totale -->
+    <div class="row text-md-left">
+      
+      <!-- À propos -->
+      <div class="col-md-4 mt-3">
+        <div class="d-flex align-items-center mb-2">
+          <img src="assets/images/logofibem.png" alt="SenFibem France" class="navbar-logo me-2">
+          <h5 class="text-uppercase mb-4 fw-bold">Mise en Relation</h5>
         </div>
-
-        <!-- Liens rapides -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold">Liens rapides</h5>
-          <p><a href="/" class="text-warning text-decoration-none">Accueil</a></p>
-          <p><a href="/offres" class="text-warning text-decoration-none">Offres</a></p>
-          <p><a href="/contact" class="text-warning text-decoration-none">Contact</a></p>
-          <p><a href="/about" class="text-warning text-decoration-none">À propos</a></p>
-        </div>
-
-        <!-- Contact -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
-          <p><i class="bi bi-house-door me-2"></i> 123 Rue de la République, Paris, France</p>
-          <p><i class="bi bi-envelope me-2"></i> contact&#64;senfibem.fr</p>
-          <p><i class="bi bi-telephone me-2"></i> +33 1 23 45 67 89</p>
-          <p><i class="bi bi-globe me-2"></i> www.senfibem.fr</p>
-        </div>
-
-        <!-- Réseaux sociaux -->
-        <div class="col-md-2 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold">Suivez-nous</h5>
-          <a href="#" class="btn btn-outline-warning btn-floating m-1"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="btn btn-outline-warning btn-floating m-1"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="btn btn-outline-warning btn-floating m-1"><i class="bi bi-linkedin"></i></a>
-          <a href="#" class="btn btn-outline-warning btn-floating m-1"><i class="bi bi-instagram"></i></a>
-        </div>
+        <p>SenFibem France est votre partenaire pour la mise en relation, l’innovation et le développement de projets professionnels et éducatifs.</p>
       </div>
 
-      <hr class="mb-4 border-warning">
+      <!-- Liens rapides -->
+      <div class="col-md-2 mt-3">
+        <h5 class="text-uppercase mb-4 fw-bold">Liens rapides</h5>
+        <p><a href="/" class="text-white text-decoration-none">Accueil</a></p>
+        <p><a href="/offres" class="text-white text-decoration-none">Offres</a></p>
+        <p><a href="/contact" class="text-white text-decoration-none">Contact</a></p>
+        <p><a href="/about" class="text-white text-decoration-none">À propos</a></p>
+      </div>
 
-      <div class="row align-items-center">
-        <div class="col-md-7 col-lg-8">
-          <p class="text-warning">© 2025 SenFibem France. Tous droits réservés.</p>
+      <!-- Contact -->
+      <div class="col-md-3 mt-3">
+        <h5 class="text-uppercase mb-4 fw-bold">Contact</h5>
+        <p><i class="bi bi-house-door me-2"></i>123 Rue de la République, Paris, France</p>
+        <p><i class="bi bi-envelope me-2"></i>contact&#64;senfibem.fr</p>
+        <p><i class="bi bi-telephone me-2"></i>+33 1 23 45 67 89</p>
+        <p><i class="bi bi-globe me-2"></i>www.senfibem.fr</p>
+      </div>
+
+      <!-- Réseaux sociaux + abonnement -->
+      <div class="col-md-3 mt-3">
+        <h5 class="text-uppercase mb-4 fw-bold">Suivez-nous</h5>
+        <div class="mb-3">
+          <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-instagram"></i></a>
         </div>
-        <div class="col-md-5 col-lg-4">
-          <p class="text-warning text-end">Développé avec ❤️ par SenFibem Tech</p>
-        </div>
+
+        <!-- Formulaire abonnement -->
+        <form class="d-flex flex-column" id="subscribeForm">
+          <label for="subscriberEmail" class="form-label text-white">Abonnez-vous à notre newsletter</label>
+          <input type="email" class="form-control mb-2" id="subscriberEmail" placeholder="Votre email" required>
+          <button type="submit" class="btn btn-warning btn-sm">S'abonner</button>
+        </form>
+      </div>
+
+    </div>
+
+    <hr class="mb-4 border-light">
+
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <p class="text-white mb-0">© 2025 SenFibem France. Tous droits réservés.</p>
+      </div>
+      <div class="col-md-5 text-md-end">
+        <p class="text-white mb-0">Développé par SenFibem Tech</p>
       </div>
     </div>
-  </footer>
-</body>
+  </div>
+</footer>

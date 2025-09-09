@@ -1,96 +1,68 @@
-<div class="container mt-4">
-  <!-- Dashboard privé -->
-  <div *ngIf="currentUser; else publicDashboard">
-    <div class="row mb-4">
-      <div class="col-12 d-flex justify-content-between align-items-center">
-        <h1 class="h3">Tableau de bord</h1>
-        <span class="badge bg-primary fs-6">{{ currentUser.role }}</span>
-      </div>
-    </div>
+<div class="container mt-5">
+  <!-- Header du Dashboard -->
+  <div *ngIf="currentUser; else publicDashboard" class="dashboard-header text-center mb-5 p-4 rounded shadow-sm">
+    <h1 class="fw-bold"> Bienvenue, {{ currentUser.nom }}</h1>
+    <p class="text-muted">Vous êtes connecté en tant que 
+      <span class="badge bg-primary">{{ currentUser.role }}</span>
+    </p>
+  </div>
 
-    <!-- Cartes visibles pour tous (CLIENT, PRESTATAIRE, ADMIN) -->
-    <div class="row mb-4">
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-star fs-1 text-warning mb-3"></i>
-            <h5 class="card-title">Avis et notes</h5>
-            <p class="card-text">Consultez les avis</p>
-            <a routerLink="/avis" class="btn btn-outline-warning">Voir les avis</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-info-circle fs-1 text-info mb-3"></i>
-            <h5 class="card-title">Nos services</h5>
-            <p class="card-text">Découvrez ce que nous proposons</p>
-            <a routerLink="/offres" class="btn btn-info">Voir les offres</a>
-          </div>
+  <!-- Section des cartes -->
+  <div class="row g-4">
+    <!-- ✅ Carte universelle -->
+    <div class="col-md-6 col-lg-4" *ngFor="let card of commonCards">
+      <div class="card dashboard-card h-100 text-center">
+        <div class="card-body">
+          <i [class]="card.icon + ' fs-1 mb-3 text-primary'"></i>
+          <h5 class="card-title fw-bold">{{ card.title }}</h5>
+          <p class="card-text text-muted">{{ card.text }}</p>
+          <a [routerLink]="card.link" class="btn btn-gradient">Voir</a>
         </div>
       </div>
     </div>
 
-    <!-- Cartes réservées PRESTATAIRE / ADMIN -->
-    <div class="row mb-4">
-      <div *ngIf="isPrestataire || isAdmin" class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-plus-circle fs-1 text-success mb-3"></i>
-            <h5 class="card-title">Ajouter une offre</h5>
-            <p class="card-text">Créez une nouvelle offre de service</p>
-            <a routerLink="/offres/ajouter" class="btn btn-success">Ajouter</a>
-          </div>
+    <!-- ✅ Carte Catégories (visible tout le monde) -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card dashboard-card h-100 text-center border-warning">
+        <div class="card-body">
+          <i class="bi bi-folder fs-1 mb-3 text-warning"></i>
+          <h5 class="card-title fw-bold">📂 Nos Catégories</h5>
+          <p class="card-text text-muted">Découvrez nos 7 catégories de produits.</p>
+          <a routerLink="/categories" class="btn btn-gradient">Explorer</a>
         </div>
       </div>
+    </div>
 
-      <div *ngIf="isAdmin" class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-people fs-1 text-primary mb-3"></i>
-            <h5 class="card-title">Tous les utilisateurs</h5>
-            <p class="card-text">Voir et gérer tous les utilisateurs</p>
-            <a routerLink="/admin/users" class="btn btn-primary">Voir les utilisateurs</a>
-          </div>
+    <!-- ✅ Carte Magasins (Admin uniquement) -->
+    <div class="col-md-6 col-lg-4" *ngIf="currentUser?.role === 'ADMIN'">
+      <div class="card dashboard-card h-100 text-center border-danger">
+        <div class="card-body">
+          <i class="bi bi-shop fs-1 mb-3 text-danger"></i>
+          <h5 class="card-title fw-bold">🏬 Gestion des Magasins</h5>
+          <p class="card-text text-muted">Accédez aux 6 magasins disponibles.</p>
+          <a routerLink="/magasins" class="btn btn-gradient">Voir</a>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-6 col-lg-4" *ngIf="currentUser?.role === 'ADMIN'">
+      <div class="card dashboard-card h-100 text-center border-primary">
+        <div class="card-body">
+          <i class="bi bi-people fs-1 mb-3 text-primary"></i>
+          <h5 class="card-title fw-bold">👥 Tous les utilisateurs</h5>
+          <p class="card-text text-muted">Voir et gérer tous les comptes utilisateurs.</p>
+          <a routerLink="/admin/users" class="btn btn-gradient">Gérer les utilisateurs</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Dashboard public -->
+  <!-- Dashboard Public -->
   <ng-template #publicDashboard>
-    <div class="row mb-4">
-      <div class="col-12 text-center">
-        <h1 class="h3">Bienvenue sur notre plateforme</h1>
-        <p>Connectez-vous ou inscrivez-vous pour accéder à votre tableau de bord.</p>
-      </div>
-    </div>
-
-    <!-- Cartes publiques -->
-    <div class="row mb-4">
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-star fs-1 text-warning mb-3"></i>
-            <h5 class="card-title">Avis et notes</h5>
-            <p class="card-text">Consultez les avis</p>
-            <a routerLink="/avis" class="btn btn-outline-warning">Voir les avis</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-          <div class="card-body">
-            <i class="bi bi-info-circle fs-1 text-info mb-3"></i>
-            <h5 class="card-title">Nos services</h5>
-            <p class="card-text">Découvrez ce que nous proposons</p>
-            <a routerLink="/offres" class="btn btn-info">Voir les offres</a>
-          </div>
-        </div>
-      </div>
+    <div class="text-center p-5 bg-light rounded shadow-sm">
+      <h2 class="fw-bold mb-3">Bienvenue sur notre plateforme</h2>
+      <p class="text-muted">Connectez-vous ou inscrivez-vous pour accéder à votre tableau de bord.</p>
+      <a routerLink="/login" class="btn btn-primary me-2">Connexion</a>
+      <a routerLink="/register" class="btn btn-outline-primary">Inscription</a>
     </div>
   </ng-template>
 </div>

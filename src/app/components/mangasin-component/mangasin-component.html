@@ -1,0 +1,36 @@
+
+<div class="magasin-container">
+  <h2>Gestion des Magasins</h2>
+
+  <!-- Formulaire création -->
+  <div class="form-create">
+    <h3>Ajouter un magasin</h3>
+    <input type="text" placeholder="Nom" [(ngModel)]="newMagasin.nom">
+    <input type="text" placeholder="Localisation" [(ngModel)]="newMagasin.localisation">
+    <input type="text" placeholder="Téléphone" [(ngModel)]="newMagasin.telephone">
+    <button (click)="createMagasin()">Créer</button>
+  </div>
+
+  <!-- Liste des magasins sous forme de cartes -->
+  <div class="magasin-grid">
+    <div class="magasin-card" *ngFor="let magasin of magasins">
+      <h3>{{ magasin.nom }}</h3>
+      <p><strong>Localisation:</strong> {{ magasin.localisation }}</p>
+      <p><strong>Téléphone:</strong> {{ magasin.telephone }}</p>
+      <div class="card-buttons">
+        <button (click)="selectMagasin(magasin)">Modifier</button>
+        <button (click)="deleteMagasin(magasin.id!)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire modification -->
+  <div *ngIf="selectedMagasin" class="form-edit">
+    <h3>Modifier le magasin</h3>
+    <input type="text" [(ngModel)]="selectedMagasin.nom">
+    <input type="text" [(ngModel)]="selectedMagasin.localisation">
+    <input type="text" [(ngModel)]="selectedMagasin.telephone">
+    <button (click)="updateMagasin()">Enregistrer</button>
+    <button (click)="cancelEdit()">Annuler</button>
+  </div>
+</div>

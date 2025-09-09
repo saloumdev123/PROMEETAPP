@@ -1,0 +1,93 @@
+.team-section {
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00416a;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #555;
+}
+
+.team-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.team-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.team-name {
+  font-weight: 600;
+  margin-top: 10px;
+  color: #00416a;
+}
+
+.team-role {
+  font-size: 0.9rem;
+  color: #efab19;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.team-desc {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 0 10px;
+}
+
+.team-social a {
+  font-size: 1.2rem;
+  color: #00416a;
+  transition: color 0.3s;
+}
+
+.team-social a:hover {
+  color: #efab19;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-card {
+    margin: 0 auto;
+  }
+}
+
+/* Footer fixe en bas */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #00416a;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  z-index: 1050; /* reste au-dessus du contenu */
+}
+
+/* Pour éviter que le contenu ne soit caché derrière le footer */
+body {
+  padding-bottom: 70px; /* hauteur approximative du footer */
+}
+.team-intro {
+  font-size: 1rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+}

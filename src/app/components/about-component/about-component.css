@@ -1,0 +1,161 @@
+.about-senfibem {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.about-senfibem .row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.about-senfibem .row.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-senfibem .col {
+  flex: 1;
+}
+
+.about-senfibem .text-col {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-senfibem h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #e83827;
+}
+
+.about-senfibem ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.about-senfibem li {
+  margin-bottom: 8px;
+}
+
+.about-senfibem .image-col img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .about-senfibem .row {
+    flex-direction: column;
+  }
+
+  .about-senfibem .row.reverse {
+    flex-direction: column;
+  }
+
+  .about-senfibem .image-col {
+    margin-bottom: 20px;
+  }
+}
+.mot-directeur {
+  width: 90%;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.mot-directeur .row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.mot-directeur .col {
+  flex: 1;
+}
+
+.mot-directeur .text-col h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.mot-directeur .text-col p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+.mot-directeur .signature {
+  margin-top: 20px;
+  font-style: italic;
+  color: #555;
+}
+
+.mot-directeur .image-col img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .mot-directeur .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mot-directeur .image-col img {
+    margin-bottom: 20px;
+  }
+}
+.company-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.company-videos video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  
+}
+.welcome-section {
+  margin-bottom: 40px;
+}
+
+.welcome-card {
+  background: linear-gradient(135deg, #efab19, #e24b0e);
+  color: #fff;
+  padding: 40px 20px;
+  border-radius: 15px;
+  margin-top: 160px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.welcome-card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.welcome-card p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}

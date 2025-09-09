@@ -1,0 +1,72 @@
+<!-- Section Contact -->
+<section class="contact-section">
+  <div class="container">
+
+    <!-- ✅ Card de bienvenue en largeur complète -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card shadow-lg border-0 welcome-card p-4 text-center">
+          <div class="card-body">
+            <h2 class="card-title mb-3"> Bienvenue sur notre page Contact</h2>
+            <p class="lead">
+              Chez <strong>SEN F.I.B.E.M.</strong>, nous croyons qu’une communication fluide est la clé d’un partenariat réussi.  
+              Que vous soyez un client, un partenaire ou un futur collaborateur, nous serons ravis de répondre à vos besoins et à vos questions.  
+              Contactez-nous dès aujourd’hui pour bâtir ensemble vos projets !
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+<hr>
+    <!-- ✅ Section Contact classique -->
+    <h2 class="text-center mb-4">📞 Contactez-nous</h2>
+    <p class="text-center mb-5">
+      Retrouvez ci-dessous nos coordonnées, nos bureaux et un formulaire pour nous écrire directement.
+    </p>
+
+    <div class="row">
+      <!-- Colonne Infos de contact -->
+      <div class="col-md-6 mb-4">
+        <h4>Nos Coordonnées</h4>
+        <p><strong>🇸🇳 Sénégal :</strong> 123 Rue du Bâtiment, Dakar</p>
+        <p><strong>🇫🇷 France :</strong> 45 Avenue de la Construction, Paris</p>
+        <p><strong>Téléphone Sénégal :</strong> +221 77 123 45 67</p>
+        <p><strong>Téléphone France :</strong> +33 6 12 34 56 78</p>
+        <p><strong>Email :</strong> contact&#64;senfibem.sn</p>
+        <p>
+          <strong>Réseaux sociaux :</strong><br>
+          <a href="#" target="_blank">Facebook</a> |
+          <a href="#" target="_blank">LinkedIn</a> |
+          <a href="#" target="_blank">Instagram</a>
+        </p>
+      </div>
+
+      <!-- Colonne Carte + Formulaire -->
+      <div class="col-md-6 mb-4">
+        <h4>Nos Bureaux</h4>
+        <div class="mb-3">
+          <iframe src="https://www.google.com/maps/embed?pb=...Dakar..."
+            width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="mb-3">
+          <iframe src="https://www.google.com/maps/embed?pb=...Paris..."
+            width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <h4>Écrivez-nous</h4>
+        <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+          <div class="mb-2">
+            <input type="text" class="form-control" formControlName="name" placeholder="Votre nom" required>
+          </div>
+          <div class="mb-2">
+            <input type="email" class="form-control" formControlName="email" placeholder="Votre email" required>
+          </div>
+          <div class="mb-2">
+            <textarea class="form-control" rows="3" formControlName="message" placeholder="Votre message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

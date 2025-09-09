@@ -1,0 +1,11 @@
+.welcome-card {
+  background: linear-gradient(135deg, #efab19, #e24b0e);
+  color: white; /* pour que le texte ressorte bien */
+  border-radius: 15px;
+  margin-top: 160px;
+}
+
+.welcome-card h2,
+.welcome-card p {
+  color: white; /* sécurise la lisibilité */
+}

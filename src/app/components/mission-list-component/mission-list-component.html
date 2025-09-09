@@ -1,0 +1,165 @@
+<H1 style="color: rgb(204, 6, 6);">Nos Missions</H1>
+
+<div class="missions-container">
+  <header class="missions-header">
+    <h1 class="missions-title"> Nos Missions</h1>
+    <div class="missions-actions">
+      <button class="btn btn-primary">
+        <i class="icon-plus"></i>
+        Nouvelle Mission
+      </button>
+    </div>
+  </header>
+
+  <div class="filters-section">
+    <div class="filters-grid">
+      <div class="filter-group">
+        <input 
+          type="text" 
+          class="filter-input"
+          placeholder="Rechercher par titre, référence ou client..."
+          [(ngModel)]="filter.search"
+          (input)="onFilterChange()">
+      </div>
+      
+      <div class="filter-group">
+        <select 
+          class="filter-select"
+          [(ngModel)]="filter.status"
+          (change)="onFilterChange()">
+          <option value="">Tous les statuts</option>
+          <option value="En cours">En cours</option>
+          <option value="Terminée">Terminée</option>
+          <option value="En attente">En attente</option>
+          <option value="En pause">En pause</option>
+          <option value="Annulée">Annulée</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <input 
+          type="text" 
+          class="filter-input"
+          placeholder="Filtrer par client..."
+          [(ngModel)]="filter.client"
+          (input)="onFilterChange()">
+      </div>
+
+      <div class="filter-group">
+        <input 
+          type="text" 
+          class="filter-input"
+          placeholder="Filtrer par assigné..."
+          [(ngModel)]="filter.assignee"
+          (input)="onFilterChange()">
+        <button class="btn-clear" (click)="clearFilters()" title="Effacer les filtres">
+          <i class="icon-clear"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container" [class.loading]="loading">
+    <div *ngIf="loading" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Chargement des missions...</p>
+    </div>
+
+    <table class="missions-table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>Tags</th>
+          <th>Référence</th>
+          <th>Type</th>
+          <th>Évaluation</th>
+          <th>Date</th>
+          <th>Budget</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mission of filteredMissions; trackBy: trackByMissionId" 
+            class="mission-row">
+          <td class="tags-cell">
+            <div class="mission-tags">
+              <span class="tag" [ngClass]="getStatusClass(mission.status)">
+                {{ mission.status }}
+              </span>
+              <span class="tag" [ngClass]="getPriorityClass(mission.priority)">
+                {{ mission.priority }}
+              </span>
+              <span *ngFor="let tag of mission.tags.slice(0, 2)" class="tag tag-secondary">
+                {{ tag }}
+              </span>
+            </div>
+          </td>
+          
+          <td class="reference-cell">
+            <div class="reference-info">
+              <strong class="reference-id">{{ mission.reference }}</strong>
+              <p class="reference-title">{{ mission.title }}</p>
+              <p class="reference-client">{{ mission.client }}</p>
+            </div>
+          </td>
+          
+          <td class="type-cell">
+            <span class="mission-type">{{ mission.type }}</span>
+            <p class="assignee">{{ mission.assignee }}</p>
+          </td>
+          
+          <td class="rating-cell">
+            <div class="rating-stars" *ngIf="mission.rating > 0">
+              <span *ngFor="let filled of getStars(mission.rating)" 
+                    class="star" 
+                    [class.filled]="filled">
+                ★
+              </span>
+            </div>
+            <span class="no-rating" *ngIf="mission.rating === 0">—</span>
+          </td>
+          
+          <td class="date-cell">
+            <div class="date-info">
+              <p class="date-created">{{ formatDate(mission.createdDate) }}</p>
+              <p class="date-due">{{ formatDate(mission.dueDate) }}</p>
+            </div>
+          </td>
+          
+          <td class="budget-cell">
+            <span class="budget-amount">{{ formatCurrency(mission.budget) }}</span>
+          </td>
+          
+          <td class="actions-cell">
+            <div class="action-buttons">
+              <button class="btn-action btn-edit" title="Modifier">
+                <i class="icon-edit"></i>
+              </button>
+              <button class="btn-action btn-view" title="Voir détails">
+                <i class="icon-view"></i>
+              </button>
+              <button class="btn-action btn-delete" title="Supprimer">
+                <i class="icon-delete"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        
+        <tr *ngIf="filteredMissions.length === 0 && !loading" class="no-data-row">
+          <td colspan="7" class="no-data">
+            <div class="no-data-message">
+              <i class="icon-empty"></i>
+              <h3>Aucune mission trouvée</h3>
+              <p>Essayez de modifier vos critères de recherche</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-footer" *ngIf="filteredMissions.length > 0">
+    <p class="results-count">
+      {{ filteredMissions.length }} mission(s) trouvée(s) sur {{ missions.length }}
+    </p>
+  </div>
+</div>

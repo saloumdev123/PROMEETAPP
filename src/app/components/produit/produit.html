@@ -1,0 +1,156 @@
+<!-- Header avec slider -->
+<header class="produit-header">
+  <div class="slider">
+    <div class="slides">
+
+      <!-- Slide 1 : Présentation société -->
+      <div class="slide active slide-bg">
+        <div class="slide-text">
+          <h2>ARTISANS T.C.E – SEN F.I.B.E.M.</h2>
+          <p>Nous répondons aux besoins des particuliers et des professionnels pour tous travaux du bâtiment</p> 
+            <p>Nous répondons aux besoins des particuliers et des professionnels pour tous travaux du bâtiment</p>
+             <p>: Maçonnerie, Peinture, Carrelage, Plomberie, Électricité, CVC, Charpente métallique et plus.</p>
+        </div>
+      </div>
+
+            <!-- Slide 1 : Présentation société -->
+        <div class="slide active slide-bg">
+          <div class="slide-text">
+            <h2>ARTISANS T.C.E – SEN F.I.B.E.M.</h2>
+            <p>Nous répondons aux besoins des particuliers et des professionnels pour tous travaux du bâtiment</p>
+            <p>Maçonnerie, Peinture, Carrelage, Plomberie, Électricité, CVC, Charpente métallique et plus.</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 : Bureau d’ingénierie -->
+        <div class="slide slide-bg">
+          <div class="slide-text">
+            <h2>Bureau d’ingénierie & Assistance technique</h2>
+            <p>Nos ingénieurs et dessinateurs vous accompagnent pour vos études, plans d’exécution,</p>
+            <p>appels d’offres et suivi de chantier afin de garantir la réussite de vos projets.</p>
+          </div>
+        </div>
+
+        <!-- Slide 3 : Prestations & Services -->
+        <div class="slide slide-bg">
+          <div class="slide-text">
+            <h2>Prestations et services complets</h2>
+            <p>SEN F.I.B.E.M. accompagne vos projets de création ou rénovation : construction neuve,</p>
+            <p>extension, garage, aménagement extérieur et locaux commerciaux.</p>
+            <p>Nous proposons aussi la fourniture de matériaux et la mise à disposition d’artisans et d’ingénieurs selon vos besoins.</p>
+          </div>
+        </div>
+
+        <!-- Slide 4 : Assistance technique personnalisée -->
+        <div class="slide slide-bg">
+          <div class="slide-text">
+            <h2>Assistance technique personnalisée</h2>
+            <p>Mise à disposition d’artisans ou d’ingénieurs pour vos chantiers ou études, selon vos besoins et pour la durée souhaitée, garantissant efficacité et expertise professionnelle.</p>
+          </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <button class="prev" (click)="prevSlide()">&#10094;</button>
+    <button class="next" (click)="nextSlide()">&#10095;</button>
+
+    <!-- Indicateurs -->
+    <div class="slide-indicators">
+      <span *ngFor="let slide of slides; let i = index"
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)">
+      </span>
+    </div>
+  </div>
+</header>
+
+<hr>
+
+<div class="produit-container">
+
+   <aside class="produit-filters"> 
+    <h4>Filtres</h4>
+     <div class="filter-section">
+     <label>Catégorie</label> 
+     <select [(ngModel)]="selectedCategorie" (change)="filterByCategorie()">
+       <option value="">Toutes</option> 
+       <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.nom }}</option> 
+      </select>
+    </div> 
+    <div class="filter-section">
+      <label>Magasin</label>
+      <select [(ngModel)]="selectedMagasinId" (change)="filterByMagasin()">
+        <option value="">Tous les magasins</option>
+        <option *ngFor="let magasin of magasins" [value]="magasin.id">{{ magasin.nom }}</option>
+      </select>
+    </div>
+
+       
+        <div class="filter-section"> 
+        <label>Prix</label> 
+        <input type="number" placeholder="Min" [(ngModel)]="minPrice" (change)="filterProduits()">
+        <input type="number" placeholder="Max" [(ngModel)]="maxPrice" (change)="filterProduits()"> 
+
+    </div>
+     <div class="filter-section"> <label>Date</label> 
+    <input type="date" [(ngModel)]="startDate" (change)="filterProduits()"> 
+    <input type="date" [(ngModel)]="endDate" (change)="filterProduits()"> </div>
+   </aside> 
+
+  <!-- 2 : Zone Produits -->
+  <main class="produit-main">
+    <!-- Barre de recherche -->
+    <div class="filter-bar">
+      <input type="text" placeholder="Rechercher par mot-clé..."
+             [(ngModel)]="searchKeyword" (input)="filterProduits()">
+    </div>
+
+    <!-- Liste Produits -->
+    <div class="produit-row">
+      <div class="card-produit"
+           *ngFor="let produit of produits"
+           (click)="showDetails(produit)">
+        <img [src]="produit.image" alt="{{ produit.nom }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ produit.nom }}</h5>
+          <p class="card-text">{{ produit.description }}</p>
+          <p class="card-price">{{ produit.prix | currency:'EUR' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="pagination-container">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <button class="page-link" (click)="loadPage(currentPage - 1)">Précédent</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <button class="page-link" (click)="loadPage(currentPage + 1)">Suivant</button>
+        </li>
+      </ul>
+    </nav>
+  </main>
+
+  <!-- 3 : Détails produit -->
+  <aside class="produit-details" *ngIf="selectedProduit">
+    <h4>Apperçue de la produit: <span><strong>{{ selectedProduit.nom }}</strong></span></h4>
+    <img [src]="selectedProduit.image" alt="{{ selectedProduit.nom }}" class="detail-image">
+    <p><strong>Nom:</strong> {{ selectedProduit.nom }}</p>
+    <p><strong>Description:</strong> {{ selectedProduit.description }}</p>
+    <p><strong>Prix:</strong> {{ selectedProduit.prix | currency:'EUR' }}</p>
+    <p><strong>Quantité en stock:</strong> {{ selectedProduit.quantiteEnStock }}</p>
+    <p><strong>Catégorie:</strong> {{ selectedProduit.categorieId }}</p>
+    <p><strong>Magasin:</strong> {{ selectedProduit.magasinId }}</p>
+    <div class="detail-buttons">
+    <button class="btn btn-add-card" (click)="addToCart(selectedProduit)">
+      Ajouter au panier
+    </button>
+    <button class="btn btn-back" (click)="selectedProduit = null">
+      Fermer
+    </button>
+  </div>
+  </aside>
+
+</div>
