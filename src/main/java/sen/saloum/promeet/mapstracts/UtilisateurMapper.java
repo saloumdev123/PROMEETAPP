@@ -22,12 +22,12 @@ public interface UtilisateurMapper {
     List<UtilisateurDTO> toDTOList(List<Utilisateur> utilisateurs);
 
     default Role mapRole(String role) {
-        if (role == null || role.isEmpty()) return Role.CLIENT;
+        if (role == null || role.isEmpty()) return Role.PARTICULIER;
         switch (role) {
-            case "0": return Role.CLIENT;
+            case "0": return Role.PARTICULIER;
             case "1": return Role.ADMIN;
-            case "2": return Role.PRESTATAIRE;
-            default: return Role.CLIENT;
+            case "2": return Role.PROFESSIONNEL;
+            default: return Role.PARTICULIER;
         }
     }
 

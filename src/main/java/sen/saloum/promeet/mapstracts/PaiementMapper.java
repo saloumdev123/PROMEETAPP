@@ -4,17 +4,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import sen.saloum.promeet.dto.PaiementDTO;
 import sen.saloum.promeet.models.Paiement;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PaiementMapper {
 
-    @Mapping(source = "reservation.id", target = "reservationId")
-    PaiementDTO toDTO(Paiement paiement);
+    @Mapping(source = "facture.id", target = "factureId")
+    PaiementDTO toDto(Paiement paiement);
 
-    @Mapping(source = "reservationId", target = "reservation.id")
-    Paiement toEntity(PaiementDTO paiementDTO);
+    @Mapping(source = "factureId", target = "facture.id")
+    Paiement toEntity(PaiementDTO dto);
 
-    List<PaiementDTO> toDTOList(List<Paiement> paiements);
+    List<PaiementDTO> toDtoList(List<Paiement> paiements);
 }

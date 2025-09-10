@@ -15,21 +15,24 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
     private String prenom;
     private String email;
     private String motDePasse;
     private String telephone;
-    
+
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role; // PART, ARTISAN, ADMIN
+
     private String bio;
     private String localisation;
 
-
+    // Relations
     @OneToMany(mappedBy = "client")
-    private List<Reservation> reservations;
+    private List<CommandeProduit> commandesProduit;
+
+    @OneToMany(mappedBy = "artisan")
+    private List<CommandePrestation> commandesPrestation;
 
     @OneToMany(mappedBy = "utilisateur")
     private List<Avis> avis;
@@ -108,13 +111,20 @@ public class Utilisateur {
         this.localisation = localisation;
     }
 
-
-    public List<Reservation> getReservations() {
-        return reservations;
+    public List<CommandeProduit> getCommandesProduit() {
+        return commandesProduit;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setCommandesProduit(List<CommandeProduit> commandesProduit) {
+        this.commandesProduit = commandesProduit;
+    }
+
+    public List<CommandePrestation> getCommandesPrestation() {
+        return commandesPrestation;
+    }
+
+    public void setCommandesPrestation(List<CommandePrestation> commandesPrestation) {
+        this.commandesPrestation = commandesPrestation;
     }
 
     public List<Avis> getAvis() {

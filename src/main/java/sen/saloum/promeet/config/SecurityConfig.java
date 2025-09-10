@@ -47,40 +47,52 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/reset-password").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/avis/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/api/produits/**").permitAll()        // Lecture accessible à tous
+                        .requestMatchers(HttpMethod.POST, "/api/produits/**").hasRole("ADMIN")   // Création uniquement Admin
+                        .requestMatchers(HttpMethod.PUT, "/api/produits/**").hasRole("ADMIN")    // Modification uniquement Admin
+                        .requestMatchers(HttpMethod.DELETE, "/api/produits/**").hasRole("ADMIN") // Suppression uniquement Admin
 
 
                         .requestMatchers(HttpMethod.GET, "/api/auth/profile").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/utilisateurs/**").hasAnyRole("ADMIN", "CLIENT", "PRESTATAIRE")
-                        .requestMatchers(HttpMethod.PUT, "/api/auth/profile").hasAnyRole("CLIENT","PRESTATAIRE","ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/utilisateurs/**").hasAnyRole("ADMIN", "PARTICULIER", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/profile").hasAnyRole("PARTICULIER","PROFESSIONNEL","ADMIN")
 
 
                         .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/paiements/callback").permitAll()
 
-
-                        .requestMatchers(HttpMethod.GET, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/avis/**").hasAnyRole("CLIENT", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/avis/**").hasAnyRole("CLIENT", "PRESTATAIRE", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/avis/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/avis/**").hasAnyRole("PARTICULIER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/avis/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/avis/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
 
 
                         .requestMatchers(HttpMethod.GET, "/api/utilisateurs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/utilisateurs").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.POST, "/api/offres/**").hasAnyRole("PRESTATAIRE", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/offres/**").hasAnyRole("PRESTATAIRE", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/offres/**").hasAnyRole("PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/offres/**").hasAnyRole("PROFESSIONNEL", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/offres/**").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.POST,"/api/paiements/**").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/paiements/**").hasAnyRole("PARTICULIER", "ADMIN")
 
-                        .requestMatchers(HttpMethod.POST, "/api/reservations/**").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/reservations/**").hasAnyRole("PARTICULIER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/reservations/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/reservations/validation/**").hasAnyRole("ADMIN", "PRESTATAIRE")
-                        .requestMatchers(HttpMethod.GET, "/api/reservations/**").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/reservations/validation/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.GET, "/api/reservations/**").hasAnyRole("PARTICULIER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/reservations/**").hasRole("ADMIN")
 
+                        .requestMatchers(HttpMethod.POST, "/api/categories/**").hasRole("ADMIN")      // Création uniquement Admin
+                        .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasRole("ADMIN")       // Update uniquement Admin
+                        .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasRole("ADMIN")    // Suppression uniquement Admin
+                        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/magasins/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/magasins/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/magasins/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/magasins/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

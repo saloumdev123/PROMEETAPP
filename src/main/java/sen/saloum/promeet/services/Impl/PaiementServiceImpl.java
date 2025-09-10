@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public  class PaiementServiceImpl implements PaiementService {
+public abstract class PaiementServiceImpl implements PaiementService {
     private final PaiementRepository paiementRepository;
     private final PaiementMapper paiementMapper;
     private  final ReservationRepository reservationRepository;
@@ -41,34 +41,34 @@ public  class PaiementServiceImpl implements PaiementService {
         paiement.setReferenceTransaction(paiementDTO.getReferenceTransaction());
         paiement.setDevise(paiementDTO.getDevise());
         Paiement saved = paiementRepository.save(paiement);
-        return paiementMapper.toDTO(saved);
+        return paiementMapper.toDto(saved);
     }
 
-    @Override
-    public PaiementDTO createPaiementAvecPayDunya(String email, String description, double montant,
-                                                  Long reservationId, Map<String, String> paydunyaResponse) {
-        Paiement paiement = new Paiement();
-        paiement.setMontant(montant);
-        paiement.setModePaiement("PAYDUNYA");
-        paiement.setStatut(StatutPaiement.EN_ATTENTE);
-        paiement.setLienPaiement(paydunyaResponse.get("lienPaiement"));
-        paiement.setReferenceTransaction(paydunyaResponse.get("referenceTransaction"));
-        paiement.setDatePaiement(OffsetDateTime.now());
+//    @Override
+//    public PaiementDTO createPaiementAvecPayDunya(String email, String description, double montant,
+//                                                  Long reservationId, Map<String, String> paydunyaResponse) {
+//        Paiement paiement = new Paiement();
+//        paiement.setMontant(montant);
+//        paiement.setModePaiement("PAYDUNYA");
+//        paiement.setStatut(StatutPaiement.EN_ATTENTE);
+//        paiement.setLienPaiement(paydunyaResponse.get("lienPaiement"));
+//        paiement.setReferenceTransaction(paydunyaResponse.get("referenceTransaction"));
+//        paiement.setDatePaiement(OffsetDateTime.now());
+//
+//        // Liaison avec la réservation
+//        Reservation reservation = reservationRepository.findById(reservationId)
+//                .orElseThrow(() -> new EntityNotFoundException("Reservation introuvable avec id : " + reservationId));
+//        paiement.setReservation(reservation);
+//
+//        Paiement saved = paiementRepository.save(paiement);
+//        return paiementMapper.toDTO(saved);
+//    }
 
-        // Liaison avec la réservation
-        Reservation reservation = reservationRepository.findById(reservationId)
-                .orElseThrow(() -> new EntityNotFoundException("Reservation introuvable avec id : " + reservationId));
-        paiement.setReservation(reservation);
-
-        Paiement saved = paiementRepository.save(paiement);
-        return paiementMapper.toDTO(saved);
-    }
-
-    @Override
-    public List<PaiementDTO> getPaiementsByReservation(Long reservationId) {
-        List<Paiement> paiements = paiementRepository.findByReservationId(reservationId);
-        return paiementMapper.toDTOList(paiements);
-    }
+//    @Override
+//    public List<PaiementDTO> getPaiementsByReservation(Long reservationId) {
+//        List<Paiement> paiements = paiementRepository.findByReservationId(reservationId);
+//        return paiementMapper.toDTOList(paiements);
+//    }
     @Override
     public void mettreAJourStatut(String referenceTransaction, String statut) {
         Paiement paiement = paiementRepository.findByReferenceTransaction(referenceTransaction)

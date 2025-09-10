@@ -33,7 +33,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         Utilisateur utilisateur = utilisateurMapper.toEntity(utilisateurDto);
 
         if (utilisateur.getRole() == null) {
-            utilisateur.setRole(Role.CLIENT);
+            utilisateur.setRole(Role.PARTICULIER);
         }
         if (utilisateur.getMotDePasse() != null) {
             utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));

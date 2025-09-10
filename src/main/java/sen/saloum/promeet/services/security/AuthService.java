@@ -104,7 +104,7 @@ public class AuthService {
         passwordResetTokenRepository.save(resetToken);
 
         // 🔹 Générer le lien pour frontend Angular
-        String resetLink = "http://localhost:4200/reset-password?token=" + token;
+        String resetLink = "http://144.91.88.1:4300/reset-password?token=" + token;
 
         // 🔹 Envoyer l’email
         SimpleMailMessage message = new SimpleMailMessage();

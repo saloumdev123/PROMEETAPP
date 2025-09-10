@@ -19,103 +19,60 @@ import java.time.OffsetDateTime;
 
         private Double montant;
         private OffsetDateTime datePaiement;
-        private String modePaiement;
+        private String modePaiement; // PAYDUNYA, WAVE, etc.
         private String referenceTransaction;
         private String devise;
         private String telephone;
-        @Column(length = 512)
         private String lienPaiement;
 
         @Enumerated(EnumType.STRING)
         private StatutPaiement statut;
-
         @OneToOne
         @JoinColumn(name = "reservation_id")
         private Reservation reservation;
+
+
+        @OneToOne
+        @JoinColumn(name = "facture_id")
+        private Facture facture;
+
         @PrePersist
         public void prePersist() {
-            if (datePaiement == null) {
-                datePaiement = OffsetDateTime.now();
-            }
+            if (datePaiement == null) datePaiement = OffsetDateTime.now();
         }
 
-    public Long getId() {
-        return id;
-    }
+        public Long getId() { return id; }
+        public void setId(Long id) { this.id = id; }
+        public Double getMontant() { return montant; }
+        public void setMontant(Double montant) { this.montant = montant; }
+        public OffsetDateTime getDatePaiement() { return datePaiement; }
+        public void setDatePaiement(OffsetDateTime datePaiement) { this.datePaiement = datePaiement; }
+        public String getModePaiement() { return modePaiement; }
+        public void setModePaiement(String modePaiement) { this.modePaiement = modePaiement; }
+        public String getReferenceTransaction() { return referenceTransaction; }
+        public void setReferenceTransaction(String referenceTransaction) { this.referenceTransaction = referenceTransaction; }
+        public String getDevise() { return devise; }
+        public void setDevise(String devise) { this.devise = devise; }
+        public String getTelephone() { return telephone; }
+        public void setTelephone(String telephone) { this.telephone = telephone; }
+        public StatutPaiement getStatut() { return statut; }
+        public void setStatut(StatutPaiement statut) { this.statut = statut; }
+        public Facture getFacture() { return facture; }
+        public void setFacture(Facture facture) { this.facture = facture; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public String getLienPaiement() {
+            return lienPaiement;
+        }
 
-    public Double getMontant() {
-        return montant;
-    }
+        public void setLienPaiement(String lienPaiement) {
+            this.lienPaiement = lienPaiement;
+        }
 
-    public void setMontant(Double montant) {
-        this.montant = montant;
-    }
+        public Reservation getReservation() {
+            return reservation;
+        }
 
-    public OffsetDateTime getDatePaiement() {
-        return datePaiement;
+        public void setReservation(Reservation reservation) {
+            this.reservation = reservation;
+        }
     }
-
-    public void setDatePaiement(OffsetDateTime datePaiement) {
-        this.datePaiement = datePaiement;
-    }
-
-    public String getModePaiement() {
-        return modePaiement;
-    }
-
-    public void setModePaiement(String modePaiement) {
-        this.modePaiement = modePaiement;
-    }
-
-    public String getReferenceTransaction() {
-        return referenceTransaction;
-    }
-
-    public void setReferenceTransaction(String referenceTransaction) {
-        this.referenceTransaction = referenceTransaction;
-    }
-
-    public StatutPaiement getStatut() {
-        return statut;
-    }
-
-    public void setStatut(StatutPaiement statut) {
-        this.statut = statut;
-    }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getDevise() {
-        return devise;
-    }
-
-    public void setDevise(String devise) {
-        this.devise = devise;
-    }
-
-    public String getLienPaiement() {
-        return lienPaiement;
-    }
-
-    public void setLienPaiement(String lienPaiement) {
-        this.lienPaiement = lienPaiement;
-    }
-}

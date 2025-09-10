@@ -60,7 +60,7 @@ public class AuthController {
         user.setTelephone(request.getTelephone());
         user.setBio(request.getBio());
         user.setLocalisation(request.getLocalisation());
-        user.setRole(Role.CLIENT);
+        user.setRole(Role.PARTICULIER);
 
         utilisateurRepository.save(user);
 

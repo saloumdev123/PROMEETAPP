@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/utilisateurs")
-@CrossOrigin(origins = "http://localhost:4200")
 public class UtilisateurController {
 
     private final UtilisateurServiceImpl utilisateurService;
@@ -25,6 +24,7 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
+    @GetMapping
     public ResponseEntity<List<UtilisateurDTO>> getAllUtilisateurs() {
         List<UtilisateurDTO> utilisateurs = utilisateurService.getAllUtilisateurs();
         if (utilisateurs.isEmpty()) {
