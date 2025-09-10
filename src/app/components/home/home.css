@@ -51,3 +51,310 @@
   font-weight: bold;
   color: #007bff;
 }
+/* Hero section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: linear-gradient(90deg, #FFC107, #00416A, #E53935); /* jaune → bleu → rouge */
+  color: white;
+}
+
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-buttons button {
+  margin-right: 15px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-blue {
+  background-color: #00416A;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #002b44;
+}
+
+.btn-red {
+  background-color: #E53935;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #b71c1c;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons button {
+    margin-bottom: 10px;
+  }
+}
+/* Section Comment ça marche */
+.section-how-it-works {
+  background-color: #f5f5f5; /* fond clair */
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section-how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #FFC107; /* titre jaune */
+}
+
+/* Container cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Card design */
+.card {
+  background-color: white;
+  border: 2px solid #E53935; /* bordure rouge */
+  border-radius: 10px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  color: #FFC107; /* titre jaune */
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #000; /* texte noir */
+  font-size: 1rem;
+}
+
+/* Hover effect */
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 255, 0.3); /* shadow bleu */
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* Section CTA finale */
+.final-cta {
+  background: linear-gradient(90deg, #E53935, #FFC107); /* dégradé rouge → jaune */
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  margin: 40px 0;
+}
+
+.final-cta h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.cta-buttons button {
+  margin: 0 15px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-red {
+  background-color: #E53935;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #b71c1c;
+}
+
+.btn-blue {
+  background-color: #00416A;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #002b44;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .cta-buttons button {
+    display: block;
+    margin: 15px auto;
+    width: 70%;
+  }
+}
+.testimonials {
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.testimonial-slider {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.testimonial-card {
+  background-color: #005a8c; /* léger contraste */
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* images rondes */
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid #FFC107;
+}
+
+.testimonial-card .quote {
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.testimonial-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #FFC107; /* nom en jaune */
+}
+
+.testimonial-card .profession {
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.testimonials .btn-red {
+  background-color: #E53935;
+  color: white;
+  padding: 12px 25px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.testimonials .btn-red:hover {
+  background-color: #b71c1c;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .testimonial-slider {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.welcome-message {
+  margin-top: 100px;
+  color: rgb(223, 83, 2); /* texte rouge vif */
+}
+
+.welcome-message h1 {
+  margin-top: -450px;
+  font-size: 3rem; /* très gros titre */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+   margin-top: -10px;
+  font-size: 3rem;
+  font-size: 1.5rem; /* texte plus lisible */
+  font-weight: 500;
+}

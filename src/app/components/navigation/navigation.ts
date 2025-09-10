@@ -5,20 +5,21 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { TranslationService } from '../../services/translation-service';
 import { TeamComponent } from '../team-component/team-component';
+import { TranslateModule } from '@ngx-translate/core';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule,RouterModule, TeamComponent],
+  imports: [CommonModule,RouterModule,TranslateModule  ],
   templateUrl: './navigation.html',
   styleUrls:  ['./navigation.css']
 })
 export class Navigation implements OnInit {
 
   currentUser: User | null = null;
-
+  //selectedFlag: string = '🌐'; 
 
   constructor(
     private authService: AuthService,
@@ -58,13 +59,26 @@ toggleDropdown(event: Event) {
   dropdown.toggle();
 }
 
- changerLangue(event: Event) {
-  const select = event.target as HTMLSelectElement;
-  const langue = select.value;
-  this.translationService.changerLangue(langue); 
-  console.log('Langue choisie :', langue);
+  // par défaut, icône monde
+  selectedFlag: string = 'https://avatars.mds.yandex.net/i?id=0a01075fcf6e7de0587b85627c57f32a-5218303-images-thumbs&n=13';
+
+   changerLangue(lang: string) {
+    // changer le drapeau
+    switch(lang) {
+      case 'fr':
+        this.selectedFlag = 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg';
+        break;
+      case 'en':
+        this.selectedFlag = 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
+        break;
+      case 'es':
+        this.selectedFlag = 'https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg';
+        break;
+      default:
+        this.selectedFlag = 'https://avatars.mds.yandex.net/i?id=0a01075fcf6e7de0587b85627c57f32a-5218303-images-thumbs&n=13';
+    }
+
+    this.translationService.changerLangue(lang);
+  }
 }
 
-
-
-}

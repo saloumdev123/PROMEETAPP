@@ -8,8 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class TranslationService {
 
    constructor(private translate: TranslateService) {
-    translate.addLangs(['fr', 'en', 'es']);
-    translate.setDefaultLang('en');
+   translate.addLangs(['fr', 'en', 'es']);
+    translate.setDefaultLang('fr'); // français par défaut
+    translate.use('fr');      
 
     // détecter la langue du navigateur
     const browserLang = translate.getBrowserLang();

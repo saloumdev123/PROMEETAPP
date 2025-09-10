@@ -1,0 +1,239 @@
+/* Variables de couleurs Siemens */
+:root {
+  --siemens-green: #00D4AA;
+  --siemens-dark-blue: #003A70;
+  --siemens-light-gray: #F5F5F5;
+  --siemens-text-gray: #666666;
+}
+
+/* Styles personnalisés */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.siemens-header {
+  background: linear-gradient(135deg, var(--siemens-green) 0%, #00B894 100%);
+  color: white;
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.siemens-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.siemens-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.siemens-header h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.siemens-header .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.people-illustration {
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.search-section {
+  background: rgb(234, 169, 2);
+  padding: 2rem 0;
+  box-shadow: 0 2px 10px rgba(15, 29, 176, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.search-btn {
+  background: var(--siemens-green);
+  border: none;
+  color: rgb(15, 15, 235);
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #f8ca00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(212, 0, 0, 0.3);
+}
+
+.content-section {
+  padding: 3rem 0;
+  background: var(--siemens-light-gray);
+}
+
+.job-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.job-title {
+  color: var(--siemens-dark-blue);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--siemens-light-red);
+}
+
+.job-location {
+  color: var(--siemens-text-gray);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.apply-btn {
+  background: var(--siemens-green);
+  border: none;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #00B894;
+  transform: scale(1.05);
+}
+
+.job-detail {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.job-detail h3 {
+  color: var(--siemens-dark-blue);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--siemens-green);
+  padding-bottom: 0.5rem;
+}
+
+.job-meta {
+  background: var(--siemens-light-gray);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.job-meta h5 {
+  color: var(--siemens-dark-blue);
+  margin-bottom: 0.5rem;
+}
+
+.job-description {
+  line-height: 1.6;
+  color: #333;
+}
+
+.job-description ul {
+  padding-left: 1.2rem;
+}
+
+.job-description li {
+  margin-bottom: 0.5rem;
+}
+
+.badge-siemens {
+  background: var(--siemens-green);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.form-control:focus {
+  border-color: var(--siemens-green);
+  box-shadow: 0 0 0 0.2rem rgba(234, 156, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .siemens-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .people-illustration {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+  
+  .content-section .col-md-4 {
+    margin-bottom: 2rem;
+  }
+}
+.cv-upload-section {
+  background-color: #f8f9fa;
+}
+
+.cv-subtext {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.cv-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-benefits li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.cv-upload-card {
+  background: #fff;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-upload-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}

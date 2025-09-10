@@ -13,9 +13,11 @@ import { Footer } from './app/components/footer/footer';
 import {
   provideTranslateService,
   provideTranslateLoader,
-  TranslateLoader
+  TranslateLoader,
+  TranslateModule
 } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Loader custom compatible Angular 20
 @Injectable()
@@ -25,6 +27,10 @@ export class CustomTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
     return this.http.get(`/assets/i18n/${lang}.json`);
   }
+}
+
+export function HttpLoaderFactory(http: HttpClient) { 
+  return new TranslateHttpLoader();
 }
 
 @Component({
@@ -43,11 +49,14 @@ bootstrapApplication(App, {
   providers: [
     provideHttpClient(),
     provideRouter(routes),
-    importProvidersFrom(BrowserAnimationsModule),
-    provideTranslateLoader(CustomTranslateLoader),  
-    provideTranslateService({
-      lang: 'fr',
-      fallbackLang: 'fr'
-    })
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useClass: CustomTranslateLoader,
+          deps: [HttpClient]
+        }
+      })
+    )
   ]
 });

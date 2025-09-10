@@ -22,6 +22,8 @@ isSidebarOpen: boolean = false;
   reservationsCount = 0;
   avisCount = 0;
 
+
+  selectedSection: string | null = null;
    toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
@@ -88,4 +90,16 @@ get isPrestataire() {
 get isClient(): boolean {
   return this.currentUser?.role === 'PARTICULIER';
 }
+
+
+  selectSection(section: string) {
+    this.selectedSection = section;
+  }
+
+  fibemCards = [
+  { title: 'Présentation', text: 'Informations sur l’entreprise', link: '/fibem/presentation', icon: 'bi bi-info-circle' },
+  { title: 'Équipe', text: 'Rencontrez l’équipe Fibem', link: '/fibem/equipe', icon: 'bi bi-people' },
+  { title: 'Historique', text: 'Découvrez l’historique de l’entreprise', link: '/fibem/historique', icon: 'bi bi-clock-history' },
+  { title: 'Témoignages', text: 'Avis et retours clients', link: '/fibem/temoignages', icon: 'bi bi-chat-dots' }
+];
 }

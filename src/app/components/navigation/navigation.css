@@ -123,3 +123,24 @@
     font-size: 0.9rem;
   }
 }
+.flag-icon {
+  width: 20px;
+  height: auto; /* corrige le height */
+  border-radius: 3px;
+}
+.dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+
+.vertical-line {
+  width: 2px;             /* épaisseur du trait */
+  height: 40px;           /* hauteur du trait */
+  background-color: #ffffff; /* couleur blanche pour contraster avec navbar sombre */
+}
+.navbar .bi-cart-fill {
+  font-size: 2rem;   /* tu ajustes la taille */
+  color: #FFD700;    /* jaune doré */
+  background: none;  /* pas de fond */
+}

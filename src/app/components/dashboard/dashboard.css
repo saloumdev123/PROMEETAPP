@@ -1,9 +1,45 @@
-.dashboard-header {
-  background: linear-gradient(135deg, #ffb300, #ff6600);
-  color: white;
-  margin-top: 200px;
+/* Conteneur principal du dashboard */
+.dashboard-container {
+   min-height: 600px; /* Hauteur minimale du dashboard */
+  max-height: 900px;
+  display: flex;
+  padding-top: 100px;
+  color: #c62800;
 }
 
+/* Sidebar verticale */
+.dashboard-sidebar {
+  width: 250px;
+  min-height: calc(100vh - 100px); /* Ajuste la hauteur sous la navbar */
+  position: sticky;
+  top: 100px; /* Décalage pour ne pas chevaucher la navbar */
+  background-color: #fab405; /* Sidebar sombre */
+  padding: 1rem;
+}
+
+.dashboard-sidebar .nav-link {
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.dashboard-sidebar .nav-link:hover {
+  background-color: #de2f03;
+  color: white;
+}
+
+/* Contenu principal */
+.dashboard-main {
+  flex-grow: 1;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 100px);
+  padding: 2rem;
+}
+
+/* Cartes du dashboard */
 .dashboard-card {
   border-radius: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -11,9 +47,10 @@
 
 .dashboard-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(240, 137, 3, 0.1);
 }
 
+/* Boutons dégradés */
 .btn-gradient {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
   border: none;
@@ -25,4 +62,29 @@
 .btn-gradient:hover {
   opacity: 0.9;
   transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding-top: 120px;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    top: 0;
+    margin-bottom: 1rem;
+  }
+}
+.clickable-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clickable-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(240, 137, 3, 0.2);
 }

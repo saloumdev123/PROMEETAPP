@@ -12,8 +12,10 @@ footer h5 {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
-  background-color: #ffd500; /* bleu */
+  background-color: #ffd500; 
   box-shadow: 5px 5px 5px rgb(255, 255, 255);
+  padding: 5px 5px;
+  color: rgb(14, 14, 14);
 }
 
 /* Décoration après H5 */
@@ -22,7 +24,7 @@ footer h5::after {
   position: absolute;
   width:100%;
   height: 3px;
-  background: linear-gradient(90deg, #df2b03, #0083b0, #ffd500 ); /* dégradé bleu */
+  
   left: 0;
   bottom: -6px;
   border-radius: 2px;
@@ -69,7 +71,39 @@ footer .social-icon {
 
 /* Logo */
 .navbar-logo {
-  height: 50px;
+  height: 80px;
   width: auto;
   object-fit: contain;
+}
+
+ footer .app-title {
+  font-size: 1.3rem; /* même taille que navbar */
+  color: rgb(222, 75, 2); /* couleur du texte identique */
+  background-color: #f1f2f6; /* fond clair */
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px;
+  display: inline-block; 
+}
+footer .row.text-md-left {
+  display: flex;
+  flex-wrap: wrap; /* responsive */
+  align-items: flex-start;
+  gap: 0.3rem; 
+}
+
+footer .col-md-2,
+footer .col-md-3,
+footer .col-md-4 {
+  flex: 0 0 auto; /* empêche l'étirement automatique */
+  margin-right: 0.0rem;
+}
+
+footer .col-md-4 .d-flex {
+  gap: 0.5rem; /* réduit l'espace entre logo et "Mise en Relation" */
+}
+.flag-icon {
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
 }

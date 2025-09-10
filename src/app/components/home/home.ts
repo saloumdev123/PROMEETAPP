@@ -1,7 +1,8 @@
+import { style } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,46 @@ import { RouterModule } from '@angular/router';
    styleUrls: ['./home.css']
 })
 export class Home {
+
+   constructor(private router: Router) {} 
+hero = {
+    title: "Votre chantier simplifié, du choix des fournitures à la mise en relation avec les artisans",
+    subtitle: "Trouvez vos produits, planifiez vos travaux et engagez des professionnels fiables, rapidement et en toute sécurité.",
+    ctaButtons: [
+      { text: "Publier une demande", type: "blue", link: "/publier-demande" },
+      { text: "Découvrir les artisans", type: "red", link: "/artisans" }
+    ],
+    image: "https://avatars.mds.yandex.net/i?id=c711c7f87b4436d08e7d01b9f26803fb9ec23793-4408821-images-thumbs&n=13"
+  };
+
+   navigate(link: string) {
+    this.router.navigate([link]);
+  }
+   howItWorksCards = [
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=f582a6dd8742d1129cb85f9d7de96311de8b4306-9624682-images-thumbs&n=13',
+      title: 'Choisissez vos produits',
+      description: 'Parcourez les catalogues de Leroy Merlin, Castorama, Lapeyre, Bricodépôt et ajoutez vos articles au panier.'
+    },
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=58f5c8763635b4aef6acd1091bda47871c02a9bf-10471913-images-thumbs&n=13',
+      title: 'Engagez un professionnel',
+      description: 'Sélectionnez les artisans proches de votre chantier selon métier, secteur et devis.'
+    },
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=8abd3c86efff570baa7712b501848b851d9b3ab0-10114046-images-thumbs&n=13',
+      title: 'Planifiez vos travaux',
+      description: 'Validez le devis et planifiez le RDV du chantier avec votre artisan sélectionné.'
+    }
+  ];
+
+   finalCTA = {
+    text: "Prêt à simplifier vos travaux ? Rejoignez SENFIBEM dès aujourd’hui !",
+    buttons: [
+      { text: "Publier une demande", type: "red", link: "/publier-demande" },
+      { text: "Créer un compte pro", type: "blue", link: "/inscription-pro" }
+    ]
+  };
 
  partenaires = [
     { nom: 'Partenaire 1', logo: 'https://avatars.mds.yandex.net/i?id=b48acf55d8cf8d52253655f2af76c11fc0599925-9858868-images-thumbs&n=13', description: 'Description du partenaire 1' },
@@ -24,28 +65,26 @@ export class Home {
     { nom: 'Partenaire 9', logo: 'https://avatars.mds.yandex.net/i?id=7ae77da9f43940d648364d971f15a342e9c8cf56-5427399-images-thumbs&n=13', description: 'Description du partenaire 9' },
     { nom: 'Partenaire 10', logo: 'https://avatars.mds.yandex.net/i?id=8007e7167627e45095da622269a9437d8f46397d-5094289-images-thumbs&n=13', description: 'Description du partenaire 10' }
   ];
-
-temoignages = [
-  {
-    message: "Ayant collaboré chez des clients, je me suis mis à l'apport d'affaires...",
-    nom: "Crédoel A.",
-    role: "Apporteur d'affaires",
-    image: "data:image/jpeg;base64,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"
-  },
-  {
-    message: "En tant que consultant en développement logiciel...",
-    nom: "Aurélien B.",
-    role: "Développeur",
-    image: "data:image/jpeg;base64,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"
-  },
-  {
-    message: "Nous avons fait appel aux services d'un apporteur d'affaires...",
-    nom: "Sarah C.",
-    role: "DRH",
-    image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAlAMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAAAwcEBQYCAQj/xAA1EAABAwIEAwYFAwQDAAAAAAABAAIDBBEFEiExBkFRExQiYXGRB0KBscEyodEjUuHwMzRy/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECBAMF/8QAIREBAAMAAgICAwEAAAAAAAAAAAECEQMxEiEEQTJCUSP/2gAMAwEAAhEDEQA/ALYREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBEXmV4jjc82sBfU2Hug9IufxviaDC6eZ8jocwjLo2iUZnOG4y/XrquYwv4pUhkDMShc1hebSAWOX5dOZ3vbp5oLHRaPCeLsCxaUQUlcztnDwxyAsJ8hcC/wBFvEBERAREQEREBERAREQEREBERBBV1LaWF0r2vcG6kMFz7c91R3GfEs1bi9c2KTKxxLC2/wAo0su2+JfEYpsPkpaOqngq2yj9ILbMA1IcN9R15Kk5nuM2XUuJAHmb7IJ4nGWUiFmeQnXK3VeaqCSA2mY9pvfVW9wZhGF4Rh8cU76cVsrbuD3DMT0F184hw6mmgkL4WWtvYLPbnyemuvxtjtULJTE5sjCQ75Xc2nkVf3AvFsHENM2ncHMrYowXjcPGxOnn9wqAxGLutY+nABaNQfJdj8Jq2OLGzTyT93kkY4xSNAubDVtz1t+x5rvE7Gssxk4vpF8Gy+qUCIiAiIgIiICIiAiIgIiIKh+L9JTQ1YnH/PM0EWA01AINzexBJFud7qucAjjk4gw+OZgewzNJBOgtr+FavxZoAKfvUhYCZR2ZOr3tI1F+QB5eY6KnWOdTzsmjzZ43BwIOtwb/AIUT0mO174xhz67EYH94f2Y2pjY32sAOXP3K53iGmmqMTqKd/ZSGItyhzfCBfUgFdNTStqYxikcofTS07S0gFxaDrpquWrJ39/lkuXs1/qOJ19AdvdYtndenFIxwvGcMMGJREZBK5njjjFh6+XP1WuwmpNNVsnLrdkd+l9OahxSrNdic0v6mZyGnqBzWbw/CX4hAbHKJAXaXsOq216ebf8px+k8CcX4VTSOdIXPjbcSklwNrG9+d1sF4hjbFE2Nn6QNNb/vzXtSqIiICIiAiIgIiICIiAiL6ASbBBxPxSpoJMGbK9pM7XBsdwS3cXzWBsNT9lSGJ4dUUDh3hojlc0Oyc7Hb0Nvuv1DUQiVhYS3UbuFwuH4z4EnxGSlrKW1QYvBJACG2byLeu23mk+o1NY2cargt08PClI1hGYQgFp5rnuLn1L8PqMoyDKb23IXaNpH0FAyHsTH2YDcoOvssHFMGfWsYymtKZN2ndefEz569TI8c1TEEFy0Xtc6nYAK3vhXwvIaSatqGOZA+RoyvGr8utx6HS/rzW1wL4bUcGSoxdjHlpDm07dj/6PTyXdUuGRUsdoQWMGzGuIaPQcl6FfcbLzLViJzUpN0XzY2X1FRERAREQEREBERAREQFPA2zcx57KBQx4kyOsdR1DeyBAdHITo8c/QgpuJiJnpkzst4/7dfpzUrHaAXvbZOeVxuDpfqCoYgWtLTuNFZCSaNspBcGm39zQVEYwHeGwHRoAU3JA3qEyE7KNrNvf1Uk5Apzf5iB9EI0sNyV4lezeQhrI36npZv8AlNxCCa5lBaDcHX16L0CCAQdDsuE4pxiurHujgmdT0xOVrGaOI6k/hdfg0T4cNhZKSXhutzdc4vFul78c0zWaiIrKCIiAiIgIiICIiAtXjT2CSnafE7xHL5afwtoufx4OdiEYLWluQbtzDc79Fz5fwl2+PH+kMakxmSjxAsdHKyHXOxzfYt/0LrKeaKpjZPC/NHILg23VeSzmaZ7iBqbA9VscAxSaivBITJT3u0Ddh5/RcuLlz1LRzcPlHlXt2xLRzXxr76nTVayLEYJTZsgudmu0KzI7kh0hsPlb+VqidYpiY7TSyhjc3TVaTEJi+GJubfO53ntb8rMkqA6RoOgc479Fzs1W4Xzi1mloB01zH8WXLmtlHXgpt2nrLOq4LgECRtx11CsQ7quxOyOdslRCHMDhclws3XffVWBTzx1UEc8Ds8UrQ5juoK5/H6l2+X9JERFoYxERAREQEREBERAWux2FstAXOGrHA5gbEa23+q2KjqYRUU0sLtBI0tuq2jazC1Jy0SrmvpKym0om94PJrjlPusvDo6zu4MlI2GTQ27TMF6fXOgc+OdpbLGcrh0IWDNi52a82WD309Xv23IikOsrox6m6lbWCmH/al22zGy5c180pyxh7ieQF1IMOxScZ2wE6aNc8BWrW/wBK2tT9pbyoxfMDlsbDfcrTzV0j32Cw6ihxYOAmhqGMHKP+Qsc0nY3MlPI0gXJc0qZrb7K2p9Sya1/awZLhznEDKWXVpUUPdqOCAggxxtbq7MdB15rjeAcNZLJPiEkYdG3+nCXagu5kelgL+q7haOGuRrH8m+z4/wAERF2ZhERAREQEREBERAREQQV+CYbPVuq56OOSd2hc65vby2/ZaxmDYeKiQd1jtfoiKYiDyn+pxRU8cDMkYGWQWspTDG1nhbb0X1FMjw9jRaw3WO+Nvfn6ch9kRShtKcWgjA2yqREVEiIiAiIgIiIP/9k="
-  }
-];
-
+ testimonials = [
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=faafc4996d94fdacdb6072441df8b7c9-4903276-images-thumbs&n=13',
+      quote: "SENFIBEM a rendu mes travaux tellement plus simples et rapides !",
+      name: "Amadou Diallo",
+      profession: "Particulier"
+    },
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=64ff577968cfc2ddc9f5b08806ac68e4d7d70d12-16404329-images-thumbs&n=13',
+      quote: "J'ai trouvé un artisan fiable près de mon chantier grâce à la plateforme.",
+      name: "Fatou Ndiaye",
+      profession: "Entrepreneur"
+    },
+    {
+      image: 'https://avatars.mds.yandex.net/i?id=47008afd997620a89a0ce34a15bf0bd0af129238-16389722-images-thumbs&n=13',
+      quote: "Livraison rapide et suivi impeccable des fournitures commandées.",
+      name: "Mamadou Ba",
+      profession: "Particulier"
+    }
+  ];
 faqs = [
   { question: "Pourquoi proposer des missions dans notre communauté ?", reponse: "Parce que..." },
   { question: "Quel est l'intérêt de l'apport d'affaires pour les consultants ?", reponse: "Cela permet..." },

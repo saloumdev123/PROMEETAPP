@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" routerLink="/">
       <img src="assets/images/logofibem.png" alt="SenFibem France" class="navbar-logo me-2">
-      <span class="app-title fw-bold">Mise en relation</span>
+      <span class="app-title fw-bold">Mise en Relation Travaux</span>
     </a>
 
     <button class="navbar-toggler" type="button" 
@@ -25,39 +25,56 @@
           </form>
         </li>
 
-        <!-- Sélecteur de langue -->
-        <li class="nav-item d-flex align-items-center ms-2">
-          <select class="form-select form-select-sm"
-                  style="width: 120px;"
-                  (change)="changerLangue($event)">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-          </select>
-        </li>
+      <li class="nav-item dropdown ms-2">
+  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <!-- Affiche par défaut l'icône monde -->
+    <img [src]="selectedFlag" class="flag-icon" alt="Selected Flag">
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="langDropdown">
+    <li>
+      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('fr')">
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+        style="width:30px; height: 30p; " class="flag-icon me-2" alt="France"> Français
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('en')">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" 
+        style="width:30px; height: 30p; " class="flag-icon me-2" alt="UK">Anglais
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('es')">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" 
+        style="width:30px; height: 30p; "class="flag-icon me-2" alt="Espagne"> Espanol
+      </a>
+    </li>
+  </ul>
+</li>
 
         <!-- Accueil avec sous-menu -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            {{ t.instant('Accueil') }}
+            {{ 'Accueil'| translate }}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/about">{{ t.instant('À propos') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/equipes">{{ t.instant('Équipe') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/historique">{{ t.instant('Historique') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/temoignages">{{ t.instant('Témoignages') }}</a></li>
+            <li><a class="dropdown-item" routerLink="/about">{{ 'À propos' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/equipes">{{ 'Équipe' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/historique">{{ 'Historique' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/temoignages">{{ 'Témoignages' | translate }}</a></li>
           </ul>
         </li>
 
         <!-- Nos services avec sous-menu -->
         <li class="nav-item dropdown" *ngIf="currentUser">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            {{ t.instant('Nos Services') }}
+            {{ 'Nos Services' | translate }}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/missions">{{ t.instant('Missions') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/produits">{{ t.instant('Produits') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/conseil">{{ t.instant('Conseil') }}</a></li>
+            <li><a class="dropdown-item" routerLink="/missions">{{ 'Missions' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/produits">{{ 'Produits' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/conseil">{{ 'Conseil' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/demandes">{{ 'Publier Demande' | translate }}</a></li>
           </ul>
         </li>
 
@@ -67,18 +84,33 @@
             {{ t.instant('Réseau') }}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/partenaires">{{ t.instant('Partenaires') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/fournisseurs">{{ t.instant('Fournisseurs') }}</a></li>
-            <li><a class="dropdown-item" routerLink="/clients">{{ t.instant('Clients') }}</a></li>
+            <li><a class="dropdown-item" routerLink="/partenaires">{{ 'Partenaires' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/fournisseurs">{{ 'Fournisseurs' | translate}}</a></li>
+            <li><a class="dropdown-item" routerLink="/clients">{{ 'Pariculier' | translate }}</a></li>
           </ul>
         </li>
 
         <!-- Autres liens -->
-        <li class="nav-item"><a class="nav-link" routerLink="/candidats" routerLinkActive="active">{{ t.instant('Candidats') }}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">{{ t.instant('Contact') }}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/actualites" routerLinkActive="active">{{ t.instant('Actualités') }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/candidatures" routerLinkActive="active">{{ 'Candidats' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">{{ 'Contact' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/actualites" routerLinkActive="active">{{ 'Actualités' | translate }}</a></li>
+        <li class="nav-item d-flex align-items-center">
+          <div class="vertical-line mx-2"></div>
+            <a class="nav-link d-flex align-items-center" routerLink="/panier">
+              <i class="bi bi-cart-fill fs-3" style="color:#FFD700;"></i>
+            </a>
+
+        </li>
+         <div class="vertical-line mx-2"></div>
+          <li class="nav-item" *ngIf="currentUser">
+          <a class="nav-link" routerLink="/dashboard">
+            <i class="bi bi-speedometer2 me-1"></i>{{  'Dashboard' | translate }}
+          </a>
+        </li>
 
       </ul>
+
+
     </div>
 
     <!-- Connexion / Inscription -->
@@ -90,15 +122,15 @@
           {{ currentUser.nom }}
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i>Profil</a></li>
-          <li><a class="dropdown-item" routerLink="/profile/edit"><i class="bi bi-pencil-square me-2"></i>Modifier Profil</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i>{{  'Profil' | translate }}</a></li>
+          <li><a class="dropdown-item" routerLink="/profile/edit"><i class="bi bi-pencil-square me-2"></i>{{  'Modifier Profil' | translate }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a></li>
+          <li><a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>{{  'Déconnexion' | translate }}</a></li>
         </ul>
       </li>
       <ng-template #loginNav>
-        <li class="nav-item"><a class="nav-link" routerLink="/login"><i class="bi bi-box-arrow-in-right me-1"></i>{{ t.instant('Connexion') }}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/register"><i class="bi bi-person-plus me-1"></i>{{ t.instant('Inscription') }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/login"><i class="bi bi-box-arrow-in-right me-1"></i>{{ 'Connexion' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/register"><i class="bi bi-person-plus me-1"></i>{{ 'Inscription' | translate }}</a></li>
       </ng-template>
     </ul>
   </div>

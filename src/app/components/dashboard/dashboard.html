@@ -1,68 +1,90 @@
-<div class="container mt-5">
-  <!-- Header du Dashboard -->
-  <div *ngIf="currentUser; else publicDashboard" class="dashboard-header text-center mb-5 p-4 rounded shadow-sm">
-    <h1 class="fw-bold"> Bienvenue, {{ currentUser.nom }}</h1>
-    <p class="text-muted">Vous êtes connecté en tant que 
-      <span class="badge bg-primary">{{ currentUser.role }}</span>
-    </p>
-  </div>
+<div class="dashboard-container">
+  <aside class="dashboard-sidebar">
+    <h3 class="mb-4">Tableau de bord</h3>
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngIf="currentUser">
+        <a class="nav-link" (click)="selectSection('fibem')">
+          <i class="bi bi-building me-2"></i> Fibem (Entreprise)
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser">
+        <a class="nav-link" (click)="selectSection('professionnel')">
+          <i class="bi bi-person-badge me-2"></i> Professionnel
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser">
+        <a class="nav-link" (click)="selectSection('particulier')">
+          <i class="bi bi-house-door me-2"></i> Particulier
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser?.role === 'ADMIN'">
+        <a class="nav-link" (click)="selectSection('developpeur')">
+          <i class="bi bi-code me-2"></i> Développeur
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser?.role === 'ADMIN'">
+        <a class="nav-link" (click)="selectSection('chefProjet')">
+          <i class="bi bi-diagram-3 me-2"></i> Chef de projet
+        </a>
+      </li>
+    </ul>
+  </aside>
 
-  <!-- Section des cartes -->
-  <div class="row g-4">
-    <!-- ✅ Carte universelle -->
-    <div class="col-md-6 col-lg-4" *ngFor="let card of commonCards">
-      <div class="card dashboard-card h-100 text-center">
-        <div class="card-body">
-          <i [class]="card.icon + ' fs-1 mb-3 text-primary'"></i>
-          <h5 class="card-title fw-bold">{{ card.title }}</h5>
-          <p class="card-text text-muted">{{ card.text }}</p>
-          <a [routerLink]="card.link" class="btn btn-gradient">Voir</a>
+  <!-- Contenu principal -->
+  <main class="dashboard-main">
+    <!-- Section Fibem -->
+    <div *ngIf="selectedSection === 'fibem'">
+      <h2>Fibem - Présentation de l'entreprise</h2>
+      <p class="text-muted">Toutes les informations sur Fibem.</p>
+      <div class="row g-4 mt-3">
+        <div class="col-md-6 col-lg-4" *ngFor="let card of fibemCards">
+          <div 
+            class="card dashboard-card h-100 text-center border-warning clickable-card"
+            [routerLink]="card.link"
+          >
+            <div class="card-body">
+              <i [class]="card.icon + ' fs-1 mb-3 text-warning'"></i>
+              <h5 class="card-title fw-bold">{{ card.title }}</h5>
+              <p class="card-text text-muted">{{ card.text }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ✅ Carte Catégories (visible tout le monde) -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100 text-center border-warning">
-        <div class="card-body">
-          <i class="bi bi-folder fs-1 mb-3 text-warning"></i>
-          <h5 class="card-title fw-bold">📂 Nos Catégories</h5>
-          <p class="card-text text-muted">Découvrez nos 7 catégories de produits.</p>
-          <a routerLink="/categories" class="btn btn-gradient">Explorer</a>
-        </div>
-      </div>
+
+    <!-- Autres sections -->
+    <div *ngIf="selectedSection === 'professionnel'">
+      <h2>Professionnel</h2>
     </div>
 
-    <!-- ✅ Carte Magasins (Admin uniquement) -->
-    <div class="col-md-6 col-lg-4" *ngIf="currentUser?.role === 'ADMIN'">
-      <div class="card dashboard-card h-100 text-center border-danger">
-        <div class="card-body">
-          <i class="bi bi-shop fs-1 mb-3 text-danger"></i>
-          <h5 class="card-title fw-bold">🏬 Gestion des Magasins</h5>
-          <p class="card-text text-muted">Accédez aux 6 magasins disponibles.</p>
-          <a routerLink="/magasins" class="btn btn-gradient">Voir</a>
-        </div>
-      </div>
+    <div *ngIf="selectedSection === 'particulier'">
+      <h2>Particulier</h2>
     </div>
-      <div class="col-md-6 col-lg-4" *ngIf="currentUser?.role === 'ADMIN'">
-      <div class="card dashboard-card h-100 text-center border-primary">
-        <div class="card-body">
-          <i class="bi bi-people fs-1 mb-3 text-primary"></i>
-          <h5 class="card-title fw-bold">👥 Tous les utilisateurs</h5>
-          <p class="card-text text-muted">Voir et gérer tous les comptes utilisateurs.</p>
-          <a routerLink="/admin/users" class="btn btn-gradient">Gérer les utilisateurs</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Dashboard Public -->
-  <ng-template #publicDashboard>
-    <div class="text-center p-5 bg-light rounded shadow-sm">
-      <h2 class="fw-bold mb-3">Bienvenue sur notre plateforme</h2>
-      <p class="text-muted">Connectez-vous ou inscrivez-vous pour accéder à votre tableau de bord.</p>
-      <a routerLink="/login" class="btn btn-primary me-2">Connexion</a>
-      <a routerLink="/register" class="btn btn-outline-primary">Inscription</a>
+    <div *ngIf="selectedSection === 'developpeur'">
+      <h2>Développeur</h2>
     </div>
-  </ng-template>
+
+    <div *ngIf="selectedSection === 'chefProjet'">
+      <h2>Chef de projet</h2>
+    </div>
+
+    <!-- Dashboard commun -->
+    <div *ngIf="!selectedSection">
+      <h2>Bienvenue, {{ currentUser?.nom }}</h2>
+      <div class="row g-4 mt-4">
+        <div class="col-md-6 col-lg-4" *ngFor="let card of commonCards">
+          <div class="card dashboard-card h-100 text-center">
+            <div class="card-body">
+              <i [class]="card.icon + ' fs-1 mb-3 text-primary'"></i>
+              <h5 class="card-title fw-bold">{{ card.title }}</h5>
+              <p class="card-text text-muted">{{ card.text }}</p>
+              <a [routerLink]="card.link" class="btn btn-gradient">Voir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>

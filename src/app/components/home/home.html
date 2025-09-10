@@ -1,33 +1,18 @@
 <div class="hero-section bg-primary text-white py-5">
-      <div class="container">
-        <div class="row align-items-center">
-                    <div class="col-lg-12 mx-auto">
-            <div class="row mb-5">
-              <div class="col-12">
-                <div class="card shadow-lg border-0 welcome-card p-4 text-center" 
-                    style="
-                      color: rgb(185, 2, 2);
-                      border-radius: 15px;
-                      margin-top: 100px;
-                      background: rgba(238, 204, 204, 0.8);">
-                  <div class="card-body">
-                    <h2 class="card-title mb-3"> Bienvenue</h2>
-                    <p class="lead">
-                      Vous êtes connecté à votre espace personnel <strong>SEN F.I.B.E.M.</strong>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="container">
+      <div class="welcome-message text-center">
+        <h1>Bienvenue</h1>
+        <p>
+          Vous êtes connecté à votre espace personnel <strong>SEN F.I.B.E.M.</strong>.
+        </p>
+      </div>
 
-          <div class="col-lg-6 text-center">
-            <i class="bi bi-people-fill" style="font-size: 8rem; opacity: 0.8;"></i>
-          </div>
-        </div>
+      <div class="col-lg-6 text-center">
+        
       </div>
     </div>
-    
+  </div>
+
     <div class="container my-5">
       <div class="row">
         <div class="col-lg-4 mb-4">
@@ -69,84 +54,59 @@
       </div>
     </div>
 
-    <div class="container my-5">
-  <h2 class="text-center mb-4 text-primary">
-    ✅ Témoignages
-  </h2>
-  <p class="text-center text-muted mb-5">
-    Ce que disent nos membres de la plateforme
-  </p>
-
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let temoignage of temoignages">
-      <div class="card h-100 shadow border-0 p-3">
-        <div class="card-body">
-          <i class="bi bi-quote text-danger fs-1 d-block text-center mb-3"></i>
-          <p class="card-text fst-italic">
-            "{{ temoignage.message }}"
-          </p>
-          <div class="d-flex align-items-center mt-3">
-            <img [src]="temoignage.image" alt="{{ temoignage.nom }}" class="rounded-circle me-3" width="50" height="50">
-            <div>
-              <h6 class="mb-0 fw-bold">{{ temoignage.nom }}</h6>
-              <small class="text-muted">{{ temoignage.role }}</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container my-5 text-center">
-  <h2 class="mb-4 text-danger">🎧 Rejoins notre communauté Discord</h2>
-  <p class="lead text-muted mb-4">
-    Rejoins plus de <strong>1000 freelances</strong> tech et accède à des opportunités exclusives.<br>
-    Partage ton expérience, développe ton réseau et échange dans une ambiance bienveillante.
-  </p>
-  <a href="https://discord.gg/votre-lien" target="_blank" class="btn btn-lg px-5" 
-     style="background: linear-gradient(90deg, orange, red, blue); color: white; border-radius: 30px;">
-    <i class="bi bi-discord"></i> Je rejoins la communauté
-  </a>
-  <p class="mt-2 text-muted">Gratuit • Plus de 1000 membres actifs</p>
-</div>
-<hr>
-<div class="container my-5" >
-  <h2 class="text-center mb-4">Nos Partenaires</h2>
-  
-  <div class="row">
-    <div class="col-md-3 col-sm-6 mb-4" *ngFor="let partenaire of partenaires">
-      <div class="card h-100 shadow-sm">
-        <img [src]="partenaire.logo" class="card-img-top p-3" [alt]="partenaire.nom">
-        <div class="card-body text-center">
-          <h5 class="card-title">{{ partenaire.nom }}</h5>
-          <p class="card-text">{{ partenaire.description }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container my-5">
-  <h2 class="text-center mb-4 text-primary">❓ Questions fréquentes</h2>
-  <p class="text-center text-muted mb-5">Tout ce que tu dois savoir sur la communauté</p>
-
-  <div class="accordion" id="faqAccordion">
-    <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-      <h2 class="accordion-header" id="heading{{i}}">
-        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" 
-                [attr.data-bs-target]="'#collapse'+i" aria-expanded="false" 
-                [attr.aria-controls]="'collapse'+i"
-                style="color: orange;">
-          {{ faq.question }}
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>{{ hero.title }}</h1>
+      <p>{{ hero.subtitle }}</p>
+      <div class="hero-buttons">
+        <button *ngFor="let btn of hero.ctaButtons" 
+                [ngClass]="{'btn-blue': btn.type === 'blue', 'btn-red': btn.type === 'red'}"
+                (click)="navigate(btn.link)">
+          {{ btn.text }}
         </button>
-      </h2>
-      <div [id]="'collapse'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+i"
-           data-bs-parent="#faqAccordion">
-        <div class="accordion-body">
-          {{ faq.reponse }}
-        </div>
       </div>
     </div>
+    <div class="hero-image">
+      <img [src]="hero.image" alt="Chantier SENFIBEM">
+    </div>
   </div>
-</div>
+</section>
+
+<section class="section-how-it-works">
+  <h2>Comment ça marche</h2>
+  <div class="card-container">
+    <div class="card" *ngFor="let card of howItWorksCards">
+      <img [src]="card.image" alt="{{card.title}}">
+      <h3>{{card.title}}</h3>
+      <p>{{card.description}}</p>
+    </div>
+  </div>
+</section>
+<section class="testimonials">
+  <h2>Témoignages</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial-card" *ngFor="let t of testimonials">
+      <img [src]="t.image" alt="{{t.name}}">
+      <p class="quote">"{{ t.quote }}"</p>
+      <h3>{{ t.name }}</h3>
+      <p class="profession">{{ t.profession }}</p>
+    </div>
+  </div>
+  <button class="btn btn-red">Publier votre avis</button>
+</section>
+
+
+<section class="final-cta">
+  <div class="cta-content">
+    <h2>{{ finalCTA.text }}</h2>
+    <div class="cta-buttons">
+      <button *ngFor="let btn of finalCTA.buttons"
+              [ngClass]="{'btn-red': btn.type === 'red', 'btn-blue': btn.type === 'blue'}"
+              (click)="navigate(btn.link)">
+        {{ btn.text }}
+      </button>
+    </div>
+  </div>
+</section>
+

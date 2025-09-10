@@ -1,0 +1,110 @@
+.publish-request {
+  padding: 50px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.publish-request h2 {
+  margin-bottom: 20px;
+  color: #00416A;
+}
+
+/* Catégories */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.category-card {
+  padding: 20px;
+  background-color: #FFC107;
+  color: #000;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 120px;
+  text-align: center;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Formulaire */
+.request-form .form-group {
+  margin-bottom: 15px;
+}
+
+.request-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.request-form input,
+.request-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-submit {
+  background-color: #E53935;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #b71c1c;
+}
+
+/* Liste des devis */
+.devis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.devis-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #00416A;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.btn-accept {
+  background-color: #00416A;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-message {
+  background-color: #FFC107;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-accept:hover {
+  background-color: #002b44;
+}
+
+.btn-message:hover {
+  background-color: #e6b800;
+}
