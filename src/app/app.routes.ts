@@ -23,6 +23,7 @@ import { MissionListComponent } from './components/mission-list-component/missio
 import { CandidatComponent } from './components/candidat-component/candidat-component';
 import { ReseauComponent } from './components/reseau-component/reseau-component';
 import { TeamComponent } from './components/team-component/team-component';
+import { Publication } from './publication/publication';
 export const routes: Routes = [
   
   {path: 'login', component: LoginComponent },
@@ -33,7 +34,7 @@ export const routes: Routes = [
   {path: 'offres/create', component: OffreForm },
   {path: 'offres/edit/:id', component: OffreForm },
   {path: 'offres/:id', component: OfferDetail },
-  {path: 'admin/users', component: Utilisateurs, canActivate: [AuthGuard] },
+  {path: 'admin/users', component: Utilisateurs},
   {path: 'reservations', component: ReservationComponent },
   {path: 'reservations/:id', component: ReservationComponent},
   {path: 'reset-password', component: ResetPasswordComponent },
@@ -47,9 +48,10 @@ export const routes: Routes = [
   {path: 'missions', component: MissionListComponent},
   {path: 'equipes', component: TeamComponent},
   {path: 'candidatures', component: CandidatComponent},
-  {path: 'home', component: Home, canActivate: [AuthGuard]},
-  {path: 'profile', component: Profile, canActivate: [AuthGuard] },
-  {path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },
+  {path: 'publications', component: Publication},
+  {path: 'home', component: Home}, 
+  {path: 'profile', component: Profile },
+  {path: 'profile/edit', component: ProfileEdit },
   {path: 'avis', component: Avis },
   {path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
