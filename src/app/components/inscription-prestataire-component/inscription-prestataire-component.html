@@ -1,0 +1,98 @@
+<section class="inscription">
+  <h2>Créez votre compte prestataire</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- Type -->
+    <div class="form-group">
+      <label>Vous êtes :</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" formControlName="type" value="entreprise"> Entreprise
+        </label>
+        <label>
+          <input type="radio" formControlName="type" value="particulier"> Particulier
+        </label>
+      </div>
+    </div>
+
+    <!-- Métier + SIREN -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Métier principal</label>
+        <input type="text" formControlName="metier" placeholder="Ex: Serrurier, Menuisier...">
+      </div>
+      <div class="form-group" *ngIf="form.value.type === 'entreprise'">
+        <label>SIREN ou NINEA</label>
+        <input type="text" formControlName="siren" placeholder="Entrez votre SIREN ou nom">
+      </div>
+    </div>
+
+    <!-- Adresse + Nom -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" formControlName="adresse" placeholder="Renseignez votre adresse">
+      </div>
+      <div class="form-group">
+        <label>Nom</label>
+        <input type="text" formControlName="nom" placeholder="Martin">
+        <small>Il ne sera pas visible sur le site</small>
+      </div>
+    </div>
+
+    <!-- Prénom + Email -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" formControlName="prenom" placeholder="Dominique">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="ex: dominique@needhelp.com">
+      </div>
+    </div>
+
+    <!-- Téléphone + Mot de passe -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Téléphone mobile</label>
+        <input type="text" formControlName="telephone" placeholder="06 12 34 56 78">
+      </div>
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input type="password" formControlName="motDePasse" placeholder="••••••••">
+      </div>
+    </div>
+
+    <!-- Règles mot de passe -->
+    <ul class="password-rules">
+      <li>Au moins une minuscule</li>
+      <li>Au moins une majuscule</li>
+      <li>Au moins un chiffre</li>
+      <li>Au moins 8 caractères</li>
+    </ul>
+
+    <!-- Newsletter -->
+    <div class="form-group checkbox">
+      <label>
+        <input type="checkbox" formControlName="newsletter">
+        Je souhaite être informé(e) des nouveautés, cadeaux et bons plans par email et SMS.
+      </label>
+    </div>
+
+    <!-- CGU -->
+    <div class="form-group checkbox">
+      <label>
+        <input type="checkbox" formControlName="cgu" required>
+        J’accepte les conditions générales de Needhelp et la politique de confidentialité.*
+      </label>
+    </div>
+
+    <!-- Boutons -->
+    <div class="form-buttons">
+      <button type="button" class="btn-back" (click)="back()">Précédent</button>
+      <button type="submit" class="btn-submit">S'inscrire</button>
+    </div>
+  </form>
+</section>

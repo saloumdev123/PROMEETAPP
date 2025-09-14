@@ -1,0 +1,211 @@
+<!-- Section Prestataire -->
+<section class="prestataire">
+  <div class="prestataire-overlay">
+    <div class="prestataire-content">
+      <h2>Devenez prestataire SenFibem</h2>
+      <p>Augmentez vos revenus et complétez votre emploi du temps</p>
+      <button (click)="navigate('/inscription-prestataire')">Inscrivez-vous en un seul clic</button>
+    </div>
+  </div>
+</section>
+
+<section class="why-needhelp">
+  <!-- Ligne 1 : Titre -->
+  <h2 class="section-title">Pourquoi choisir SenFibem ?</h2>
+
+  <!-- Ligne 2 : 3 colonnes -->
+  <div class="reasons">
+    <div class="reason">
+      <i class="bi bi-geo-alt-fill"></i>
+      <h3>Missions personnalisées</h3>
+      <p>Selon votre localisation et vos compétences</p>
+    </div>
+
+    <div class="reason">
+      <i class="bi bi-briefcase-fill"></i>
+      <h3>Des opportunités chaque jour</h3>
+      <p>Des centaines de demandes partout en France</p>
+    </div>
+
+    <div class="reason">
+      <i class="bi bi-shield-check"></i>
+      <h3>Assurances et garanties</h3>
+      <p>Vous êtes couverts lors de toutes les prestations</p>
+    </div>
+  </div>
+</section>
+<section class="comparatif">
+  <h2>Vous êtes particulier ou professionnel ?</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Services SenFibem</th>
+        <th>Particulier</th>
+        <th>Pro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Accès aux missions standard (sur la plateforme)</td>
+        <td>✔️</td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Missions Premium (avec nos partenaires)</td>
+        <td></td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Ajout des compétences et localisation</td>
+        <td>✔️</td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Accès aux trophées & récompenses</td>
+        <td>✔️</td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Badge Pro</td>
+        <td></td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Badge Premium</td>
+        <td></td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Accompagnement personnalisé et prioritaire</td>
+        <td></td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>Book photo de vos réalisations</td>
+        <td>✔️</td>
+        <td>✔️</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="prestataire-pro">
+  <div class="container">
+    <!-- Ligne 1 : Titre -->
+    <h2 class="title">Devenir prestataire Pro</h2>
+
+    <!-- Ligne 2 : Contenu en 2 colonnes -->
+    <div class="row">
+      <!-- Colonne gauche : Texte -->
+      <div class="col-text">
+        <p>
+          Artisan, indépendant, auto-entrepreneur ou société, accédez aux chantiers exclusifs 
+          avec nos partenaires comme <strong>IKEA, BUT, Brico Dépôt, Castorama</strong> etc.
+        </p>
+        <ul>
+          <li>✅ Inscrivez-vous sur la plateforme ici</li>
+          <li>✅ Renseignez vos documents (Assurance Décennale, KBIS...)</li>
+          <li>✅ Réalisez un rapide entretien personnalisé avec nos équipes (15 min)</li>
+          <li>✅ Obtenez vos badges pro pour accéder en exclusivité aux meilleurs chantiers</li>
+        </ul>
+      </div>
+
+      <!-- Colonne droite : Image -->
+      <div class="col-image">
+        <img src="https://avatars.mds.yandex.net/i?id=1f7d471f158814943ab7d6e390e2d321b8d882b0-5231983-images-thumbs&n=13" 
+             alt="Prestataire Pro">
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="btn-pro" (click)="onDevenirPro()">Devenir prestataire Pro</button>
+    </div>
+  </div>
+</section>
+
+<section class="partenaires-marquee">
+  <h2 class="title">Nos enseignes partenaires</h2>
+  <marquee behavior="scroll" direction="left" scrollamount="10">
+    <a href="https://www.castorama.fr" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F3da3ad7f531e05b286b7d94a1a8d005f00f81a5d-2560x444.png&w=640&q=75" alt="Castorama">
+    </a>
+    <a href="https://www.ikea.com/fr/" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F4d9fb92d17b2a1ae3d59e4f252ba294d729d305b-342x162.png&w=640&q=75" alt="IKEA">
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F81ec5e581c4b944f56d3b8aee1a7a87021e51b10-1200x731.png&w=640&q=75" alt="Biko Déco">
+    </a>
+    <a href="https://www.conforama.fr" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Faf8e5b3da474e7b3643d0f4b400884f58f999f72-1200x193.png&w=640&q=75" alt="Conforama">
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F1ecb3461ee473457ae52686d48827b2ba78f38e1-697x231.jpg&w=640&q=75" alt="Lepayre">
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F8780aee5869a0c45f946a4c75f1cf48edd2ec316-400x162.png&w=640&q=75" alt="Alinéa">
+    </a>
+    <a href="https://www.but.fr" target="_blank">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Ff1691c4139d8992195838b130523365502dde403-1200x1200.png&w=640&q=75" alt="BUT">
+    </a>
+  </marquee>
+</section>
+
+
+
+
+<section class="prestataire-RO">
+  <div class="container">
+    <!-- Ligne 1 : Titre -->
+    <h2 class="title">Devenir prestataire Particulier</h2>
+
+    <!-- Ligne 2 : Contenu en 2 colonnes -->
+    <div class="row">
+      <!-- Colonne gauche : Texte -->
+      <div class="col-text">
+        <p>Devenez prestataire SenFibem, augmentez vos revenus et complétez votre emploi du temps facilement.</p>
+        <ul>
+          <li>✅ Faites des offres aux demandes qui vous correspondent.</li>
+          <li>✅ Cochez vos compétences (montage de meubles, plomberie, électricité...)</li>
+          <li>✅ Trouvez des missions proches de chez vous</li>
+          <li>✅ Fixez votre prix et échangez par message avec les clients</li>
+          <li>✅ Réalisez la mission et récupérez votre rémunération (depuis votre cagnotte)</li>
+        </ul>
+      </div>
+
+      <!-- Colonne droite : Image -->
+      <div class="col-image">
+        <img src="https://avatars.mds.yandex.net/i?id=1f7d471f158814943ab7d6e390e2d321b8d882b0-5231983-images-thumbs&n=13" 
+             alt="Prestataire Pro">
+      </div>
+    </div>
+
+    <!-- Bouton -->
+    <div class="button-container">
+      <button class="btn-pro" (click)="onDevenirPro()">Devenir prestataire Particulier</button>
+    </div>
+  </div>
+</section>
+<section class="faq-section">
+  <div class="container">
+    <div class="row">
+      <!-- Première colonne : vidéo YouTube -->
+      <div class="col-video">
+        <iframe 
+          width="100%" 
+          height="315" 
+          src="https://www.youtube.com/embed/5NAKd46U4wQ" 
+          title="FAQ Video" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Deuxième colonne : texte -->
+      <div class="col-text">
+        <h2>Vous avez des questions ?</h2>
+        <p>Rendez-vous sur notre FAQ pour obtenir les réponses à vos questions.</p>
+        <a href="">Une question ?</a> 
+      </div>
+    </div>
+  </div>
+</section>

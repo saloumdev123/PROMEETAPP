@@ -91,7 +91,18 @@
         </li>
 
         <!-- Autres liens -->
-        <li class="nav-item"><a class="nav-link" routerLink="/candidatures" routerLinkActive="active">{{ 'Candidats' | translate }}</a></li>
+                <!-- Menu Emploie avec sous-menus -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="emploiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ 'Emploie' | translate }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="emploiDropdown">
+            <li><a class="dropdown-item" routerLink="/candidatures" routerLinkActive="active">Espace candidat</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-recrutement" routerLinkActive="active">Annonce Recrutement</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-stage" routerLinkActive="active">Dépôt & Annonces Stage</a></li>
+          </ul>
+        </li>
+
         <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">{{ 'Contact' | translate }}</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/actualites" routerLinkActive="active">{{ 'Actualités' | translate }}</a></li>
         <li class="nav-item d-flex align-items-center">

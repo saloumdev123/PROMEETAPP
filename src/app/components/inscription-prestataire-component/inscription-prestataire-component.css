@@ -1,0 +1,90 @@
+.inscription {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 150px;
+}
+
+.inscription h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #efe304;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.password-rules {
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+  color: #666;
+}
+
+.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-back, .btn-submit {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-back {
+  background: #ccc;
+  color: #333;
+}
+
+.btn-submit {
+  background: #efe304;
+  color: white;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background: #005f99;
+}
+.form-row {
+  display: flex;
+  gap: 50px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

@@ -12,7 +12,6 @@
   "Partenaires": "Partenaires",
   "Fournisseurs": "Fournisseurs",
   "Pariculier": "Particulier",
-  "Candidats": "Candidats",
   "Contact": "Contact",
   "Actualités": "Actualités",
   "Connexion": "Connexion",
@@ -20,5 +19,9 @@
   "Dashboard": "Tableau de bord",
   "Profil": "Profile",
   "Modifier Profil": "Edit Profile",
-  "Déconnexion": "Logout"
+  "Déconnexion": "Logout",
+  "Emploie": "Emploie",
+  "EspaceCandidat": "Espace candidat",
+  "AnnonceRecrutement": "Annonce Recrutement",
+  "DepotAnnoncesStage": "Dépôt & Annonces Stage"
 }

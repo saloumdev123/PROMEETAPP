@@ -1,109 +1,121 @@
-/* Footer background bleu */
-footer {
-  background-color: #096198; /* bleu foncé */
-  color: #fff;
-  font-size: 0.95rem;
+.footer {
+  background-color: #0d49cb; /* bleu foncé */
+  color: white;
+  font-size: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  left: 30;
+  right: 0;
+  margin: 0;
+  padding-left: 2rem;   /* espace interne (décale le contenu) */
+  padding-right: 1rem; 
 }
 
-/* Titres H5 avec fond bleu */
-footer h5 {
-  font-size: 1.1rem;
+.logo-title img {
+  flex-shrink: 0;
+}
+.app-titles {
+ font-size: 0.9rem;
+  color: rgb(222, 75, 2);
+  background-color: #f1f2f6;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px rgb(222, 75, 2);
+  white-space: nowrap; /* empêche le retour à la ligne */
+}
+.logo-title img {
+  flex-shrink: 0; /* empêche l’image de se déformer */
+}
+
+/* Liens */
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #ffb400; /* couleur au survol */
+}
+
+/* Titres H5 */
+.footer h5 {
+  color: white;
   font-weight: bold;
+  font-size: 1rem;
   margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  background-color: #ffd500; 
-  box-shadow: 5px 5px 5px rgb(255, 255, 255);
-  padding: 5px 5px;
-  color: rgb(14, 14, 14);
 }
 
-/* Décoration après H5 */
-footer h5::after {
-  content: "";
-  position: absolute;
-  width:100%;
-  height: 3px;
-  
-  left: 0;
-  bottom: -6px;
-  border-radius: 2px;
+/* Ligne de séparation */
+.footer hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Texte et liens */
-footer p, 
-footer a {
-  color: #e0e0e0;
+/* Icônes */
+.footer .bi {
+  margin-right: 0.5rem;
+  font-size: 1rem;
 }
 
-footer a:hover {
-  color: #ffcc00; /* jaune vif au hover */
-  text-decoration: underline;
-  transition: color 0.3s ease-in-out;
+/* Images des drapeaux */
+.footer .flag-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 /* Boutons réseaux sociaux */
-footer .btn-outline-light {
+.footer .btn-floating {
   border-radius: 50%;
-  transition: all 0.3s ease-in-out;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-footer .btn-outline-light:hover {
-  background: #b06700; /* bleu au hover */
-  border-color: #0083b0;
-  color: #fff;
+.footer .btn-floating:hover {
+  background-color: #ffb400;
+  color: #0d49cb;
 }
 
-footer hr {
-  border-top: 1px solid rgb(248, 251, 251);
+/* Formulaire d'abonnement */
+.footer form input {
+  margin-bottom: 0.5rem;
 }
 
-footer .text-end {
-  font-style: italic;
-  color: #cccccc;
+.footer form button {
+  font-size: 0.85rem;
 }
 
-footer .social-icon {
-  font-size: 1.2rem;
-  margin-right: 0.8rem;
-  color: #e0e0e0;
+/* Texte copyright */
+.footer .row.align-items-center p {
+  margin-bottom: 0;
 }
 
-/* Logo */
-.navbar-logo {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
+/* Responsive */
+@media (max-width: 992px) {
+  .footer .col-md-2,
+  .footer .col-md-3 {
+    margin-bottom: 2rem;
+  }
 }
 
- footer .app-title {
-  font-size: 1.3rem; /* même taille que navbar */
-  color: rgb(222, 75, 2); /* couleur du texte identique */
-  background-color: #f1f2f6; /* fond clair */
-  padding: 5px 10px;
-  border-radius: 10px;
-  box-shadow: 10px 10px;
-  display: inline-block; 
-}
-footer .row.text-md-left {
-  display: flex;
-  flex-wrap: wrap; /* responsive */
-  align-items: flex-start;
-  gap: 0.3rem; 
-}
+@media (max-width: 576px) {
+  .footer .row.align-items-center {
+    text-align: center;
+  }
 
-footer .col-md-2,
-footer .col-md-3,
-footer .col-md-4 {
-  flex: 0 0 auto; /* empêche l'étirement automatique */
-  margin-right: 0.0rem;
-}
-
-footer .col-md-4 .d-flex {
-  gap: 0.5rem; /* réduit l'espace entre logo et "Mise en Relation" */
-}
-.flag-icon {
-  width: 20px;
-  height: auto;
-  vertical-align: middle;
+  .footer .col-md-7,
+  .footer .col-md-5 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }

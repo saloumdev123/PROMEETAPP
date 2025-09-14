@@ -18,7 +18,7 @@ hero = {
     title: "Votre chantier simplifié, du choix des fournitures à la mise en relation avec les artisans",
     subtitle: "Trouvez vos produits, planifiez vos travaux et engagez des professionnels fiables, rapidement et en toute sécurité.",
     ctaButtons: [
-      { text: "Publier une demande", type: "blue", link: "/publier-demande" },
+      { text: "Publier une demande", type: "blue", link: "/publications" },
       { text: "Découvrir les artisans", type: "red", link: "/artisans" }
     ],
     image: "https://avatars.mds.yandex.net/i?id=c711c7f87b4436d08e7d01b9f26803fb9ec23793-4408821-images-thumbs&n=13"

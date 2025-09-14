@@ -12,7 +12,6 @@
   "Partenaires": "Socios",
   "Fournisseurs": "Proveedores",
   "Pariculier": "Particular",
-  "Candidats": "Candidatos",
   "Contact": "Contacto",
   "Actualités": "Actualidades",
   "Connexion": "Iniciar sesión",
@@ -20,5 +19,9 @@
   "Dashboard": "Tablero",
   "Profil": "Perfil",
   "Modifier Profil": "Editar Perfil",
-  "Déconnexion": "Cerrar sesión"
+  "Déconnexion": "Cerrar sesión",
+  "Emploie": "Empleo",
+  "EspaceCandidat": "Espacio del candidato",
+  "AnnonceRecrutement": "Ofertas de empleo",
+  "DepotAnnoncesStage": "Publicación y ofertas de prácticas"
 }

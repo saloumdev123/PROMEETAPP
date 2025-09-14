@@ -1,0 +1,469 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <!-- Texte -->
+    <div class="hero-text">
+      <h1>Boostez votre conversion avec notre service d'installation</h1>
+      <p>Découvrez nos solutions dédiées aux retailers et aux e-commerçants.</p>
+
+      <!-- Boutons -->
+      <div class="hero-buttons">
+        <button class="btn-demo" routerLink="/rendez-vous">Demander un Démo</button>
+        <button class="btn-solution" (click)="navigate('/solutions')">Découvrir nos solutions</button>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="hero-image" (click)="navigate('/categorie-detail/serrurerie')">
+      <img [src]="hero.image" alt="Solutions B2B">
+    </div>
+  </div>
+</section>
+
+<section class="b2b-section">
+  <div class="b2b-container">
+    <!-- Titre sur toute la largeur -->
+    <h1 class="b2b-title">
+      Avec Fibem, offrez une solution d'installation à vos clients.
+    </h1>
+
+    <!-- Deux colonnes -->
+    <div class="b2b-columns">
+      <!-- Colonne texte -->
+      <div class="b2b-text">
+        <p>
+          Fibem s'intègre facilement et rapidement à votre site internet pour que vos clients puissent réserver une installation et ainsi lever les éventuels freins à l'achat de vos produits.
+        </p>
+        <p>
+          Intégrez notre service d'installation et notre réseau de <strong>30k installateurs</strong> dans toute la France, pour accompagner vos clients dans la réalisation de leur projet.
+        </p>
+        <p class="highlight">➜ Proposez un installateur en moins de 24h à vos clients.</p>
+        <button class="btn-rdv" routerLink="/rendez-vous">
+          Prendre rendez-vous
+        </button>
+      </div>
+
+      <!-- Colonne image -->
+      <div class="b2b-image">
+        <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F9985185e89cdbc2b4d1719d6e0efdf406dbd7ddc-2500x1563.png&w=1080&q=75" alt="Installation Fibem">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="b2b-images"> 
+  <div class="b2b-images-container">
+    <!-- Première image -->
+    <div class="b2b-image-col">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F8ad0d7e13cc6d35024f1f2b8e53d5846f9fdf741-2500x1563.png&w=1920&q=75" 
+      alt="Image 1">
+    </div>
+
+    <!-- Deuxième image -->
+    <div class="b2b-image-col">
+      <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fa2de6ad0fc8778c1852db91de39e190491c33919-1125x1125.png&w=640&q=75" 
+       alt="Image 2">
+    </div>
+  </div>
+</section>
+
+
+
+<section class="services-section">
+  <!-- Ligne 1 : Titre -->
+  <h2 class="services-title">Nos services : +150 prestations disponibles</h2>
+
+  <!-- Ligne 2 : 4 images -->
+  <div class="services-images">
+    <div class="service-card">
+      <img src="https://avatars.mds.yandex.net/i?id=52a902f6f547bd59dd2507c80deccca4c3811cdc-5875818-images-thumbs&n=13" alt="Installation">
+    </div>
+    <div class="service-card">
+      <img src="https://avatars.mds.yandex.net/i?id=fddd1311dbbf6e3cc318c15300a2c7470da10889-5497593-images-thumbs&n=13" alt="Montage">
+    </div>
+    <div class="service-card">
+      <img src="https://avatars.mds.yandex.net/i?id=1b43a75678fc7547e59af0c5d9e74cec0961bd50-10986596-images-thumbs&n=13" alt="Aménagement extérieur">
+    </div>
+    <div class="service-card">
+      <img src="https://avatars.mds.yandex.net/i?id=ba04f78b15c3ec5fa4c7050702ac01842e4c89c9-5246466-images-thumbs&n=13" alt="Rénovation">
+    </div>
+  </div>
+
+  <!-- Ligne 3 : Texte des prestations -->
+  <div class="services-list">
+    <div class="service-category">
+      <h3>Installation</h3>
+      <ul>
+        <li><span class="check">✔</span> Installer une cuisine</li>
+        <li><span class="check">✔</span> Installer des volets/stores</li>
+        <li><span class="check">✔</span> Installer un chauffage</li>
+      </ul>
+    </div>
+
+    <div class="service-category">
+      <h3>Montage</h3>
+      <ul>
+        <li><span class="check">✔</span> Monter un meuble</li>
+        <li><span class="check">✔</span> Fixer des étagères</li>
+        <li><span class="check">✔</span> Fixer une paroi de douche</li>
+      </ul>
+    </div>
+
+    <div class="service-category">
+      <h3>Aménagement extérieur</h3>
+      <ul>
+        <li><span class="check">✔</span> Poser une clôture</li>
+        <li><span class="check">✔</span> Poser une terrasse</li>
+        <li><span class="check">✔</span> Entretenir un jardin</li>
+      </ul>
+    </div>
+
+    <div class="service-category">
+      <h3>Rénovation</h3>
+      <ul>
+        <li><span class="check">✔</span> Rénover une salle de bain</li>
+        <li><span class="check">✔</span> Peindre une pièce</li>
+        <li><span class="check">✔</span> Poser du carrelage</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="solution-section py-5">
+  <div class="container">
+    <!-- Ligne 1 : Titre -->
+    <div class="row mb-5 text-center">
+      <div class="col-12">
+        <h2 class="fw-bold" style="color:#00416a; margin-top:3rem;">
+          Deux solutions clés en main faciles à intégrer
+        </h2>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : Icônes -->
+    <div class="row text-center mb-4">
+      <div class="col-md-6">
+        <i class="bi bi-box-seam display-1 text-primary"></i>
+      </div>
+      <div class="col-md-6">
+        <i class="bi bi-stars display-1 text-warning"></i>
+      </div>
+    </div>
+
+    <!-- Ligne 3 : Cartes -->
+    <section class="packs-section py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <!-- Card 1 -->
+          <div class="col-md-5 mb-4">
+            <a href="#starter" class="card-link">
+              <div class="card h-100 shadow border-0" (click)="selectPack('starter')" style="cursor:pointer">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F01df49e3120ba7f613866313ee74a9f96edeaed1-1750x1750.png&w=640&q=75" 
+                     class="card-img-top" alt="Pack Starter">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Pack Starter</h5>
+                  <p class="card-text">
+                    Proposez une solution d'installation dès <strong>59€ /mois</strong> à intégrer sur votre site.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-md-5 mb-4">
+            <a href="#premium" class="card-link">
+              <div class="card h-100 shadow border-0"  (click)="selectPack('premium')" style="cursor:pointer">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F7a7add7e1dc14a02c1340699c16ad974e524e006-1750x1750.png&w=640&q=75" 
+                     class="card-img-top" alt="Pack Premium">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Pack Premium</h5>
+                  <p class="card-text">
+                    Proposez un catalogue personnalisé à prix fixes pensé pour vos clients.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="pricing-table py-5">
+  <div class="container">
+    <table class="table table-striped table-borderless text-center">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Starter</th>
+          <th>Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pack dédié</td>
+          <td>E-commerçants</td>
+          <td>E-commerçants & magasins</td>
+        </tr>
+        <tr>
+          <td>Frais de mise en place</td>
+          <td>800€ HT</td>
+          <td>Sur devis</td>
+        </tr>
+        <tr>
+          <td>Abonnement mensuel</td>
+          <td>59€ HT</td>
+          <td>Sur devis</td>
+        </tr>
+        <tr>
+          <td>Réseaux de prestataires</td>
+          <td>Professionnels et particuliers</td>
+          <td>Professionnels</td>
+        </tr>
+        <tr>
+          <td>Pack de communication</td>
+          <td>Bannières WEB</td>
+          <td>Bannières, flyers, affiches</td>
+        </tr>
+        <tr>
+          <td>Délai d'intégration</td>
+          <td>2 à 3 jours</td>
+          <td>1 à 2 semaines</td>
+        </tr>
+        <tr>
+          <td>Accompagnement</td>
+          <td>/</td>
+          <td>Account manager dédié</td>
+        </tr>
+        <tr>
+          <td>Reporting</td>
+          <td>/</td>
+          <td>Tableau de bord personnalisé</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="packs-toggle-section py-5">
+  <div class="container">
+    <!-- Les titres des packs -->
+    <div class="row mb-4">
+      <div class="col-6 text-center">
+        <button 
+          class="pack-btn" 
+          [class.active]="activePack === 'starter'" 
+          (click)="selectPack('starter')">
+          Pack Starter
+        </button>
+      </div>
+      <div class="col-6 text-center">
+        <button 
+          class="pack-btn" 
+          [class.active]="activePack === 'premium'" 
+          (click)="selectPack('premium')">
+          Pack Premium
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Contenus des packs -->
+    <div *ngIf="activePack === 'starter'" class="pack-content">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p>
+            Proposez un parcours autonome avec toute notre base de prestataires.<br>
+            Définissez vos besoins et nos équipes prennent le relais :<br><br>
+            Création des visuels d'intégration : bannières WEB dédiées pour votre site internet.<br>
+            Création d'une landing page dédiée (Personnalisée avec votre logo et le type de prestations).<br>
+            <strong>Le plus :</strong> Un service d'installation rapide à mettre en place avec une large base de prestataires.
+          </p>
+          <button class="btn btn-warning">En savoir plus</button>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Ffe2f351d333cd5f888dc68e0f544c0c5ff2ea109-1366x778.jpg&w=1080&q=75" class="img-fluid" alt="Pack Starter">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="activePack === 'premium'" class="pack-content">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p>
+            Intégrez un catalogue de services à prix fixes selon vos produits.<br>
+            Définissez vos besoins et nos équipes prennent le relais :<br><br>
+            Création des visuels d'intégration : bannières en ligne et/ou flyers et/ou affiches (dédiés pour votre site et/ou vos magasins).<br>
+            Création de votre catalogue virtuel dédié à l'installation de vos produits (Personnalisé avec votre logo et vos types de produits).<br>
+            <strong>Le plus :</strong> Un service d'installation personnalisé à prix fixes avec des prestataires professionnels et Premium.
+          </p>
+          <button class="btn btn-warning">En savoir plus</button>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F16471cfb0ce7adfc185814903fe134c42d16f006-1366x778.jpg&w=1080&q=75" class="img-fluid" alt="Pack Premium">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo-section py-5">
+  <div class="container text-center">
+    <h2 class="demo-title">Demandez une démo</h2>
+    <p class="demo-subtitle">
+      Découvrez nos solutions en action. Planifiez votre démo en quelques clics !
+    </p>
+
+    <!-- Bouton qui redirige vers le composant RdvComponent -->
+    <button mat-raised-button color="primary" routerLink="/rendez-vous">
+      Prendre rendez-vous
+    </button>
+  </div>
+</section>
+
+
+<section class="stats-section py-5">
+  <div class="container text-center">
+    <!-- Ligne 1 : Titre -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="stats-title">Plateforme de services leader depuis 10 ans</h2>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : Statistiques en 4 colonnes -->
+    <div class="row text-center">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h3>+150k</h3>
+        <p>demandes par an</p>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h3>+30k</h3>
+        <p>prestataires actifs</p>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h3>+2500</h3>
+        <p>magasins équipés</p>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h3>+250</h3>
+        <p>e-commerçants</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scrolling-wrapper">
+  <div class="scrolling-text">
+    Notre plateforme garantit sécurité et fiabilité pour toutes vos demandes et prestations de services. Offres vérifiées et prestataires authentifiés pour une expérience transparente.
+  </div>
+</div>
+
+<section class="avis-section py-5">
+  <div class="container text-center">
+    <!-- Titre -->
+    <h2 class="avis-title mb-4">4,8/5 de note moyenne sur nos prestataires ⭐</h2>
+
+    <!-- Cartes des avis -->
+    <div class="row justify-content-center g-4">
+      <!-- Avis 1 -->
+      <div class="col-md-4">
+        <div class="avis-card p-4 h-100 shadow-sm d-flex align-items-start">
+          <img src="https://avatars.mds.yandex.net/i?id=f3c2ec83d989d24d175361358b217a8876c79b16-15468606-images-thumbs&n=13" alt="Zacharia K" class="avis-img me-3">
+          <div class="avis-content text-start">
+            <h5 class="avis-name">Zacharia K</h5>
+            <div class="avis-stars">
+              ★★★★☆ <!-- 4 sur 5 -->
+            </div>
+            <p class="avis-comment">
+              Je recommande, super gentil et professionnel, n'hésitez pas! Merci encore!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avis 2 -->
+      <div class="col-md-4">
+        <div class="avis-card p-4 h-100 shadow-sm d-flex align-items-start">
+          <img src="https://avatars.mds.yandex.net/i?id=8cd18a26562de13149f06ff7ee9b9c86e14a73a8-5151070-images-thumbs&n=13" alt="Jérôme G" class="avis-img me-3">
+          <div class="avis-content text-start">
+            <h5 class="avis-name">Jérôme G</h5>
+            <div class="avis-stars">
+              ★★★★★ <!-- 5 sur 5 -->
+            </div>
+            <p class="avis-comment">
+              Au top ! Je recommande à 100%. Mission accomplie avec succès dans la bonne humeur. Professionnel, sympa, honnête.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avis 3 -->
+      <div class="col-md-4">
+        <div class="avis-card p-4 h-100 shadow-sm d-flex align-items-start">
+          <img src="https://avatars.mds.yandex.net/i?id=706141ce96a200f4ce6f643a45dca2b5a5d3d35d-5115418-images-thumbs&n=13" alt="Denis S" class="avis-img me-3">
+          <div class="avis-content text-start">
+            <h5 class="avis-name">Denis S</h5>
+            <div class="avis-stars">
+              ★★★★☆ <!-- 4 sur 5 -->
+            </div>
+            <p class="avis-comment">
+              Crédence posée avec soin, travail propre et finitions de qualité. Très belle crédence, super boulot, c’est propre et bien fait ✅
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners-section py-5">
+  <div class="container text-center">
+    <!-- Ligne 1 : Titre -->
+    <h2 class="partners-title mb-5">Toute notre actualité et nos nouveautés</h2>
+
+    <!-- Ligne 2 : 4 colonnes -->
+    <div class="row g-4">
+      <!-- Colonne 1 : Carte interactive -->
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm p-3">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fea7cf87248f4ffeac42ae2ffa5485b7b45029be7-872x585.gif&w=640&q=75" alt="Carte Europe/France" class="img-fluid map-img mb-3">
+          <div class="partner-highlight">
+            <!-- Ici le partenaire qui s'affiche dynamiquement -->
+            <p>Découvrez tous nos partenaires en France et en Europe. <a href="">En savoir plus ➜</a> </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne 2 -->
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm p-3">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fd7076ea2499c84b1183642533db471f102dec48c-3488x2531.jpg&w=640&q=75" alt="Image 2" class="img-fluid mb-3">
+          <p>Programmer ses travaux en moins de 48h grâce au catalogue de services.</p>
+        </div>
+      </div>
+
+      <!-- Colonne 3 -->
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm p-3">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fba6f495d349b8c83ae386eff7fe9a967bd9220ef-3488x2531.jpg&w=640&q=75" alt="Image 3" class="img-fluid mb-3">
+          <p>Plus de 12 nouveaux partenaires signés en 2023 !</p>
+        </div>
+      </div>
+
+      <!-- Colonne 4 -->
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm p-3">
+          <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fba6f495d349b8c83ae386eff7fe9a967bd9220ef-3488x2531.jpg&w=640&q=75" alt="Image 4" class="img-fluid mb-3">
+          <p>Une nouvelle fonctionnalité : la barre de recherche.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,161 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <!-- Texte -->
+    <div class="hero-text" (click)="navigate('/categorie-detail/serrurerie')">
+      <h1>{{ hero.title }}</h1>
+      <p>{{ hero.subtitle }}</p>
+       <div class="search-bar" *ngIf="hero.showSearch">
+        <input type="text" placeholder="Rechercher une prestation 🔎">
+        <button (click)="navigate('/prestations')">Rechercher</button>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="hero-image" (click)="navigate('/categorie-detail/serrurerie')">
+      <img [src]="hero.image" alt="Travaux Serrurerie">
+    </div>
+  </div>
+</section>
+
+<!-- Galerie Serrurerie -->
+<section class="serrurerie-gallery">
+  <div class="gallery-grid">
+    <!-- Ligne 1 -->
+    <div class="gallery-item square">
+      <img src="https://images.pexels.com/photos/279810/pexels-photo-279810.jpeg" alt="Serrurerie 1">
+    </div>
+    <div class="gallery-item rectangle">
+      <img src="https://avatars.mds.yandex.net/i?id=a9866e730770642fe0708f69d2b605ed8ae524bb-10385057-images-thumbs&n=13" alt="Serrurerie 2">
+    </div>
+    <div class="gallery-item square">
+      <img src="https://avatars.mds.yandex.net/i?id=e034946779c6dc56ddde701b7fedbc2527d798a8-4347450-images-thumbs&n=13" alt="Serrurerie 3">
+    </div>
+
+    <!-- Ligne 2 -->
+    <div class="gallery-item rectangle">
+      <img src="https://avatars.mds.yandex.net/i?id=aa1cccec7df022a5391135ec0276d244cffffab0-2769679-images-thumbs&n=13" alt="Serrurerie 4">
+    </div>
+    <div class="gallery-item square">
+      <img src="https://avatars.mds.yandex.net/i?id=bd6c3868070207dd09e37a4f790af397860cb140-7462545-images-thumbs&n=13" alt="Serrurerie 5">
+    </div>
+    <div class="gallery-item square">
+      <img src="https://avatars.mds.yandex.net/i?id=a5407c3372a18148a92ee1be7e5b70f078d18ed7-4366154-images-thumbs&n=13" alt="Serrurerie 6">
+    </div>
+  </div>
+</section>
+<!-- Section 1: Présentation des prestations -->
+<section class="prestations-intro">
+  <div class="container">
+    <h2>Nos prestations sécurité et serrurerie</h2>
+    <p>
+      Bienvenue sur notre page dédiée à l'ensemble de nos prestations en <a href="">sécurité et serrurerie</a>. 
+      Que vous ayez besoin <a href="">d’installer une alarme</a>, de sécuriser vos portes avec des verrous 
+      ou de faire appel à un dépannage de serrure en urgence, nous proposons une gamme complète 
+      de services pour répondre à tous vos besoins. De l’installation de serrures multipoints et 
+      de verrous haute sécurité à la pose de systèmes d’alarme et d’autres dispositifs de protection, 
+      nous vous accompagnons dans la <a href="">sécurisation de votre domicile</a> ou de vos locaux professionnels.
+    </p><br>
+    <p>
+      Notre équipe de serruriers et de spécialistes en sécurité est à votre disposition pour vous offrir 
+      des solutions fiables et personnalisées. Faites confiance à nos services pour une installation durable 
+      et efficace, assurant votre sécurité et votre tranquillité d'esprit.
+    </p>
+  </div>
+</section>
+
+<!-- Section 2: Liste des services avec validation -->
+<section class="prestations-list">
+  <div class="container">
+    <div class="services-row">
+      <!-- Première colonne -->
+      <div class="services-col">
+        <ul>
+          <li><span class="check">✔</span> Installer/changer une serrure</li>
+          <li><span class="check">✔</span> Dépannage serrure d'urgence</li>
+          <li><span class="check">✔</span> Installer/changer un verrou</li>
+        </ul>
+      </div>
+      <!-- Deuxième colonne -->
+      <div class="services-col">
+        <ul>
+          <li><span class="check">✔</span> Fixer une boite à clés sécurisées</li>
+          <li><span class="check">✔</span> Installer une alarme</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Professionnels -->
+<section class="professionnels">
+  <div class="container">
+    <div class="professionnels-row">
+      <!-- Colonne Image -->
+      <div class="professionnels-image">
+        <img src="https://avatars.mds.yandex.net/i?id=aacc4e9692585275b77114a113313a2916033d68-16303231-images-thumbs&n=13" alt="Serrurier et Bricoleur">
+      </div>
+
+      <!-- Colonne Texte -->
+      <div class="professionnels-text">
+        <h2>Les professionnels en charge des travaux de sécurité et serrurerie</h2>
+
+        <!-- Serrurier -->
+        <div class="profession">
+          <h3>Serrurier</h3>
+          <p>
+            Expert en sécurité, le serrurier s'occupe de l'installation et de la réparation de tous types de serrures, verrous, et systèmes de verrouillage. Il intervient aussi bien pour la pose de serrures haute sécurité, le blindage de portes, que pour le dépannage en cas de serrure bloquée ou de clé perdue. Il vous conseille sur les meilleures solutions pour renforcer la sécurité de vos accès.
+          </p>
+          <ul>
+            <li><span class="check-blue">✔</span> Installation de serrures haute sécurité</li>
+            <li><span class="check-blue">✔</span> Dépannage rapide et efficace</li>
+          </ul>
+        </div>
+
+        <!-- Bricoleur -->
+        <div class="profession">
+          <h3>Bricoleur</h3>
+          <p>
+            Polyvalent, le bricoleur prend en charge les petits travaux liés à la sécurité, comme la pose de verrous, la fixation de judas de porte, ou l’installation d’accessoires de sécurité supplémentaires. Il est également compétent pour des ajustements mineurs et des installations simples afin de compléter vos dispositifs de sécurité.
+          </p>
+          <ul>
+            <li><span class="check-blue">✔</span> Pose de verrous et accessoires de sécurité</li>
+            <li><span class="check-blue">✔</span> Ajustements et installations simples</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section Guides et Conseils -->
+<section class="guides-conseils">
+  <div class="container">
+    <!-- Titre -->
+    <h2>Nos guides et conseils pour vos travaux</h2>
+
+    <!-- Ligne Images -->
+    <div class="guides-images">
+      <div class="guide-img">
+        <img src="https://avatars.mds.yandex.net/i?id=153a5753eecc9cfc849d32a9fd946704ed45df44-16335935-images-thumbs&n=13" alt="Tarifs des prestations">
+      </div>
+      <div class="guide-img">
+        <img src="https://avatars.mds.yandex.net/i?id=d221baaec316f51c720bde2c10561c332c18a81d-8238279-images-thumbs&n=13" alt="Choisir un serrurier">
+      </div>
+    </div>
+
+    <!-- Ligne Textes -->
+    <div class="guides-texts">
+      <div class="guide-text">
+        <h3>Tarifs des prestations de serrurerie en 2025</h3>
+        <a class="read-article" href="#">Lire l'article</a>
+      </div>
+      <div class="guide-text">
+        <h3>Choisir un serrurier : comment éviter les arnaques</h3>
+        <a class="read-article" href="#">Lire l'article</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,8 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../services/authService';
-import { NotificationService } from '../services/notification.service';
 import { Role } from '../../enums/role';
+import { AuthService } from '../../services/auth.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
 
@@ -11,7 +10,6 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   const authService = inject(AuthService);
   const router = inject(Router);
-  const notificationService = inject(NotificationService);
 
   
   if (!requiredRoles || requiredRoles.length === 0) {
@@ -22,7 +20,6 @@ export const roleGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  notificationService.showError('Accès non autorisé');
   router.navigate(['/dashboard']);
   return false;
 };

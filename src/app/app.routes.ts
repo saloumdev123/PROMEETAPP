@@ -15,7 +15,6 @@ import { ProfileEdit } from './components/profile-edit/profile-edit';
 import { Profile } from './components/profile/profile';
 import { Utilisateurs } from './components/utilisateurs/utilisateurs';
 import { ProduitComponent } from './components/produit/produitComponent';
-import { CategoriService } from './services/categoriService';
 import { CategorieComponent } from './components/categorie-component/categorie-component';
 import { AboutComponent } from './components/about-component/about-component';
 import { ContactComponent } from './components/contact/contactComponent';
@@ -23,7 +22,13 @@ import { MissionListComponent } from './components/mission-list-component/missio
 import { CandidatComponent } from './components/candidat-component/candidat-component';
 import { ReseauComponent } from './components/reseau-component/reseau-component';
 import { TeamComponent } from './components/team-component/team-component';
-import { Publication } from './publication/publication';
+import { Publication } from './components/publication/publication';
+import { Serrureri } from './components/serrureri/serrureri';
+import { CuisineComponent } from './components/cuisine-component/cuisine-component';
+import { PrestataireComponent } from './components/prestataire-component/prestataire-component';
+import { InscriptionPrestataireComponent } from './components/inscription-prestataire-component/inscription-prestataire-component';
+import { B2bComponent } from './b2b-component/b2b-component';
+import { RdvComponent } from './components/rdv-component/rdv-component';
 export const routes: Routes = [
   
   {path: 'login', component: LoginComponent },
@@ -34,7 +39,7 @@ export const routes: Routes = [
   {path: 'offres/create', component: OffreForm },
   {path: 'offres/edit/:id', component: OffreForm },
   {path: 'offres/:id', component: OfferDetail },
-  {path: 'admin/users', component: Utilisateurs},
+  {path: 'admin/users', component: Utilisateurs, canActivate: [AuthGuard]},
   {path: 'reservations', component: ReservationComponent },
   {path: 'reservations/:id', component: ReservationComponent},
   {path: 'reset-password', component: ResetPasswordComponent },
@@ -49,9 +54,15 @@ export const routes: Routes = [
   {path: 'equipes', component: TeamComponent},
   {path: 'candidatures', component: CandidatComponent},
   {path: 'publications', component: Publication},
-  {path: 'home', component: Home}, 
-  {path: 'profile', component: Profile },
-  {path: 'profile/edit', component: ProfileEdit },
+  {path: 'serrureri', component: Serrureri},
+  {path: 'cuisine', component: CuisineComponent},
+  {path: 'prestataire', component: PrestataireComponent},
+  {path: 'inscription-prestataire', component: InscriptionPrestataireComponent},
+  {path: 'b2b', component: B2bComponent},
+  {path: 'rendez-vous', component: RdvComponent},
+  {path: 'home', component: Home, canActivate: [AuthGuard]}, 
+  {path: 'profile', component: Profile, canActivate: [AuthGuard] },
+  {path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },
   {path: 'avis', component: Avis },
   {path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

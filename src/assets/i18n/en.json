@@ -12,7 +12,6 @@
   "Partenaires": "Partners",
   "Fournisseurs": "Suppliers",
   "Pariculier": "Individual",
-  "Candidats": "Candidates",
   "Contact": "Contact",
   "Actualités": "News",
   "Connexion": "Login",
@@ -20,5 +19,9 @@
   "Dashboard": "Dashboard",
   "Profil": "Profile",
   "Modifier Profil": "Edit Profile",
-  "Déconnexion": "Logout"
+  "Déconnexion": "Logout",
+  "Emploie": "Jobs",
+  "EspaceCandidat": "Candidate Space",
+  "AnnonceRecrutement": "Job Offers",
+  "DepotAnnoncesStage": "Internship Posting & Offers"
 }
