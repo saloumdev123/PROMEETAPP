@@ -41,7 +41,7 @@ export class B2bComponent {
     }
   }
 
-  partners: string[] = ['Castorama', 'IKEA', 'Biko Déco', 'Conforama', 'Lepayre', 'Alinéa', 'BUT'];
+  partners: string[] = ['Castorama', 'IKEA', 'Biko Déco', 'Conforama', 'Lepayre', 'Alinéa', 'BUT', 'EROY MERLIN'];
   currentPartnerIndex = 0;
 
   ngOnInit() {

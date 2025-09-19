@@ -40,8 +40,8 @@ export class ProfileEdit implements OnInit {
       prenom: [this.user.prenom, Validators.required],
       email: [{ value: this.user.email, disabled: true }, [Validators.required, Validators.email]],
       telephone: [this.user.telephone, Validators.required],
-      bio: [this.user.bio || ''],
-      localisation: [this.user.localisation || '']
+      metier: [this.user.metier || ''],
+      adresse: [this.user.adresse || '']
     });
   }
 
@@ -70,7 +70,7 @@ onSubmit(): void {
   get prenom(): FormControl { return this.profileForm.get('prenom') as FormControl; }
   get email(): FormControl { return this.profileForm.get('email') as FormControl; }
   get telephone(): FormControl { return this.profileForm.get('telephone') as FormControl; }
-  get bio(): FormControl { return this.profileForm.get('bio') as FormControl; }
-  get localisation(): FormControl { return this.profileForm.get('localisation') as FormControl; }
+  get metier(): FormControl { return this.profileForm.get('metier') as FormControl; }
+  get adresse(): FormControl { return this.profileForm.get('adresse') as FormControl; }
 
 }

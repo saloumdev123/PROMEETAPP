@@ -1,0 +1,60 @@
+/* Style général du modal */
+#profileModal .modal-dialog {
+  margin-top: 80px; /* ajuste cette valeur selon tes besoins */
+}
+#profileModal .modal-content {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border: none;
+
+}
+
+/* En-tête */
+#profileModal .modal-header {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+#profileModal .modal-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+#profileModal .btn-close {
+  filter: invert(1); /* bouton X blanc */
+}
+
+/* Champs du formulaire */
+#profileModal .form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+#profileModal .form-control {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  transition: all 0.3s ease;
+}
+
+#profileModal .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.4);
+}
+
+/* Bouton enregistrer */
+#profileModal .btn-primary {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+#profileModal .btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+  transform: translateY(-2px);
+}

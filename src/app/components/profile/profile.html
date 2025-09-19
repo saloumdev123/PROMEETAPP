@@ -24,8 +24,12 @@
             <input class="form-control" [(ngModel)]="user.telephone" name="telephone">
           </div>
           <div class="mb-3">
-            <label class="form-label">Bio</label>
-            <textarea class="form-control" [(ngModel)]="user.bio" name="bio"></textarea>
+            <label class="form-label">Metier</label>
+            <textarea class="form-control" [(ngModel)]="user.metier" name="metier"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Adresse</label>
+            <textarea class="form-control" [(ngModel)]="user.adresse" name="adresse"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>

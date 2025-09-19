@@ -33,8 +33,8 @@ export class RegisterComponent {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{4,8}$')
       ]],
       telephone: ['', Validators.required],
-      bio: [''],
-      localisation: [''],
+      metier: [''],
+      adresse: [''],
       role: ['CLIENT']
     });
   }

@@ -1,15 +1,22 @@
 export interface Prestataire {
-  type: 'entreprise' | 'particulier'; 
-  metier: string;                     
-  siren?: string;                     
-  adresse: string;                    
-  nom: string;                       
-  prenom: string;                     
-  email: string;                     
-  telephone: string;                 
-  motDePasse: string;                
-  newsletter: boolean;                
-  cgu: boolean;                       
+ role: 'PARTICULIER' | 'PROFESSIONNEL' | 'ADMIN';
+
+  // Métier ou activité (utile surtout pour les pros)
+  metier?: string;
+
+  // Identification légale (utile surtout pour les pros/entreprises)
+  typeIdentification?: 'SIREN' | 'NINEA';
+  numeroIdentification?: string;
+
+  // Infos de base
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: string;
+  adresse: string;
+
+  // Auth
+  motDePasse: string;                      
 }
 
 

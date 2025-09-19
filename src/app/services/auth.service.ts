@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ResetPasswordRequest } from '../models/resetPasswordRequest ';
 import { AuthResponse, ForgotPasswordRequest, LoginRequest } from '../models/authResponse';
 import { RegisterRequest } from '../models/registerRequest ';
-import { Role } from '../enums/role';
 import { User } from '../models/user.model';
+import { UserRole } from '../enums/userRole';
 
 
 @Injectable({
@@ -66,22 +66,22 @@ export class AuthService {
     const base64 = token.split('.')[1];
     return JSON.parse(atob(base64.replace(/-/g, '+').replace(/_/g, '/')));
   }
-  getRole(): Role | null {
+  getRole(): UserRole | null {
   const token = this.getAccessToken();
   if (!token) return null;
   try {
     const payload = this.decodeJwt(token);
-    return payload.role as Role;
+    return payload.role as UserRole;
   } catch {
     return null;
   }
 }
 
- hasRole(role: Role): boolean {
+ hasRole(role: UserRole): boolean {
     return this.getRole() === role;
   }
 
-    hasAnyRole(roles: Role[]): boolean {
+    hasAnyRole(roles: UserRole[]): boolean {
     const currentRole = this.getRole();
     return currentRole ? roles.includes(currentRole) : false;
   }

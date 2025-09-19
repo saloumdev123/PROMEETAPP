@@ -1,0 +1,68 @@
+/* Container général */
+.container {
+  max-width: 600px;
+  margin: 40px auto; /* top margin ajouté et centrer horizontalement */
+  padding: 20px 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-top: 100px;
+}
+
+/* Titre */
+.container h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Inputs et textarea */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+}
+
+/* Textarea spécifique */
+textarea.form-control {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Bouton submit */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.btn-primary:disabled {
+  background: #a0c4ff;
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+  transform: translateY(-2px);
+}

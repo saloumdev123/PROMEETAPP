@@ -22,4 +22,29 @@ export class Serrureri {
     console.log("Navigate to:", link);
     // tu pourras mettre un Router.navigate ici
   }
+
+
+   searchQuery = '';
+  popularSearches = [
+    'Plomberie',
+    'Électricité', 
+    'Peinture',
+    'Jardinage',
+    'Ménage',
+    'Déménagement',
+    'Réparation',
+    'Installation'
+  ];
+
+  performSearch(): void {
+    if (this.searchQuery.trim()) {
+      console.log('Recherche:', this.searchQuery);
+      // Ici vous ajouteriez la logique de recherche
+    }
+  }
+
+  selectPopularSearch(search: string): void {
+    this.searchQuery = search;
+    this.performSearch();
+  }
 }

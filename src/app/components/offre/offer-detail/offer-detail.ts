@@ -5,7 +5,6 @@ import { OffreService } from '../../../services/offre.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { Role } from '../../../enums/role';
 import { AvisService } from '../../../services/avis.service';
 import { AvisModel } from '../../../models/avis.model';
 
@@ -13,7 +12,7 @@ import { AvisModel } from '../../../models/avis.model';
   selector: 'app-offer-detail',
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './offer-detail.html',
-  styleUrl: './offer-detail.css'
+  styleUrls: ['./offer-detail.css']
 })
 export class OfferDetail {
 

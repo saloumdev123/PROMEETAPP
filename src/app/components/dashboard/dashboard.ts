@@ -63,13 +63,13 @@ isSidebarOpen: boolean = false;
 
       if (!user) return;
 
-      if (user.role === 'PARTICULIER') {
+      if (user.userRole === 'PARTICULIER') {
         this.reservationService.getByClient(user.id!).subscribe(res => {
           this.reservationsCount = res.length;
         });
       }
 
-      if (user.role === 'PROFESSIONNEL') {
+      if (user.userRole === 'PROFESSIONNEL') {
         this.offreService.getByPrestataire(user.id!).subscribe(res => {
           this.offresCount = res.length;
         });
@@ -81,14 +81,14 @@ isSidebarOpen: boolean = false;
     });
   }
   get isAdmin() {
-  return this.currentUser?.role === 'ADMIN';
+  return this.currentUser?.userRole === 'ADMIN';
 }
 
 get isPrestataire() {
-  return this.currentUser?.role === 'PROFESSIONNEL';
+  return this.currentUser?.userRole === 'PROFESSIONNEL';
 }
 get isClient(): boolean {
-  return this.currentUser?.role === 'PARTICULIER';
+  return this.currentUser?.userRole === 'PARTICULIER';
 }
 
 

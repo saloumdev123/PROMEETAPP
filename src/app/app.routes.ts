@@ -29,6 +29,7 @@ import { PrestataireComponent } from './components/prestataire-component/prestat
 import { InscriptionPrestataireComponent } from './components/inscription-prestataire-component/inscription-prestataire-component';
 import { B2bComponent } from './b2b-component/b2b-component';
 import { RdvComponent } from './components/rdv-component/rdv-component';
+import { PrestataireProcesseComponent } from './components/prestataire-processe-component/prestataire-processe-component';
 export const routes: Routes = [
   
   {path: 'login', component: LoginComponent },
@@ -60,6 +61,8 @@ export const routes: Routes = [
   {path: 'inscription-prestataire', component: InscriptionPrestataireComponent},
   {path: 'b2b', component: B2bComponent},
   {path: 'rendez-vous', component: RdvComponent},
+  {path: 'rendez-vous', component: RdvComponent},
+  {path: 'publier-demande-process', component: PrestataireProcesseComponent},
   {path: 'home', component: Home, canActivate: [AuthGuard]}, 
   {path: 'profile', component: Profile, canActivate: [AuthGuard] },
   {path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },

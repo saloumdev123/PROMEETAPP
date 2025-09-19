@@ -19,9 +19,11 @@ user: User = {
   prenom: '',
   email: '',
   telephone: '',
-  role: 'CLIENT', // ou PRESTATAIRE
-  bio: '',
-  localisation: ''
+  userRole: 'PARTICULIER',
+  metier: '',
+  adresse: '',
+  typeIdentification: 'SIREN',
+  numeroIdentification: ''
 };
 
   constructor(private authService: AuthService, private userService: UserService) {}

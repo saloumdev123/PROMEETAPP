@@ -3,7 +3,7 @@
         <h2>
           <i class="bi bi-briefcase me-2"></i>Offres de services
         </h2>
-        <button *ngIf="authService.hasRole(Role.PRESTATAIRE)" 
+        <button *ngIf="authService.hasRole(Role.PARTICULIER)" 
                 class="btn btn-primary"
                 routerLink="/offres/create">
           <i class="bi bi-plus me-2"></i>Créer une offre

@@ -121,7 +121,6 @@
 }
 /* Section 1 - présentation */
 .prestations-intro {
-  background-color: #f0f4f8;
   padding: 3rem 1rem;
   text-align: center;
 }
@@ -316,4 +315,93 @@
 
 .read-article:hover {
   background-color: #005f99;
+}
+
+
+.steps-section img.position-absolute {
+    z-index: 1;
+  }
+  .steps-section img.position-relative img:first-child {
+    z-index: 2;
+  }
+
+  .steps-section img.position-absolute {
+  z-index: 1;
+}
+.steps-section img.position-relative img:first-child {
+  z-index: 2;
+}
+
+
+
+.steps-section  h5 {
+  color: #007bff;
+}
+
+.search-section {
+  background-color: #f8f9fa; /* fond clair */
+}
+.search-section input.form-control {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.search-section button.btn {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.reasons-section {
+  background-color: #f8f9fa;
+}
+.reason-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reason-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.partners-section {
+}
+
+.partner-img {
+  width: 100%;
+  max-height: 80px; /* même hauteur pour toutes les images */
+  object-fit: contain; /* pour garder le ratio */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.partners-second-row {
+  margin-top: -50px; /* petit chevauchement entre les deux lignes */
+}
+
+.testimonials-section {
+  background-color: #f8f9fa;
+}
+
+.testimonials-section .card {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.testimonials-section .stars {
+  color: #ffc107; /* couleur or pour les étoiles */
+  font-size: 0.9rem;
+}
+
+.other-univers-section img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.other-univers-section img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.other-univers-section .univers-title a:hover {
+  color: #0d6efd; /* couleur bootstrap primaire au survol */
+}
+
+.other-links-section a:hover {
+  color: #0d6efd; /* couleur bootstrap primaire */
+  transform: translateY(-3px);
 }

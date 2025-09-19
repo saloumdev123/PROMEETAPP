@@ -4,6 +4,6 @@ export interface RegisterRequest {
   nom: string;
   prenom: string;
   telephone: string;
-  bio: string;
-  localisation: string;
+  metier: string;
+  adresse: string;
 }
