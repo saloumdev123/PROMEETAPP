@@ -24,48 +24,75 @@ import { ReseauComponent } from './components/reseau-component/reseau-component'
 import { TeamComponent } from './components/team-component/team-component';
 import { Publication } from './components/publication/publication';
 import { Serrureri } from './components/serrureri/serrureri';
-import { CuisineComponent } from './components/cuisine-component/cuisine-component';
 import { PrestataireComponent } from './components/prestataire-component/prestataire-component';
 import { InscriptionPrestataireComponent } from './components/inscription-prestataire-component/inscription-prestataire-component';
 import { B2bComponent } from './b2b-component/b2b-component';
 import { RdvComponent } from './components/rdv-component/rdv-component';
 import { PrestataireProcesseComponent } from './components/prestataire-processe-component/prestataire-processe-component';
+import { Electricity } from './components/electricity/electricity';
+import { Electricityprocess } from './components/electricityprocess/electricityprocess';
+import { Maconnerie } from './components/maconnerie/maconnerie';
+import { Maconnerieprocess } from './components/maconnerieprocess/maconnerieprocess';
+import { Peinture } from './components/peinture/peinture';
+import { Peintureprocess } from './components/peintureprocess/peintureprocess';
+import { Plomberie } from './components/plomberie/plomberie';
+import { Plomberieprocess } from './components/plomberieprocess/plomberieprocess';
+import { Menuiserieprocess } from './menuiserieprocess/menuiserieprocess';
+import { Menuiserie } from './menuiserie/menuiserie';
+import { Jardinage } from './jardinage/jardinage';
+import { Jardinageprocess } from './jardinageprocess/jardinageprocess';
+import { Cuisineprocess } from './cuisineprocess/cuisineprocess';
+import { Carrlage } from './components/carrlage/carrlage';
+import { Carrelageprocess } from './components/carrelageprocess/carrelageprocess';
 export const routes: Routes = [
-  
-  {path: 'login', component: LoginComponent },
-  {path: 'register', component: RegisterComponent },
-  {path:  'dashboard', component: Dashboard},
-  {path: 'offres', component: OffreList },
-  {path: 'mes-offres', component: OffreList },
-  {path: 'offres/create', component: OffreForm },
-  {path: 'offres/edit/:id', component: OffreForm },
-  {path: 'offres/:id', component: OfferDetail },
-  {path: 'admin/users', component: Utilisateurs, canActivate: [AuthGuard]},
-  {path: 'reservations', component: ReservationComponent },
-  {path: 'reservations/:id', component: ReservationComponent},
-  {path: 'reset-password', component: ResetPasswordComponent },
-  {path: 'paiement', component: PaiementComponent} ,
-  {path: 'produits', component: ProduitComponent},
-  {path: 'cateorie', component: CategorieComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'candidats', component: CandidatComponent},
-  {path: 'reseau', component: ReseauComponent},
-  {path: 'missions', component: MissionListComponent},
-  {path: 'equipes', component: TeamComponent},
-  {path: 'candidatures', component: CandidatComponent},
-  {path: 'publications', component: Publication},
-  {path: 'serrureri', component: Serrureri},
-  {path: 'cuisine', component: CuisineComponent},
-  {path: 'prestataire', component: PrestataireComponent},
-  {path: 'inscription-prestataire', component: InscriptionPrestataireComponent},
-  {path: 'b2b', component: B2bComponent},
-  {path: 'rendez-vous', component: RdvComponent},
-  {path: 'rendez-vous', component: RdvComponent},
-  {path: 'publier-demande-process', component: PrestataireProcesseComponent},
-  {path: 'home', component: Home, canActivate: [AuthGuard]}, 
-  {path: 'profile', component: Profile, canActivate: [AuthGuard] },
-  {path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },
-  {path: 'avis', component: Avis },
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: Dashboard },
+  { path: 'offres', component: OffreList },
+  { path: 'mes-offres', component: OffreList },
+  { path: 'offres/create', component: OffreForm },
+  { path: 'offres/edit/:id', component: OffreForm },
+  { path: 'offres/:id', component: OfferDetail },
+  { path: 'admin/users', component: Utilisateurs, canActivate: [AuthGuard] },
+  { path: 'reservations', component: ReservationComponent },
+  { path: 'reservations/:id', component: ReservationComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'paiement', component: PaiementComponent },
+  { path: 'produits', component: ProduitComponent },
+  { path: 'cateorie', component: CategorieComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'candidats', component: CandidatComponent },
+  { path: 'reseau', component: ReseauComponent },
+  { path: 'missions', component: MissionListComponent },
+  { path: 'equipes', component: TeamComponent },
+  { path: 'candidatures', component: CandidatComponent },
+  { path: 'publications', component: Publication },
+  { path: 'serrureri', component: Serrureri },
+  { path: 'electricity', component: Electricity },
+  { path: 'electricity-process', component: Electricityprocess },
+  { path: 'maconnerie', component: Maconnerie },
+  { path: 'maconnerie-process', component: Maconnerieprocess },
+  { path: 'peinture', component: Peinture },
+  { path: 'peinture-process', component: Peintureprocess },
+  { path: 'plomberie', component: Plomberie },
+  { path: 'plomberie-process', component: Plomberieprocess },
+  { path: 'menuiserie', component: Menuiserie },
+  { path: 'menuiserie-process', component: Menuiserieprocess },
+  { path: 'carrelage', component: Carrlage },
+  { path: 'carrelage-process', component: Carrelageprocess },
+  { path: 'jardinage', component: Jardinage },
+  { path: 'jardinage-process', component: Jardinageprocess },
+  { path: 'cuisine-process', component: Cuisineprocess },
+  { path: 'prestataire', component: PrestataireComponent },
+  { path: 'inscription-prestataire', component: InscriptionPrestataireComponent },
+  { path: 'b2b', component: B2bComponent },
+  { path: 'rendez-vous', component: RdvComponent },
+  { path: 'publier-demande-process', component: PrestataireProcesseComponent },
+  { path: 'home', component: Home, canActivate: [AuthGuard] },
+  { path: 'profile', component: Profile, canActivate: [AuthGuard] },
+  { path: 'profile/edit', component: ProfileEdit, canActivate: [AuthGuard] },
+  { path: 'avis', component: Avis },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

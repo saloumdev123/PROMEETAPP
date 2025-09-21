@@ -1,0 +1,188 @@
+<div class="container">
+    <!-- Progression -->
+    <div class="progress-container">
+        <div class="progress-bar" [style.width]="progressWidth"></div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+        <!-- Étape 0 : Serrurerie -->
+        <div *ngIf="currentStep === 0" class="content-row">
+            <div class="col-left">
+                <img src="https://avatars.mds.yandex.net/i?id=b99be685e74ef439259e8820e416b7d4-4949521-images-thumbs&n=13"
+                    alt="Serrurerie">
+            </div>
+            <div class="col-right">
+                <<h2> Carrelage</h2>
+                    <p>
+                        Pour la <strong>pose de carrelage mural ou au sol</strong>, la rénovation de votre salle de
+                        bain, cuisine,
+                        ou encore la réalisation de terrasses et espaces extérieurs, trouvez un carreleur expérimenté
+                        qui saura répondre à vos attentes avec précision et professionnalisme.
+                    </p>
+
+                    <ul class="service-list">
+                        <li><span class="check">✔</span> <strong>Pose murale et au sol</strong></li>
+                        <li><span class="check">✔</span> <strong>Finitions soignées</strong></li>
+                        <li><span class="check">✔</span> <strong>Devis rapide et transparent</strong></li>
+                    </ul>
+            </div>
+        </div>
+
+        <!-- Étape 1 -->
+        <div *ngIf="currentStep === 1" class="mt-4 mb-5">
+            <h2>Étape 1 – Donnez un titre à votre projet</h2>
+            <p class="text-muted">Exemple : Installation d’une prise ou d’un interrupteur</p>
+            <div class="mb-3">
+                <input id="projectTitle" type="text" class="form-control" [(ngModel)]="projectTitle" name="projectTitle"
+                    placeholder="Titre du projet" />
+            </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div *ngIf="currentStep === 2" class="mt-4">
+            <h2>Étape 2 – Précisions sur votre demande</h2>
+            <p class="text-muted">Exemple : Pose d’un carrelage mural ou au sol</p>
+            <p>Choisissez installer / remplacer / réparer...</p>
+            <div class="select-options">
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'installer'"
+                    (click)="selectOption('installer')">Installer</button>
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'remplacer'"
+                    (click)="selectOption('remplacer')">Remplacer</button>
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'reparer'"
+                    (click)="selectOption('reparer')">Réparer</button>
+            </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div *ngIf="currentStep === 3" class="mt-4">
+            <h2>Étape 3 – Adresse</h2>
+            <p>Entrez l’adresse du chantier</p>
+            <div class="form-group mt-3">
+                <label for="adresse" class="form-label">Adresse email du chantier</label>
+                <input type="email" id="adresse" name="adresseEmail" class="form-control styled-input"
+                    placeholder="exemple@senfibem.com" [(ngModel)]="adresseEmail" required>
+            </div>
+        </div>
+
+        <!-- Étape 4 -->
+        <div *ngIf="currentStep === 4" class="mt-4">
+            <h2>Étape 4 – Budget</h2>
+            <p>Entrez votre budget estimé</p>
+            <div class="budget-container">
+                <span class="currency">€</span>
+                <input type="number" class="budget-input" min="50" step="50" placeholder="Ex : 500" [(ngModel)]="budget"
+                    name="budget">
+            </div>
+            <small class="text-muted">
+                Exemple : 300 – 1500 € selon le type de prestation
+            </small>
+        </div>
+
+        <!-- Étape 5 : Uploading -->
+        <div *ngIf="currentStep === 5" class="mt-4">
+            <h2>Étape 5 – Uploading de documents</h2>
+            <p>Sélectionnez et téléversez vos documents requis.</p>
+
+            <!-- Upload documents -->
+            <div *ngIf="selectedDocuments.length > 0">
+                <h3>📂 Documents requis pour {{ role | titlecase }}</h3>
+                <div *ngFor="let doc of selectedDocuments">
+                    <label>{{ doc }}</label>
+                    <input type="file" (change)="onFilesSelected($event, doc)" accept="image/*,.pdf" multiple>
+                </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="preview-images mt-3" *ngIf="uploadedFiles.length > 0">
+                <h4>📑 Fichiers sélectionnés :</h4>
+                <div *ngFor="let file of uploadedFiles" class="preview-item">
+                    <span class="file-name">{{ file.docName }} → {{ file.name }}</span>
+                    <img *ngIf="file.url && file.url.startsWith('data:image')" [src]="file.url" [alt]="file.name">
+                </div>
+            </div>
+
+            <!-- Infos complémentaires -->
+            <div class="mt-4">
+                <h3>Informations complémentaires</h3>
+
+                <!-- Si particulier -->
+                <div *ngIf="role === 'PARTICULIER'">
+                    <input type="text" class="form-control mb-2" placeholder="Prénom" [(ngModel)]="firstName"
+                        name="firstName">
+                    <input type="text" class="form-control mb-2" placeholder="Nom" [(ngModel)]="lastName"
+                        name="lastName">
+                    <input type="email" class="form-control mb-2" placeholder="Email" [(ngModel)]="accountEmail"
+                        name="accountEmail">
+                </div>
+
+                <!-- Si professionnel -->
+                <div *ngIf="role === 'PROFESSIONNEL'">
+                    <input type="text" class="form-control mb-2" placeholder="Nom de l’entreprise"
+                        [(ngModel)]="companyName" name="companyName">
+                    <input type="text" class="form-control mb-2" placeholder="NINEA" [(ngModel)]="ninea" name="ninea">
+                    <input type="text" class="form-control mb-2" placeholder="Adresse" [(ngModel)]="companyAddress"
+                        name="companyAddress">
+                </div>
+
+                <button class="btn btn-primary mt-3" type="submit">Valider</button>
+            </div>
+        </div>
+
+        <!-- Étapes 6 à 12 -->
+        <!-- (inchangées sauf ajout de name="..." partout où [(ngModel)] est utilisé) -->
+
+        <!-- Exemple Étape 12 -->
+        <div *ngIf="isStep12()" class="mt-4 account-container">
+            <h2>Étape 12 – Créer votre compte</h2>
+
+            <div class="user-type mt-3">
+                <label><strong>Vous êtes :</strong></label>
+                <div class="btn-group flex-wrap">
+                    <button *ngFor="let cat of categories" type="button" class="btn btn-outline-primary m-1"
+                        [class.active]="userCategory === cat.key" (click)="selectCategory(cat.key)">
+                        {{ cat.label }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Infos personnelles -->
+            <div class="personal-info mt-3">
+                <input type="text" class="form-control mb-2" placeholder="Prénom" [(ngModel)]="firstName"
+                    name="firstName">
+                <input type="text" class="form-control mb-2" placeholder="Nom" [(ngModel)]="lastName" name="lastName">
+                <input type="email" class="form-control mb-2" placeholder="Email" [(ngModel)]="accountEmail"
+                    name="accountEmail">
+                <input type="tel" class="form-control mb-2" placeholder="Téléphone" [(ngModel)]="phone" name="phone">
+                <input type="password" class="form-control mb-2" placeholder="Mot de passe" [(ngModel)]="password"
+                    name="password">
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" [(ngModel)]="marketingConsent" name="marketingConsent"
+                        class="form-check-input">
+                    <label class="form-check-label">Je souhaite recevoir des infos marketing.</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" [(ngModel)]="acceptTerms" name="acceptTerms" class="form-check-input"
+                        required>
+                    <label class="form-check-label">J’accepte les conditions générales.</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Précision -->
+        <div class="recap-precision mt-3">
+            <label for="precision" class="form-label">Une précision à ajouter ?</label>
+            <textarea id="precision" class="form-control" [(ngModel)]="precision" name="precision"
+                placeholder="Ex : Déplacer l'évier..."></textarea>
+        </div>
+
+        <!-- Navigation -->
+        <div class="btn-group mt-4">
+            <button type="button" class="btn btn-warning me-2" (click)="prevStep()"
+                [disabled]="currentStep === 0">Précédent</button>
+            <button type="button" class="btn btn-primary" (click)="nextStep()" [disabled]="!canGoNextStep()">
+                {{ currentStep === 0 ? 'Démarrer' : (isStep12() ? 'S’inscrire et publier' : 'Suivant') }}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,94 @@
+{
+  "Accueil": "خانه",
+  "À propos": "درباره ما",
+  "Équipe": "تیم",
+  "Historique": "تاریخچه",
+  "Témoignages": "نظرات",
+  "Nos Services": "خدمات ما",
+  "Missions": "ماموریت‌ها",
+  "Produits": "محصولات",
+  "Conseil": "مشاوره",
+  "Réseau": "شبکه",
+  "Partenaires": "شرکا",
+  "Fournisseurs": "تأمین‌کنندگان",
+  "Pariculier": "شخصی",
+  "Contact": "تماس",
+  "Actualités": "اخبار",
+  "Connexion": "ورود",
+  "Inscription": "ثبت‌نام",
+  "Dashboard": "داشبورد",
+  "Profil": "پروفایل",
+  "ModifierProfil": "ویرایش پروفایل",
+  "Déconnexion": "خروج",
+  "Emploie": "شغل",
+  "EspaceCandidat": "پنل کارجو",
+  "AnnonceRecrutement": "آگهی استخدام",
+  "DepotAnnoncesStage": "کارآموزی",
+
+  "ContactPage": {
+    "BienvenueTitre": "به صفحه تماس با ما خوش آمدید",
+    "BienvenueTexte": "در SEN F.I.B.E.M. ما معتقدیم که ارتباط روان کلید یک همکاری موفق است. چه مشتری باشید، چه شریک یا همکار آینده، خوشحال می‌شویم نیازها و سوالات شما را پاسخ دهیم. امروز با ما تماس بگیرید تا پروژه‌هایتان را با هم بسازیم!",
+    "SectionTitre": "📞 با ما تماس بگیرید",
+    "SectionTexte": "در زیر اطلاعات تماس ما، دفاتر و یک فرم برای نوشتن مستقیم به ما آورده شده است.",
+    "Coordonnees": "اطلاعات تماس ما",
+    "TelephoneSenegal": "تلفن سنگال",
+    "TelephoneFrance": "تلفن فرانسه",
+    "Email": "ایمیل",
+    "Reseaux": "شبکه‌های اجتماعی",
+    "Bureaux": "دفاتر ما",
+    "FormulaireTitre": "📞 فرم تماس",
+    "Nom": "نام شما",
+    "EmailLabel": "ایمیل شما",
+    "Numero": "شماره شما",
+    "NumeroInvalide": "شماره نامعتبر برای این کشور",
+    "Message": "پیام شما",
+    "DicteeVocale": "🎤 دیکته صوتی",
+    "Envoyer": "ارسال"
+  },"FooterPage": {
+  "LogoTitre": "ارتباط کاری",
+  "PublierDemande": "ارسال درخواست",
+  "DevenirPrestataire": "ارائه‌دهنده شوید",
+  "NosGaranties": "تضمین‌های ما",
+  "CommentCaMarche": "چطور کار می‌کند",
+  "Nouveautes": "جدیدترین‌ها",
+  "AvisClients": "نظرات مشتریان",
+  "ApplicationPrestataire": "اپلیکیشن ارائه‌دهنده",
+  "AbonnementConnect": "اشتراک Connect",
+  "SolutionsEntreprises": "راهکارهای سازمانی",
+
+  "NosServices": "خدمات ما",
+  "Bricolage": "تعمیرات و کارهای کوچک",
+  "Cuisine": "نصب آشپزخانه",
+  "MontageMeuble": "مونتاژ مبلمان",
+  "Demenagement": "اسباب‌کشی",
+  "Jardinage": "باغبانی",
+  "SalleDeBain": "نوسازی حمام",
+
+  "APropos": "درباره ما",
+  "CentreAide": "مرکز راهنما",
+  "NousRecrutons": "به تیم ما بپیوندید",
+  "MentionsLegales": "اطلاعات حقوقی",
+  "CGV": "شرایط عمومی",
+  "ProtectionDonnees": "حفاظت از داده‌ها",
+  "Cookies": "سیاست کوکی‌ها",
+  "ContactezNous": "تماس با ما",
+
+  "ContactFrance": "تماس فرانسه",
+  "AdresseFrance": "51 Rue du Grévarin-27200 Vernon",
+  "EmailFrance": "gilbertgomis78@gmail.com",
+  "TelFrance": "+33 605 51 14 32",
+  "Siret": "SIRET : 445 374 937 00032",
+
+  "ContactSenegal": "تماس سنگال",
+  "AdresseSenegal": "Rue 7 Corniche x 6, Médina",
+  "EmailSenegal": "senfibem.paris@outlook.com",
+  "TelSenegal": "+221 78 483 65 83",
+  "Ninea": "N.I.N.E.A : 30 84 31 62 U2",
+
+  "NosPartenaires": "شرکای ما",
+
+  "Copyright": "© 2025 SenFibem France. کلیه حقوق محفوظ است.",
+  "DeveloppePar": "توسعه داده‌شده توسط SenFibem Tech"
+}
+
+}

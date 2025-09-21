@@ -5,8 +5,7 @@
       <span class="app-title fw-bold">Mise en Relation Travaux</span>
     </a>
 
-    <button class="navbar-toggler" type="button" 
-            data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -25,32 +24,68 @@
           </form>
         </li>
 
-      <li class="nav-item dropdown ms-2">
-  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <!-- Affiche par défaut l'icône monde -->
-    <img [src]="selectedFlag" class="flag-icon" alt="Selected Flag">
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="langDropdown">
-    <li>
-      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('fr')">
-        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
-        style="width:30px; height: 30p; " class="flag-icon me-2" alt="France"> Français
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('en')">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" 
-        style="width:30px; height: 30p; " class="flag-icon me-2" alt="UK">Anglais
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item d-flex align-items-center" (click)="changerLangue('es')">
-        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" 
-        style="width:30px; height: 30p; "class="flag-icon me-2" alt="Espagne"> Espanol
-      </a>
-    </li>
-  </ul>
-</li>
+        <li class="nav-item dropdown ms-2">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="langDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- Affiche par défaut l'icône monde -->
+            <img [src]="selectedFlag" class="flag-icon" alt="Selected Flag">
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="langDropdown">
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('fr')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" style="width:30px;"
+                  class="flag-icon me-2"> Français
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('en')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+                  style="width:30px;" class="flag-icon me-2"> Anglais
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('es')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" style="width:30px;"
+                  class="flag-icon me-2"> Espagnol
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('ru')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" style="width:30px;"
+                  class="flag-icon me-2"> Russe
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('de')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" style="width:30px;"
+                  class="flag-icon me-2"> Allemand
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('ja')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" style="width:30px;"
+                  class="flag-icon me-2"> Japonais
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('pt')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" style="width:30px;"
+                  class="flag-icon me-2"> Portugais
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('tr')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" style="width:30px;"
+                  class="flag-icon me-2"> Turc
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('it')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" style="width:30px;"
+                  class="flag-icon me-2"> Italien
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('fa')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg" style="width:30px;"
+                  class="flag-icon me-2"> Persan
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('nl')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"
+                  style="width:30px;" class="flag-icon me-2"> Néerlandais
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('zh')">
+                <img src="https://avatars.mds.yandex.net/i?id=749b4646233e98dab5f57ac578deb0e82f23432f-3986582-images-thumbs&n=13" style="width:30px;"
+                  class="flag-icon me-2"> Chinois
+              </a></li>
+            <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('ar')">
+                <img src="https://avatars.mds.yandex.net/i?id=f58589df4e5590a0558a6b4889105b73eab904f0-5241497-images-thumbs&n=13"
+                  style="width:30px;" class="flag-icon me-2"> Arabe
+              </a></li>
+          </ul>
+
+        </li>
 
         <!-- Accueil avec sous-menu -->
         <li class="nav-item dropdown">
@@ -91,31 +126,34 @@
         </li>
 
         <!-- Autres liens -->
-                <!-- Menu Emploie avec sous-menus -->
+        <!-- Menu Emploie avec sous-menus -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="emploiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="emploiDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             {{ 'Emploie' | translate }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="emploiDropdown">
-            <li><a class="dropdown-item" routerLink="/candidatures" routerLinkActive="active">Espace candidat</a></li>
-            <li><a class="dropdown-item" routerLink="/annonces-recrutement" routerLinkActive="active">Annonce Recrutement</a></li>
-            <li><a class="dropdown-item" routerLink="/annonces-stage" routerLinkActive="active">Dépôt & Annonces Stage</a></li>
+            <li><a class="dropdown-item" routerLink="/candidatures" routerLinkActive="active">{{ 'Espace candidat' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-recrutement" routerLinkActive="active">{{ 'Annonce Recrutement' | translate}}</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-stage" routerLinkActive="active">{{ 'Dépôt & Annonces Stage' | translate }}</a></li>
           </ul>
         </li>
 
-        <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">{{ 'Contact' | translate }}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/actualites" routerLinkActive="active">{{ 'Actualités' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">{{ 'Contact' |
+            translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/actualites" routerLinkActive="active">{{ 'Actualités' |
+            translate }}</a></li>
         <li class="nav-item d-flex align-items-center">
           <div class="vertical-line mx-2"></div>
-            <a class="nav-link d-flex align-items-center" routerLink="/panier">
-              <i class="bi bi-cart-fill fs-3" style="color:#FFD700;"></i>
-            </a>
+          <a class="nav-link d-flex align-items-center" routerLink="/panier">
+            <i class="bi bi-cart-fill fs-3" style="color:#FFD700;"></i>
+          </a>
 
         </li>
-         <div class="vertical-line mx-2"></div>
-          <li class="nav-item" *ngIf="currentUser">
+        <div class="vertical-line mx-2"></div>
+        <li class="nav-item" *ngIf="currentUser">
           <a class="nav-link" routerLink="/dashboard">
-            <i class="bi bi-speedometer2 me-1"></i>{{  'Dashboard' | translate }}
+            <i class="bi bi-speedometer2 me-1"></i>{{ 'Dashboard' | translate }}
           </a>
         </li>
 
@@ -128,20 +166,28 @@
     <ul class="navbar-nav ms-auto">
       <li class="nav-item dropdown" *ngIf="currentUser; else loginNav">
         <a class="nav-link dropdown-toggle d-flex align-items-center" (click)="toggleDropdown($event)">
-          <img src="https://avatars.mds.yandex.net/i?id=19903bf3f3baf8215bbc3f10137534675f8e8bc5-9095341-images-thumbs&n=13" 
-               class="rounded-circle me-2" width="50" height="50">
+          <img
+            src="https://avatars.mds.yandex.net/i?id=19903bf3f3baf8215bbc3f10137534675f8e8bc5-9095341-images-thumbs&n=13"
+            class="rounded-circle me-2" width="50" height="50">
           {{ currentUser.nom }}
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i>{{  'Profil' | translate }}</a></li>
-          <li><a class="dropdown-item" routerLink="/profile/edit"><i class="bi bi-pencil-square me-2"></i>{{  'Modifier Profil' | translate }}</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>{{  'Déconnexion' | translate }}</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i
+                class="bi bi-person me-2"></i>{{ 'Profil' | translate }}</a></li>
+          <li><a class="dropdown-item" routerLink="/profile/edit"><i class="bi bi-pencil-square me-2"></i>{{ 'Modifier
+              Profil' | translate }}</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>{{
+              'Déconnexion' | translate }}</a></li>
         </ul>
       </li>
       <ng-template #loginNav>
-        <li class="nav-item"><a class="nav-link" routerLink="/login"><i class="bi bi-box-arrow-in-right me-1"></i>{{ 'Connexion' | translate }}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/register"><i class="bi bi-person-plus me-1"></i>{{ 'Inscription' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/login"><i class="bi bi-box-arrow-in-right me-1"></i>{{
+            'Connexion' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/register"><i class="bi bi-person-plus me-1"></i>{{
+            'Inscription' | translate }}</a></li>
       </ng-template>
     </ul>
   </div>

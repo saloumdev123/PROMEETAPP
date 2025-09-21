@@ -23,5 +23,76 @@
   "Emploie": "Emploie",
   "EspaceCandidat": "Espace candidat",
   "AnnonceRecrutement": "Annonce Recrutement",
-  "DepotAnnoncesStage": "Dépôt & Annonces Stage"
+  "DepotAnnoncesStage": "Dépôt & Annonces Stage",
+  "DepotAnnonces": "Dépôt & Annonces",
+  "StagePublierDemande": "Stage, Publier Demande",
+
+  
+  "ContactPage": {
+    "BienvenueTitre": "Bienvenue sur notre page Contact",
+    "BienvenueTexte": "Chez SEN F.I.B.E.M., nous croyons qu’une communication fluide est la clé d’un partenariat réussi...",
+    "SectionTitre": "📞 Contactez-nous",
+    "SectionTexte": "Retrouvez ci-dessous nos coordonnées, nos bureaux et un formulaire pour nous écrire directement.",
+    "Coordonnees": "Nos Coordonnées",
+    "TelephoneSenegal": "Téléphone Sénégal",
+    "TelephoneFrance": "Téléphone France",
+    "Email": "Email",
+    "Reseaux": "Réseaux sociaux",
+    "Bureaux": "Nos Bureaux",
+    "FormulaireTitre": "📞 Formulaire de Contact",
+    "Nom": "Votre nom",
+    "EmailLabel": "Votre email",
+    "Numero": "Votre numéro",
+    "NumeroInvalide": "Numéro invalide pour ce pays",
+    "Message": "Votre message",
+    "DicteeVocale": "🎤 Dictée vocale",
+    "Envoyer": "Envoyer"
+  },
+  "FooterPage": {
+    "LogoTitre": "Mise en Relation Travaux",
+    "PublierDemande": "Publier une demande",
+    "DevenirPrestataire": "Devenir prestataire",
+    "NosGaranties": "Nos garanties",
+    "CommentCaMarche": "Comment ça marche",
+    "Nouveautes": "Nouveautés",
+    "AvisClients": "Avis clients",
+    "ApplicationPrestataire": "Application mobile prestataire",
+    "AbonnementConnect": "Abonnement Connect",
+    "SolutionsEntreprises": "Solutions pour entreprises",
+
+    "NosServices": "Nos services",
+    "Bricolage": "Bricolage & petits travaux",
+    "Cuisine": "Pose de cuisine",
+    "MontageMeuble": "Montage meuble",
+    "Demenagement": "Déménagement",
+    "Jardinage": "Jardinage",
+    "SalleDeBain": "Rénovation de salle de bain",
+
+    "APropos": "À propos",
+    "CentreAide": "Centre d'aide",
+    "NousRecrutons": "Nous recrutons",
+    "MentionsLegales": "Mentions légales",
+    "CGV": "Conditions générales",
+    "ProtectionDonnees": "Protection des données",
+    "Cookies": "Charte cookies",
+    "ContactezNous": "Contactez-nous",
+
+    "ContactFrance": "Contact France",
+    "AdresseFrance": "51 Rue du Grévarin-27200 Vernon",
+    "EmailFrance": "gilbertgomis78@gmail.com",
+    "TelFrance": "+33 605 51 14 32",
+    "Siret": "SIRET : 445 374 937 00032",
+
+    "ContactSenegal": "Contact Sénégal",
+    "AdresseSenegal": "Rue 7 Corniche x 6, Médina",
+    "EmailSenegal": "senfibem.paris@outlook.com",
+    "TelSenegal": "+221 78 483 65 83",
+    "Ninea": "N.I.N.E.A : 30 84 31 62 U2",
+
+    "NosPartenaires": "Nos partenaires",
+
+    "Copyright": "© 2025 SenFibem France. Tous droits réservés.",
+    "DeveloppePar": "Développé par SenFibem Tech"
+  }
+
 }

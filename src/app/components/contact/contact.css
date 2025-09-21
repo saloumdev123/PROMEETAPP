@@ -1,11 +1,107 @@
+/* 🎨 Section bienvenue */
 .welcome-card {
   background: linear-gradient(135deg, #efab19, #e24b0e);
-  color: white; /* pour que le texte ressorte bien */
+  color: white;
   border-radius: 15px;
-  margin-top: 160px;
+  margin-top: 120px;
+  padding: 40px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
 .welcome-card h2,
 .welcome-card p {
-  color: white; /* sécurise la lisibilité */
+  color: white;
+}
+
+/* 🎨 Card formulaire */
+.contact-form {
+  background: #fff;
+  margin: 40px auto;            /* centre verticalement et horizontalement */
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;             /* largeur max du formulaire */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+}
+
+.contact-form:hover {
+  transform: translateY(-3px);
+}
+
+.contact-form h3 {
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Champs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control,
+textarea {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus,
+textarea:focus {
+  border-color: #efab19;
+  box-shadow: 0 0 6px rgba(239, 171, 25, 0.6);
+  outline: none;
+}
+
+/* Téléphone */
+.phone-input {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-input select {
+  flex: 1.5;
+  border-radius: 8px;
+}
+
+.phone-input input {
+  flex: 2.5;
+}
+
+/* 🎤 Bouton micro */
+.mic-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.mic-btn:hover {
+  background: #0056b3;
+}
+
+/* Bouton submit */
+.btn-block,
+.w-100 {
+  width: 100%;
+  padding: 14px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #efab19, #e24b0e);
+  border: none;
+  color: white;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn-block:hover,
+.w-100:hover {
+  background: linear-gradient(135deg, #e89e10, #d73c05);
 }

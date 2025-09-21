@@ -23,5 +23,77 @@
   "Emploie": "Empleo",
   "EspaceCandidat": "Espacio del candidato",
   "AnnonceRecrutement": "Ofertas de empleo",
-  "DepotAnnoncesStage": "Publicación y ofertas de prácticas"
+  "DepotAnnoncesStage": "Publicación y ofertas de prácticas",
+"DepotAnnonces": "Depósito y Anuncios",
+"StagePublierDemande": "Pasantía, Publicar Solicitud",
+
+
+"ContactPage": {
+  "BienvenueTitre": "Bienvenido a nuestra página de Contacto",
+  "BienvenueTexte": "En SEN F.I.B.E.M., creemos que una comunicación fluida es la clave de una asociación exitosa. Ya seas cliente, socio o futuro colaborador, estaremos encantados de responder a tus necesidades y preguntas. ¡Contáctanos hoy mismo para construir juntos tus proyectos!",
+  "SectionTitre": "📞 Contáctanos",
+  "SectionTexte": "Encuentra a continuación nuestros datos de contacto, nuestras oficinas y un formulario para escribirnos directamente.",
+  "Coordonnees": "Nuestros datos de contacto",
+  "TelephoneSenegal": "Teléfono Senegal",
+  "TelephoneFrance": "Teléfono Francia",
+  "Email": "Correo electrónico",
+  "Reseaux": "Redes sociales",
+  "Bureaux": "Nuestras oficinas",
+  "FormulaireTitre": "📞 Formulario de Contacto",
+  "Nom": "Tu nombre",
+  "EmailLabel": "Tu correo electrónico",
+  "Numero": "Tu número",
+  "NumeroInvalide": "Número inválido para este país",
+  "Message": "Tu mensaje",
+  "DicteeVocale": "🎤 Dictado por voz",
+  "Envoyer": "Enviar"
+},
+"FooterPage": {
+  "LogoTitre": "Conexión de trabajos",
+  "PublierDemande": "Publicar una solicitud",
+  "DevenirPrestataire": "Convertirse en proveedor",
+  "NosGaranties": "Nuestras garantías",
+  "CommentCaMarche": "Cómo funciona",
+  "Nouveautes": "Novedades",
+  "AvisClients": "Opiniones de clientes",
+  "ApplicationPrestataire": "Aplicación móvil para proveedores",
+  "AbonnementConnect": "Suscripción Connect",
+  "SolutionsEntreprises": "Soluciones para empresas",
+
+  "NosServices": "Nuestros servicios",
+  "Bricolage": "Bricolaje y pequeños trabajos",
+  "Cuisine": "Instalación de cocina",
+  "MontageMeuble": "Montaje de muebles",
+  "Demenagement": "Mudanza",
+  "Jardinage": "Jardinería",
+  "SalleDeBain": "Renovación de baño",
+
+  "APropos": "Acerca de",
+  "CentreAide": "Centro de ayuda",
+  "NousRecrutons": "Estamos contratando",
+  "MentionsLegales": "Aviso legal",
+  "CGV": "Términos y condiciones",
+  "ProtectionDonnees": "Protección de datos",
+  "Cookies": "Política de cookies",
+  "ContactezNous": "Contáctanos",
+
+  "ContactFrance": "Contacto Francia",
+  "AdresseFrance": "51 Rue du Grévarin-27200 Vernon",
+  "EmailFrance": "gilbertgomis78@gmail.com",
+  "TelFrance": "+33 605 51 14 32",
+  "Siret": "SIRET: 445 374 937 00032",
+
+  "ContactSenegal": "Contacto Senegal",
+  "AdresseSenegal": "Rue 7 Corniche x 6, Médina",
+  "EmailSenegal": "senfibem.paris@outlook.com",
+  "TelSenegal": "+221 78 483 65 83",
+  "Ninea": "N.I.N.E.A: 30 84 31 62 U2",
+
+  "NosPartenaires": "Nuestros socios",
+
+  "Copyright": "© 2025 SenFibem Francia. Todos los derechos reservados.",
+  "DeveloppePar": "Desarrollado por SenFibem Tech"
+}
+
+
 }

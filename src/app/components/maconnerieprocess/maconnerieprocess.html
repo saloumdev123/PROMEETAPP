@@ -1,0 +1,284 @@
+<div class="container">
+    <!-- Progression -->
+    <div class="progress-container">
+        <div class="progress-bar" [style.width]="progressWidth"></div>
+    </div>
+
+    <form>
+        <!-- Étape 0 : Serrurerie -->
+        <div *ngIf="currentStep === 0" class="content-row">
+            <div class="col-left">
+                <img src="https://avatars.mds.yandex.net/i?id=875872cd455ab975e3052a915e084b23cf9e5bdc-9182046-images-thumbs&n=13"
+                    alt="Serrurerie">
+            </div>
+            <div class="col-right">
+                <h2>Maçonnerie</h2>
+                <p>
+                    Que ce soit pour la construction de murs, la rénovation de structures, le coffrage ou les finitions
+                    en maçonnerie,
+                    trouvez un prestataire maçon adapté.
+                </p>
+
+                <ul>
+                    <li><strong>Accompagnement personnalisé</strong></li>
+                    <li><strong>Prestataires évalués</strong></li>
+                    <li><strong>Devis en moins de 24h</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Étape 1 : Titre du projet -->
+        <div *ngIf="currentStep === 1" class="mt-4 mb-5">
+            <h2>Étape 1 – Donnez un titre à votre projet</h2>
+            <p class="text-muted">Exemple : Construction ou rénovation d’un mur</p>
+            <div class="mb-3">
+                <input id="projectTitle" type="text" class="form-control" [(ngModel)]="projectTitle" name="projectTitle"
+                    placeholder="Titre du projet" />
+            </div>
+        </div>
+
+        <!-- Étape 2 : Installer / Remplacer / Réparer -->
+        <div *ngIf="currentStep === 2" class="mt-4">
+            <p>Choisissez construire / rénover / réparer...</p>
+            <div class="select-options">
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'construire'"
+                    (click)="selectOption('construire')">
+                    Construire
+                </button>
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'renover'"
+                    (click)="selectOption('renover')">
+                    Rénover
+                </button>
+                <button type="button" class="select-btn" [class.active]="selectedOption === 'reparer'"
+                    (click)="selectOption('reparer')">
+                    Réparer
+                </button>
+            </div>
+        </div>
+
+        <!-- Étape 3 : Adresse email -->
+        <div *ngIf="currentStep === 3" class="mt-4">
+            <h2>Étape 3 – Adresse</h2>
+            <p>Entrez l’adresse du chantier</p>
+            <div class="form-group mt-3">
+                <label for="adresse" class="form-label">Adresse email du chantier</label>
+                <input type="email" id="adresse" name="adresseEmail" class="form-control styled-input"
+                    placeholder="exemple@senfibem.com" [(ngModel)]="adresseEmail" required>
+            </div>
+        </div>
+
+        <!-- Étape 4 : Budget -->
+        <div *ngIf="currentStep === 4" class="mt-4">
+            <h2>Étape 4 – Budget</h2>
+            <p>Entrez votre budget estimé</p>
+            <div class="budget-container">
+                <span class="currency">€</span>
+                <input type="number" class="budget-input" min="50" step="50" placeholder="Ex : 500" [(ngModel)]="budget"
+                    name="budget">
+            </div>
+            <small class="text-muted">
+                Exemple : 300 – 1500 € selon le type de prestation
+            </small>
+        </div>
+
+        <!-- Étape 5 – Upload documents -->
+        <div *ngIf="currentStep === 5" class="mt-4">
+            <h2>Étape 5 – Vos documents</h2>
+
+            <div *ngIf="userCategory; else noCategory">
+                <!-- Liste des documents requis -->
+                <div *ngIf="selectedDocuments.length > 0" class="mt-3">
+                    <h5>Documents requis :</h5>
+                    <div *ngFor="let doc of selectedDocuments">
+                        {{ doc }}
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noCategory>
+                <p><em>Veuillez d’abord sélectionner votre catégorie à l’étape 12.</em></p>
+            </ng-template>
+
+            <!-- Upload fichiers -->
+            <div class="upload-container mt-3">
+                <label for="fileUpload" class="upload-label">📁 Choisir des fichiers</label>
+                <input type="file" id="fileUpload" (change)="onFilesSelected($event)" multiple accept="image/*,.pdf">
+            </div>
+
+            <!-- Preview fichiers -->
+            <div class="preview-images mt-3" *ngIf="uploadedFiles.length > 0">
+                <div *ngFor="let file of uploadedFiles" class="preview-item">
+                    <img *ngIf="file.url && file.url.startsWith('data:image')" [src]="file.url" [alt]="file.name">
+                    <span class="file-name">{{ file.name }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 6 : Maturité -->
+        <div *ngIf="currentStep === 6" class="mt-4">
+            <h2>Étape 6 – Maturité de votre projet</h2>
+            <p>Évaluez l'avancement de votre projet pour recevoir un accompagnement personnalisé.</p>
+            <div class="maturite-options">
+                <button type="button" class="maturite-btn" [class.active]="maturite === 'accompagnement'"
+                    (click)="selectMaturite('accompagnement')">
+                    J'ai besoin d'accompagnement
+                </button>
+                <button type="button" class="maturite-btn" [class.active]="maturite === 'pret'"
+                    (click)="selectMaturite('pret')">
+                    Je suis prêt à démarrer
+                </button>
+            </div>
+        </div>
+
+        <!-- Étape 7 : Adresse intervention -->
+        <div *ngIf="currentStep === 7" class="mt-4">
+            <h2>Étape 7 – Votre adresse</h2>
+            <p>Nous utilisons votre adresse pour trouver les prestataires les plus proches.</p>
+            <div class="form-group mt-3">
+                <label for="interventionAdresse" class="form-label">Adresse de l'intervention</label>
+                <input type="text" id="interventionAdresse" name="interventionAdresse" class="form-control styled-input"
+                    placeholder="ex : 3 rue des sapins 75012 Paris" [(ngModel)]="interventionAdresse" required>
+                <small class="text-muted">Seul votre code postal sera visible sur votre demande.</small>
+            </div>
+        </div>
+
+        <!-- Étape 8 : Date rendez-vous -->
+        <div *ngIf="currentStep === 8" class="mt-4">
+            <h2>Étape 8 – Date de rendez-vous</h2>
+            <p>Quand souhaitez-vous que votre demande soit réalisée ?</p>
+            <div class="date-options">
+                <button type="button" class="date-btn" [class.active]="dateOption === 'precise'"
+                    (click)="selectDateOption('precise')">
+                    À cette date précise
+                </button>
+                <button type="button" class="date-btn" [class.active]="dateOption === 'avant'"
+                    (click)="selectDateOption('avant')">
+                    Avant cette date
+                </button>
+            </div>
+            <div class="form-group mt-3" *ngIf="dateOption">
+                <label for="rendezVousDate" class="form-label">Choisissez une date</label>
+                <input type="date" id="rendezVousDate" class="form-control styled-input" [(ngModel)]="selectedDate"
+                    name="rendezVousDate" required>
+            </div>
+        </div>
+
+        <!-- Étape 9 : Budget & annonces -->
+        <div *ngIf="currentStep === 9" class="mt-4">
+            <h2>Étape 9 – Budget & Annonces similaires</h2>
+            <input type="number" class="form-control mb-2" placeholder="Ex : 500 €" [(ngModel)]="budgetTotal"
+                name="budgetTotal" min="50" step="50" required>
+            <p><strong>Prix moyen des annonces similaires :</strong> {{ prixMoyenAnnonces }} €</p>
+            <div class="similar-cards">
+                <div class="card" *ngFor="let annonce of annoncesSimilaires | slice:0:6">
+                    <div class="card-header">
+                        <h4>{{ annonce.titre }}</h4>
+                        <span class="budget">{{ annonce.budget }} €</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Éléments :</strong> {{ annonce.elements }}</p>
+                        <p><strong>Crédence :</strong> {{ annonce.credence }}</p>
+                        <p><strong>Éléments évacués :</strong> {{ annonce.evacuations }}</p>
+                        <p><strong>Avancement :</strong> {{ annonce.avancement }}</p>
+                        <p><strong>Localisation :</strong> {{ annonce.localisation }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning btn-info">Plus d’infos...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 10 : Récapitulatif -->
+        <div *ngIf="currentStep === 10" class="mt-4 recap-container">
+            <h2>Étape 10 – Récapitulatif</h2>
+            <p>Voici ce que nous montrerons aux prestataires Fibem.</p>
+            <div class="recap-card-container">
+                <div class="card recap-card">
+                    <button class="btn btn-sm btn-info detail-btn" (click)="voirDetail(recapItem)">
+                        Voir le détail
+                    </button>
+                    <img [src]="recapItem.image" class="card-img-top" alt="{{recapItem.titre}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recapItem.titre }}</h5>
+                        <p class="card-text">{{ recapItem.description }}</p>
+                        <p class="budget"><strong>{{ recapItem.budget }} €</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 11 : Email utilisateur -->
+        <div *ngIf="currentStep === 11" class="mt-4">
+            <h2>Étape 11 – Votre email</h2>
+            <div class="form-group mt-3">
+                <label for="userEmail" class="form-label">Votre email</label>
+                <input type="email" id="userEmail" name="userEmail" class="form-control styled-input"
+                    [(ngModel)]="userEmail" placeholder="ex: louis.durand@gmail.com" required>
+            </div>
+        </div>
+
+        <!-- Étape 12 – Choix catégorie utilisateur -->
+        <div *ngIf="isStep12()" class="mt-4 account-container">
+            <h2>Étape 12 – Créer votre compte</h2>
+
+            <div class="user-type mt-3">
+                <label><strong>Vous êtes :</strong></label>
+                <div class="btn-group flex-wrap">
+                    <button *ngFor="let cat of categories" type="button" class="btn btn-outline-primary m-1"
+                        [class.active]="userCategory === cat.key" (click)="selectCategory(cat.key)">
+                        {{ cat.label }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- 📌 Liste des documents -->
+            <div *ngIf="selectedDocuments.length > 0" class="mt-3">
+                <h5>Documents requis :</h5>
+                <ul>
+                    <li *ngFor="let doc of selectedDocuments">{{ doc }}</li>
+                </ul>
+            </div>
+
+            <!-- Infos personnelles -->
+            <div class="personal-info mt-3">
+                <input type="text" class="form-control mb-2" placeholder="Prénom" [(ngModel)]="firstName"
+                    name="firstName">
+                <input type="text" class="form-control mb-2" placeholder="Nom" [(ngModel)]="lastName" name="lastName">
+                <input type="email" class="form-control mb-2" placeholder="Email" [(ngModel)]="accountEmail"
+                    name="accountEmail">
+                <input type="tel" class="form-control mb-2" placeholder="Téléphone" [(ngModel)]="phone" name="phone">
+                <input type="password" class="form-control mb-2" placeholder="Mot de passe" [(ngModel)]="password"
+                    name="password">
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" [(ngModel)]="marketingConsent" name="marketingConsent"
+                        class="form-check-input">
+                    <label class="form-check-label">Je souhaite recevoir des infos marketing.</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" [(ngModel)]="acceptTerms" name="acceptTerms" class="form-check-input"
+                        required>
+                    <label class="form-check-label">J’accepte les conditions générales.</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Précision -->
+        <div class="recap-precision mt-3">
+            <label for="precision" class="form-label">Une précision à ajouter ?</label>
+            <textarea id="precision" class="form-control" [(ngModel)]="precision" placeholder="Ex : Déplacer l'évier..."
+                name="precision"></textarea>
+        </div>
+
+        <!-- Navigation -->
+        <div class="btn-group mt-4">
+            <button type="button" class="btn btn-warning me-2" (click)="prevStep()" [disabled]="currentStep === 0">
+                Précédent
+            </button>
+            <button type="button" class="btn btn-primary" (click)="nextStep()" [disabled]="!canGoNextStep()">
+                {{ currentStep === 0 ? 'Démarrer' : (isStep12() ? 'S’inscrire et publier' : 'Suivant') }}
+            </button>
+        </div>
+    </form>
+</div>

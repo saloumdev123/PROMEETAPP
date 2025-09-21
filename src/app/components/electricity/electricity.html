@@ -1,0 +1,536 @@
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <!-- Texte -->
+        <div class="hero-text" (click)="navigate('/categorie-detail/serrurerie')">
+            <h1>{{ hero.title }}</h1>
+            <p>{{ hero.subtitle }}</p>
+            <div class="search-bar" *ngIf="hero.showSearch">
+                <input type="text" placeholder="Rechercher une prestation 🔎">
+                <button (click)="navigate('/prestations')">Rechercher</button>
+            </div>
+        </div>
+
+        <!-- Image -->
+        <div class="hero-image" (click)="navigate('/categorie-detail/serrurerie')">
+            <img [src]="hero.image" alt="Travaux Serrurerie">
+        </div>
+    </div>
+</section>
+
+<!-- Galerie Serrurerie -->
+<!-- Galerie Serrurerie -->
+<section class="serrurerie-gallery">
+    <div class="gallery-grid">
+        <!-- Ligne 1 -->
+        <div class="gallery-item square">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=e9a15985d97b011eaefc797687d76956da9a370f-5590892-images-thumbs&n=13"
+                    alt="Serrurerie 1">
+            </a>
+        </div>
+        <div class="gallery-item rectangle">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=2e9dbc3b70293f24f1720d72616a846f2ade8e40-5582077-images-thumbs&n=13"
+                    alt="Serrurerie 2">
+            </a>
+        </div>
+        <div class="gallery-item square">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=24e81c225f37b3865e9060412a53dc5ee2090593-12491641-images-thumbs&n=13"
+                    alt="Serrurerie 3">
+            </a>
+        </div>
+
+        <!-- Ligne 2 -->
+        <div class="gallery-item rectangle">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=44fd525e0951d0a881bd8a857fbcc82021f049e4-9030085-images-thumbs&n=13"
+                    alt="Serrurerie 4">
+            </a>
+        </div>
+        <div class="gallery-item square">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=f6cb9292af62ef9799e4def84bfbae50528ca561-5542956-images-thumbs&n=13"
+                    alt="Serrurerie 5">
+            </a>
+        </div>
+        <div class="gallery-item square">
+            <a href="/electricity-process">
+                <img src="https://avatars.mds.yandex.net/i?id=e57bd273dc4c6b0414336f3a8edfd32dce8a8dcb-15418987-images-thumbs&n=13"
+                    alt="Serrurerie 6">
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Section 1: Présentation des prestations -->
+<section class="prestations-intro">
+    <div class="container">
+        <h2>Nos prestations en electricité </h2>
+        <p>
+            Bienvenue sur notre page dédiée à l'ensemble de nos prestations en <a href="">électricité</a>.
+            Que vous ayez besoin <a href="">d’installer des prises électriques</a>, de mettre en conformité vos circuits
+            ou de faire appel à un dépannage électrique en urgence, nous proposons une gamme complète
+            de services pour répondre à tous vos besoins. De l’installation de tableaux électriques et
+            de circuits spécialisés à la pose de luminaires et autres équipements, nous vous accompagnons dans la <a
+                href="">mise en sécurité de vos installations</a> ou de vos locaux professionnels.
+        </p><br>
+        <p>
+            Notre équipe d’électriciens et de spécialistes en électricité est à votre disposition pour vous offrir
+            des solutions fiables et personnalisées. Faites confiance à nos services pour une installation durable
+            et efficace, assurant votre confort et votre tranquillité d'esprit.
+        </p>
+
+    </div>
+</section>
+
+<!-- Section 2: Liste des services avec validation -->
+<section class="prestations-list">
+    <div class="container">
+        <div class="services-row">
+            <!-- Première colonne -->
+            <div class="services-col">
+                <ul>
+                    <li><span class="check">✔</span> Installer ou remplacer des prises électriques</li>
+                    <li><span class="check">✔</span> Dépannage électrique en urgence</li>
+                    <li><span class="check">✔</span> Installer ou remplacer des interrupteurs</li>
+                </ul>
+            </div>
+            <!-- Deuxième colonne -->
+            <div class="services-col">
+                <ul>
+                    <li><span class="check">✔</span> Installer ou réparer un tableau électrique</li>
+                    <li><span class="check">✔</span> Installer des luminaires et éclairages</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Professionnels -->
+<section class="professionnels">
+    <div class="container">
+        <div class="professionnels-row">
+            <!-- Colonne Image -->
+            <div class="professionnels-image">
+                <img src="https://avatars.mds.yandex.net/i?id=ba04f78b15c3ec5fa4c7050702ac01842e4c89c9-5246466-images-thumbs&n=13"
+                    alt="Serrurier et Bricoleur">
+            </div>
+
+            <!-- Colonne Texte -->
+            <div class="professionnels-text">
+                <h2>Les professionnels en charge des travaux d'electricité </h2>
+
+                <!-- Serrurier -->
+                <div class="profession">
+                    <h3>Électricien</h3>
+                    <p>
+                        Expert en électricité, l’électricien s’occupe de l’installation, de la maintenance et de la
+                        réparation de tous types
+                        d’installations électriques. Il intervient aussi bien pour la mise aux normes de vos circuits,
+                        l’installation de tableaux électriques,
+                        que pour le dépannage en cas de panne ou de court-circuit. Il vous conseille sur les meilleures
+                        solutions pour assurer la sécurité et
+                        l’efficacité de vos installations électriques.
+                    </p>
+                    <ul>
+                        <li><span class="check-blue">✔</span> Installation et mise aux normes des circuits électriques
+                        </li>
+                        <li><span class="check-blue">✔</span> Dépannage rapide et efficace</li>
+                    </ul>
+
+                </div>
+
+                <!-- Bricoleur -->
+                <div class="profession">
+                    <h3>Électricien polyvalent</h3>
+                    <p>
+                        Polyvalent, l’électricien prend en charge les petits travaux électriques, comme l’installation
+                        de prises et interrupteurs,
+                        le remplacement de fusibles ou de câbles, ou la pose de luminaires simples. Il est également
+                        compétent pour des ajustements
+                        mineurs et des installations rapides afin de compléter vos installations électriques existantes.
+                    </p>
+                    <ul>
+                        <li><span class="check-blue">✔</span> Installation de prises, interrupteurs et luminaires</li>
+                        <li><span class="check-blue">✔</span> Petits travaux et ajustements électriques</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Section Guides et Conseils -->
+<section class="guides-conseils">
+    <div class="container">
+        <!-- Titre -->
+        <h2>Nos guides et conseils pour vos travaux</h2>
+
+        <!-- Ligne Images -->
+        <div class="guides-images">
+            <div class="guide-img">
+                <img src="https://avatars.mds.yandex.net/i?id=703830cc78787eba2acded5ec08049e77a6b34ba-16325629-images-thumbs&n=13"
+                    alt="Tarifs des prestations">
+            </div>
+            <div class="guide-img">
+                <img src="https://avatars.mds.yandex.net/i?id=6df4d1560d97a1f6e41cafc00462c7d112b128b5-9843251-images-thumbs&n=13"
+                    alt="Choisir un serrurier">
+            </div>
+        </div>
+
+        <!-- Ligne Textes -->
+        <div class="guides-texts">
+            <div class="guide-text">
+                <h3>Tarifs des prestations d’électricité en 2025</h3>
+                <a class="read-article" href="#">Lire l'article</a>
+            </div>
+            <div class="guide-text">
+                <h3>Choisir un électricien : comment éviter les arnaques</h3>
+
+                <a class="read-article" href="#">Lire l'article</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="steps-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 : Titre principal -->
+        <div class="row mb-5">
+            <div class="col text-center">
+                <h2 class="fw-bold display-6">Réalisez tous vos projets sur-mesure 📏</h2>
+            </div>
+        </div>
+
+        <!-- Ligne 2 : Images + texte -->
+        <div class="row g-4">
+
+            <!-- Colonne 1 -->
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-0">
+                    <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fd4bbb3e15735f0ea663d8f9e3eef8bfb64187e5f-783x467.svg"
+                        alt="Image 1" class="img-fluid rounded mb-3">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Publiez votre demande</h5>
+                        <p>Sélectionnez une prestation et décrivez votre besoin rapidement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne 2 : deux images superposées -->
+            <div class="col-md-3 position-relative">
+                <div class="card h-100 text-center border-0">
+                    <div class="position-relative mb-3">
+                        <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F69dd560ebe1f7bd98bfee40e9a5fb61d08d1e817-1000x800.png&w=640&q=75"
+                            alt="Image 2a" class="img-fluid rounded">
+                        <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F69dd560ebe1f7bd98bfee40e9a5fb61d08d1e817-1000x800.png&w=640&q=75"
+                            alt="Image 2b" class="img-fluid rounded position-absolute top-0 start-0"
+                            style="opacity:0.2;">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="fw-bold">Recevez vos devis</h5>
+                        <p>Les prestataires compétents et à proximité font des offres.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne 3 -->
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-0">
+                    <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F34aaef0c4910c4c551e4187d1fa7ea0fdabac647-1000x800.png&w=640&q=75"
+                        alt="Image 3" class="img-fluid rounded mb-3">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Réglez votre prestation</h5>
+                        <p>Choisissez votre mode de règlement ; 100% en ligne ou en main propre.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne 4 -->
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-0">
+                    <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F49dddd1268f4182d4da486c97082e93834824e7e-1000x1000.png&w=640&q=75"
+                        alt="Image 4" class="img-fluid rounded mb-3">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Notez votre prestataire</h5>
+                        <p>Fixez un rendez-vous pour votre projet et notez le travail réalisé.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="search-section py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold display-6">Recherchez facilement votre prestation 🔎</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-lg"
+                        placeholder="Poser un verrou, changer une serrure, poser un judas de porte...">
+                    <button class="btn btn-primary btn-lg" type="button">Rechercher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reasons-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 : Titre -->
+        <div class="row mb-5">
+            <div class="col text-center">
+                <h2 class="fw-bold display-6">Trois raisons de choisir un prestataire Fibem</h2>
+            </div>
+        </div>
+
+        <!-- Ligne 2 : Raisons -->
+        <div class="row g-4 text-center">
+            <!-- Colonne 1 : Assurance vérifiée -->
+            <div class="col-md-4">
+                <div class="reason-card p-4 h-100 border rounded shadow-sm">
+                    <div class="emoji fs-2 mb-2">✅</div>
+                    <h5 class="fw-bold mb-2">Assurance vérifiée</h5>
+                    <p class="text-muted">Nos prestataires professionnels doivent ajouter une assurance décennale ou une
+                        assurance RC Pro. La validité du document est vérifiée par nos équipes pour s'assurer de sa
+                        conformité. C'est la garantie d'une protection pour tous vos travaux.</p>
+                </div>
+            </div>
+
+            <!-- Colonne 2 : Avis clients -->
+            <div class="col-md-4">
+                <div class="reason-card p-4 h-100 border rounded shadow-sm">
+                    <div class="emoji fs-2 mb-2">⭐</div>
+                    <h5 class="fw-bold mb-2">Avis clients</h5>
+                    <p class="text-muted">Les clients laissent des avis sur les profils des prestataires après chaque
+                        intervention. Vous pouvez consulter les précédents avis pour être rassuré sur le prestataire et
+                        vous orienter dans votre choix.</p>
+                </div>
+            </div>
+
+            <!-- Colonne 3 : Meilleur prix -->
+            <div class="col-md-4">
+                <div class="reason-card p-4 h-100 border rounded shadow-sm">
+                    <div class="emoji fs-2 mb-2">💰</div>
+                    <h5 class="fw-bold mb-2">Obtenez le meilleur prix</h5>
+                    <p class="text-muted">Lorsque vous effectuez une demande sur notre site, vous recevez plusieurs
+                        offres de prestataires selon votre budget. Vous avez ainsi la possibilité de comparer les prix
+                        pour obtenir le meilleur tarif.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="partners-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 : 4 images partenaires -->
+        <div class="row justify-content-center mb-5 g-4 align-items-center">
+            <div class="col-6 col-md-3 text-center">
+                <img src="https://avatars.mds.yandex.net/i?id=4d46bdf60c0bc647f7b6378db900c67b956744fc-9029350-images-thumbs&n=13"
+                    alt="Partenaire 1" class="partner-img">
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F81ec5e581c4b944f56d3b8aee1a7a87021e51b10-1200x731.png&w=640&q=75"
+                    alt="Partenaire 2" class="partner-img">
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F8780aee5869a0c45f946a4c75f1cf48edd2ec316-400x162.png&w=640&q=75"
+                    alt="Partenaire 3" class="partner-img">
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F1ecb3461ee473457ae52686d48827b2ba78f38e1-697x231.jpg&w=640&q=75"
+                    alt="Partenaire 4" class="partner-img">
+            </div>
+        </div>
+
+        <!-- Ligne 2 : 3 images centrées entre les colonnes de la première ligne -->
+        <div class="row justify-content-center g-4 partners-second-row">
+            <div class="col-6 col-md-2 text-center">
+                <img src="https://static.captcha-delivery.com/captcha/assets/set/a0119e19d7f710c158729bc4153a6996e891b546/logo.png?update_cache=-8432625518805180429"
+                    alt="Partenaire 5" class="partner-img">
+            </div>
+            <div class="col-6 col-md-2 text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Darty.svg/406px-Darty.svg.png"
+                    alt="Partenaire 6" class="partner-img">
+            </div>
+            <div class="col-6 col-md-2 text-center">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Ff1691c4139d8992195838b130523365502dde403-1200x1200.png&w=640&q=75"
+                    alt="Partenaire 7" class="partner-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="testimonials-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 : Titre -->
+        <div class="row mb-5">
+            <div class="col text-center">
+                <h2 class="fw-bold display-6">Récents avis sur les prestataires</h2>
+            </div>
+        </div>
+
+        <!-- Ligne 2 : Cards témoignages -->
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="FranquiRostin"
+                                class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Franqui Rostin W</h6>
+                                <div class="stars">
+                                    ★★★★☆
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">Tout a été parfait. Très professionnel et compétent. Merci.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="MohamedO"
+                                class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Mohamed O</h6>
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">Mohamed a été rapide à intervenir. S'est rendu disponible et s'est adapté
+                            aux horaires. Volet réparé. Prestation au top. Je recommande.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="ST"
+                                class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Surou T</h6>
+                                <div class="stars">
+                                    ★★★★★
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">Excellent professionnel, un vrai ! Très ponctuel, sympathique et sérieux. A
+                            recommander sans hésiter.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="other-univers-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 : Titre -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h2 class="fw-bold display-6">Autres univers</h2>
+            </div>
+        </div>
+
+        <!-- Ligne 2 : Images avec titres -->
+        <div class="row g-4 justify-content-center text-center">
+
+            <!-- Item 1 -->
+            <div class="col-6 col-md-3">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Feec37cff59213cf0c2e5b8e7b42c5bc8578d2bac-930x704.webp&w=640&q=75"
+                    alt="Électricité" class="img-fluid rounded mb-2 shadow-sm">
+                <h6 class="univers-title"><a href="#" class="text-decoration-none text-dark">Électricité</a></h6>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="col-6 col-md-3">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F5aa8cc0a9f7859dc98e7afaa532e2c13265de528-930x704.webp&w=640&q=75"
+                    alt="Déménagement" class="img-fluid rounded mb-2 shadow-sm">
+                <h6 class="univers-title"><a href="#" class="text-decoration-none text-dark">Déménagement</a></h6>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="col-6 col-md-3">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2Fcb8104793d247e156c799a2b96618722a5a7c2a3-930x704.webp&w=640&q=75"
+                    alt="Menuiseries" class="img-fluid rounded mb-2 shadow-sm">
+                <h6 class="univers-title"><a href="#" class="text-decoration-none text-dark">Menuiseries</a></h6>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="col-6 col-md-3">
+                <img src="https://d39jeaq38kq5vc.cloudfront.net/_image?sanity=15w996j8%2Fcms%2F1a7e3a8619411bd55779e9fed7f1e94cac31a16c-930x704.webp&w=640&q=75"
+                    alt="Salle de bain" class="img-fluid rounded mb-2 shadow-sm">
+                <h6 class="univers-title"><a href="#" class="text-decoration-none text-dark">Salle de bain</a></h6>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="other-links-section py-5">
+    <div class="container">
+
+        <!-- Ligne 1 -->
+        <div class="row g-4 mb-3">
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Plombier ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Menuisier d'intérieur ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Menuisier d'extérieur ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Paysagiste ➜</a>
+            </div>
+        </div>
+
+        <!-- Ligne 2 -->
+        <div class="row g-4">
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Électricien ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Chauffagiste ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Déménageur ➜</a>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+                <a href="#" class="text-decoration-none link-dark fw-bold">Tout Corps d'État ➜</a>
+            </div>
+        </div>
+
+    </div>
+</section>

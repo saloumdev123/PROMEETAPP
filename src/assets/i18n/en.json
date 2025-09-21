@@ -23,5 +23,71 @@
   "Emploie": "Jobs",
   "EspaceCandidat": "Candidate Space",
   "AnnonceRecrutement": "Job Offers",
-  "DepotAnnoncesStage": "Internship Posting & Offers"
+  "DepotAnnoncesStage": "Internship Posting & Offers",
+  "DepotAnnonces": "Posting & Ads",
+  "StagePublierDemande": "Internship, Post Request",
+
+  "ContactPage": {
+    "BienvenueTitre": "Welcome to our Contact Page",
+    "BienvenueTexte": "At SEN F.I.B.E.M., we believe that smooth communication is the key to a successful partnership. Whether you are a client, a partner, or a future collaborator, we will be delighted to meet your needs and answer your questions. Contact us today to build your projects together!",
+    "SectionTitre": "📞 Contact us",
+    "SectionTexte": "Find below our contact details, our offices, and a form to write to us directly.",
+    "Coordonnees": "Our Contact Details",
+    "Bureaux": "Our Offices",
+    "FormulaireTitre": "📞 Contact Form",
+    "Nom": "Your Name",
+    "Email": "Your Email",
+    "Numero": "Your Number",
+    "Message": "Your Message",
+    "Envoyer": "Send",
+    "NumeroInvalide": "Invalid number for this country",
+    "DicteeVocale": "🎤 Voice dictation"
+  },
+  "FooterPage": {
+  "LogoTitre": "Work Connection",
+  "PublierDemande": "Post a request",
+  "DevenirPrestataire": "Become a provider",
+  "NosGaranties": "Our guarantees",
+  "CommentCaMarche": "How it works",
+  "Nouveautes": "What's new",
+  "AvisClients": "Customer reviews",
+  "ApplicationPrestataire": "Provider mobile app",
+  "AbonnementConnect": "Connect subscription",
+  "SolutionsEntreprises": "Business solutions",
+
+  "NosServices": "Our services",
+  "Bricolage": "DIY & small jobs",
+  "Cuisine": "Kitchen installation",
+  "MontageMeuble": "Furniture assembly",
+  "Demenagement": "Moving",
+  "Jardinage": "Gardening",
+  "SalleDeBain": "Bathroom renovation",
+
+  "APropos": "About",
+  "CentreAide": "Help center",
+  "NousRecrutons": "We are hiring",
+  "MentionsLegales": "Legal notice",
+  "CGV": "Terms and conditions",
+  "ProtectionDonnees": "Data protection",
+  "Cookies": "Cookie policy",
+  "ContactezNous": "Contact us",
+
+  "ContactFrance": "Contact France",
+  "AdresseFrance": "51 Rue du Grévarin-27200 Vernon",
+  "EmailFrance": "gilbertgomis78@gmail.com",
+  "TelFrance": "+33 605 51 14 32",
+  "Siret": "SIRET: 445 374 937 00032",
+
+  "ContactSenegal": "Contact Senegal",
+  "AdresseSenegal": "Rue 7 Corniche x 6, Médina",
+  "EmailSenegal": "senfibem.paris@outlook.com",
+  "TelSenegal": "+221 78 483 65 83",
+  "Ninea": "N.I.N.E.A: 30 84 31 62 U2",
+
+  "NosPartenaires": "Our partners",
+
+  "Copyright": "© 2025 SenFibem France. All rights reserved.",
+  "DeveloppePar": "Developed by SenFibem Tech"
+}
+
 }

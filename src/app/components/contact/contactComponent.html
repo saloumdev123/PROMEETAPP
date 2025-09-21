@@ -7,34 +7,32 @@
       <div class="col-12">
         <div class="card shadow-lg border-0 welcome-card p-4 text-center">
           <div class="card-body">
-            <h2 class="card-title mb-3"> Bienvenue sur notre page Contact</h2>
+            <h2 class="card-title mb-3">{{ 'ContactPage.BienvenueTitre' | translate }}</h2>
             <p class="lead">
-              Chez <strong>SEN F.I.B.E.M.</strong>, nous croyons qu’une communication fluide est la clé d’un partenariat réussi.  
-              Que vous soyez un client, un partenaire ou un futur collaborateur, nous serons ravis de répondre à vos besoins et à vos questions.  
-              Contactez-nous dès aujourd’hui pour bâtir ensemble vos projets !
+              {{ 'ContactPage.BienvenueTexte' | translate }}
             </p>
           </div>
         </div>
       </div>
     </div>
-<hr>
+
+    <hr>
+
     <!-- ✅ Section Contact classique -->
-    <h2 class="text-center mb-4">📞 Contactez-nous</h2>
-    <p class="text-center mb-5">
-      Retrouvez ci-dessous nos coordonnées, nos bureaux et un formulaire pour nous écrire directement.
-    </p>
+    <h2 class="text-center mb-4">{{ 'ContactPage.SectionTitre' | translate }}</h2>
+    <p class="text-center mb-5">{{ 'ContactPage.SectionTexte' | translate }}</p>
 
     <div class="row">
       <!-- Colonne Infos de contact -->
       <div class="col-md-6 mb-4">
-        <h4>Nos Coordonnées</h4>
+        <h4>{{ 'ContactPage.Coordonnees' | translate }}</h4>
         <p><strong>🇸🇳 Sénégal :</strong> 123 Rue du Bâtiment, Dakar</p>
-        <p><strong>🇫🇷 France :</strong> 45 Avenue de la Construction, Paris</p>
-        <p><strong>Téléphone Sénégal :</strong> +221 77 123 45 67</p>
-        <p><strong>Téléphone France :</strong> +33 6 12 34 56 78</p>
-        <p><strong>Email :</strong> contact&#64;senfibem.sn</p>
+        <p><strong>🇫🇷 France :</strong> 51 Rue du Grévarin-27200 vernon</p>
+        <p><strong>{{ 'ContactPage.TelephoneSenegal' | translate }} :</strong> + 221 78 483 65 83</p>
+        <p><strong>{{ 'ContactPage.TelephoneFrance' | translate }} :</strong> +33 605 51 14 32</p>
+        <p><strong>{{ 'ContactPage.Email' | translate }} :</strong> contact&#64;senfibem.sn</p>
         <p>
-          <strong>Réseaux sociaux :</strong><br>
+          <strong>{{ 'ContactPage.Reseaux' | translate }} :</strong><br>
           <a href="#" target="_blank">Facebook</a> |
           <a href="#" target="_blank">LinkedIn</a> |
           <a href="#" target="_blank">Instagram</a>
@@ -43,29 +41,71 @@
 
       <!-- Colonne Carte + Formulaire -->
       <div class="col-md-6 mb-4">
-        <h4>Nos Bureaux</h4>
+        <h4>{{ 'ContactPage.Bureaux' | translate }}</h4>
         <div class="mb-3">
-          <iframe src="https://www.google.com/maps/embed?pb=...Dakar..."
-            width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=...Dakar..." width="100%" height="180" style="border:0;"
+            allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <div class="mb-3">
-          <iframe src="https://www.google.com/maps/embed?pb=...Paris..."
-            width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+      </div>
+    </div>
 
-        <h4>Écrivez-nous</h4>
-        <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-          <div class="mb-2">
-            <input type="text" class="form-control" formControlName="name" placeholder="Votre nom" required>
+    <!-- ✅ Formulaire -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="card contact-form shadow-lg">
+            <div class="card-body">
+              <h3 class="text-center mb-4">{{ 'ContactPage.FormulaireTitre' | translate }}</h3>
+
+              <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+                <!-- Nom -->
+                <div class="form-group mb-3">
+                  <label>{{ 'ContactPage.Nom' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="name">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group mb-3">
+                  <label>{{ 'ContactPage.EmailLabel' | translate }}</label>
+                  <input type="email" class="form-control" formControlName="email">
+                </div>
+
+                <!-- Téléphone -->
+                <div class="form-group mb-3">
+                  <label>{{ 'ContactPage.Numero' | translate }}</label>
+                  <div class="phone-input">
+                    <select class="form-control" formControlName="countryCode" (change)="updatePlaceholder()">
+                      <option *ngFor="let c of countries" [value]="c.code" [attr.data-placeholder]="c.placeholder">
+                        {{c.flag}} {{c.name}} ({{c.code}})
+                      </option>
+                    </select>
+                    <input type="text" class="form-control" formControlName="phone" [placeholder]="phonePlaceholder">
+                  </div>
+                  <small *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+                    class="text-danger">
+                    {{ 'ContactPage.NumeroInvalide' | translate }}
+                  </small>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group mb-3">
+                  <label>{{ 'ContactPage.Message' | translate }}</label>
+                  <textarea class="form-control" formControlName="message" rows="4"></textarea>
+                  <button type="button" class="mic-btn mt-2" (click)="startRecording()">
+                    {{ 'ContactPage.DicteeVocale' | translate }}
+                  </button>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary w-100">
+                  {{ 'ContactPage.Envoyer' | translate }}
+                </button>
+              </form>
+
+            </div>
           </div>
-          <div class="mb-2">
-            <input type="email" class="form-control" formControlName="email" placeholder="Votre email" required>
-          </div>
-          <div class="mb-2">
-            <textarea class="form-control" rows="3" formControlName="message" placeholder="Votre message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Envoyer</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
