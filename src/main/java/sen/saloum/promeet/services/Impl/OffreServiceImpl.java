@@ -57,9 +57,9 @@ public class OffreServiceImpl implements OffreService {
 
 
     @Override
-    public List<OffreDTO> searchOffresAvancee(String categorie, Double minPrix, Double maxPrix, String localisation) {
+    public List<OffreDTO> searchOffresAvancee(String categorie, Double minPrix, Double maxPrix, String adresse) {
         return offreMapper.toDTOList(
-                offreRepository.searchOffres(categorie, minPrix, maxPrix, localisation)
+                offreRepository.searchOffres(categorie, minPrix, maxPrix, adresse)
         );
     }
 
@@ -90,7 +90,7 @@ public class OffreServiceImpl implements OffreService {
             return getAllOffres();
         }
         return offreMapper.toDTOList(
-                offreRepository.findByLocalisationPrestataire(keyword)
+                offreRepository.findByadressePrestataire(keyword)
         );
     }
 

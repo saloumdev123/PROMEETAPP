@@ -49,7 +49,7 @@ public class AuthService {
         Utilisateur user = utilisateurRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
-        if (!passwordEncoder.matches(password, user.getMotDePasse())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Mot de passe incorrect");
         }
 
@@ -124,7 +124,7 @@ public class AuthService {
         }
 
         Utilisateur user = resetToken.getUtilisateur();
-        user.setMotDePasse(passwordEncoder.encode(newPassword));
+        user.setPassword(passwordEncoder.encode(newPassword));
         utilisateurRepository.save(user);
 
         // Nettoyer après usage

@@ -1,21 +1,68 @@
 package sen.saloum.promeet.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import java.util.List;
+import sen.saloum.promeet.enums.Role;
+import sen.saloum.promeet.enums.TypeIdentification;
+import sen.saloum.promeet.enums.TypePartenaire;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UtilisateurDTO {
     private Long id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
-    private String role;
-    private String bio;
-    private String localisation;
+    private Role role;
+    private String metier;
+    private String adresse;
     @JsonIgnore
-    private String motDePasse;
+    private String password;
+    private String numeroIdentification;
+    private TypeIdentification typeIdentification;
+    private TypePartenaire typePartenaire;
+
+    public TypePartenaire getTypePartenaire() {
+        return typePartenaire;
+    }
+
+    public void setTypePartenaire(TypePartenaire typePartenaire) {
+        this.typePartenaire = typePartenaire;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+
+    public String getMetier() {
+        return metier;
+    }
+
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    public TypeIdentification getTypeIdentification() {
+        return typeIdentification;
+    }
+
+    public void setTypeIdentification(TypeIdentification typeIdentification) {
+        this.typeIdentification = typeIdentification;
+    }
+
+    public String getNumeroIdentification() {
+        return numeroIdentification;
+    }
+
+    public void setNumeroIdentification(String numeroIdentification) {
+        this.numeroIdentification = numeroIdentification;
+    }
 
     public Long getId() {
         return id;
@@ -25,12 +72,12 @@ public class UtilisateurDTO {
         this.id = id;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNom() {
@@ -65,29 +112,12 @@ public class UtilisateurDTO {
         this.telephone = telephone;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
-    }
-
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getLocalisation() {
-        return localisation;
-    }
-
-    public void setLocalisation(String localisation) {
-        this.localisation = localisation;
     }
 
 

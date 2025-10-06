@@ -94,6 +94,37 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/magasins/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/magasins/**").hasRole("ADMIN")
 
+                        .requestMatchers(HttpMethod.POST, "/api/candidats").permitAll() // inscription
+                        .requestMatchers(HttpMethod.GET, "/api/candidats/{id}").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/candidats").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/candidats/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/documents/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/documents/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/documents/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/abonnements/**").hasAnyRole("PARTICULIER", "PROFESSIONNEL", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/abonnements/actifs").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/abonnements/expires").hasRole("ADMIN")
+
+                        // --- Devis ---
+                        .requestMatchers(HttpMethod.GET, "/api/devis/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/devis/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/devis/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.DELETE, "/api/devis/**").hasRole("ADMIN")
+
+                        // --- Lignes Devis ---
+                        .requestMatchers(HttpMethod.GET, "/api/lignes-devis/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.POST, "/api/lignes-devis/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.PUT, "/api/lignes-devis/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.DELETE, "/api/lignes-devis/**").hasRole("ADMIN")
+
+                        // --- Fournitures ---
+                        .requestMatchers(HttpMethod.GET, "/api/fournitures/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.POST, "/api/fournitures/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.PUT, "/api/fournitures/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                        .requestMatchers(HttpMethod.DELETE, "/api/fournitures/**").hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -110,7 +141,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UtilisateurRepository utilisateurRepository) {
         return username -> utilisateurRepository.findByEmail(username)
                 .map(user -> org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
-                        .password(user.getMotDePasse())
+                        .password(user.getPassword())
                         .roles(user.getRole().name())
                         .build())
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));

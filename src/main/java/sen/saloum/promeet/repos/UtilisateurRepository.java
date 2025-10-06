@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import sen.saloum.promeet.enums.Role;
+import sen.saloum.promeet.enums.TypeIdentification;
 import sen.saloum.promeet.models.Utilisateur;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
 
     List<Utilisateur> findByRole(Role role);
 
-    List<Utilisateur> findByLocalisationContainingIgnoreCase(String localisation);
+    List<Utilisateur> findByadresseContainingIgnoreCase(String adresse);
 
     @Query("SELECT u FROM Utilisateur u WHERE LOWER(u.nom) LIKE LOWER(CONCAT('%', :nom, '%')) OR LOWER(u.prenom) LIKE LOWER(CONCAT('%', :nom, '%'))")
     List<Utilisateur> searchByNomOrPrenom(String nom);
@@ -38,4 +39,19 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
             "JOIN p.categorie c " +
             "WHERE u.role = 'ARTISAN' AND LOWER(c.nom) LIKE LOWER(CONCAT('%', :categorieNom, '%'))")
     List<Utilisateur> findArtisansByCategorieNom(@Param("categorieNom") String categorieNom);
+
+    // ✅ Trouver un utilisateur par son numéro d’identification
+    Optional<Utilisateur> findByNumeroIdentification(String numeroIdentification);
+
+    // ✅ Vérifier l’unicité du numéro
+    boolean existsByNumeroIdentification(String numeroIdentification);
+
+    // ✅ Lister uniquement les professionnels avec NINEA ou SIREN
+    List<Utilisateur> findByTypeIdentification(TypeIdentification typeIdentification);
+
+    // ✅ Filtrer par rôle et numéro
+    Optional<Utilisateur> findByRoleAndNumeroIdentification(Role role, String numeroIdentification);
+
+
+
 }

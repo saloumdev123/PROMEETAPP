@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import sen.saloum.promeet.enums.Role;
+import sen.saloum.promeet.enums.TypeIdentification;
+import sen.saloum.promeet.enums.TypePartenaire;
 
 import java.util.List;
 
@@ -18,16 +20,16 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
-    private String motDePasse;
+    private String password;
     private String telephone;
+    private String metier;
+    private String adresse;
+    private String numeroIdentification;
 
     @Enumerated(EnumType.STRING)
-    private Role role; // PART, ARTISAN, ADMIN
-
-    private String bio;
-    private String localisation;
-
-    // Relations
+    private Role role;
+    @Enumerated(EnumType.STRING)
+    private TypeIdentification typeIdentification;
     @OneToMany(mappedBy = "client")
     private List<CommandeProduit> commandesProduit;
 
@@ -36,6 +38,17 @@ public class Utilisateur {
 
     @OneToMany(mappedBy = "utilisateur")
     private List<Avis> avis;
+    @Enumerated(EnumType.STRING)
+    private TypePartenaire typePartenaire;
+
+
+    public TypePartenaire getTypePartenaire() {
+        return typePartenaire;
+    }
+
+    public void setTypePartenaire(TypePartenaire typePartenaire) {
+        this.typePartenaire = typePartenaire;
+    }
 
     public Long getId() {
         return id;
@@ -69,12 +82,12 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelephone() {
@@ -85,6 +98,30 @@ public class Utilisateur {
         this.telephone = telephone;
     }
 
+    public String getMetier() {
+        return metier;
+    }
+
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getNumeroIdentification() {
+        return numeroIdentification;
+    }
+
+    public void setNumeroIdentification(String numeroIdentification) {
+        this.numeroIdentification = numeroIdentification;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -93,22 +130,12 @@ public class Utilisateur {
         this.role = role;
     }
 
-
-
-    public String getBio() {
-        return bio;
+    public TypeIdentification getTypeIdentification() {
+        return typeIdentification;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getLocalisation() {
-        return localisation;
-    }
-
-    public void setLocalisation(String localisation) {
-        this.localisation = localisation;
+    public void setTypeIdentification(TypeIdentification typeIdentification) {
+        this.typeIdentification = typeIdentification;
     }
 
     public List<CommandeProduit> getCommandesProduit() {
@@ -134,6 +161,5 @@ public class Utilisateur {
     public void setAvis(List<Avis> avis) {
         this.avis = avis;
     }
-
 
 }

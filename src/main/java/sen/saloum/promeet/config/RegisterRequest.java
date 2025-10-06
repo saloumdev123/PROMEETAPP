@@ -1,13 +1,36 @@
 package sen.saloum.promeet.config;
 
+import sen.saloum.promeet.enums.Role;
+import sen.saloum.promeet.enums.TypeIdentification;
+import sen.saloum.promeet.enums.TypePartenaire;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegisterRequest {
     private String email;
     private String password;
     private String nom;
     private String prenom;
     private String telephone;
-    private String bio;
-    private String localisation;
+    private String metier;
+    private String adresse;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private TypeIdentification typeIdentification;
+    private Role role;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String numeroIdentification;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private TypePartenaire typePartenaire;
+
+
+    public TypePartenaire getTypePartenaire() {
+        return typePartenaire;
+    }
+
+    public void setTypePartenaire(TypePartenaire typePartenaire) {
+        this.typePartenaire = typePartenaire;
+    }
 
     public String getEmail() {
         return email;
@@ -49,21 +72,56 @@ public class RegisterRequest {
         this.telephone = telephone;
     }
 
-    public String getBio() {
-        return bio;
+    public String getMetier() {
+        return metier;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setMetier(String metier) {
+        this.metier = metier;
     }
 
-    public String getLocalisation() {
-        return localisation;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setLocalisation(String localisation) {
-        this.localisation = localisation;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
+    public TypeIdentification getTypeIdentification() {
+        return typeIdentification;
+    }
+
+    public void setTypeIdentification(TypeIdentification typeIdentification) {
+        this.typeIdentification = typeIdentification;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getNumeroIdentification() {
+        return numeroIdentification;
+    }
+
+    public void setNumeroIdentification(String numeroIdentification) {
+        this.numeroIdentification = numeroIdentification;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterRequest{" +
+                "email='" + email + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", role=" + role +
+                ", typePartenaire=" + typePartenaire +
+                ", typeIdentification=" + typeIdentification +
+                '}';
+    }
 
 }

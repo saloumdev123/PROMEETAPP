@@ -15,15 +15,15 @@ public interface OffreRepository extends JpaRepository<Offre, Long> {
         WHERE (:categorie IS NULL OR LOWER(o.categorie) = LOWER(:categorie))
         AND (:minPrix IS NULL OR o.prix >= :minPrix)
         AND (:maxPrix IS NULL OR o.prix <= :maxPrix)
-        AND (:localisation IS NULL OR LOWER(o.prestataire.localisation) LIKE LOWER(CONCAT('%', :localisation, '%')))
+        AND (:adresse IS NULL OR LOWER(o.prestataire.adresse) LIKE LOWER(CONCAT('%', :adresse, '%')))
     """)
-    List<Offre> searchOffres(String categorie, Double minPrix, Double maxPrix, String localisation);
+    List<Offre> searchOffres(String categorie, Double minPrix, Double maxPrix, String adresse);
 
     @Query("SELECT o FROM Offre o WHERE o.prestataire.id = :prestataireId")
     List<Offre> findByPrestataire(Long prestataireId);
 
-    @Query("SELECT o FROM Offre o WHERE o.prestataire.localisation LIKE %:localisation%")
-    List<Offre> findByLocalisationPrestataire(String localisation);
+    @Query("SELECT o FROM Offre o WHERE o.prestataire.adresse LIKE %:adresse%")
+    List<Offre> findByadressePrestataire(String adresse);
 
     @Query("""
         SELECT o FROM Offre o

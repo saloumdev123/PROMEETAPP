@@ -1,22 +1,19 @@
 package sen.saloum.promeet.services.Impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sen.saloum.promeet.dto.UtilisateurDTO;
-import sen.saloum.promeet.enums.Role;
-import sen.saloum.promeet.mapstracts.UtilisateurMapper;
+import sen.saloum.promeet.mapstructs.UtilisateurMapper;
 import sen.saloum.promeet.models.Utilisateur;
 import sen.saloum.promeet.repos.UtilisateurRepository;
-import sen.saloum.promeet.services.UtilisateurService;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UtilisateurServiceImpl implements UtilisateurService {
+public class UtilisateurServiceImpl  {
 
     private final UtilisateurRepository utilisateurRepository;
     private final UtilisateurMapper utilisateurMapper;
@@ -28,79 +25,67 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public UtilisateurDTO createUtilisateur(UtilisateurDTO utilisateurDto) {
-        Utilisateur utilisateur = utilisateurMapper.toEntity(utilisateurDto);
+    // Créer un utilisateur
+    public UtilisateurDTO createUtilisateur(UtilisateurDTO dto) {
+        Utilisateur utilisateur = utilisateurMapper.toEntity(dto);
 
-        if (utilisateur.getRole() == null) {
-            utilisateur.setRole(Role.PARTICULIER);
+        // ⚠️ Toujours encoder le mot de passe
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            utilisateur.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
-        if (utilisateur.getMotDePasse() != null) {
-            utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
-        }
+
         Utilisateur saved = utilisateurRepository.save(utilisateur);
-        return utilisateurMapper.toDTO(saved);
+        return utilisateurMapper.toDto(saved);
     }
 
 
-    @Override
-    public UtilisateurDTO updateUtilisateur(Long id, UtilisateurDTO utilisateurDto) {
+    // Récupérer un utilisateur par ID
+    public UtilisateurDTO getUtilisateurById(Long id) {
+        return utilisateurRepository.findById(id)
+                .map(utilisateurMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id : " + id));
+    }
+
+    // Récupérer tous les utilisateurs
+    public List<UtilisateurDTO> getAllUtilisateurs() {
+        return utilisateurRepository.findAll()
+                .stream()
+                .map(utilisateurMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    // Mettre à jour un utilisateur
+    public UtilisateurDTO updateUtilisateur(Long id, UtilisateurDTO dto) {
         Utilisateur existing = utilisateurRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Utilisateur introuvable avec id " + id));
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id : " + id));
 
-        // Mise à jour des champs manuellement
-        existing.setNom(utilisateurDto.getNom());
-        existing.setPrenom(utilisateurDto.getPrenom());
-        existing.setEmail(utilisateurDto.getEmail());
-        existing.setTelephone(utilisateurDto.getTelephone());
-        existing.setRole(utilisateurMapper.mapRole(utilisateurDto.getRole()));
-        existing.setBio(utilisateurDto.getBio());
-        existing.setLocalisation(utilisateurDto.getLocalisation());
+        existing.setNom(dto.getNom());
+        existing.setPrenom(dto.getPrenom());
+        existing.setEmail(dto.getEmail());
+        existing.setTelephone(dto.getTelephone());
+        existing.setRole(dto.getRole());
+        existing.setMetier(dto.getMetier());
+        existing.setAdresse(dto.getAdresse());
 
-        if (utilisateurDto.getMotDePasse() != null && !utilisateurDto.getMotDePasse().isBlank()) {
-            existing.setMotDePasse(passwordEncoder.encode(utilisateurDto.getMotDePasse()));
+        // ⚠️ Ne mettre à jour le password que si fourni
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            existing.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
-        return utilisateurMapper.toDTO(utilisateurRepository.save(existing));
+        existing.setNumeroIdentification(dto.getNumeroIdentification());
+        existing.setTypeIdentification(dto.getTypeIdentification());
+        existing.setTypePartenaire(dto.getTypePartenaire());
+
+        Utilisateur updated = utilisateurRepository.save(existing);
+        return utilisateurMapper.toDto(updated);
     }
 
-    @Override
-    public boolean deleteUtilisateur(Long id) {
+
+    // Supprimer un utilisateur
+    public void deleteUtilisateur(Long id) {
         if (!utilisateurRepository.existsById(id)) {
-            throw new EntityNotFoundException("Utilisateur introuvable avec id " + id);
+            throw new RuntimeException("Utilisateur non trouvé avec id : " + id);
         }
         utilisateurRepository.deleteById(id);
-        return false;
-    }
-
-    @Override
-    public Optional<UtilisateurDTO> getUtilisateurById(Long id) {
-        return utilisateurRepository.findById(id).map(utilisateurMapper::toDTO);
-    }
-
-    @Override
-    public List<UtilisateurDTO> getAllUtilisateurs() {
-        return utilisateurMapper.toDTOList(utilisateurRepository.findAll());
-    }
-
-    @Override
-    public List<UtilisateurDTO> searchUtilisateurs(String keyword) {
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return getAllUtilisateurs();
-        }
-        return utilisateurMapper.toDTOList(utilisateurRepository.searchByNomOrPrenom(keyword));
-    }
-
-    // Méthodes supplémentaires avec repository
-    public Optional<UtilisateurDTO> getUtilisateurByEmail(String email) {
-        return utilisateurRepository.findByEmail(email).map(utilisateurMapper::toDTO);
-    }
-
-    public List<UtilisateurDTO> getUtilisateursByRole(Role role) {
-        return utilisateurMapper.toDTOList(utilisateurRepository.findByRole(role));
-    }
-
-    public List<UtilisateurDTO> getUtilisateursByLocalisation(String localisation) {
-        return utilisateurMapper.toDTOList(utilisateurRepository.findByLocalisationContainingIgnoreCase(localisation));
     }
 }
