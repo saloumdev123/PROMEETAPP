@@ -94,6 +94,28 @@
   "Copyright": "© 2025 SenFibem Francia. Todos los derechos reservados.",
   "DeveloppePar": "Desarrollado por SenFibem Tech"
 }
+,
+  "ArtisanPage": {
+    "Titre": "Lista de Artesanos",
+    "RechercheMotCle": "Buscar por palabra clave:",
+    "PlaceholderMotCle": "Ej: Albañil, Fontanero",
+    "RechercheLocalisation": "Filtrar por ubicación:",
+    "PlaceholderLocalisation": "Ej: París, Lyon, Marsella",
+    "BoutonRechercher": "🔎 Buscar",
+    "ChoisirDevise": "Elegir moneda",
+    "Secteur": "Sector",
+    "Localisation": "Ubicación",
+    "Disponibilite": "Disponibilidad",
+    "DureeMission": "Duración de la misión",
+    "Devis": "Presupuesto",
+    "RC": "Seguro de responsabilidad civil",
+    "DCTS": "Garantía decenal",
+    "AjouterPanier": "Añadir al carrito",
+    "PaginationPrecedent": "⬅️ Anterior",
+    "PaginationSuivant": "Siguiente ➡️",
+    "Page": "Página",
+    "Sur": "de"
+  }
 
 
 }

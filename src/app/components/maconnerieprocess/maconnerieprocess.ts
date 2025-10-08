@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 
-
 interface Annonce {
   titre: string;
   budget: number;
@@ -24,7 +23,7 @@ interface Annonce {
 })
 export class Maconnerieprocess {
  currentStep: number = 0;
-  stepsCount: number = 13;  // Inclut l’étape 12
+  stepsCount: number = 13;  
   projectTitle: string = '';
   selectedOption: string | null = null;
   adresseEmail: string = '';
@@ -50,7 +49,6 @@ export class Maconnerieprocess {
   acceptTerms: boolean = false;
 
 
-  // Récapitulatif étape 10 – un seul item
   recapItem = {
     titre: 'Déposer une cuisine',
     description: 'Voici le résumé de votre demande sélectionnée.',
@@ -58,7 +56,6 @@ export class Maconnerieprocess {
     image: 'https://avatars.mds.yandex.net/i?id=910a442d87655efc47f6c43878f044e0c452f13f-10702479-images-thumbs&n=13'
   };
 
-  // Annonces similaires
   annoncesSimilaires: Annonce[] = [
     {
       titre: 'Déposer une kitchenette',

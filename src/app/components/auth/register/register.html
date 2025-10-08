@@ -1,89 +1,114 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5" style="background: url('https://avatars.mds.yandex.net/i?id=c74b36a995c6824667aa0de9f426f7b156211ca6-16492246-images-thumbs&n=13') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh; margin-top: 100px;">
   <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5"> <!-- largeur max -->
+    <div class="col-md-6 col-lg-5">
       <div class="card shadow-sm rounded-4">
         <div class="card-body p-4">
           <h3 class="text-center mb-4">Inscription</h3>
 
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-            <!-- Nom -->
-            <div class="mb-3">
-              <label for="nom" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="nom" formControlName="nom">
-              <div *ngIf="registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid" class="text-danger small mt-1">
-                Nom requis (minimum 2 caractères)
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate style="background-color: aliceblue;">
+
+            <!-- Nom + Prénom -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" formControlName="nom">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="prenom" formControlName="prenom">
               </div>
             </div>
 
-            <!-- Prénom -->
-            <div class="mb-3">
-              <label for="prenom" class="form-label">Prénom</label>
-              <input type="text" class="form-control" id="prenom" formControlName="prenom">
-              <div *ngIf="registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid" class="text-danger small mt-1">
-                Prénom requis
+            <!-- Email + Mot de passe -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <div class="input-group">
+                  <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+                    formControlName="password">
+                  <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()" tabindex="-1">
+                    <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                  </button>
+                </div>
               </div>
             </div>
 
-            <!-- Email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" formControlName="email">
-              <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger small mt-1">
-                <div *ngIf="registerForm.get('email')?.errors?.['required']">Email requis.</div>
-                <div *ngIf="registerForm.get('email')?.errors?.['email']">Format email invalide.</div>
+            <!-- Téléphone (avec code pays) -->
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="countryCode" class="form-label">Code pays</label>
+                <select class="form-select" id="countryCode" formControlName="countryCode"
+                  (change)="updatePhonePlaceholder()">
+                  <option *ngFor="let country of countries" [value]="country.code">
+                    {{ country.flag }} {{ country.dial_code }}
+                  </option>
+                </select>
+
+              </div>
+              <div class="col-md-8 mb-3">
+                <label for="telephone" class="form-label">Téléphone</label>
+                <input type="text" class="form-control" id="telephone" formControlName="telephone"
+                  [placeholder]="phonePlaceholder">
               </div>
             </div>
 
-            <!-- Mot de passe -->
-           <!-- Mot de passe -->
-<div class="mb-3">
-  <label for="password" class="form-label">Mot de passe</label>
-  <div class="input-group">
-    <input 
-      [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password">
-    <button 
-      type="button" 
-      class="btn btn-outline-secondary" 
-      (click)="togglePassword()" 
-      tabindex="-1">
-      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
-    </button>
-  </div>
-
-  <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger small mt-1">
-    <div *ngIf="registerForm.get('password')?.errors?.['required']">Mot de passe requis.</div>
-    <div *ngIf="registerForm.get('password')?.errors?.['pattern']">
-      Le mot de passe doit contenir 4-8 caractères, avec au moins : une majuscule, une minuscule, un chiffre et un caractère spécial.
-    </div>
-  </div>
-</div>
-
-
-            <!-- Téléphone -->
-            <div class="mb-3">
-              <label for="telephone" class="form-label">Téléphone</label>
-              <input type="text" class="form-control" id="telephone" formControlName="telephone">
+            <!-- Métier + Adresse -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="metier" class="form-label">Métier</label>
+                <input type="text" class="form-control" id="metier" formControlName="metier">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="adresse" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="adresse" formControlName="adresse">
+              </div>
             </div>
 
-            <!-- metier -->
-            <div class="mb-3">
-              <label for="metier" class="form-label">metier</label>
-              <textarea class="form-control" id="metier" formControlName="metier"></textarea>
-            </div>
-
-            <!-- adresse -->
-            <div class="mb-3">
-              <label for="adresse" class="form-label">adresse</label>
-              <input type="text" class="form-control" id="adresse" formControlName="adresse">
-            </div>
-
-            <!-- Type de compte -->
+            <!-- Rôle -->
             <div class="mb-3">
               <label for="role" class="form-label">Type de compte</label>
               <select class="form-select" id="role" formControlName="role">
-                <option value="PARTICULIER">PARTICULIER</option>
-                <option value="PROFESSIONNEL">PROFESSIONNEL</option>
+                <option value="PARTICULIER">Particulier</option>
+                <option value="CANDIDAT">Candidat</option>
+                <option value="PARTENAIRE">Partenaire</option>
               </select>
+            </div>
+
+            <!-- Gestion partenaire comme tu avais avant... -->
+            <!-- Si rôle = PARTENAIRE -->
+            <div *ngIf="registerForm.get('role')?.value === 'PARTENAIRE'">
+              <div class="mb-3">
+                <label for="typePartenaire" class="form-label">Type de Partenaire</label>
+                <select class="form-select" id="typePartenaire" formControlName="typePartenaire">
+                  <option value="ENTREPRISE">Entreprise</option>
+                  <option value="PROFESSIONNEL">Professionnel</option>
+                  <option value="ARTISAN">Artisan</option>
+                  <option value="STAGIAIRE">Stagiaire</option>
+                </select>
+              </div>
+
+              <!-- Identification UNIQUEMENT si ENTREPRISE ou PROFESSIONNEL -->
+              <div *ngIf="['ENTREPRISE','PROFESSIONNEL'].includes(registerForm.get('typePartenaire')?.value)">
+                <div class="mb-3">
+                  <label for="typeIdentification" class="form-label">Type d’identification</label>
+                  <select class="form-select" id="typeIdentification" formControlName="typeIdentification">
+                    <option value="NINEA">NINEA</option>
+                    <option value="SIREN">SIREN</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="numeroIdentification" class="form-label">Numéro d’identification</label>
+                  <input type="text" class="form-control" id="numeroIdentification"
+                    formControlName="numeroIdentification">
+                </div>
+              </div>
             </div>
 
             <!-- Erreur backend -->
@@ -92,9 +117,14 @@
             </div>
 
             <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid || isLoading">
-              <span *ngIf="isLoading" class="loading-spinner me-2"></span>
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
               S'inscrire
             </button>
+            <div class="text-center mt-3">
+              <span>Déjà inscrit ? </span>
+              <a routerLink="/login">Se connecter</a>
+            </div>
+
           </form>
 
         </div>

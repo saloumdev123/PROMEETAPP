@@ -1,3 +1,5 @@
+import { UserRole } from "../enums/userRole";
+
 export interface User {
   id: number;
 
@@ -8,7 +10,7 @@ export interface User {
   telephone: string;
 
   // Rôle (PARTICULIER, PROFESSIONNEL, ADMIN)
-  userRole: 'PARTICULIER' | 'PROFESSIONNEL' | 'ADMIN';
+  userRole?: UserRole;
 
   // Optionnel, utile pour les professionnels
   metier: string;

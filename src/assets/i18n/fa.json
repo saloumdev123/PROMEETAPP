@@ -90,5 +90,28 @@
   "Copyright": "© 2025 SenFibem France. کلیه حقوق محفوظ است.",
   "DeveloppePar": "توسعه داده‌شده توسط SenFibem Tech"
 }
+,
+
+  "ArtisanPage": {
+    "Titre": "لیست صنعتگران",
+    "RechercheMotCle": "جستجو بر اساس کلیدواژه:",
+    "PlaceholderMotCle": "مثال: بنا، لوله‌کش",
+    "RechercheLocalisation": "فیلتر بر اساس موقعیت:",
+    "PlaceholderLocalisation": "مثال: پاریس، لیون، مارسی",
+    "BoutonRechercher": "🔎 جستجو",
+    "ChoisirDevise": "انتخاب ارز",
+    "Secteur": "بخش",
+    "Localisation": "مکان",
+    "Disponibilite": "دسترس‌پذیری",
+    "DureeMission": "مدت مأموریت",
+    "Devis": "پیشنهاد قیمت",
+    "RC": "بیمه مسئولیت مدنی",
+    "DCTS": "ضمانت ده‌ساله",
+    "AjouterPanier": "افزودن به سبد خرید",
+    "PaginationPrecedent": "⬅️ قبلی",
+    "PaginationSuivant": "بعدی ➡️",
+    "Page": "صفحه",
+    "Sur": "از"
+  }
 
 }

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserRole } from '../../../enums/userRole';
+import { Role } from '../../../enums/role';
 
 @Component({
   selector: 'app-offre-list',
@@ -17,7 +18,7 @@ import { UserRole } from '../../../enums/userRole';
 export class OffreList implements OnInit {
   offres: Offre[] = [];
   filteredOffres: Offre[] = [];
-   Role = UserRole;
+   Role = Role;
   searchTerm = '';
   priceFilter = '';
   isLoading = false;

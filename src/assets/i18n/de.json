@@ -87,6 +87,29 @@
   "Copyright": "© 2025 SenFibem Frankreich. Alle Rechte vorbehalten.",
   "DeveloppePar": "Entwickelt von SenFibem Tech"
 }
+,
+  "ArtisanPage": {
+    "Titre": "Liste der Handwerker",
+    "RechercheMotCle": "Nach Stichwort suchen:",
+    "PlaceholderMotCle": "z. B.: Maurer, Klempner",
+    "RechercheLocalisation": "Nach Standort filtern:",
+    "PlaceholderLocalisation": "z. B.: Paris, Lyon, Marseille",
+    "BoutonRechercher": "🔎 Suchen",
+    "ChoisirDevise": "Währung auswählen",
+    "Secteur": "Branche",
+    "Localisation": "Standort",
+    "Disponibilite": "Verfügbarkeit",
+    "DureeMission": "Dauer des Auftrags",
+    "Devis": "Kostenvoranschlag",
+    "RC": "Haftpflichtversicherung",
+    "DCTS": "Zehnjährige Garantie",
+    "AjouterPanier": "Zum Warenkorb hinzufügen",
+    "PaginationPrecedent": "⬅️ Zurück",
+    "PaginationSuivant": "Weiter ➡️",
+    "Page": "Seite",
+    "Sur": "von"
+  }
+
 
 
 }

@@ -1,0 +1,80 @@
+/* Style général des cards */
+.card {
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent */
+  backdrop-filter: blur(8px); /* effet verre dépoli */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 150px ;
+}
+
+/* Effet hover */
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Icônes */
+.card i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Icône hover effet "pulse" */
+.card:hover i {
+  transform: scale(1.2);
+}
+
+/* Titre */
+.card-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+/* Texte */
+.card-text {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Boutons uniformisés */
+.card .btn {
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Effet hover bouton */
+.card .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Le contenu prend l’espace dispo */
+.main-content {
+  flex: 1;
+}
+
+/* Footer collé en bas */
+/* Supprime le margin-top inutile dans le footer */
+footer {
+  background: #0d369e;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto; /* le footer descend automatiquement */
+}

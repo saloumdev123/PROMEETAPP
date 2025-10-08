@@ -89,6 +89,29 @@
 
   "Copyright": "© 2025 SenFibem France. Alle rechten voorbehouden.",
   "DeveloppePar": "Ontwikkeld door SenFibem Tech"
-}
+},
+
+  "ArtisanPage": {
+    "Titre": "Lijst van Ambachtslieden",
+    "RechercheMotCle": "Zoeken op trefwoord:",
+    "PlaceholderMotCle": "Bijv.: Metselaar, Loodgieter",
+    "RechercheLocalisation": "Filteren op locatie:",
+    "PlaceholderLocalisation": "Bijv.: Parijs, Lyon, Marseille",
+    "BoutonRechercher": "🔎 Zoeken",
+    "ChoisirDevise": "Valuta kiezen",
+    "Secteur": "Sector",
+    "Localisation": "Locatie",
+    "Disponibilite": "Beschikbaarheid",
+    "DureeMission": "Duur van de opdracht",
+    "Devis": "Offerte",
+    "RC": "Aansprakelijkheidsverzekering",
+    "DCTS": "Tienjarige garantie",
+    "AjouterPanier": "Toevoegen aan winkelwagen",
+    "PaginationPrecedent": "⬅️ Vorige",
+    "PaginationSuivant": "Volgende ➡️",
+    "Page": "Pagina",
+    "Sur": "van"
+  }
+
 
 }

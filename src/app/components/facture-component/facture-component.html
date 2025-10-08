@@ -1,0 +1,255 @@
+<main class="container py-5 bg-light min-vh-100">
+  <h1 class="text-center mb-4 text-primary fw-bold display-5">
+    🧾 Gestion des Factures Professionnelles
+  </h1>
+
+  <!-- 💡 FORMULAIRE DE CRÉATION -->
+  <div class="card shadow-lg mb-5 border-0">
+    <div class="card-header bg-primary text-white text-center fs-5 fw-semibold">
+      🧩 Nouvelle Facture
+    </div>
+    <div class="card-body p-4 bg-white">
+      <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+        <div class="row g-3">
+
+          <!-- 🧑‍🤝‍🧑 Sélection client -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-secondary">👥 Sélectionner un client *</label>
+            <select formControlName="clientId" class="form-select shadow-sm" (change)="onClientChange($event)">
+              <option value="">-- Choisir un client --</option>
+              <option *ngFor="let c of clients" [value]="c.id">{{ c.nom }} - {{ c.email }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-secondary">🏷️ Titre de la facture *</label>
+            <input type="text" formControlName="titre" class="form-control shadow-sm"
+              placeholder="Ex : Facture de maintenance" />
+          </div>
+
+          <!-- 📋 Description -->
+          <div class="col-12">
+            <label class="form-label fw-semibold text-secondary">📝 Description</label>
+            <textarea formControlName="description" rows="2" class="form-control shadow-sm"
+              placeholder="Détails de la prestation..."></textarea>
+          </div>
+
+          <!-- 📅 Dates -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-secondary">📅 Date d’émission</label>
+            <input type="date" formControlName="dateEmission" class="form-control shadow-sm" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold text-secondary">📆 Date d’échéance</label>
+            <input type="date" formControlName="dateEcheance" class="form-control shadow-sm" />
+          </div>
+
+          <!-- 🔖 Référence / Devis / Paiement -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold text-secondary">🔖 Référence</label>
+            <input type="text" formControlName="reference" class="form-control shadow-sm" placeholder="REF-2025-001" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold text-secondary">📑 Numéro de devis</label>
+            <input type="text" formControlName="devisNumber" class="form-control shadow-sm" placeholder="DEV-0012" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold text-secondary">💳 Mode de paiement</label>
+            <select formControlName="paymentMode" class="form-select shadow-sm">
+              <option value="Virement bancaire">Virement bancaire</option>
+              <option value="Espèces">Espèces</option>
+              <option value="Chèque">Chèque</option>
+              <option value="Carte">Carte bancaire</option>
+            </select>
+          </div>
+
+          <!-- 🧾 CLIENT INFOS -->
+          <div class="col-12">
+            <h5 class="mt-4 text-primary fw-bold border-bottom pb-2">👤 Informations Client</h5>
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="nomClient" class="form-control shadow-sm" placeholder="Nom du client" />
+          </div>
+          <div class="col-md-6">
+            <input type="email" formControlName="emailClient" class="form-control shadow-sm"
+              placeholder="Email du client" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="telephoneClient" class="form-control shadow-sm"
+              placeholder="Téléphone" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="adresseClient" class="form-control shadow-sm"
+              placeholder="Adresse complète" />
+          </div>
+
+          <!-- 🏢 ENTREPRISE -->
+          <div class="col-12">
+            <h5 class="mt-4 text-primary fw-bold border-bottom pb-2">🏢 Informations Société</h5>
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="companyName" class="form-control shadow-sm"
+              placeholder="Nom de l'entreprise" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="companyContact" class="form-control shadow-sm"
+              placeholder="Contact entreprise" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="companyPhone" class="form-control shadow-sm"
+              placeholder="Téléphone société" />
+          </div>
+          <div class="col-md-6">
+            <input type="email" formControlName="companyEmail" class="form-control shadow-sm"
+              placeholder="Email société" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="companySiret" class="form-control shadow-sm" placeholder="SIRET" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="companyTvaNumber" class="form-control shadow-sm"
+              placeholder="Numéro TVA" />
+          </div>
+          <div class="col-md-12">
+            <input type="text" formControlName="companyAddress" class="form-control shadow-sm"
+              placeholder="Adresse complète société" />
+          </div>
+
+          <!-- 🧾 ARTICLES -->
+          <div class="col-12 mt-4">
+            <h5 class="text-primary fw-bold border-bottom pb-2">📦 Articles de la facture</h5>
+          </div>
+
+          <!-- 🏷️ En-têtes visuelles -->
+          <div class="row fw-semibold text-secondary border-bottom pb-1 mb-2">
+            <div class="col-md-2">Référence</div>
+            <div class="col-md-3">Libellé</div>
+            <div class="col-md-1 text-center">Qté</div>
+            <div class="col-md-2 text-center">Prix unitaire</div>
+            <div class="col-md-1 text-center">% Rem</div>
+            <div class="col-md-2 text-center">Total</div>
+            <div class="col-md-1 text-center">Action</div>
+          </div>
+
+          <div formArrayName="items">
+            <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="row g-3 align-items-center mb-2">
+              <!-- 🔖 Référence -->
+              <div class="col-md-2">
+                <input type="text" class="form-control shadow-sm" placeholder="Réf." formControlName="referenceCode" />
+              </div>
+
+              <!-- 🏷️ Libellé -->
+              <div class="col-md-3">
+                <input type="text" class="form-control shadow-sm" placeholder="Libellé" formControlName="label" />
+              </div>
+
+              <!-- 🔢 Quantité -->
+              <div class="col-md-1">
+                <input type="number" class="form-control shadow-sm" placeholder="Qté" formControlName="quantity" />
+              </div>
+
+              <!-- 💰 Prix unitaire -->
+              <div class="col-md-2">
+                <input type="number" class="form-control shadow-sm" placeholder="PU" formControlName="unitPrice" />
+              </div>
+
+              <!-- 🎯 Remise -->
+              <div class="col-md-1">
+                <input type="number" class="form-control shadow-sm" placeholder="% Rem" formControlName="discountRate" />
+              </div>
+
+              <!-- 📊 Total -->
+              <div class="col-md-2">
+                <input type="number" class="form-control shadow-sm bg-light" placeholder="Total" formControlName="lineTotal" readonly />
+              </div>
+
+              <!-- 🗑️ Action -->
+              <div class="col-md-1 text-center">
+                <button class="btn btn-danger btn-sm shadow-sm" type="button" (click)="removeItem(i)">🗑️</button>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <button type="button" class="btn btn-outline-primary btn-sm mt-2 shadow-sm" (click)="addItem()">
+                ➕ Ajouter un article
+              </button>
+            </div>
+          </div>
+
+          <!-- 💰 Totaux -->
+          <div class="col-md-3 mt-4">
+            <label class="form-label fw-semibold text-secondary">💰 Sous-total (HT)</label>
+            <input type="number" formControlName="subTotal" class="form-control shadow-sm" readonly />
+          </div>
+          <div class="col-md-3 mt-4">
+            <label class="form-label fw-semibold text-secondary">💸 TVA (%)</label>
+            <input type="number" formControlName="taxRate" class="form-control shadow-sm" />
+          </div>
+          <div class="col-md-3 mt-4">
+            <label class="form-label fw-semibold text-secondary">💵 Total TTC</label>
+            <input type="number" formControlName="total" class="form-control shadow-sm" readonly />
+          </div>
+          <div class="col-md-3 mt-4">
+            <label class="form-label fw-semibold text-secondary">💼 Montant dû</label>
+            <input type="number" formControlName="amountDue" class="form-control shadow-sm" readonly />
+          </div>
+
+          <!-- ✅ Enregistrer -->
+          <div class="col-12 text-end mt-4">
+            <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold shadow-sm"
+              [disabled]="invoiceForm.invalid || loading">
+              💾 Enregistrer la facture
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 📊 LISTE DES FACTURES -->
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 text-secondary fw-bold">📊 Liste des Factures</h5>
+      <select [(ngModel)]="filtreStatut" (change)="filter()" class="form-select w-auto shadow-sm">
+        <option value="">-- Filtrer par statut --</option>
+        <option value="BROUILLON">Brouillon</option>
+        <option value="EN_ATTENTE">En attente</option>
+        <option value="PAYÉE">Payée</option>
+        <option value="EN_RETARD">En retard</option>
+        <option value="ANNULÉE">Annulée</option>
+      </select>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-4">
+        <div *ngFor="let f of factures" class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="text-primary fw-bold">{{ f.title }}</h5>
+              <p class="mb-1"><strong>Montant :</strong> {{ f.total | currency:'XOF' }}</p>
+              <p class="mb-1"><strong>Client :</strong> {{ f.clientName }}</p>
+              <p class="mb-1"><strong>Date :</strong> {{ f.issueDate }}</p>
+              <p>
+                <strong>Statut :</strong>
+                <span [ngClass]="{
+                    'badge bg-warning text-dark': f.status === 'EN_ATTENTE',
+                    'badge bg-success': f.status === 'PAYÉE',
+                    'badge bg-danger': f.status === 'ANNULÉE',
+                    'badge bg-info text-dark': f.status === 'BROUILLON',
+                    'badge bg-secondary': f.status === 'EN_RETARD'
+                  }">
+                  {{ f.status }}
+                </span>
+              </p>
+            </div>
+            <div class="card-footer bg-light text-end">
+              <button (click)="telechargerFacture(f)" class="btn btn-outline-primary btn-sm shadow-sm">
+                ⬇️ Télécharger PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

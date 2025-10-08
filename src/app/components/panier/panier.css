@@ -1,0 +1,61 @@
+/* Conteneur principal */
+.container {
+  background: #ffffff;
+  padding: 300px ;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px yellow;
+  margin: 300px auto;
+}
+
+/* Titre */
+h2 {
+  font-weight: bold;
+  color: #de9f00;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tableau */
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #f30000;
+  color: #fff;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+/* Cellules */
+.table td {
+  vertical-align: middle;
+}
+
+/* Bouton Valider */
+.btn-success {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+  background-color: #28a745;
+  transform: scale(1.05);
+}
+
+/* Message panier vide */
+.alert-info {
+  font-size: 15px;
+  border-radius: 8px;
+  text-align: center;
+}

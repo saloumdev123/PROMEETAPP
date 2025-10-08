@@ -1,0 +1,67 @@
+.projet-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.projet-container {
+  width: 100%;
+  max-width: 1500px;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 150px;
+  box-shadow: #ffcc00 10px 10px 8px, #e9b723 10px 6px 20px;
+}
+
+
+
+/* Bordures colorées */
+.border-left-blue { border-left: 5px solid #004c99; }
+.border-right-yellow { border-right: 5px solid #ffcc00; }
+.border-left-yellow { border-left: 5px solid #ffcc00; }
+.border-right-blue { border-right: 5px solid #004c99; }
+
+/* Titre principal */
+.header-section h2 { color: #004c99; }
+
+/* Boutons */
+.btn-gradient {
+  background: linear-gradient(90deg, #004c99, #ffcc00);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-gradient:hover { transform: scale(1.03); }
+
+/* Table */
+.table thead {
+  background-color: #004c99;
+  color: white;
+}
+.projet-row {
+  border-left: 8px solid #004c99;
+  border-right: 8px solid #ffcc00;
+  border-bottom: 4px solid #ffcc00;
+  transition: background 0.3s ease;
+}
+.projet-row:hover {
+  background-color: #f8faff;
+}
+
+/* Animation ouverture/fermeture */
+.collapse-section {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s ease-in-out;
+}
+.collapse-section.show {
+  max-height: 1000px;
+}
+
+/* Effet chevron */
+.card-header {
+  user-select: none;
+}

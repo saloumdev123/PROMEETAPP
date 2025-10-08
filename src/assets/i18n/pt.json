@@ -93,6 +93,29 @@
   "Copyright": "© 2025 SenFibem França. Todos os direitos reservados.",
   "DeveloppePar": "Desenvolvido por SenFibem Tech"
 }
+,
+  "ArtisanPage": {
+    "Titre": "Lista de Artesãos",
+    "RechercheMotCle": "Pesquisar por palavra-chave:",
+    "PlaceholderMotCle": "Ex: Pedreiro, Encanador",
+    "RechercheLocalisation": "Filtrar por localização:",
+    "PlaceholderLocalisation": "Ex: Paris, Lyon, Marselha",
+    "BoutonRechercher": "🔎 Pesquisar",
+    "ChoisirDevise": "Escolher moeda",
+    "Secteur": "Setor",
+    "Localisation": "Localização",
+    "Disponibilite": "Disponibilidade",
+    "DureeMission": "Duração da missão",
+    "Devis": "Orçamento",
+    "RC": "Responsabilidade civil",
+    "DCTS": "Garantia decenal",
+    "AjouterPanier": "Adicionar ao carrinho",
+    "PaginationPrecedent": "⬅️ Anterior",
+    "PaginationSuivant": "Próximo ➡️",
+    "Page": "Página",
+    "Sur": "de"
+  }
+
 
 
 

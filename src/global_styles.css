@@ -93,3 +93,24 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Le contenu pousse le footer */
+.site-main {
+  flex: 1;
+}
+
+/* Footer collé en bas */
+.site-footer {
+  flex-shrink: 0;
+}

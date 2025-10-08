@@ -1,0 +1,17 @@
+.container {
+  max-width: 900px;
+}
+
+form {
+  background-color: #fff9e6;
+  border-radius: 12px;
+}
+
+button {
+  border-radius: 8px;
+}
+
+table {
+  border-radius: 10px;
+  overflow: hidden;
+}

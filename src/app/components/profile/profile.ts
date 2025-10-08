@@ -5,6 +5,7 @@ import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRole } from '../../enums/userRole';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,7 @@ user: User = {
   prenom: '',
   email: '',
   telephone: '',
-  userRole: 'PARTICULIER',
+  userRole: UserRole.PARTICULIER,
   metier: '',
   adresse: '',
   typeIdentification: 'SIREN',

@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <h3 class="text-center mb-4">🧰 Gestion des Fournitures</h3>
+
+  <!-- FORMULAIRE -->
+  <form [formGroup]="fournitureForm" (ngSubmit)="save()" class="card p-4 shadow-sm mb-4">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label>Désignation</label>
+        <input type="text" class="form-control" formControlName="designation" />
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label>Unité</label>
+        <input type="text" class="form-control" formControlName="unite" />
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label>Quantité</label>
+        <input type="number" class="form-control" formControlName="quantite" />
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label>Prix Unitaire (€)</label>
+        <input type="number" class="form-control" formControlName="prixUnitaire" />
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label>Type</label>
+        <select class="form-control" formControlName="type">
+          <option value="">-- Choisir --</option>
+          <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary me-2" [disabled]="fournitureForm.invalid">
+        {{ isEditing ? 'Modifier' : 'Ajouter' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Réinitialiser</button>
+    </div>
+  </form>
+
+  <!-- TABLEAU -->
+  <table class="table table-striped table-bordered shadow-sm">
+    <thead class="table-primary text-center">
+      <tr>
+        <th>Désignation</th>
+        <th>Unité</th>
+        <th>Quantité</th>
+        <th>Prix (€)</th>
+        <th>Total (€)</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of fournitures" class="align-middle text-center">
+        <td>{{ f.designation }}</td>
+        <td>{{ f.unite }}</td>
+        <td>{{ f.quantite }}</td>
+        <td>{{ f.prixUnitaire | number:'1.2-2' }}</td>
+        <td>{{ f.quantite * f.prixUnitaire | number:'1.2-2' }}</td>
+        <td>{{ f.type }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2" (click)="edit(f)">✏️</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(f.id)">🗑️</button>
+        </td>
+      </tr>
+      <tr *ngIf="fournitures.length === 0">
+        <td colspan="7" class="text-center text-muted">Aucune fourniture enregistrée</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

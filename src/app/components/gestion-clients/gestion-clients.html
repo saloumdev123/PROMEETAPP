@@ -1,0 +1,121 @@
+<div class="client-container mt-5">
+  <div class="card main-card shadow-lg p-4">
+    <h2 class="text-center text-primary fw-bold mb-4">
+      🧾 Gestion des Clients
+    </h2>
+
+    <!-- ✅ Formulaire d'ajout / modification -->
+    <form [formGroup]="clientForm" (ngSubmit)="saveClient()" class="card form-card p-4 shadow-sm mb-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label>Nom</label>
+          <input type="text" formControlName="nom" class="form-control" placeholder="Entrez le nom du client" />
+        </div>
+
+        <div class="col-md-6">
+          <label>Adresse</label>
+          <input type="text" formControlName="adresse" class="form-control" placeholder="Adresse du client" />
+        </div>
+
+        <div class="col-md-6">
+          <label>Code postal / Ville</label>
+          <input type="text" formControlName="codePostalVille" class="form-control" placeholder="75000 Paris" />
+        </div>
+
+        <div class="col-md-6">
+          <label>Téléphone</label>
+          <input type="text" formControlName="telephone" class="form-control" placeholder="+221 77 123 45 67" />
+        </div>
+
+        <div class="col-md-6">
+          <label>Email</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="exemple@mail.com" />
+        </div>
+
+        <div class="col-md-6">
+          <label>Département</label>
+          <input type="text" formControlName="departement" class="form-control" placeholder="Informatique / Vente" />
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-primary me-3">
+          <i class="bi bi-save me-1"></i> {{ isEditing ? 'Mettre à jour' : 'Ajouter' }}
+        </button>
+        <button type="button" class="btn btn-warning" (click)="resetForm()">
+          <i class="bi bi-x-circle me-1"></i> Annuler
+        </button>
+      </div>
+    </form>
+
+    <!-- ✅ Tableau des clients -->
+    <div class="card table-card shadow-sm">
+      <div
+        class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        style="cursor: pointer;"
+        (click)="toggleListe()"
+      >
+        <h5 class="mb-0 fw-bold">
+          📋 Liste des clients enregistrés
+        </h5>
+        <i
+          [ngClass]="{
+            'bi bi-chevron-up': listeVisible,
+            'bi bi-chevron-down': !listeVisible
+          }"
+          class="fs-4 chevron-icon"
+        ></i>
+      </div>
+
+      <!-- 🔽 Section rétractable -->
+      <div class="collapse-section" [class.show]="listeVisible">
+        <div class="card-body">
+          <table class="table table-hover align-middle text-center">
+            <thead class="table-header">
+              <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Département</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let client of clients; let i = index"
+                class="fade-in border-left-blue border-right-yellow"
+              >
+                <td>{{ i + 1 }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.telephone }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.departement }}</td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-outline-primary me-2"
+                    (click)="editClient(client)"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteClient(client.id!)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p *ngIf="clients.length === 0" class="text-center text-muted mt-3">
+            Aucun client enregistré.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

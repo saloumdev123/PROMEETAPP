@@ -8,8 +8,8 @@
         </a>
       </li>
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" (click)="selectSection('professionnel')">
-          <i class="bi bi-person-badge me-2"></i> Professionnel
+        <a class="nav-link" routerLink="/dashboard-partenaires">
+          <i class="bi bi-person-badge me-2"></i> Partenaires
         </a>
       </li>
       <li class="nav-item" *ngIf="currentUser">
@@ -27,6 +27,12 @@
           <i class="bi bi-diagram-3 me-2"></i> Chef de projet
         </a>
       </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link" (click)="selectSection('candidats')">
+          <i class="bi bi-people me-2"></i> Candidats
+        </a>
+      </li>
+
     </ul>
   </aside>
 
@@ -38,10 +44,7 @@
       <p class="text-muted">Toutes les informations sur Fibem.</p>
       <div class="row g-4 mt-3">
         <div class="col-md-6 col-lg-4" *ngFor="let card of fibemCards">
-          <div 
-            class="card dashboard-card h-100 text-center border-warning clickable-card"
-            [routerLink]="card.link"
-          >
+          <div class="card dashboard-card h-100 text-center border-warning clickable-card" [routerLink]="card.link">
             <div class="card-body">
               <i [class]="card.icon + ' fs-1 mb-3 text-warning'"></i>
               <h5 class="card-title fw-bold">{{ card.title }}</h5>
@@ -52,6 +55,20 @@
       </div>
     </div>
 
+<!-- Section Candidats -->
+<div *ngIf="selectedSection === 'candidats' && isAdmin">
+  <h2>Liste des Candidats</h2>
+  <ul class="list-group mt-3">
+    <li *ngFor="let c of candidats" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{ c.prenom }} {{ c.nom }}</strong> - {{ c.email }}
+        <br>
+        📞 {{ c.telephone }}
+      </div>
+      <span class="badge bg-info">{{ c.abonnement?.type }}</span>
+    </li>
+  </ul>
+</div>
 
     <!-- Autres sections -->
     <div *ngIf="selectedSection === 'professionnel'">

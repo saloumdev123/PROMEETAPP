@@ -1,0 +1,114 @@
+/* ===== Layout global pour sticky footer ===== */
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Laisse la place du header (ajuste la valeur à la hauteur réelle du header) */
+  padding-top: 70px;  
+}
+
+/* Main pousse le footer */
+main.site-main {
+  flex: 1 0 auto;
+}
+.site-main {
+  flex: 1 0 auto;
+  margin-top: 150px; /* adapte la valeur à la hauteur réelle de ton header */
+}
+
+/* ===== Container candidat ===== */
+.candidat-container {
+  max-width: 1000px;
+  margin: 40px auto; /* descend un peu mais pas trop */
+  background: #f9f9fb;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+
+/* ===== Formulaire & carte ===== */
+form.card {
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Labels & inputs */
+label { font-weight: 500; margin-bottom: 5px; color: #34495e; }
+
+input.form-control {
+  border-radius: 8px;
+  transition: border-color .2s, box-shadow .2s;
+}
+input.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.18);
+}
+
+/* Boutons */
+button.btn-primary {
+  background: linear-gradient(45deg,#007bff,#0056b3);
+  border: none;
+  border-radius: 8px;
+}
+button.btn-primary:hover { transform: translateY(-2px); }
+
+/* Table stylée */
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.table th { background: #007bff; color: #fff; font-weight: 500; }
+.table td { vertical-align: middle; }
+
+/* Ajustements responsive */
+@media (max-width: 767px) {
+  .candidat-container { margin: 80px 12px 24px; padding: 14px; }
+}
+
+/* ===== Footer simple & visible en bas ===== */
+.site-footer {
+  background: #f8f9fa;
+  padding: 14px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  flex-shrink: 0; /* ne se contracte pas */
+}
+.candidat-container {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.cv-block {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h4, h5 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+button.btn-outline-primary {
+  border-radius: 20px;
+}
+
+button.btn-danger {
+  float: right;
+}
+select.form-control {
+  appearance: auto;
+  cursor: pointer;
+}

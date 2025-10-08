@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="dashboard-container"> 
   <aside class="dashboard-sidebar">
     <h3 class="mb-4">Tableau de bord</h3>
     <ul class="nav flex-column">
@@ -7,23 +7,33 @@
           <i class="bi bi-building me-2"></i> Fibem (Entreprise)
         </a>
       </li>
+
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" (click)="selectSection('professionnel')">
-          <i class="bi bi-person-badge me-2"></i> Professionnel
+        <a class="nav-link" routerLink="/dashboard-partenaires">
+          <i class="bi bi-person-badge me-2"></i> Partenaire
         </a>
       </li>
+
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" (click)="selectSection('particulier')">
+        <a class="nav-link" routerLink="/devise">
           <i class="bi bi-house-door me-2"></i> Particulier
         </a>
       </li>
+
+      <li class="nav-item" *ngIf="currentUser?.userRole === 'CANDIDAT'">
+        <a class="nav-link" routerLink="/candidats">
+          <i class="bi bi-person me-2"></i> Candidat
+        </a>
+      </li>
+
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" (click)="selectSection('developpeur')">
+        <a class="nav-link" routerLink="/developpeur-dashboard">
           <i class="bi bi-code me-2"></i> Développeur
         </a>
       </li>
+
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" (click)="selectSection('chefProjet')">
+        <a class="nav-link" routerLink="/chef-de-projet-dashboard">
           <i class="bi bi-diagram-3 me-2"></i> Chef de projet
         </a>
       </li>
@@ -32,20 +42,37 @@
 
   <!-- Contenu principal -->
   <main class="dashboard-main">
-    <!-- Section Fibem -->
+
+    <!-- ✅ Section Fibem -->
     <div *ngIf="selectedSection === 'fibem'">
       <h2>Fibem - Présentation de l'entreprise</h2>
       <p class="text-muted">Toutes les informations sur Fibem.</p>
+
       <div class="row g-4 mt-3">
+        <!-- Cartes Fibem -->
         <div class="col-md-6 col-lg-4" *ngFor="let card of fibemCards">
-          <div 
-            class="card dashboard-card h-100 text-center border-warning clickable-card"
-            [routerLink]="card.link"
-          >
+          <div class="card dashboard-card h-100 text-center border-warning clickable-card" [routerLink]="card.link">
             <div class="card-body">
               <i [class]="card.icon + ' fs-1 mb-3 text-warning'"></i>
               <h5 class="card-title fw-bold">{{ card.title }}</h5>
               <p class="card-text text-muted">{{ card.text }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ Nouvelle carte Gestion des Clients visible pour ADMIN, DEVELOPPEUR, CHEF_PROJET -->
+        <div
+          class="col-md-6 col-lg-4"
+          *ngIf="isAdmin || isDeveloppeur || isChefProjet"
+        >
+          <div
+            class="card dashboard-card h-100 text-center border-primary clickable-card"
+            (click)="selectSection('client')"
+          >
+            <div class="card-body">
+              <i class="bi bi-people-fill fs-1 mb-3 text-primary"></i>
+              <h5 class="card-title fw-bold">Gestion des Clients</h5>
+              <p class="card-text text-muted">Accédez à la liste complète des clients</p>
             </div>
           </div>
         </div>
@@ -54,14 +81,6 @@
 
 
     <!-- Autres sections -->
-    <div *ngIf="selectedSection === 'professionnel'">
-      <h2>Professionnel</h2>
-    </div>
-
-    <div *ngIf="selectedSection === 'particulier'">
-      <h2>Particulier</h2>
-    </div>
-
     <div *ngIf="selectedSection === 'developpeur'">
       <h2>Développeur</h2>
     </div>
@@ -86,5 +105,6 @@
         </div>
       </div>
     </div>
+
   </main>
 </div>

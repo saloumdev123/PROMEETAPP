@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { routes } from './app/app.routes';
 import { Navigation } from './app/components/navigation/navigation';
 import { Footer } from './app/components/footer/footer';
-
+import { App } from './app';
 import {
   provideTranslateService,
   provideTranslateLoader,
@@ -33,19 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader();
 }
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, Navigation, Footer],
-  template: `
-    <app-navigation></app-navigation>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
-  `
-})
-export class App {}
-
 bootstrapApplication(App, {
+  
   providers: [
     provideHttpClient(),
     provideRouter(routes),

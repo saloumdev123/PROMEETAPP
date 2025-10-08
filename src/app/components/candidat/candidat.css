@@ -1,0 +1,77 @@
+.candidat-space {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin-top: 100px;
+}
+
+.candidat-space h2 {
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Grille */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Card */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* Icône */
+.card .icon {
+  font-size: 40px;
+  color: #3498db;
+  margin-bottom: 15px;
+}
+
+/* Titre */
+.card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #2c3e50;
+}
+
+/* Texte */
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Bouton */
+.card .btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #f31313, #df9503);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.card .btn:hover {
+  background: linear-gradient(135deg, #2980b9, #1f6391);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

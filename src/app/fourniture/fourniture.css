@@ -1,0 +1,15 @@
+.container {
+  max-width: 1000px;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+button {
+  border-radius: 8px;
+}

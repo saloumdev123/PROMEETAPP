@@ -1,0 +1,56 @@
+
+.card {
+  max-width: 700px;   /* largeur de la card */
+  width: 100%;
+  margin: 100px auto;     /* centrer horizontalement */
+  border-radius: 12px;
+  box-shadow: 10px 15px 20px rgb(209, 161, 2);
+   background-color: rgba(255, 255, 255, 0.563) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+}
+
+/* Espacement interne */
+.card-body {
+  padding: 2rem;
+}
+
+/* Champs du formulaire plus grands */
+.form-control, 
+.form-select {
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+/* Label plus visible */
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+/* Bouton stylisé */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #eda304, #0d369e);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(45deg, #0056b3, #009acd);
+  transform: scale(1.02);
+}
+form {
+  background-color: rgba(108, 103, 103, 0.2); /* blanc transparent */
+  backdrop-filter: blur(8px); /* effet verre dépoli */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

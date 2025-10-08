@@ -87,6 +87,29 @@
   "Copyright": "© 2025 SenFibem フランス。全著作権所有。",
   "DeveloppePar": "SenFibem Tech により開発"
 }
+,
+
+  "ArtisanPage": {
+    "Titre": "職人リスト",
+    "RechercheMotCle": "キーワードで検索：",
+    "PlaceholderMotCle": "例: 左官、配管工",
+    "RechercheLocalisation": "場所で絞り込み：",
+    "PlaceholderLocalisation": "例: パリ、リヨン、マルセイユ",
+    "BoutonRechercher": "🔎 検索",
+    "ChoisirDevise": "通貨を選択",
+    "Secteur": "業種",
+    "Localisation": "所在地",
+    "Disponibilite": "利用可能性",
+    "DureeMission": "作業期間",
+    "Devis": "見積もり",
+    "RC": "賠償責任保険",
+    "DCTS": "10年保証",
+    "AjouterPanier": "カートに追加",
+    "PaginationPrecedent": "⬅️ 前へ",
+    "PaginationSuivant": "次へ ➡️",
+    "Page": "ページ",
+    "Sur": "／"
+  }
 
 
 }

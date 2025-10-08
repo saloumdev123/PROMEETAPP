@@ -89,7 +89,28 @@
 
   "Copyright": "© 2025 SenFibem 法国。版权所有。",
   "DeveloppePar": "由 SenFibem Tech 开发"
-}
+},
+ "ArtisanPage": {
+    "Titre": "工匠列表",
+    "RechercheMotCle": "按关键词搜索：",
+    "PlaceholderMotCle": "例如：泥瓦匠、水管工",
+    "RechercheLocalisation": "按位置筛选：",
+    "PlaceholderLocalisation": "例如：巴黎、里昂、马赛",
+    "BoutonRechercher": "🔎 搜索",
+    "ChoisirDevise": "选择货币",
+    "Secteur": "行业",
+    "Localisation": "位置",
+    "Disponibilite": "可用性",
+    "DureeMission": "任务时长",
+    "Devis": "报价",
+    "RC": "责任险",
+    "DCTS": "十年质保",
+    "AjouterPanier": "加入购物车",
+    "PaginationPrecedent": "⬅️ 上一页",
+    "PaginationSuivant": "下一页 ➡️",
+    "Page": "第",
+    "Sur": "页，共"
+  }
 
 
 }

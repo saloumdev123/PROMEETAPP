@@ -1,0 +1,225 @@
+<main class="site-main">
+  <div class="container candidat-container">
+    <h2 class="mb-3">Mon Profil</h2>
+
+    <!-- Formulaire candidat -->
+    <form [formGroup]="candidatForm" (ngSubmit)="saveCandidat()" class="card p-4 shadow-sm mb-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Prénom</label>
+          <input type="text" class="form-control" formControlName="prenom" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Nom</label>
+          <input type="text" class="form-control" formControlName="nom" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Téléphone</label>
+          <input type="text" class="form-control" formControlName="telephone" />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Adresse</label>
+        <input type="text" class="form-control" formControlName="adresse" />
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Date de Naissance</label>
+          <input type="date" class="form-control" formControlName="dateNaissance" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Métier</label>
+          <input type="text" class="form-control" formControlName="metier" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Salaire souhaité (XOF)</label>
+          <input type="number" class="form-control" formControlName="salaire" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Mobilité géographique</label>
+          <input type="text" class="form-control" formControlName="mobilite"
+            placeholder="Ex: Nationale, Internationale, Locale" />
+        </div>
+      </div>
+      <div class="row">
+        <!-- Âge -->
+        <div class="col-md-6 mb-3">
+          <label>Âge</label>
+          <input type="number" class="form-control" formControlName="age" placeholder="Ex: 28" min="16" max="80" />
+        </div>
+
+        <!-- Type de permis -->
+        <div class="col-md-6 mb-3">
+          <label>Type de permis</label>
+          <select class="form-control" formControlName="permis">
+            <option value="" disabled selected>-- Sélectionnez un type --</option>
+            <option value="A">Permis A (moto)</option>
+            <option value="B">Permis B (voiture)</option>
+            <option value="C">Permis C (poids lourd)</option>
+            <option value="D">Permis D (transport de personnes)</option>
+            <option value="E">Permis E (remorque)</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+      </div>
+      <!-- Upload CV -->
+      <div class="mb-3">
+        <label for="cv">CV</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event, 'cv')" />
+      </div>
+
+      <!-- Upload Lettre de Motivation -->
+      <div class="mb-3">
+        <label for="lm">Lettre de motivation</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event, 'lm')" />
+      </div>
+
+      <!-- Actions -->
+      <div class="text-end">
+        <button class="btn btn-primary me-2" type="submit">
+          {{ isEditing ? 'Mettre à jour' : 'Créer' }}
+        </button>
+        <button class="btn btn-warning" type="button" (click)="resetForm()">Réinitialiser</button>
+      </div>
+    </form>
+
+    <!-- Boutons ouvrir formulaires -->
+    <div class="text-center my-4">
+      <button class="btn btn-warning me-3" type="button" (click)="toggleCVForm()">
+        ➕ Créer mon CV
+      </button>
+      <button class="btn btn-info" type="button" (click)="toggleLMForm()">
+        📝 Ajouter une Lettre de Motivation
+      </button>
+    </div>
+
+    <!-- Formulaire CV -->
+    <div *ngIf="showCVForm" class="card p-4 shadow-sm mb-4">
+      <h4 class="mb-3">Mon CV</h4>
+
+      <!-- Photo -->
+      <div class="mb-3">
+        <label>Photo</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event, 'photo')" />
+      </div>
+
+      <!-- Résumé -->
+      <div class="mb-3">
+        <label>Résumé</label>
+        <div class="input-group">
+          <textarea class="form-control" [(ngModel)]="resume" name="resume"></textarea>
+          <button type="button" class="btn btn-outline-primary" (click)="toggleRecording('resume')">
+            <i class="bi" [ngClass]="isRecording ? 'bi-mic-mute-fill text-danger' : 'bi-mic-fill'"></i>
+          </button>
+        </div>
+        <small *ngIf="isRecording" class="text-danger">🎤 Enregistrement en cours...</small>
+      </div>
+
+
+      <!-- Expériences -->
+      <h5>Expériences</h5>
+      <div *ngFor="let exp of experiences; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Poste" [(ngModel)]="exp.poste" class="form-control mb-2">
+        <input type="text" placeholder="Entreprise" [(ngModel)]="exp.entreprise" class="form-control mb-2">
+        <input type="date" [(ngModel)]="exp.dateDebut" class="form-control mb-2">
+        <input type="date" [(ngModel)]="exp.dateFin" class="form-control mb-2">
+        <textarea placeholder="Description" [(ngModel)]="exp.description" class="form-control mb-2"></textarea>
+        <button class="btn btn-sm btn-danger" (click)="removeExperience(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addExperience()">+ Ajouter expérience</button>
+
+      <!-- Langues -->
+      <h5 class="mt-3">Langues</h5>
+      <div *ngFor="let lang of langues; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Langue" [(ngModel)]="lang.nom" class="form-control mb-2">
+        <select [(ngModel)]="lang.niveau" class="form-control mb-2">
+          <option>Débutant</option>
+          <option>Intermédiaire</option>
+          <option>Avancé</option>
+        </select>
+        <button class="btn btn-sm btn-danger" (click)="removeLangue(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addLangue()">+ Ajouter langue</button>
+
+      <!-- Éducation -->
+      <h5 class="mt-3">Éducation</h5>
+      <div *ngFor="let edu of educations; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Diplôme" [(ngModel)]="edu.diplome" class="form-control mb-2">
+        <input type="text" placeholder="Institution" [(ngModel)]="edu.institution" class="form-control mb-2">
+        <input type="date" [(ngModel)]="edu.dateDebut" class="form-control mb-2">
+        <input type="date" [(ngModel)]="edu.dateFin" class="form-control mb-2">
+        <button class="btn btn-sm btn-danger" (click)="removeEducation(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addEducation()">+ Ajouter éducation</button>
+
+      <!-- Certifications -->
+      <h5 class="mt-3">Certifications</h5>
+      <div *ngFor="let cert of certifications; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Titre" [(ngModel)]="cert.titre" class="form-control mb-2">
+        <input type="text" placeholder="Organisme" [(ngModel)]="cert.organisme" class="form-control mb-2">
+        <input type="date" [(ngModel)]="cert.dateObtention" class="form-control mb-2">
+        <button class="btn btn-sm btn-danger" (click)="removeCertification(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addCertification()">+ Ajouter certification</button>
+      <!-- Compétences -->
+      <h5 class="mt-3">Compétences</h5>
+      <div *ngFor="let comp of competences; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Compétence" [(ngModel)]="competences[i]" class="form-control mb-2">
+        <button class="btn btn-sm btn-danger" (click)="removeCompetence(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addCompetence()">+ Ajouter compétence</button>
+
+      <!-- Centres d’intérêt -->
+      <h5 class="mt-3">Centres d’intérêt</h5>
+      <div *ngFor="let ci of centresInteret; let i=index" class="border rounded p-3 mb-2 bg-light cv-block">
+        <input type="text" placeholder="Centre d’intérêt" [(ngModel)]="centresInteret[i]" class="form-control mb-2">
+        <button class="btn btn-sm btn-danger" (click)="removeCentreInteret(i)">❌ Supprimer</button>
+      </div>
+      <button class="btn btn-outline-primary mb-3" (click)="addCentreInteret()">+ Ajouter centre d’intérêt</button>
+
+
+      <!-- Bouton soumettre CV -->
+      <div class="mt-4 text-end">
+        <button class="btn btn-warning" type="button" (click)="submitCV()">✅ Soumettre le CV</button>
+        <button class="btn btn-primary" type="button" (click)="downloadCV()">⬇️ Télécharger le CV</button>
+      </div>
+    </div>
+
+    <!-- Formulaire Lettre de Motivation -->
+    <!-- Formulaire Lettre de Motivation -->
+    <div *ngIf="showLMForm" class="card p-4 shadow-sm mb-4">
+      <h4 class="mb-3">Ma Lettre de Motivation</h4>
+
+      <div class="mb-3">
+        <label>Objet</label>
+        <input type="text" class="form-control" [(ngModel)]="lettreMotivation.objet" name="objet" />
+      </div>
+
+      <div class="mb-3">
+        <label>Contenu</label>
+        <div class="input-group">
+          <textarea rows="6" class="form-control" [(ngModel)]="lettreMotivation.contenu" name="contenu"></textarea>
+          <button type="button" class="btn btn-outline-primary" (click)="toggleRecording('lm')">
+            <i class="bi" [ngClass]="isRecording ? 'bi-mic-mute-fill text-danger' : 'bi-mic-fill'"></i>
+          </button>
+        </div>
+        <small *ngIf="isRecording" class="text-danger">🎤 Enregistrement en cours...</small>
+      </div>
+
+      <div class="mt-4 text-end">
+        <button class="btn btn-warning" type="button" (click)="submitLM()">✅ Soumettre la Lettre</button>
+      </div>
+    </div>
+  </div>
+</main>

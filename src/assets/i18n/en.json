@@ -88,6 +88,27 @@
 
   "Copyright": "© 2025 SenFibem France. All rights reserved.",
   "DeveloppePar": "Developed by SenFibem Tech"
-}
+},
+"ArtisanPage": {
+    "Titre": "List of Artisans",
+    "RechercheMotCle": "Search by keyword:",
+    "PlaceholderMotCle": "Ex: Mason, Plumber",
+    "RechercheLocalisation": "Filter by location:",
+    "PlaceholderLocalisation": "Ex: Paris, Lyon, Marseille",
+    "BoutonRechercher": "🔎 Search",
+    "ChoisirDevise": "Choose a currency",
+    "Secteur": "Sector",
+    "Localisation": "Location",
+    "Disponibilite": "Availability",
+    "DureeMission": "Mission duration",
+    "Devis": "Quote",
+    "RC": "RC",
+    "DCTS": "DCTS",
+    "AjouterPanier": "Add to cart",
+    "PaginationPrecedent": "⬅️ Previous",
+    "PaginationSuivant": "Next ➡️",
+    "Page": "Page",
+    "Sur": "of"
+  }
 
 }

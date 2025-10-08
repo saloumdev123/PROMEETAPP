@@ -1,0 +1,46 @@
+/* Centrer tout le contenu dans la page */
+.container {
+  min-height: 100vh; /* prend toute la hauteur de la fenêtre */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centre verticalement */
+  align-items: center; /* centre horizontalement */
+  text-align: center;
+}
+
+/* Ligne contenant les cartes */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* permet le retour à la ligne sur petits écrans */
+  gap: 2rem; /* espace entre les cartes */
+}
+
+/* Cartes stylisées */
+.card {
+  width: 300px; /* taille uniforme */
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Icônes centrées et colorées */
+.card i {
+  font-size: 3rem;
+}
+
+/* Titre et texte ajustés */
+.card-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: #6c757d;
+}

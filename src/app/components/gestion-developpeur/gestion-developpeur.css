@@ -1,0 +1,63 @@
+.dev-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 150px;
+}
+
+.header-section h2 {
+  font-size:1.8rem;
+  color: #004c99;
+}
+
+.search-box {
+  border: 2px solid #004c99;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.card-header {
+  font-size: 1.1rem;
+}
+
+.form-card {
+  border-top: 4px solid #004c99;
+}
+
+.btn-primary {
+  background-color: #004c99;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #003366;
+}
+
+.btn-success {
+  background-color: #ffcc00;
+  border: none;
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-success:hover {
+  background-color: #e6b800;
+}
+
+.table thead {
+  background-color: #004c99;
+  color: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+}
+
+.alert {
+  border-radius: 10px;
+  font-weight: 500;
+}

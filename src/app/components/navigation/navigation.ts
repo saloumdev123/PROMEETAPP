@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { TranslationService } from '../../services/translation-service';
 import { TranslateModule } from '@ngx-translate/core';
+import { PanierService } from '../../services/panier.service';
 
 declare var bootstrap: any;
 
@@ -17,6 +18,8 @@ declare var bootstrap: any;
 })
 export class Navigation implements OnInit {
 
+  panierCount: number = 0;
+
   currentUser: User | null = null;
   //selectedFlag: string = '🌐'; 
 
@@ -24,7 +27,8 @@ export class Navigation implements OnInit {
     private authService: AuthService,
     private router: Router,
     private viewportScroller: ViewportScroller,
-    private translationService: TranslationService)
+    private translationService: TranslationService,
+  private panierService: PanierService  )
 
   {}
 
@@ -32,6 +36,10 @@ export class Navigation implements OnInit {
     this.authService.currentUser$.subscribe(
       user => this.currentUser = user
     );
+
+   this.panierService.panierCount$.subscribe(count => {
+      this.panierCount = count;
+    });
   }
 
    get t() {

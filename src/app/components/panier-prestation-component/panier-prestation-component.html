@@ -1,0 +1,17 @@
+<div class="panier">
+  <h2>Mon Panier Prestations</h2>
+
+  <div *ngIf="panier.length === 0">
+    <p>Votre panier est vide.</p>
+  </div>
+
+  <div *ngFor="let item of panier" class="card">
+    <h3>{{ item.artisan.nom }} - {{ item.prestation }}</h3>
+    <p><b>Devis :</b> {{ item.devis }} €</p>
+  </div>
+
+  <button *ngIf="panier.length > 0" (click)="valider()" class="btn btn-success">
+    Valider la commande
+  </button>
+</div>
+

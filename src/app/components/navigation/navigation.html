@@ -76,11 +76,13 @@
                   style="width:30px;" class="flag-icon me-2"> Néerlandais
               </a></li>
             <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('zh')">
-                <img src="https://avatars.mds.yandex.net/i?id=749b4646233e98dab5f57ac578deb0e82f23432f-3986582-images-thumbs&n=13" style="width:30px;"
-                  class="flag-icon me-2"> Chinois
+                <img
+                  src="https://avatars.mds.yandex.net/i?id=749b4646233e98dab5f57ac578deb0e82f23432f-3986582-images-thumbs&n=13"
+                  style="width:30px;" class="flag-icon me-2"> Chinois
               </a></li>
             <li><a class="dropdown-item d-flex align-items-center" (click)="changerLangue('ar')">
-                <img src="https://avatars.mds.yandex.net/i?id=f58589df4e5590a0558a6b4889105b73eab904f0-5241497-images-thumbs&n=13"
+                <img
+                  src="https://avatars.mds.yandex.net/i?id=f58589df4e5590a0558a6b4889105b73eab904f0-5241497-images-thumbs&n=13"
                   style="width:30px;" class="flag-icon me-2"> Arabe
               </a></li>
           </ul>
@@ -122,6 +124,9 @@
             <li><a class="dropdown-item" routerLink="/partenaires">{{ 'Partenaires' | translate }}</a></li>
             <li><a class="dropdown-item" routerLink="/fournisseurs">{{ 'Fournisseurs' | translate}}</a></li>
             <li><a class="dropdown-item" routerLink="/clients">{{ 'Pariculier' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/devise-de-0031">{{ 'DEVISE-DE-0031' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/devise-chart">{{ 'DEVISE-CHART' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/factures">{{ 'FACTURE' | translate }}</a></li>
           </ul>
         </li>
 
@@ -133,9 +138,12 @@
             {{ 'Emploie' | translate }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="emploiDropdown">
-            <li><a class="dropdown-item" routerLink="/candidatures" routerLinkActive="active">{{ 'Espace candidat' | translate }}</a></li>
-            <li><a class="dropdown-item" routerLink="/annonces-recrutement" routerLinkActive="active">{{ 'Annonce Recrutement' | translate}}</a></li>
-            <li><a class="dropdown-item" routerLink="/annonces-stage" routerLinkActive="active">{{ 'Dépôt & Annonces Stage' | translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/candidat" routerLinkActive="active">{{ 'Espace candidat' |
+                translate }}</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-recrutement" routerLinkActive="active">{{ 'Annonce
+                Recrutement' | translate}}</a></li>
+            <li><a class="dropdown-item" routerLink="/annonces-stage" routerLinkActive="active">{{ 'Dépôt & Annonces
+                Stage' | translate }}</a></li>
           </ul>
         </li>
 
@@ -145,11 +153,16 @@
             translate }}</a></li>
         <li class="nav-item d-flex align-items-center">
           <div class="vertical-line mx-2"></div>
-          <a class="nav-link d-flex align-items-center" routerLink="/panier">
+          <a class="nav-link d-flex align-items-center position-relative" routerLink="/panier-detail">
             <i class="bi bi-cart-fill fs-3" style="color:#FFD700;"></i>
+            <!-- 🔥 badge dynamique -->
+            <span *ngIf="panierCount > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ panierCount }}
+            </span>
           </a>
-
         </li>
+
         <div class="vertical-line mx-2"></div>
         <li class="nav-item" *ngIf="currentUser">
           <a class="nav-link" routerLink="/dashboard">

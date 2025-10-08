@@ -1,0 +1,172 @@
+<div class="projet-wrapper py-5">
+  <div class="projet-container shadow-lg bg-white p-4 rounded-4">
+
+    <!-- 🔹 En-tête principale -->
+    <div class="header-section mb-4 d-flex justify-content-between align-items-center border-bottom pb-3">
+      <div>
+        <h2 class="text-primary fw-bold mb-1">
+          <i class="bi bi-diagram-3"></i> Gestion des Projets
+        </h2>
+        <p class="text-muted mb-0">Créez, suivez et gérez vos projets et leurs développeurs.</p>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="🔍 Rechercher un projet..."
+          class="form-control search-box me-2"
+        />
+        <button class="btn btn-primary" (click)="search()">Rechercher</button>
+      </div>
+    </div>
+
+    <!-- ✅ Messages de statut -->
+    <div *ngIf="successMessage" class="alert alert-success text-center shadow-sm">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger text-center shadow-sm">{{ errorMessage }}</div>
+
+    <!-- 🧩 1️⃣ Carte : Formulaire -->
+    <div class="card border-0 shadow-sm mb-5 rounded-4 border-left-blue border-right-yellow">
+      <div class="card-header bg-gradient-primary text-white fw-bold rounded-top-4">
+        {{ editing ? '✏️ Modifier le projet' : '➕ Créer un projet' }}
+      </div>
+
+      <div class="card-body p-4">
+        <form [formGroup]="projetForm" (ngSubmit)="submitForm()">
+          <div class="row g-3">
+
+            <!-- Informations projet -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Nom du projet <span class="text-danger">*</span></label>
+              <input formControlName="nom" type="text" class="form-control" placeholder="Nom du projet" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Client</label>
+              <input formControlName="client" type="text" class="form-control" placeholder="Nom du client" />
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label fw-semibold">Description</label>
+              <textarea formControlName="description" rows="3" class="form-control"
+                placeholder="Détails du projet"></textarea>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Date début</label>
+              <input formControlName="dateDebut" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Date fin</label>
+              <input formControlName="dateFin" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Statut</label>
+              <select formControlName="statut" class="form-select">
+                <option value="EN_COURS">En cours</option>
+                <option value="TERMINE">Terminé</option>
+                <option value="SUSPENDU">Suspendu</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Budget (XOF)</label>
+              <input formControlName="budget" type="number" class="form-control" placeholder="0.00" />
+            </div>
+
+            <!-- Informations développeur -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Nom du développeur</label>
+              <input type="text" formControlName="developpeurNom" class="form-control" placeholder="Nom du développeur" />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Email du développeur</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="exemple@email.com" />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Téléphone du développeur</label>
+              <input type="text" formControlName="telephone" class="form-control" placeholder="77 123 45 67" />
+            </div>
+          </div>
+
+          <!-- Boutons -->
+          <div class="mt-4 text-end">
+            <button type="submit" class="btn btn-gradient me-2">
+              {{ editing ? '💾 Mettre à jour' : '➕ Ajouter' }}
+            </button>
+            <button type="button" (click)="resetForm()" class="btn btn-outline-secondary">🔄 Réinitialiser</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 🧩 2️⃣ Carte : Liste des projets (rétractable) -->
+    <div class="card border-0 shadow-sm rounded-4 border-left-yellow border-right-blue">
+      <div class="card-header bg-warning text-dark fw-bold rounded-top-4 d-flex justify-content-between align-items-center"
+           (click)="toggleListe()"
+           style="cursor: pointer;">
+        <span>📋 Liste des Projets</span>
+        <i [ngClass]="{'bi bi-chevron-up': listeVisible, 'bi bi-chevron-down': !listeVisible}" class="fs-5"></i>
+      </div>
+
+      <div class="card-body p-0 collapse-section" [class.show]="listeVisible">
+        <table class="table table-hover align-middle mb-0 text-center">
+          <thead class="table-primary">
+            <tr>
+              <th>Nom</th>
+              <th>Client</th>
+              <th>Statut</th>
+              <th>Budget</th>
+              <th>Dates</th>
+              <th>Développeur</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let projet of projets" class="projet-row border-left-blue border-right-yellow">
+              <td>{{ projet.nom }}</td>
+              <td>{{ projet.client }}</td>
+              <td>
+                <span [ngClass]="{
+                  'badge bg-info text-dark': projet.statut === 'EN_COURS',
+                  'badge bg-success': projet.statut === 'TERMINE',
+                  'badge bg-danger': projet.statut === 'SUSPENDU'
+                }">
+                  {{ projet.statut }}
+                </span>
+              </td>
+              <td>{{ projet.budget | number : '1.0-2' }} XOF</td>
+              <td>
+                <small>
+                  <b>Début:</b> {{ projet.dateDebut | date : 'dd/MM/yyyy' }}<br />
+                  <b>Fin:</b> {{ projet.dateFin | date : 'dd/MM/yyyy' }}
+                </small>
+              </td>
+              <td>{{ projet.developpeurNom || '—' }}</td>
+              <td>{{ projet.email || '—' }}</td>
+              <td>{{ projet.telephone || '—' }}</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-2" (click)="edit(projet)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="delete(projet.id!)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="projets.length === 0">
+              <td colspan="9" class="text-center text-muted py-4">Aucun projet trouvé.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

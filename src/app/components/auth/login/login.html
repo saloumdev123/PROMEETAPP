@@ -1,43 +1,78 @@
-<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light" style="background: url('https://avatars.mds.yandex.net/i?id=c74b36a995c6824667aa0de9f426f7b156211ca6-16492246-images-thumbs&n=13') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh; margin-top: 100px;">
   <!-- Formulaire de connexion -->
-  <form *ngIf="!showForgotPassword" (ngSubmit)="onSubmit()"
-        class="p-4 border rounded shadow bg-white" style="max-width: 400px; width: 100%;">
+  <form *ngIf="!showForgotPassword" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow "
+    style="max-width: 420px; width: 100%; background-color: rgb(255, 255, 255);">
     <h3 class="text-center mb-4">Connexion</h3>
+    <!-- Bloc rôle -->
+    <div class="form-group mb-3">
+      <label class="form-label">Se connecter en tant que :</label>
+      <div class="d-flex gap-3 flex-wrap justify-content-center">
 
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email"
-             class="form-control"
-             id="email"
-             [(ngModel)]="credentials.email"
-             name="email">
+        <!-- Particulier -->
+        <label class="role-card">
+          <input type="radio" name="role" [(ngModel)]="credentials.role" value="PARTICULIER" hidden>
+          <div class="card-option">
+            <i class="bi bi-house"></i>
+            <span>Particulier</span>
+          </div>
+        </label>
+
+        <!-- Candidat -->
+        <label class="role-card">
+          <input type="radio" name="role" [(ngModel)]="credentials.role" value="CANDIDAT" hidden>
+          <div class="card-option">
+            <i class="bi bi-person"></i>
+            <span>Candidat</span>
+          </div>
+        </label>
+
+        <!-- Partenaire -->
+        <label class="role-card">
+          <input type="radio" name="role" [(ngModel)]="credentials.role" value="PARTENAIRE" hidden>
+          <div class="card-option">
+            <i class="bi bi-briefcase"></i>
+            <span>Partenaire</span>
+          </div>
+        </label>
+
+        <!-- Admin -->
+        <label class="role-card">
+          <input type="radio" name="role" [(ngModel)]="credentials.role" value="ADMIN" hidden>
+          <div class="card-option">
+            <i class="bi bi-shield-lock"></i>
+            <span>Admin</span>
+          </div>
+        </label>
+      </div>
     </div>
 
+    <!-- Email -->
     <div class="mb-3">
-  <label for="password" class="form-label">Mot de passe</label>
-  <div class="input-group">
-    <input 
-      [type]="showPassword ? 'text' : 'password'"
-      class="form-control"
-      id="password"
-      [(ngModel)]="credentials.password"
-      name="password">
-    <button 
-      type="button" 
-      class="btn btn-outline-secondary" 
-      (click)="togglePassword()" 
-      tabindex="-1">
-      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
-    </button>
-  </div>
-</div>
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="credentials.email" name="email">
+    </div>
 
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <div class="input-group">
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+          [(ngModel)]="credentials.password" name="password">
+        <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()" tabindex="-1">
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </button>
+      </div>
+    </div>
 
+    <!-- Message d'erreur -->
     <div *ngIf="loginError" class="alert alert-danger small text-center">
       {{ loginError }}
     </div>
 
-    <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+    <!-- Bouton submit -->
+    <button type="submit" class="btn  w-100" [disabled]="isLoading">
       <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
       Se connecter
     </button>
@@ -45,21 +80,21 @@
     <div class="text-center mt-2">
       <a href="#" (click)="toggleForgotPassword($event)">Mot de passe oublié ?</a>
     </div>
+    <div class="text-center mt-3">
+      <span>Pas encore de compte ? </span>
+      <a routerLink="/register">Créer un compte</a>
+    </div>
+
   </form>
 
   <!-- Formulaire mot de passe oublié -->
-  <form *ngIf="showForgotPassword" (ngSubmit)="onForgotPassword()"
-        class="p-4 border rounded shadow bg-white" style="max-width: 400px; width: 100%;">
+  <form *ngIf="showForgotPassword" (ngSubmit)="onForgotPassword()" class="p-4 border rounded shadow "
+    style="max-width: 420px; width: 100%; background-color: rgb(255, 255, 255);">
     <h3 class="text-center mb-4">Réinitialiser le mot de passe</h3>
 
     <div class="mb-3">
       <label for="forgotEmail" class="form-label">Email</label>
-      <input type="email"
-             class="form-control"
-             id="forgotEmail"
-             [(ngModel)]="forgotEmail"
-             name="forgotEmail">
-             
+      <input type="email" class="form-control" id="forgotEmail" [(ngModel)]="forgotEmail" name="forgotEmail">
     </div>
 
     <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">

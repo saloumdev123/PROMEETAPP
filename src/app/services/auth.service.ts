@@ -6,6 +6,7 @@ import { AuthResponse, ForgotPasswordRequest, LoginRequest } from '../models/aut
 import { RegisterRequest } from '../models/registerRequest ';
 import { User } from '../models/user.model';
 import { UserRole } from '../enums/userRole';
+import { Role } from '../enums/role';
 
 
 @Injectable({
@@ -66,25 +67,30 @@ export class AuthService {
     const base64 = token.split('.')[1];
     return JSON.parse(atob(base64.replace(/-/g, '+').replace(/_/g, '/')));
   }
-  getRole(): UserRole | null {
+getRole(): Role | null {
   const token = this.getAccessToken();
   if (!token) return null;
   try {
     const payload = this.decodeJwt(token);
-    return payload.role as UserRole;
+    // Vérifie si la valeur existe bien dans l'enum Role
+    if (payload.role && Object.values(Role).includes(payload.role as Role)) {
+      return payload.role as Role;
+    }
+    return null;
   } catch {
     return null;
   }
 }
 
- hasRole(role: UserRole): boolean {
-    return this.getRole() === role;
-  }
+hasRole(role: Role): boolean {
+  return this.getRole() === role;
+}
 
-    hasAnyRole(roles: UserRole[]): boolean {
-    const currentRole = this.getRole();
-    return currentRole ? roles.includes(currentRole) : false;
-  }
+hasAnyRole(roles: Role[]): boolean {
+  const currentRole = this.getRole() as Role | null;
+  return currentRole ? roles.includes(currentRole) : false;
+}
+
   setCurrentUser(user: User): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
