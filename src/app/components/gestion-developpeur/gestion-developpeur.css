@@ -1,28 +1,42 @@
-.dev-container {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  margin: 150px;
+/* Centrage total de la carte */
+.dev-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #e3f2fd, #f8f9fa);
 }
 
+/* Conteneur principal */
+.dev-container {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  width: 80%;
+  max-width: 1100px;
+  margin: 150px ;
+}
+
+/* Titre principal */
 .header-section h2 {
-  font-size:1.8rem;
+  font-size: 1.9rem;
   color: #004c99;
 }
 
-.search-box {
+/* Barre de recherche */
+.search-section input {
   border: 2px solid #004c99;
-  border-radius: 8px;
-  padding-left: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
-.card-header {
-  font-size: 1.1rem;
+.search-section input:focus {
+  box-shadow: 0 0 5px #004c99;
+  outline: none;
 }
 
-.form-card {
-  border-top: 4px solid #004c99;
-}
-
+/* Boutons */
 .btn-primary {
   background-color: #004c99;
   border: none;
@@ -43,6 +57,17 @@
   background-color: #e6b800;
 }
 
+/* Cartes */
+.form-card {
+  border-top: 4px solid #004c99;
+  border-radius: 10px;
+}
+
+.card-header {
+  font-size: 1.1rem;
+}
+
+/* Tableau */
 .table thead {
   background-color: #004c99;
   color: white;
@@ -52,11 +77,13 @@
   background-color: #f1f9ff;
 }
 
+/* Badges */
 .badge {
   font-size: 0.85rem;
   padding: 6px 10px;
 }
 
+/* Messages */
 .alert {
   border-radius: 10px;
   font-weight: 500;

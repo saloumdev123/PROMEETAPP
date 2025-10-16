@@ -1,0 +1,46 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+  <!-- HEADER -->
+  <div class="bg-white shadow-md border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <h1 class="text-2xl font-bold text-gray-800">Système de Gestion Documentaire</h1>
+      </div>
+
+      <!-- NAVIGATION TABS -->
+      <div class="flex gap-2">
+        <button (click)="setActiveTab('DocumentInfo')" [ngClass]="{
+    'border-blue-600 text-blue-600': activeTab === 'DocumentInfo',
+    'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300': activeTab !== 'DocumentInfo'
+  }" class="flex items-center gap-2 px-6 py-3 font-medium border-b-2 transition-colors">
+          <i class="bi bi-file-earmark-text"></i>
+          Documents
+        </button>
+
+
+        <button (click)="setActiveTab('CompanyInfo')" [ngClass]="{
+            'border-blue-600 text-blue-600': activeTab === 'CompanyInfo',
+            'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300': activeTab !== 'CompanyInfo'
+          }" class="flex items-center gap-2 px-6 py-3 font-medium border-b-2 transition-colors">
+          <i class="bi bi-buildings"></i>
+          Entreprises
+        </button>
+
+        <button (click)="setActiveTab('ClientInfo')" [ngClass]="{
+            'border-blue-600 text-blue-600': activeTab === 'ClientInfo',
+            'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300': activeTab !== 'ClientInfo'
+          }" class="flex items-center gap-2 px-6 py-3 font-medium border-b-2 transition-colors">
+          <i class="bi bi-people"></i>
+          ClientInfo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <app-document-form-component *ngIf="activeTab === 'DocumentInfo'"></app-document-form-component>
+    <app-company-info-component *ngIf="activeTab === 'CompanyInfo'"></app-company-info-component>
+    <app-client-management-component *ngIf="activeTab === 'ClientInfo'"></app-client-management-component>
+
+  </div>
+</div>

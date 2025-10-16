@@ -1,0 +1,15 @@
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+}
+
+button {
+  cursor: pointer;
+}
+
+button i {
+  font-size: 18px;
+}

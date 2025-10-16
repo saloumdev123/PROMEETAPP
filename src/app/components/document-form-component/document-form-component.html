@@ -1,0 +1,138 @@
+<div class="document-form-container">
+  <h2 class="form-title">🧾 Création de document</h2>
+
+  <form [formGroup]="documentForm" (ngSubmit)="saveDocument()">
+
+    <!-- === Informations générales === -->
+    <div class="section">
+      <h3 class="section-title">Informations générales</h3>
+
+      <div class="grid">
+        <div>
+          <label>Type de document</label>
+          <select formControlName="documentType">
+            <option value="facture">Facture</option>
+            <option value="devis">Devis</option>
+            <option value="avoir">Avoir</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Entreprise</label>
+          <select formControlName="company">
+            <option *ngFor="let c of companies" [value]="c.id">{{ c.name }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Client</label>
+          <select formControlName="client">
+            <option *ngFor="let cl of clients" [value]="cl.id">{{ cl.company }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Numéro de document</label>
+          <input type="text" formControlName="documentNumber" placeholder="Ex: FAC-2025-001" />
+        </div>
+
+        <div>
+          <label>Date du document</label>
+          <input type="date" formControlName="documentDate" />
+        </div>
+
+        <div>
+          <label>Référence</label>
+          <input type="text" formControlName="reference" />
+        </div>
+      </div>
+    </div>
+
+    <!-- === Conditions de règlement === -->
+    <div class="section">
+      <h3 class="section-title">Conditions de règlement</h3>
+
+      <div class="grid">
+        <div>
+          <label>Mode de règlement</label>
+          <input type="text" formControlName="modeReglement" />
+        </div>
+
+        <div>
+          <label>Échéance</label>
+          <input type="date" formControlName="echeance" />
+        </div>
+
+        <div>
+          <label>Taux euro</label>
+          <input type="number" formControlName="tauxEuro" step="0.00001" />
+        </div>
+
+        <div>
+          <label>Remise globale (%)</label>
+          <input type="number" formControlName="remiseGlobale" />
+        </div>
+
+        <div>
+          <label>Taux TVA (%)</label>
+          <input type="number" formControlName="tauxTva" />
+        </div>
+      </div>
+    </div>
+
+    <!-- === Lignes d’articles / services === -->
+    <div class="section">
+      <h3 class="section-title">Articles / Services</h3>
+
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>Réf</th>
+            <th>Désignation</th>
+            <th>Nb heures</th>
+            <th>PU HT</th>
+            <th>Remise %</th>
+            <th>Montant HT</th>
+            <th>TVA</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody formArrayName="items">
+          <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+            <td><input formControlName="reference" /></td>
+            <td><input formControlName="designation" (input)="calculateItemTotal(i)" /></td>
+            <td><input type="number" formControlName="nb_heures" (input)="calculateItemTotal(i)" /></td>
+            <td><input type="number" formControlName="pu_ht" (input)="calculateItemTotal(i)" /></td>
+            <td><input type="number" formControlName="remise_percent" (input)="calculateItemTotal(i)" /></td>
+            <td>{{ item.value.montant_ht | number:'1.2-2' }}</td>
+            <td>{{ item.value.tva | number:'1.2-2' }}</td>
+            <td>
+              <button type="button" class="btn-remove" (click)="removeItem(i)" *ngIf="items.length > 1">✖</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="btn-add" (click)="addItem()">+ Ajouter une ligne</button>
+    </div>
+
+    <!-- === Remarques === -->
+    <div class="section">
+      <label>Remarques</label>
+      <textarea formControlName="remarks" rows="3" placeholder="Observations ou commentaires..."></textarea>
+    </div>
+
+    <!-- === Totaux === -->
+    <div class="totals-section">
+      <div>Total HT: <strong>{{ calculateTotals().totalHT | number:'1.2-2' }} €</strong></div>
+      <div>TVA: <strong>{{ calculateTotals().totalTVA | number:'1.2-2' }} €</strong></div>
+      <div>Total TTC: <strong>{{ calculateTotals().totalTTC | number:'1.2-2' }} €</strong></div>
+    </div>
+
+    <!-- === Bouton de soumission === -->
+    <div class="actions">
+      <button type="submit" class="btn-save" [disabled]="documentForm.invalid">💾 Enregistrer</button>
+    </div>
+  </form>
+</div>
+

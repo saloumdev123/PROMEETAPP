@@ -1,0 +1,651 @@
+<div class="cloud-pro-page">
+
+  <!-- === HERO SECTION === -->
+  <header class="hero hero-bg">
+    <div class="overlay"></div>
+    <div class="hero-inner">
+      <div class="title-wrapper">
+        <i class="bi bi-cloud-fill hero-icon"></i>
+        <h1>Proposition d’Hébergement Cloud</h1>
+      </div>
+      <p class="subtitle">
+        Une solution performante, sécurisée et évolutive pour héberger <strong>Mise en Relation</strong> avec
+        <strong>Spring Boot & Angular</strong>.
+      </p>
+
+      <div class="hero-badges">
+        <div class="hero-badge"><i class="bi bi-check-circle text-green-400"></i> 99.9% de disponibilité</div>
+        <div class="hero-badge"><i class="bi bi-shield-lock text-blue-400"></i> Conforme RGPD</div>
+        <div class="hero-badge"><i class="bi bi-cloud-arrow-up text-yellow-400"></i> Sauvegarde automatique</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- === CONTEXTE === -->
+  <section class="context">
+    <div class="context-content">
+      <div class="text">
+        <h2>Contexte et Objectif</h2>
+        <p>
+          La plateforme web de mise en relation, développée avec <strong>Spring Boot</strong> (backend)
+          et <strong>Angular</strong> (frontend), nécessite un environnement d’hébergement
+          capable de garantir des performances optimales, une haute disponibilité et une sécurité renforcée.
+        </p>
+        <p>
+          Cette proposition vise à mettre en place une infrastructure <strong>Cloud moderne et scalable</strong>,
+          facilitant le déploiement continu, la maintenance, et l’évolution future de votre application.
+        </p>
+      </div>
+      <div class="image-box">
+        <img src="https://images.pexels.com/photos/1181313/pexels-photo-1181313.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="Infrastructure Cloud">
+      </div>
+    </div>
+  </section>
+
+  <!-- === ARCHITECTURE TECHNIQUE === -->
+  <section class="architecture">
+    <h2>Architecture Technique Proposée</h2>
+    <p>
+      L’hébergement repose sur une architecture découplée entre le frontend Angular et le backend Spring Boot,
+      garantissant
+      une gestion efficace des performances, de la sécurité et de la scalabilité.
+    </p>
+    <div class="archi-grid">
+      <div class="archi-card">
+        <h4>Frontend Angular</h4>
+        <p>Déployé sur un CDN mondial (ex : AWS S3 + CloudFront ou Firebase Hosting) pour un chargement rapide.</p>
+      </div>
+      <div class="archi-card">
+        <h4>Backend Spring Boot</h4>
+        <p>Conteneurisé avec Docker, déployé sur un service Cloud (AWS ECS, Render ou Azure App Service).</p>
+      </div>
+      <div class="archi-card">
+        <h4>Base de Données</h4>
+        <p>MySQL hébergé sur RDS/Azure Database avec réplication et sauvegardes automatiques.</p>
+      </div>
+      <div class="archi-card">
+        <h4>Authentification</h4>
+        <p>Gestion des utilisateurs via JSON Web Token (JWT), intégrée au backend Spring Boot pour l’authentification et
+          l’autorisation sécurisées.</p>
+      </div>
+
+    </div>
+    <img class="archi-img"
+      src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      alt="Diagramme architecture Cloud">
+  </section>
+
+  <!-- === TECHNOLOGIES === -->
+  <section class="technologies">
+    <h2>Technologies et Services Cloud Utilisés</h2>
+    <div class="tech-grid">
+      <div class="tech-item"><i class="bi bi-hdd-network"></i> Amazon Web Services (AWS)</div>
+      <div class="tech-item"><i class="bi bi-database"></i> MySQL / RDS Cloud</div>
+      <div class="tech-item"><i class="bi bi-braces"></i> Spring Boot & REST API</div>
+      <div class="tech-item"><i class="bi bi-lightning-charge"></i> Angular 17</div>
+      <div class="tech-item"><i class="bi bi-shield-check"></i> Keycloak (Auth & SSO)</div>
+      <div class="tech-item"><i class="bi bi-git"></i> GitHub Actions (CI/CD)</div>
+      <div class="tech-item"><i class="bi bi-box-seam"></i> Docker / Kubernetes</div>
+      <div class="tech-item"><i class="bi bi-cloud-upload"></i> Firebase Cloud Messaging</div>
+    </div>
+  </section>
+  <!-- === ARCHITECTURE DÉTAILLÉE AVEC DROPDOWNS === -->
+  <section class="section">
+    <h2>Architecture Cloud Détaillée</h2>
+    <p>Découvrez plus en détail la conception technique de l’infrastructure d’hébergement proposée :</p>
+
+    <div class="two-col">
+      <div class="accordion">
+        <div class="accordion-head" (click)="toggleAccordion($event)">
+          Frontend Angular (AWS S3 + CloudFront)
+          <span>▼</span>
+        </div>
+        <div class="accordion-body" style="display:none;">
+          <p>
+            L’application Angular est hébergée sur <strong>AWS S3</strong> (stockage statique)
+            et diffusée via <strong>CloudFront</strong> (CDN mondial) garantissant des temps de chargement inférieurs à
+            100 ms dans toute l’Europe.
+          </p>
+          <ul class="bullet">
+            <li>HTTPS & HTTP/2 activés</li>
+            <li>Cache intelligent via CloudFront</li>
+            <li>Redondance multi-régions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-head" (click)="toggleAccordion($event)">
+          Backend Spring Boot (AWS ECS / Elastic Beanstalk)
+          <span>▼</span>
+        </div>
+        <div class="accordion-body" style="display:none;">
+          <p>
+            Le backend Java Spring Boot est conteneurisé avec Docker et déployé sur
+            <strong>Elastic Beanstalk</strong> ou <strong>ECS (Elastic Container Service)</strong>.
+            Cette approche assure scalabilité, redémarrage automatique et intégration continue.
+          </p>
+          <ul class="bullet">
+            <li>Autoscaling selon la charge CPU/RAM</li>
+            <li>Intégration CI/CD via GitHub Actions</li>
+            <li>Logs et monitoring via CloudWatch</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-head" (click)="toggleAccordion($event)">
+          Base de Données (AWS RDS MySQL)
+          <span>▼</span>
+        </div>
+        <div class="accordion-body" style="display:none;">
+          <p>
+            La base MySQL est hébergée sur <strong>AWS RDS</strong> avec sauvegardes automatiques,
+            réplication multi-zone et chiffrement au repos (KMS).
+          </p>
+          <ul class="bullet">
+            <li>Réplication automatique (Multi-AZ)</li>
+            <li>Sauvegardes quotidiennes et restauration rapide</li>
+            <li>Connexion sécurisée (SSL/TLS)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-head" (click)="toggleAccordion($event)">
+          Authentification & Sécurité (Keycloak + AWS IAM)
+          <span>▼</span>
+        </div>
+        <div class="accordion-body" style="display:none;">
+          <p>
+            Keycloak gère l’authentification OAuth2/OpenID.
+            Côté AWS, les accès sont protégés par des rôles IAM et des politiques restreintes.
+          </p>
+          <ul class="bullet">
+            <li>Single Sign-On (SSO)</li>
+            <li>Chiffrement des tokens JWT</li>
+            <li>Gestion des rôles par IAM (Identity Access Management)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="section" *ngIf="showAwsSection"> 
+  <h2>Services AWS Utilisés</h2>
+  <p>
+    L’infrastructure repose sur les services clés d’AWS pour garantir performance, sécurité et flexibilité :
+  </p>
+
+  <div class="archi-grid">
+
+    <!-- === Backend (EC2) === -->
+    <div class="archi-card" (click)="flipCard(1)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 1">
+        <div class="archi-card-front">
+          <strong>Amazon EC2</strong><br>
+          Instances virtualisées pour exécuter le backend.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>EC2</strong> permet de lancer des serveurs virtuels à la demande.
+            Idéal pour le déploiement d’applications backend évolutives avec tarification à l’usage.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Stockage (S3) === -->
+    <div class="archi-card" (click)="flipCard(2)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 2">
+        <div class="archi-card-front">
+          <strong>Amazon S3</strong><br>
+          Stockage d’objets pour fichiers statiques.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>S3</strong> offre un stockage sécurisé, durable et accessible pour les images,
+            vidéos et documents statiques, avec réplication inter-région et contrôle d’accès intégré.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Base de données (RDS) === -->
+    <div class="archi-card" (click)="flipCard(3)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 3">
+        <div class="archi-card-front">
+          <strong>Amazon RDS</strong><br>
+          Gestion de bases de données relationnelles.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>RDS</strong> simplifie la configuration, la gestion et la mise à l’échelle des bases
+            de données comme MySQL ou PostgreSQL. Sauvegardes automatiques et haute disponibilité incluses.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Sécurité et identité (IAM) === -->
+    <div class="archi-card" (click)="flipCard(4)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 4">
+        <div class="archi-card-front">
+          <strong>AWS IAM</strong><br>
+          Gestion des accès et des identités.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>IAM</strong> permet de définir précisément les permissions utilisateurs et services,
+            garantissant une sécurité granulaire au sein de l’environnement cloud.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Distribution (CloudFront) === -->
+    <div class="archi-card" (click)="flipCard(5)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 5">
+        <div class="archi-card-front">
+          <strong>Amazon CloudFront</strong><br>
+          Réseau de diffusion de contenu (CDN).
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>CloudFront</strong> accélère la diffusion des contenus vers les utilisateurs finaux,
+            grâce à un cache géolocalisé, un chiffrement TLS/SSL intégré et une disponibilité mondiale.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Serverless (Lambda) === -->
+    <div class="archi-card" (click)="flipCard(6)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 6">
+        <div class="archi-card-front">
+          <strong>AWS Lambda</strong><br>
+          Exécution de fonctions serverless.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>Lambda</strong> permet d’exécuter du code sans gérer de serveurs.
+            Facturation uniquement à la durée d’exécution, idéal pour les tâches automatisées.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Réseau (VPC) === -->
+    <div class="archi-card" (click)="flipCard(7)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 7">
+        <div class="archi-card-front">
+          <strong>Amazon VPC</strong><br>
+          Réseau privé virtuel sécurisé.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>VPC</strong> permet d’isoler les ressources dans un environnement réseau privé
+            avec contrôle total sur les sous-réseaux, pare-feu et passerelles.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Surveillance (CloudWatch) === -->
+    <div class="archi-card" (click)="flipCard(8)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 8">
+        <div class="archi-card-front">
+          <strong>Amazon CloudWatch</strong><br>
+          Supervision et métriques.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>CloudWatch</strong> collecte et analyse les métriques d’application et d’infrastructure,
+            facilitant la détection proactive des anomalies et l’optimisation des performances.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === DNS (Route 53) === -->
+    <div class="archi-card" (click)="flipCard(9)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 9">
+        <div class="archi-card-front">
+          <strong>Amazon Route 53</strong><br>
+          Gestion DNS et routage intelligent.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>Route 53</strong> assure la résolution DNS rapide, la redirection de trafic
+            et l’équilibrage géographique pour une haute disponibilité mondiale.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- === Load Balancer (ELB) === -->
+    <div class="archi-card" (click)="flipCard(10)">
+      <div class="archi-card-inner" [class.is-flipped]="openCardIndex === 10">
+        <div class="archi-card-front">
+          <strong>Elastic Load Balancer</strong><br>
+          Répartition automatique du trafic.
+        </div>
+        <div class="archi-card-back">
+          <p>
+            <strong>ELB</strong> distribue intelligemment les requêtes entre plusieurs instances EC2,
+            assurant une meilleure tolérance aux pannes et des performances optimales.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- === TARIFICATION DÉTAILLÉE === -->
+  <section class="section">
+    <h2>Modèle Économique — Pay As You Go</h2>
+    <p>
+      Le modèle AWS repose sur une facturation à la consommation. Vous payez uniquement les ressources utilisées :
+    </p>
+
+    <table class="cost-table">
+      <tr>
+        <th>Service</th>
+        <th>Coût moyen</th>
+        <th>Détail</th>
+      </tr>
+      <tr>
+        <td>EC2 (2 vCPU, 4 Go RAM)</td>
+        <td>~25 €/mois</td>
+        <td>Serveur backend Spring Boot</td>
+      </tr>
+      <tr>
+        <td>S3 + CloudFront</td>
+        <td>~10 €/mois</td>
+        <td>Hébergement frontend Angular</td>
+      </tr>
+      <tr>
+        <td>RDS MySQL</td>
+        <td>~20 €/mois</td>
+        <td>Base de données avec sauvegardes</td>
+      </tr>
+      <tr>
+        <td>CloudWatch & IAM</td>
+        <td>~5 €/mois</td>
+        <td>Surveillance et sécurité</td>
+      </tr>
+      <tr>
+        <td><strong>Total estimé</strong></td>
+        <td><strong>60 €/mois</strong></td>
+        <td>Coût moyen mensuel</td>
+      </tr>
+    </table>
+
+    <div class="accordion-head" (click)="toggleAccordion($event)">
+
+      Voir détails sur les offres “Starter”, “Pro” et “Enterprise” ▼
+    </div>
+    <div class="accordion-body" style="display:none;">
+      <p><strong>Starter (25 €/mois)</strong> — pour petits sites vitrines, faible trafic.</p>
+      <p><strong>Pro (60 €/mois)</strong> — applications métiers (Spring Boot + Angular), CI/CD, supervision.</p>
+      <p><strong>Enterprise (120 €/mois)</strong> — infrastructure complète scalable, monitoring avancé, support 24/7.
+      </p>
+    </div>
+  </section>
+
+  <!-- === MAINTENANCE & SÉCURITÉ === -->
+<section class="maintenance">
+  <h2>Maintenance et Sécurité</h2>
+  <ul class="maintenance-list">
+    <li *ngFor="let item of maintenanceItems; let i = index" (click)="toggleDetail(i)" [class.open]="openIndex === i">
+      <div class="maintenance-header">
+        <i [class]="item.icon"></i>
+        <span>{{ item.title }}</span>
+      </div>
+      <div class="maintenance-detail" *ngIf="openIndex === i">
+        <p>{{ item.detail }}</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="regions">
+  <h2>Régions et Zones d’Hébergement</h2>
+  <p class="intro">
+    Les services AWS sont répartis dans plusieurs régions géographiques, chacune disposant de zones de disponibilité (AZ)
+    indépendantes. Cela garantit à FibemFrance une haute disponibilité, une redondance géographique et une latence minimale.
+  </p>
+
+  <div class="regions-grid">
+    <div class="region-card" (click)="toggleRegion(0)" [class.open]="openIndex === 0">
+      <div class="region-header">
+        <i class="bi bi-globe-americas"></i>
+        <h3>🇫🇷 Région Europe (Paris)</h3>
+      </div>
+      <p class="summary">Hébergement principal des serveurs FibemFrance</p>
+      <div class="region-detail" *ngIf="openIndex === 0">
+        <p>
+          Les serveurs principaux seront déployés dans la région <strong>eu-west-3 (Paris)</strong>.
+          Cette région offre trois zones de disponibilité (A, B, C) garantissant la tolérance aux pannes et une
+          connexion rapide pour les utilisateurs francophones.
+        </p>
+      </div>
+    </div>
+
+    <div class="region-card" (click)="toggleRegion(1)" [class.open]="openIndex === 1">
+      <div class="region-header">
+        <i class="bi bi-globe-asia-australia"></i>
+        <h3>🇩🇪 Région Europe (Francfort)</h3>
+      </div>
+      <p class="summary">Zone de secours pour redondance</p>
+      <div class="region-detail" *ngIf="openIndex === 1">
+        <p>
+          Une réplication automatique des données critiques sera configurée vers <strong>eu-central-1 (Francfort)</strong>,
+          garantissant la continuité de service même en cas d’incident sur la région principale.
+        </p>
+      </div>
+    </div>
+
+    <div class="region-card" (click)="toggleRegion(2)" [class.open]="openIndex === 2">
+      <div class="region-header">
+        <i class="bi bi-diagram-3"></i>
+        <h3>🌍 Architecture Multi-AZ</h3>
+      </div>
+      <p class="summary">Disponibilité et tolérance aux pannes</p>
+      <div class="region-detail" *ngIf="openIndex === 2">
+        <p>
+          L’architecture repose sur un modèle <strong>Multi-AZ (Availability Zones)</strong>, où chaque instance EC2 et base
+          de données RDS est répliquée sur plusieurs zones. Cela assure la résilience du système en cas de défaillance matérielle
+          ou de maintenance planifiée.
+        </p>
+      </div>
+    </div>
+
+    <div class="region-card" (click)="toggleRegion(3)" [class.open]="openIndex === 3">
+      <div class="region-header">
+        <i class="bi bi-router"></i>
+        <h3>🔐 VPN et Accès Sécurisé</h3>
+      </div>
+      <p class="summary">Connexion privée entre le réseau interne et AWS</p>
+      <div class="region-detail" *ngIf="openIndex === 3">
+        <p>
+          L’accès aux serveurs AWS se fait via un <strong>VPN privé</strong> basé sur AWS Client VPN.
+          Seuls les administrateurs autorisés peuvent se connecter, garantissant la confidentialité et la sécurité du réseau.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- === ENGAGEMENT & SUPPORT === -->
+  <section class="support">
+    <h2>Engagement et Support</h2>
+    <p>
+      Nous garantissons un <strong>SLA de 99.9%</strong>, une équipe de support technique disponible 7j/7, et un suivi
+      proactif des incidents. Chaque client dispose d’un interlocuteur dédié pour le suivi de projet.
+    </p>
+    <div class="support-grid">
+      <div class="support-card">
+        <i class="bi bi-telephone"></i>
+        <h4>Support Technique</h4>
+        <p>Assistance par mail, chat et téléphone selon le plan choisi.</p>
+      </div>
+      <div class="support-card">
+        <i class="bi bi-clock-history"></i>
+        <h4>Disponibilité</h4>
+        <p>Intervention en moins de 2h pour les incidents critiques.</p>
+      </div>
+      <div class="support-card">
+        <i class="bi bi-people"></i>
+        <h4>Accompagnement</h4>
+        <p>Suivi mensuel avec rapport de performances et recommandations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === OFFRES === -->
+  <section class="plans">
+    <h2>Nos Offres d’Hébergement</h2>
+    <p class="plans-intro">Choisissez la solution adaptée à vos besoins et à votre croissance.</p>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h3>Starter</h3>
+        <p class="price">25€ / mois</p>
+        <ul>
+          <li>Serveur mutualisé</li>
+          <li>1 base MySQL</li>
+          <li>SSL & domaine inclus</li>
+          <li>Sauvegardes hebdomadaires</li>
+        </ul>
+        <button>Sélectionner</button>
+      </div>
+
+      <div class="plan-card recommended">
+        <span class="badge-pro">RECOMMANDÉ</span>
+        <h3>Pro</h3>
+        <p class="price">60€ / mois</p>
+        <ul>
+          <li>Serveur dédié optimisé</li>
+          <li>CI/CD (Spring + Angular)</li>
+          <li>3 bases de données</li>
+          <li>Monitoring temps réel</li>
+        </ul>
+        <button>Sélectionner</button>
+      </div>
+
+      <div class="plan-card">
+        <h3>Enterprise</h3>
+        <p class="price">120€ / mois</p>
+        <ul>
+          <li>Cluster Kubernetes scalable</li>
+          <li>Support 24/7</li>
+          <li>Audit & Sécurité avancée</li>
+          <li>Load Balancing global</li>
+        </ul>
+        <button>Sélectionner</button>
+      </div>
+    </div>
+  </section>
+<!-- === INTRANET & ADMINISTRATION === -->
+<section class="intranet">
+  <h2>Intranet et Administration</h2>
+  <p>
+    L’intranet constitue l’espace interne et sécurisé réservé à l’équipe de gestion et d’administration du système.
+    Il permet un contrôle total des opérations, un suivi des utilisateurs, et une gestion centralisée des ressources.
+  </p>
+
+  <div class="archi-grid">
+
+    <!-- Carte 1 : Gestion des utilisateurs -->
+    <div class="archi-card"
+         (click)="toggleDropdown('users')"
+         [class.show]="openCard === 'users'">
+      <div class="archi-card-inner">
+        <div class="archi-card-front">
+          <strong>Gestion des utilisateurs</strong><br>
+          Suivi et contrôle des comptes internes.
+        </div>
+        <div class="archi-card-back" [class.show]="openCard === 'users'">
+          <p>
+            L’intranet permet d’ajouter, modifier ou désactiver des comptes administratifs et utilisateurs.
+            Des rôles et permissions spécifiques sont définis (admin, gestionnaire, support…)
+            afin de garantir une gouvernance claire et une sécurité renforcée.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 2 : Supervision et rapports -->
+    <div class="archi-card"
+         (click)="toggleDropdown('monitoring')"
+         [class.show]="openCard === 'monitoring'">
+      <div class="archi-card-inner">
+        <div class="archi-card-front">
+          <strong>Supervision et Rapports</strong><br>
+          Suivi en temps réel des activités internes.
+        </div>
+        <div class="archi-card-back" [class.show]="openCard === 'monitoring'">
+          <p>
+            L’administrateur dispose de tableaux de bord permettant de visualiser les performances du système,
+            les connexions actives, les journaux d’événements et les rapports de sécurité.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 3 : Partage de documents internes -->
+    <div class="archi-card"
+         (click)="toggleDropdown('files')"
+         [class.show]="openCard === 'files'">
+      <div class="archi-card-inner">
+        <div class="archi-card-front">
+          <strong>Documents internes</strong><br>
+          Partage sécurisé des fichiers de travail.
+        </div>
+        <div class="archi-card-back" [class.show]="openCard === 'files'">
+          <p>
+            L’intranet intègre un module de gestion documentaire interne pour stocker et partager 
+            des fichiers tels que les rapports, procédures ou guides internes avec authentification.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 4 : Sécurité et accès -->
+    <div class="archi-card"
+         (click)="toggleDropdown('security')"
+         [class.show]="openCard === 'security'">
+      <div class="archi-card-inner">
+        <div class="archi-card-front">
+          <strong>Sécurité et Accès</strong><br>
+          Authentification et contrôle des connexions.
+        </div>
+        <div class="archi-card-back" [class.show]="openCard === 'security'">
+          <p>
+            L’accès à l’intranet se fait exclusivement via une authentification JWT sécurisée.
+            Un accès VPN peut être activé pour les employés distants, garantissant la confidentialité
+            et la sécurité des échanges internes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- === FOOTER === -->
+  <footer class="footer">
+    <p>© 2025 Fibem-France Cloud Solutions — Hébergement professionnel et sécurisé pour applications modernes.par
+      <strong> PAPA SALOUM SENE</strong></p>
+  </footer>
+
+</div>

@@ -3,6 +3,8 @@ import { Component, Injectable } from '@angular/core';
 import { RouterOutlet, provideRouter } from '@angular/router';
 import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
+
+import { LucideAngularModule, Plus, Save, X, Edit2, Trash2 } from 'lucide-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 

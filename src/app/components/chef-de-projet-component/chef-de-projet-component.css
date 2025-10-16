@@ -1,47 +1,163 @@
+/* ==========================
+   🌆 STYLE GLOBAL DU DASHBOARD
+========================== */
+.dashboard-container {
+  background: url("https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg")
+    no-repeat center center / cover;
+  min-height: 100vh;
+  backdrop-filter: blur(3px);
+  padding-bottom: 60px;
+  overflow-x: hidden;
+  margin-top: 100px;
+}
 
-/* Centrer tout le contenu dans la page */
-.container {
-  min-height: 100vh; /* prend toute la hauteur de la fenêtre */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* centre verticalement */
-  align-items: center; /* centre horizontalement */
+/* ==========================
+   🧭 HEADER PROFESSIONNEL
+========================== */
+.dashboard-header {
+  background: linear-gradient(to right, #003366cc, #004080cc),
+              url("https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.dashboard-header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.header-icon {
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.4));
+}
+
+/* ==========================
+   🧩 CARTES PRINCIPALES (Navigation)
+========================== */
+.card {
+  border-radius: 16px;
+  width: 100%;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.92);
   text-align: center;
 }
 
-/* Ligne contenant les cartes */
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* permet le retour à la ligne sur petits écrans */
-  gap: 2rem; /* espace entre les cartes */
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 47, 108, 0.3);
 }
 
-/* Cartes stylisées */
-.card {
-  width: 300px; /* taille uniforme */
-  border-radius: 15px;
-  transition: all 0.3s ease;
+.clickable-card {
   cursor: pointer;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Icônes centrées et colorées */
 .card i {
   font-size: 3rem;
 }
 
-/* Titre et texte ajustés */
-.card-title {
+.card h5 {
   font-weight: 600;
-  margin-bottom: 0.5rem;
 }
 
-.card-text {
+.card p {
+  font-size: 0.9rem;
   color: #6c757d;
+}
+
+/* ==========================
+   🎨 MINI-CARDS (DIAGRAMMES)
+========================== */
+.mini-card {
+  width: 240px;
+  height: 160px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.mini-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Dégradés colorés */
+.bg-gradient-info {
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0062cc, #004085);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #28a745, #00c851);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+}
+
+/* Zone contenant les mini-cards */
+.d-flex.flex-wrap.justify-content-center.gap-4 {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 10px;
+}
+
+/* ==========================
+   📊 CANVAS (Diagrammes)
+========================== */
+canvas {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+}
+
+/* ==========================
+   🧍‍♂️ UTILITAIRES & RÉSPONSIVITÉ
+========================== */
+.text-muted {
+  color: #6c757d !important;
+}
+
+@media (max-width: 992px) {
+  .mini-card {
+    width: 200px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+
+  .mini-card {
+    width: 180px;
+    height: 120px;
+  }
 }

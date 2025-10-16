@@ -1,0 +1,206 @@
+/* === 🎨 Palette principale === */
+:root {
+  --primary-blue: #0d47a1; /* Bleu roi */
+  --secondary-yellow: #fdd835; /* Jaune doré */
+  --light-bg: #f8f9fa;
+  --dark-text: #212121;
+  --soft-gray: #e0e0e0;
+}
+
+/* === 🌟 Structure générale === */
+main.container {
+  background-color: var(--light-bg);
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* === 🧾 Cartes principales === */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background: linear-gradient(90deg, var(--primary-blue), var(--secondary-yellow));
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.card-body {
+  background-color: white;
+  border-radius: 0 0 15px 15px;
+}
+
+/* === 🧑‍🤝‍🧑 Labels et titres === */
+label.form-label {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+h1 {
+  color: var(--primary-blue);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h5 {
+  color: var(--primary-blue);
+  border-bottom: 3px solid var(--secondary-yellow);
+  padding-bottom: 5px;
+}
+
+/* === 🟦 Champs et boutons === */
+.form-control,
+.form-select {
+  border: 1.5px solid var(--soft-gray);
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 6px rgba(13, 71, 161, 0.3);
+}
+
+/* === 🟡 Boutons === */
+button.btn {
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1565c0;
+}
+
+.btn-outline-primary {
+  color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+/* Variante jaune */
+.btn-warning {
+  background-color: var(--secondary-yellow);
+  border: none;
+  color: #000;
+}
+
+.btn-warning:hover {
+  background-color: #fbc02d;
+}
+
+/* === 🧮 Tableau des articles === */
+.table {
+  border: 1px solid var(--soft-gray);
+  font-size: 0.95rem;
+}
+
+.table th {
+  background-color: var(--primary-blue);
+  color: white;
+  font-weight: 600;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+/* === 💰 Totaux === */
+.text-end p {
+  margin: 3px 0;
+  font-size: 1rem;
+}
+
+.text-end p strong {
+  color: var(--primary-blue);
+}
+
+.text-end .fs-5 {
+  color: var(--secondary-yellow);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* === 🧾 Section Liste === */
+.card-header.bg-dark {
+  background: var(--primary-blue) !important;
+}
+
+.table-light th {
+  background-color: #e3f2fd !important;
+  color: var(--primary-blue);
+}
+
+/* === 📱 Responsive === */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  table {
+    font-size: 0.85rem;
+  }
+}
+.company-header {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.company-logo {
+  width: 110px;
+  height: auto;
+}
+
+.company-info {
+  color: #222;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.company-name {
+  color: #004080; /* Bleu foncé */
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.text-primary {
+  color: #004080 !important;
+}
+
+strong {
+  color: #000;
+}
+
+.container {
+  background-color: #f9fafc;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Accent jaune */
+.company-logo {
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  padding: 4px;
+}

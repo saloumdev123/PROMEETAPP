@@ -1,20 +1,37 @@
-import { Fourniture } from "./fourniture";
-import { LigneDevis } from "./ligneDevise";
+import { DevisItem } from "./devisItem";
+import { LigneOuvrage } from "./ligneOuvrage";
 
 
 export interface Devis {
-  id?: number;
-  numero: string;
-  date: string;
-  clientNom: string;
-  clientAdresse: string;
-  clientVille: string;
-  clientTel: string;
-  email: string;
-  description?: string;
-  totalHT?: number;
-  tva?: number;
-  totalTTC?: number;
-  lignes?: LigneDevis[];
-  fournitures?: Fourniture[];
+ id?: number;
+  number: string;
+  dateEmission: string;
+  dateEcheance?: string;
+  clientName: string;
+  clientAddress?: string;
+  clientEmail?: string;
+  clientPhone?: string;
+  reference?: string;
+  devisNumber?: string;
+  paymentMode?: string;
+  baseHt?: number;
+  remise?: number;
+  mtTva?: number;
+  taxRate?: number;
+  port?: number;
+  totalTtc?: number;
+  netAPayer?: number;
+  entrepriseId?: number;
+  items?:DevisItem[];
+  siret?:string;
+  lignesOuvrages?: LigneOuvrage[];
+
+    // 🧱 === Champs pour le tableau “POSTE À POURVOIR” ===
+  posteTitle?: string;
+  descriptionPoste?: string;
+  assistanceTechnique?: string;
+  profil?: string;
+   travaux?: { description: string; montant: number }[];
+  totalHt?: number;
+
 }

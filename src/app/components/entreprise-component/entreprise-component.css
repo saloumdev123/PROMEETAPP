@@ -1,0 +1,187 @@
+/* === Thème global bleu & jaune avec fond d’image === */
+:host {
+  display: block;
+  background: linear-gradient(to bottom right, rgba(248, 250, 252, 0.95), rgba(238, 242, 255, 0.95)),
+    url("https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
+  padding-bottom: 40px;
+  backdrop-filter: blur(2px);
+}
+
+/* === Titre principal === */
+h2 {
+  color: #003366;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #ffd700; /* jaune doré */
+  margin: 8px auto 0;
+  border-radius: 4px;
+}
+
+/* === Carte du formulaire === */
+.card {
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.15);
+  transition: transform 0.2s ease-in-out;
+  margin: 50px 0;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* === Labels === */
+.form-label {
+  color: #003366;
+  font-weight: 600;
+}
+
+/* === Inputs === */
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #cfd8dc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  border-color: #003366;
+  box-shadow: 0 0 5px rgba(0, 51, 102, 0.3);
+}
+
+/* === Boutons === */
+.btn-primary {
+  background-color: #003366;
+  border-color: #003366;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #ffd700;
+  border-color: #ffd700;
+  color: #003366;
+}
+
+.btn-secondary {
+  background-color: #ffd700;
+  border: none;
+  font-weight: 600;
+  color: #003366;
+  border-radius: 8px;
+}
+
+.btn-secondary:hover {
+  background-color: #003366;
+  color: white;
+}
+
+/* === Tableau === */
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #003366;
+  color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9fbff;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #fff5cc; /* jaune pâle au survol */
+  transition: 0.3s;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* === Carte Liste === */
+.card-header {
+  background-color: #003366 !important;
+  color: #ffd700 !important;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* === Messages === */
+.alert-success {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #c8e6c9;
+}
+
+.alert-danger {
+  background-color: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ffcdd2;
+}
+
+/* === Animation légère sur les boutons === */
+button {
+  transition: transform 0.15s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* === HEADER BLEU AVEC IMAGE === */
+.header-banner {
+  background: linear-gradient(to right, rgba(0, 51, 102, 0.95), rgba(0, 64, 128, 0.95)),
+    url("https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+  color: white;
+  margin-top: 150px;
+}
+
+.header-banner .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.header-banner .header-icon {
+  width: 90px;
+  height: 90px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.header-banner h1 {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.header-banner p {
+  color: #ffeb3b;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}

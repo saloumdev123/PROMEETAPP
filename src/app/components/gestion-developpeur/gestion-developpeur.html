@@ -1,16 +1,19 @@
-<div class="container-fluid py-4 dev-container">
-    <div class="header-section mb-4 d-flex justify-content-between align-items-center">
-        <div>
-            <h2 class="text-primary fw-bold mb-1"><i class="bi bi-code-slash"></i> Gestion des Développeurs</h2>
-            <p class="text-muted mb-0">Ajoutez, modifiez ou affectez des développeurs aux projets.</p>
-        </div>
+<div class="dev-wrapper">
+  <div class="container dev-container shadow-lg">
+    <div class="header-section mb-4 text-center">
+      <h2 class="text-primary fw-bold mb-1">
+        <i class="bi bi-code-slash"></i> Gestion des Développeurs
+      </h2>
+      <p class="text-muted mb-0">
+        Ajoutez, modifiez ou affectez des développeurs aux projets.
+      </p>
+    </div>
 
-        <!-- Barre de recherche -->
-        <div class="d-flex align-items-center">
-            <input type="text" [(ngModel)]="searchTerm" placeholder="🔍 Rechercher un développeur..."
-                class="form-control search-box me-2">
-            <button class="btn btn-primary" (click)="search()">Rechercher</button>
-        </div>
+    <!-- Barre de recherche -->
+    <div class="search-section d-flex justify-content-center align-items-center mb-4">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="🔍 Rechercher un développeur..."
+             class="form-control search-box me-2 w-50">
+      <button class="btn btn-primary" (click)="search()">Rechercher</button>
     </div>
 
     <!-- ✅ Messages -->
@@ -19,98 +22,94 @@
 
     <!-- 🧩 Formulaire Développeur -->
     <div class="card shadow-sm border-0 mb-4 form-card">
-        <div class="card-header bg-primary text-white fw-bold">
-            {{ editing ? '✏️ Modifier le développeur' : '➕ Ajouter un développeur' }}
-        </div>
-        <div class="card-body">
-            <form [formGroup]="devForm" (ngSubmit)="submitForm()">
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
-                        <input formControlName="nom" type="text" class="form-control" placeholder="Nom du développeur">
-                    </div>
+      <div class="card-header bg-primary text-white fw-bold text-center">
+        {{ editing ? '✏️ Modifier le développeur' : '➕ Ajouter un développeur' }}
+      </div>
+      <div class="card-body">
+        <form [formGroup]="devForm" (ngSubmit)="submitForm()">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Nom <span class="text-danger">*</span></label>
+              <input formControlName="nom" type="text" class="form-control" placeholder="Nom du développeur">
+            </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Email</label>
-                        <input formControlName="email" type="email" class="form-control" placeholder="Adresse email">
-                    </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Email</label>
+              <input formControlName="email" type="email" class="form-control" placeholder="Adresse email">
+            </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Spécialité</label>
-                        <input formControlName="specialite" type="text" class="form-control"
-                            placeholder="Ex: Angular, Java, Spring Boot...">
-                    </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Spécialité</label>
+              <input formControlName="specialite" type="text" class="form-control"
+                     placeholder="Ex: Angular, Java, Spring Boot...">
+            </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Expérience (années)</label>
-                        <input formControlName="experience" type="number" min="0" class="form-control"
-                            placeholder="Ex: 3">
-                    </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Expérience (années)</label>
+              <input formControlName="experience" type="number" min="0" class="form-control" placeholder="Ex: 3">
+            </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label fw-semibold">Projet Assigné</label>
-                        <select formControlName="projetId" class="form-select"
-                            (change)="loadDeveloppeurParProjet(devForm.get('projetId')?.value)">
-                            <option value="">-- Aucun --</option>
-                            <option *ngFor="let projet of projets" [value]="projet.id">
-                                {{ projet.nom }}
-                            </option>
-                        </select>
-                    </div>
+            <div class="col-md-12">
+              <label class="form-label fw-semibold">Projet Assigné</label>
+              <select formControlName="projetId" class="form-select"
+                      (change)="loadDeveloppeurParProjet(devForm.get('projetId')?.value)">
+                <option value="">-- Aucun --</option>
+                <option *ngFor="let projet of projets" [value]="projet.id">
+                  {{ projet.nom }}
+                </option>
+              </select>
+            </div>
+          </div>
 
-                </div>
-
-                <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-success me-2">
-                        {{ editing ? '💾 Mettre à jour' : '➕ Ajouter' }}
-                    </button>
-                    <button type="button" (click)="resetForm()" class="btn btn-secondary">🔄 Réinitialiser</button>
-                </div>
-            </form>
-        </div>
+          <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-success me-2">
+              {{ editing ? '💾 Mettre à jour' : '➕ Ajouter' }}
+            </button>
+            <button type="button" (click)="resetForm()" class="btn btn-secondary">🔄 Réinitialiser</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- 📋 Liste des développeurs -->
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-warning text-dark fw-bold">
-            Liste des Développeurs
-        </div>
-        <div class="card-body p-0">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-primary text-center">
-                    <tr>
-                        <th>Nom</th>
-                        <th>Email</th>
-                        <th>Spécialité</th>
-                        <th>Expérience</th>
-                        <th>Projets</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let dev of developpeurs" class="text-center">
-                        <td>{{ dev.nom }}</td>
-                        <td>{{ dev.prenom }}</td>
-                        <td>{{ dev.email }}</td>
-                        <td><span class="badge bg-info text-dark">{{ dev.specialite }}</span></td>
-                        <td>{{ dev.experience }} ans</td>
-                        <td>
-                            {{ dev.projet ? dev.projet.nom : 'Aucun' }}
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-primary btn-sm me-2" (click)="edit(dev)">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm" (click)="delete(dev.id!)">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr *ngIf="developpeurs.length === 0">
-                        <td colspan="7" class="text-center text-muted py-4">Aucun développeur trouvé.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-warning text-dark fw-bold text-center">
+        Liste des Développeurs
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-primary text-center">
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Spécialité</th>
+            <th>Expérience</th>
+            <th>Projets</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let dev of developpeurs" class="text-center">
+            <td>{{ dev.nom }}</td>
+            <td>{{ dev.email }}</td>
+            <td><span class="badge bg-info text-dark">{{ dev.specialite }}</span></td>
+            <td>{{ dev.experience }} ans</td>
+            <td>{{ dev.projet ? dev.projet.nom : 'Aucun' }}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm me-2" (click)="edit(dev)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="delete(dev.id!)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="developpeurs.length === 0">
+            <td colspan="7" class="text-center text-muted py-4">Aucun développeur trouvé.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

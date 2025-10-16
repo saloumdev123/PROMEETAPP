@@ -1,18 +1,21 @@
 import { InvoiceStatus } from "../enums/invoiceStatus";
 
 export interface Invoice {
-   id?: number;
+   id: number;
   invoiceNumber?: string;
   title?: string;
   description?: string;
   currency?: string;
-
+remise?: number;       // ✅ Ajouté
+  taxRate: number;       // ✅ déjà présent mais confirmé
+  port?: number;
   issueDate?: string;
   dueDate?: string;
   paymentMode?: string;
   reference?: string;
   devisNumber?: string;
-
+  remarque?: string;
+  conditionReglement?: string;
   subTotal?: number;
   taxAmount?: number;
   total?: number;
@@ -27,15 +30,16 @@ export interface Invoice {
   clientMobile?: string;
   clientContact?: string;
   clientTvaNumber?: string;
-
-  companyName?: string;
+  number?: string;
+  acompte?: number;
+  companyName?:string;
   companyContact?: string;
   companyAddress?: string;
   companyPhone?: string;
   companyEmail?: string;
   companySiret?: string;
   companyApe?: string;
-  companyTvaNumber?: string;
+  companyTvaNumber?: string
 
   items?: InvoiceItem[];
 }

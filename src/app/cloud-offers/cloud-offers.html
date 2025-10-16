@@ -1,0 +1,56 @@
+<section class="bg-gray-50 py-12">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-blue-700 mb-6">
+      Nos Offres d’Hébergement Cloud
+    </h2>
+    <p class="text-gray-600 mb-10">
+      Choisissez la formule qui correspond le mieux à vos besoins.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div
+        *ngFor="let offer of offers"
+        class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition relative"
+        [ngClass]="{ 'border-blue-500 scale-105': offer.recommended }"
+      >
+        <div
+          *ngIf="offer.recommended"
+          class="absolute top-0 right-0 bg-blue-500 text-white text-xs px-3 py-1 rounded-bl-lg"
+        >
+          RECOMMANDÉ
+        </div>
+
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">
+          {{ offer.name }}
+        </h3>
+        <p class="text-gray-500 mb-4">{{ offer.target }}</p>
+
+        <div class="text-3xl font-bold text-gray-800 mb-4">
+          {{ offer.price }}
+        </div>
+
+        <ul class="text-gray-600 space-y-2 mb-6 text-sm">
+          <li *ngFor="let spec of offer.specs" class="flex items-center justify-center gap-2">
+            <!-- ✅ Icône check simple en SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 text-green-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ spec }}
+          </li>
+        </ul>
+
+        <button
+          class="bg-blue-600 text-white py-2 px-5 rounded-lg hover:bg-blue-700 transition"
+        >
+          Choisir {{ offer.name.split(' ')[1] }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

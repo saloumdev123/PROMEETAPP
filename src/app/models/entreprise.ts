@@ -1,14 +1,19 @@
 export interface Entreprise {
   id?: number;
   nom: string;
-  responsable: string;
+  portable: string;
   adresse: string;
-  codePostalVille: string;
   telephone: string;
   email: string;
   siret: string;
   codeApe: string;
-  tvaIntracom: string;
-  indice?: string;
-  logoUrl?: string;
+  numeroTva: string;
+  dirigeant: string;
+  indice?: string;        // Ex: "Particulier"
+  numeroLot?: string;     // Ex: "TRAVAUX Projet MACONNERIE"
+  lieu?: string;          // Ex: "Espagne"
+  departement?: string;   // Ex: "10"
+  reference?: string;     // Ex: "TRAVAUX MACONNERIE"
+  affaire?: string;
+
 }

@@ -28,16 +28,22 @@
           "options": {
             "assets": [
               "src/favicon.ico",
-               "src/assets"
+              "src/assets"
             ],
             "index": "src/index.html",
             "browser": "src/main.ts",
             "outputPath": "dist/demo",
-            "polyfills": ["zone.js"],
-            "scripts": ["node_modules/intl-tel-input/build/js/intlTelInput.min.js"
-                        ,"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
+            "polyfills": [
+              "zone.js"
+            ],
+            "scripts": [
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/pdfmake/build/pdfmake.min.js",
+              "node_modules/pdfmake/build/vfs_fonts.js"
+            ],
             "styles": [
-               "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/custom-theme.scss",
               "src/global_styles.css"
             ],

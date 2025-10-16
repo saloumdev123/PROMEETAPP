@@ -44,6 +44,21 @@
             <input type="date" formControlName="dateEcheance" class="form-control shadow-sm" />
           </div>
 
+          <!-- 🧾 Numéro de facture + acompte -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="number" class="form-label fw-bold text-secondary">🔢 Numéro de facture</label>
+              <input type="text" id="number" formControlName="number" class="form-control shadow-sm"
+                placeholder="EX: INV-2025-001">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="acompte" class="form-label fw-bold text-secondary">💶 Acompte (€)</label>
+              <input type="number" id="acompte" formControlName="acompte" class="form-control shadow-sm"
+                placeholder="0.00" step="0.01">
+            </div>
+          </div>
+
           <!-- 🔖 Référence / Devis / Paiement -->
           <div class="col-md-4">
             <label class="form-label fw-semibold text-secondary">🔖 Référence</label>
@@ -63,23 +78,23 @@
             </select>
           </div>
 
-          <!-- 🧾 CLIENT INFOS -->
+          <!-- 👤 INFOS CLIENT -->
           <div class="col-12">
             <h5 class="mt-4 text-primary fw-bold border-bottom pb-2">👤 Informations Client</h5>
           </div>
           <div class="col-md-6">
-            <input type="text" formControlName="nomClient" class="form-control shadow-sm" placeholder="Nom du client" />
+            <input type="text" formControlName="clientName" class="form-control shadow-sm"
+              placeholder="Nom du client" />
           </div>
           <div class="col-md-6">
-            <input type="email" formControlName="emailClient" class="form-control shadow-sm"
+            <input type="email" formControlName="clientEmail" class="form-control shadow-sm"
               placeholder="Email du client" />
           </div>
           <div class="col-md-6">
-            <input type="text" formControlName="telephoneClient" class="form-control shadow-sm"
-              placeholder="Téléphone" />
+            <input type="text" formControlName="clientPhone" class="form-control shadow-sm" placeholder="Téléphone" />
           </div>
           <div class="col-md-6">
-            <input type="text" formControlName="adresseClient" class="form-control shadow-sm"
+            <input type="text" formControlName="clientAddress" class="form-control shadow-sm"
               placeholder="Adresse complète" />
           </div>
 
@@ -117,82 +132,65 @@
 
           <!-- 🧾 ARTICLES -->
           <div class="col-12 mt-4">
-            <h5 class="text-primary fw-bold border-bottom pb-2">📦 Articles de la facture</h5>
-          </div>
+            <h5 class="text-primary fw-bold border-bottom pb-2">🧾 Articles de la facture</h5>
 
-          <!-- 🏷️ En-têtes visuelles -->
-          <div class="row fw-semibold text-secondary border-bottom pb-1 mb-2">
-            <div class="col-md-2">Référence</div>
-            <div class="col-md-3">Libellé</div>
-            <div class="col-md-1 text-center">Qté</div>
-            <div class="col-md-2 text-center">Prix unitaire</div>
-            <div class="col-md-1 text-center">% Rem</div>
-            <div class="col-md-2 text-center">Total</div>
-            <div class="col-md-1 text-center">Action</div>
-          </div>
-
-          <div formArrayName="items">
-            <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="row g-3 align-items-center mb-2">
-              <!-- 🔖 Référence -->
-              <div class="col-md-2">
-                <input type="text" class="form-control shadow-sm" placeholder="Réf." formControlName="referenceCode" />
-              </div>
-
-              <!-- 🏷️ Libellé -->
-              <div class="col-md-3">
-                <input type="text" class="form-control shadow-sm" placeholder="Libellé" formControlName="label" />
-              </div>
-
-              <!-- 🔢 Quantité -->
-              <div class="col-md-1">
-                <input type="number" class="form-control shadow-sm" placeholder="Qté" formControlName="quantity" />
-              </div>
-
-              <!-- 💰 Prix unitaire -->
-              <div class="col-md-2">
-                <input type="number" class="form-control shadow-sm" placeholder="PU" formControlName="unitPrice" />
-              </div>
-
-              <!-- 🎯 Remise -->
-              <div class="col-md-1">
-                <input type="number" class="form-control shadow-sm" placeholder="% Rem" formControlName="discountRate" />
-              </div>
-
-              <!-- 📊 Total -->
-              <div class="col-md-2">
-                <input type="number" class="form-control shadow-sm bg-light" placeholder="Total" formControlName="lineTotal" readonly />
-              </div>
-
-              <!-- 🗑️ Action -->
-              <div class="col-md-1 text-center">
-                <button class="btn btn-danger btn-sm shadow-sm" type="button" (click)="removeItem(i)">🗑️</button>
-              </div>
-            </div>
+            <table class="table table-bordered align-middle text-center">
+              <thead class="table-light">
+                <tr>
+                  <th>Référence</th>
+                  <th>Désignation</th>
+                  <th>Quantité</th>
+                  <th>P.U. HT (€)</th>
+                  <th>Remise (%)</th>
+                  <th>TVA (%)</th>
+                  <th>Total HT (€)</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="items">
+                <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+                  <td><input type="text" formControlName="referenceCode" class="form-control"></td>
+                  <textarea formControlName="label" class="form-control" rows="6"
+                    style="white-space: pre-wrap; word-wrap: break-word;"
+                    placeholder="Description détaillée de l’article (plusieurs lignes possibles)...">
+                 </textarea>
+                  <td><input type="number" formControlName="quantity" class="form-control" (input)="updateTotals()">
+                  </td>
+                  <td><input type="number" formControlName="unitPrice" class="form-control" (input)="updateTotals()">
+                  </td>
+                  <td><input type="number" formControlName="discountRate" class="form-control" (input)="updateTotals()">
+                  </td>
+                  <td><input type="number" formControlName="tvaRate" class="form-control" (input)="updateTotals()"></td>
+                  <td class="fw-bold text-end">
+                    {{ (item.value.quantity * item.value.unitPrice * (1 - item.value.discountRate / 100)) |
+                    number:'1.2-2' }}
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="removeItem(i)">🗑️</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
             <div class="text-end">
-              <button type="button" class="btn btn-outline-primary btn-sm mt-2 shadow-sm" (click)="addItem()">
-                ➕ Ajouter un article
-              </button>
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="addItem()">➕ Ajouter un
+                article</button>
             </div>
+            <div class="mt-4 card shadow-sm p-3 bg-light">
+              <div class="d-flex justify-content-end flex-column align-items-end">
+                <p><strong>Base HT :</strong> {{ baseHT | number:'1.2-2' }} €</p>
+                <p><strong>Remise :</strong> {{ invoiceForm.get('remise')?.value | number:'1.2-2' }} €</p>
+                <p><strong>Montant TVA :</strong> {{ totalTVA | number:'1.2-2' }} €</p>
+                <p><strong>% TVA :</strong> {{ invoiceForm.get('pourcentTva')?.value }} %</p>
+                <p><strong>Port :</strong> {{ invoiceForm.get('port')?.value | number:'1.2-2' }} €</p>
+                <p><strong>Totaux :</strong> {{ invoiceForm.get('totaux')?.value | number:'1.2-2' }} €</p>
+                <p><strong>Total TTC :</strong> {{ totalTTC | number:'1.2-2' }} €</p>
+                <p><strong>Net à payer :</strong> {{ netAPayer | number:'1.2-2' }} €</p>
+              </div>
+            </div>
+
           </div>
 
-          <!-- 💰 Totaux -->
-          <div class="col-md-3 mt-4">
-            <label class="form-label fw-semibold text-secondary">💰 Sous-total (HT)</label>
-            <input type="number" formControlName="subTotal" class="form-control shadow-sm" readonly />
-          </div>
-          <div class="col-md-3 mt-4">
-            <label class="form-label fw-semibold text-secondary">💸 TVA (%)</label>
-            <input type="number" formControlName="taxRate" class="form-control shadow-sm" />
-          </div>
-          <div class="col-md-3 mt-4">
-            <label class="form-label fw-semibold text-secondary">💵 Total TTC</label>
-            <input type="number" formControlName="total" class="form-control shadow-sm" readonly />
-          </div>
-          <div class="col-md-3 mt-4">
-            <label class="form-label fw-semibold text-secondary">💼 Montant dû</label>
-            <input type="number" formControlName="amountDue" class="form-control shadow-sm" readonly />
-          </div>
 
           <!-- ✅ Enregistrer -->
           <div class="col-12 text-end mt-4">
@@ -201,55 +199,48 @@
               💾 Enregistrer la facture
             </button>
           </div>
+
         </div>
       </form>
     </div>
   </div>
+</main>
+<!-- 📚 Liste des factures PDF -->
+<div class="card shadow-sm border-0 mt-5">
+  <div class="card-header bg-dark text-white text-center fw-semibold">
+    📂 Liste des Factures Générées
+  </div>
+  <div class="card-body bg-white">
+    <table class="table table-hover align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Numéro</th>
+          <th>Client</th>
+          <th>Date d’émission</th>
+          <th>Montant total (€)</th>
+          <th>Télécharger PDF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of invoices; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ f.number }}</td>
+          <td>{{ f.clientName }}</td>
+          <td>{{ f.issueDate | date:'dd/MM/yyyy' }}</td>
+          <td>{{ f.total | number:'1.2-2' }}</td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm" (click)="downloadPdf(f)">
+              📥 Télécharger
+            </button>
 
-  <!-- 📊 LISTE DES FACTURES -->
-  <div class="card shadow-sm border-0">
-    <div class="card-header bg-white d-flex justify-content-between align-items-center">
-      <h5 class="mb-0 text-secondary fw-bold">📊 Liste des Factures</h5>
-      <select [(ngModel)]="filtreStatut" (change)="filter()" class="form-select w-auto shadow-sm">
-        <option value="">-- Filtrer par statut --</option>
-        <option value="BROUILLON">Brouillon</option>
-        <option value="EN_ATTENTE">En attente</option>
-        <option value="PAYÉE">Payée</option>
-        <option value="EN_RETARD">En retard</option>
-        <option value="ANNULÉE">Annulée</option>
-      </select>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <div class="card-body">
-      <div class="row g-4">
-        <div *ngFor="let f of factures" class="col-md-6 col-lg-4">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="text-primary fw-bold">{{ f.title }}</h5>
-              <p class="mb-1"><strong>Montant :</strong> {{ f.total | currency:'XOF' }}</p>
-              <p class="mb-1"><strong>Client :</strong> {{ f.clientName }}</p>
-              <p class="mb-1"><strong>Date :</strong> {{ f.issueDate }}</p>
-              <p>
-                <strong>Statut :</strong>
-                <span [ngClass]="{
-                    'badge bg-warning text-dark': f.status === 'EN_ATTENTE',
-                    'badge bg-success': f.status === 'PAYÉE',
-                    'badge bg-danger': f.status === 'ANNULÉE',
-                    'badge bg-info text-dark': f.status === 'BROUILLON',
-                    'badge bg-secondary': f.status === 'EN_RETARD'
-                  }">
-                  {{ f.status }}
-                </span>
-              </p>
-            </div>
-            <div class="card-footer bg-light text-end">
-              <button (click)="telechargerFacture(f)" class="btn btn-outline-primary btn-sm shadow-sm">
-                ⬇️ Télécharger PDF
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="invoices.length === 0" class="text-center text-muted py-3">
+      Aucune facture disponible.
     </div>
   </div>
-</main>
+</div>

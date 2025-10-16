@@ -1,0 +1,126 @@
+/* ====== GLOBAL CARD STYLE ====== */
+:host {
+  display: block;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ====== SECTION TITLE ====== */
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+h3 {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* ====== BUTTONS ====== */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+/* Primary action */
+button.bg-blue-600 {
+  background-color: #2563eb;
+}
+
+button.bg-blue-600:hover {
+  background-color: #1e40af;
+}
+
+/* Success */
+button.bg-green-600 {
+  background-color: #16a34a;
+}
+
+button.bg-green-600:hover {
+  background-color: #15803d;
+}
+
+/* Cancel */
+button.bg-gray-500 {
+  background-color: #6b7280;
+}
+
+button.bg-gray-500:hover {
+  background-color: #4b5563;
+}
+
+/* Delete */
+.text-red-600:hover {
+  color: #dc2626;
+}
+
+/* ====== FORM INPUTS ====== */
+input[type='text'],
+input[type='email'] {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ====== TABLE ====== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+thead tr {
+  background-color: #e5e7eb;
+}
+
+th {
+  font-weight: 600;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 1rem;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  color: #1e293b;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* ====== TABLE ACTION BUTTONS ====== */
+.flex button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.flex button:hover {
+  transform: scale(1.15);
+}
+
+/* ====== CARD BORDER ====== */
+.border-blue-500 {
+  border-color: #3b82f6 !important;
+}
+
+.bg-blue-50 {
+  background-color: #eff6ff !important;
+}

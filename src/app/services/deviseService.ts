@@ -7,37 +7,33 @@ import { Devis } from '../models/devise';
   providedIn: 'root'
 })
 export class DevisService {
-  private baseUrl = 'http://localhost:8091/api/devis';
+  private apiUrl = 'http://localhost:8091/api/devis';
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  /** 🔹 Créer un devis */
-  create(devis: Devis): Observable<Devis> {
-    return this.http.post<Devis>(`${this.baseUrl}`, devis);
-  }
-
-  /** 🔹 Récupérer tous les devis */
   getAll(): Observable<Devis[]> {
-    return this.http.get<Devis[]>(`${this.baseUrl}`);
+    return this.http.get<Devis[]>(this.apiUrl);
   }
 
-  /** 🔹 Récupérer un devis par ID */
   getById(id: number): Observable<Devis> {
-    return this.http.get<Devis>(`${this.baseUrl}/${id}`);
+    return this.http.get<Devis>(`${this.apiUrl}/${id}`);
   }
 
-  /** 🔹 Mettre à jour un devis */
-  update(id: number, devis: Devis): Observable<Devis> {
-    return this.http.put<Devis>(`${this.baseUrl}/${id}`, devis);
+  create(data: Devis): Observable<Devis> {
+    return this.http.post<Devis>(this.apiUrl, data);
   }
 
-  /** 🔹 Supprimer un devis */
+  update(id: number, data: Devis): Observable<Devis> {
+    return this.http.put<Devis>(`${this.apiUrl}/${id}`, data);
+  }
+
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  /** 🔹 Télécharger un PDF du devis (si ton backend le prévoit) */
-  downloadPDF(id: number): Observable<Blob> {
-    return this.http.get(`${this.baseUrl}/${id}/pdf`, { responseType: 'blob' });
+  // 📄 Génération PDF
+  downloadPdf(id: number): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/${id}/pdf`, { responseType: 'blob' });
   }
+
 }

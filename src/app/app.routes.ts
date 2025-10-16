@@ -54,14 +54,18 @@ import { CandidatProfilComponent } from './components/candidat-profil-component/
 import { DevisComponent } from './devise-component/devise-component';
 import { LigneDevisComponent } from './ligne-devise-component/ligne-devise-component';
 import { FournitureComponent } from './fourniture/fourniture';
-import { DeviseDe0031 } from './components/devise-de0031/devise-de0031';
-import { InvoiceComponent } from './components/invoice-component/invoice-component';
 import { FactureComponent } from './components/facture-component/facture-component';
 import { DeveloppeurDashboard } from './components/developpeur-dashboard/developpeur-dashboard';
 import { GestionClients } from './components/gestion-clients/gestion-clients';
 import { GestionDeveloppeur } from './components/gestion-developpeur/gestion-developpeur';
 import { ProjetComponent } from './components/projet-component/projet-component';
 import { ChefDeProjetComponent } from './components/chef-de-projet-component/chef-de-projet-component';
+import { AvoireCoponent } from './components/avoire-coponent/avoire-coponent';
+import { ClientManagementComponent } from './components/client-management-component/client-management-component';
+import { DocumenaireComponent } from './components/documenaire-component/documenaire-component';
+import { EntrepriseComponent } from './components/entreprise-component/entreprise-component';
+import { CloudComponent } from './cloud-component/cloud-component';
+import { CloudOffers } from './cloud-offers/cloud-offers';
 
 export const routes: Routes = [
 
@@ -120,10 +124,10 @@ export const routes: Routes = [
  {path: 'devise', component: DevisComponent},
  {path: 'ligne-devise', component: LigneDevisComponent},
  {path: 'fournitures', component: FournitureComponent},
- {path: 'devise-de-0031', component: DeviseDe0031},
- {path: 'devise-chart', component: InvoiceComponent},
  {path: 'factures', component: FactureComponent},
-
+ {path: 'avoirs', component: AvoireCoponent},
+ {path: 'gestion-des-entreprises', component: EntrepriseComponent},
+{path: 'gestionnaire-documentaire', component: DocumenaireComponent  },
 { path: 'dashboard-admin', component: Dashboard, canActivate: [roleGuard], data: { roles: [Role.ADMIN] } },
 
 { path: 'dashboard-partenaires', component: ArtisanListComponent, canActivate: [roleGuard], data: { roles: [Role.PARTENAIRE, Role.ADMIN] } },
@@ -141,4 +145,11 @@ export const routes: Routes = [
  // { path: 'candidat/entreprises', component: EntreprisesComponent },
  // { path: 'candidat/agences', component: AgencesComponent },
   //{ path: 'candidat/conseils', component: ConseilsComponent },
+  {path: 'gestion-client', component: ClientManagementComponent },
+  {path: 'gestionnaire-documentaire', component: DocumenaireComponent  },// redirection pour toute autre route non définie
+
+{path: 'genereation-de-devis', component: DevisComponent},
+
+{path: 'hebergeur-cloud', component: CloudComponent },
+{path: 'offres-cloud', component: CloudOffers },
 ];

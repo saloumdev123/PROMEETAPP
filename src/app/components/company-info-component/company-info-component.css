@@ -1,0 +1,145 @@
+/* 🌐 CONTENEUR GLOBAL */
+.company-container {
+  max-width: 1500px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🧾 TITRE */
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0056b3;
+  margin-bottom: 1.5rem;
+}
+
+/* 📋 TABLEAU */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 2px solid #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: linear-gradient(90deg, #0056b3, #f1c40f);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+tr:hover {
+  background-color: #f9fbff;
+}
+
+/* 🧩 FORMULAIRE */
+.form-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f9faff;
+  border: 1px solid #dfe6e9;
+  border-radius: 0.8rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+.form-grid label {
+  color: #34495e;
+  font-weight: 500;
+}
+
+.form-grid input {
+  padding: 0.6rem;
+  border: 1px solid #dcdde1;
+  border-radius: 0.4rem;
+  transition: 0.2s ease;
+}
+
+.form-grid input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 6px rgba(0, 86, 179, 0.3);
+}
+
+/* 🟡 BOUTONS */
+button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-add {
+  background: linear-gradient(90deg, #0056b3, #f1c40f);
+  color: white;
+}
+
+.btn-add:hover {
+  opacity: 0.9;
+}
+
+.btn-save {
+  background-color: #0056b3;
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #004494;
+}
+
+.btn-cancel {
+  background-color: #f1c40f;
+  color: #000;
+}
+
+.btn-cancel:hover {
+  background-color: #d4ac0d;
+}
+
+.btn-edit {
+  background-color: #f1c40f;
+  color: black;
+}
+
+.btn-edit:hover {
+  background-color: #d4ac0d;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  table, th, td {
+    font-size: 0.9rem;
+  }
+}

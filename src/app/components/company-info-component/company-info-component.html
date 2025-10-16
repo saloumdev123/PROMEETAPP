@@ -1,0 +1,103 @@
+<div class="company-container">
+  <h2 class="title">🏢 Gestion des Entreprises</h2>
+
+  <div *ngIf="loading" class="loading">Chargement des entreprises...</div>
+
+  <div *ngIf="!loading && companyInfos.length > 0" class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>SIRET</th>
+          <th>Code APE</th>
+          <th>TVA</th>
+          <th>Directeur</th>
+          <th>Logo</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companyInfos">
+          <td>{{ company.name }}</td>
+          <td>{{ company.address }}</td>
+          <td>{{ company.phone1 }}</td>
+          <td>{{ company.email }}</td>
+          <td>{{ company.siret }}</td>
+          <td>{{ company.codeApe }}</td>
+          <td>{{ company.tvaNumber }}</td>
+          <td>{{ company.director || '—' }}</td>
+          <td><img *ngIf="company.logoUrl" [src]="company.logoUrl" alt="Logo" class="logo" /></td>
+          <td>
+            <button class="btn-edit" (click)="startEditing(company)">✏️</button>
+            <button class="btn-delete" (click)="delete(company.id!)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="!loading && companyInfos.length === 0" class="no-data">Aucune entreprise enregistrée.</p>
+
+  <div class="actions-center" *ngIf="!adding && !editing">
+    <button class="btn-add" (click)="startAdding()">➕ Ajouter une entreprise</button>
+  </div>
+
+  <div *ngIf="adding || editing" class="form-container">
+    <h3>{{ editing ? '✏️ Modifier' : '➕ Ajouter' }} une entreprise</h3>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="form-grid">
+        <label>Nom :</label>
+        <input formControlName="name" type="text" placeholder="Nom de l’entreprise" />
+
+        <label>Adresse :</label>
+        <input formControlName="address" type="text" placeholder="Adresse complète" />
+
+        <label>Téléphone principal :</label>
+        <input formControlName="phone1" type="text" placeholder="06.05.51.14.32" />
+
+        <label>Téléphone secondaire :</label>
+        <input formControlName="phone2" type="text" placeholder="Autre téléphone" />
+
+        <label>Email :</label>
+        <input formControlName="email" type="email" placeholder="contact@mail.com" />
+
+        <label>SIRET :</label>
+        <input formControlName="siret" type="text" placeholder="522 327 824 00010" />
+
+        <label>Code APE :</label>
+        <input formControlName="codeApe" type="text" placeholder="4332A" />
+
+        <label>N° TVA intracom :</label>
+        <input formControlName="tvaNumber" type="text" placeholder="FR88522327824" />
+
+        <label>Directeur :</label>
+        <input formControlName="director" type="text" placeholder="Nom du responsable" />
+
+        <!-- === Logo de l'entreprise === -->
+        <div class="section">
+          <h3 class="section-title">Logo de l’entreprise</h3>
+
+          <div class="logo-upload">
+            <label for="logoInput" class="upload-label">📁 Importer un logo (PNG ou JPEG)</label>
+            <input id="logoInput" type="file" accept="image/png, image/jpeg" (change)="onLogoSelected($event)" />
+
+            <!-- Aperçu du logo -->
+            <div class="logo-preview" *ngIf="logoPreview">
+              <img [src]="logoPreview" alt="Aperçu du logo" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-save">{{ editing ? '💾 Enregistrer' : '✅ Créer' }}</button>
+        <button type="button" class="btn-cancel" (click)="cancel()">❌ Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

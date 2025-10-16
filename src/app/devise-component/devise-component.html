@@ -1,214 +1,167 @@
-<section class="container my-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="mb-0">Créer / Éditer un devis</h2>
-    <img src="assets/images/logofibem.png" alt="Logo" style="height: 60px; object-fit: contain;" />
-  </div>
-  <!-- ✅ Le formGroup doit être sur la balise <form> -->
-  <form [formGroup]="devisForm" (ngSubmit)="save()">
-    <!-- Informations générales -->
-    <div class="card p-3 mb-4 shadow-sm">
-      <div class="row g-3">
-        <div class="col-md-3">
-          <label class="form-label">Numéro</label>
-          <input formControlName="numero" class="form-control" placeholder="Ex: DEV-001" />
-          <div class="text-danger small" *ngIf="devisForm.get('numero')?.invalid && devisForm.get('numero')?.touched">
-            Numéro requis.
-          </div>
-        </div>
+<div class="devis-form-container">
+  <h2>Création de Devis</h2>
 
-        <div class="col-md-3">
-          <label class="form-label">Date</label>
-          <input formControlName="date" type="date" class="form-control" />
-          <div class="text-danger small" *ngIf="devisForm.get('date')?.invalid && devisForm.get('date')?.touched">
-            Date requise.
-          </div>
-        </div>
+  <form [formGroup]="devisForm" (ngSubmit)="onSubmit()">
+    <!-- === INFOS DEVIS === -->
+    <div class="form-group">
+      <label>Numéro du Devis</label>
+      <input type="text" formControlName="number" placeholder="Ex: DE 0031" />
+    </div>
 
-        <div class="col-md-6">
-          <label class="form-label">Client</label>
-          <input formControlName="clientNom" class="form-control" placeholder="Nom du client" />
-          <div class="text-danger small" *ngIf="devisForm.get('clientNom')?.invalid && devisForm.get('clientNom')?.touched">
-            Nom du client requis.
-          </div>
-        </div>
+    <div class="form-group">
+      <label>Nom du Client</label>
+      <input type="text" formControlName="clientName" placeholder="Ex: Sté OCARO RENO" />
+    </div>
 
-        <div class="col-md-4">
-          <label class="form-label">Adresse</label>
-          <input formControlName="clientAdresse" class="form-control" placeholder="Adresse" />
-        </div>
+    <div class="form-group">
+      <label>Date d'Émission</label>
+      <input type="date" formControlName="dateEmission" />
+    </div>
 
-        <div class="col-md-4">
-          <label class="form-label">Ville</label>
-          <input formControlName="clientVille" class="form-control" placeholder="Ville" />
-        </div>
+    <!-- === SECTION : DÉTAILS DU POSTE À POURVOIR === -->
+    <h3 class="section-title">Détails : Poste à Pourvoir</h3>
 
-        <div class="col-md-4">
-          <label class="form-label">Téléphone</label>
-          <input formControlName="clientTel" class="form-control" placeholder="Téléphone" />
-        </div>
+    <div class="form-group">
+      <label>Titre du Poste</label>
+      <input type="text" formControlName="posteTitle" placeholder="Ex : Maçon - Carreleur confirmé" />
+    </div>
 
-        <div class="col-12">
-          <label class="form-label">Description</label>
-          <textarea formControlName="description" rows="2" class="form-control" placeholder="Objet du devis / remarques"></textarea>
+    <div class="form-group">
+      <label>Description du Poste</label>
+      <textarea formControlName="descriptionPoste" rows="5"
+        placeholder="Ex : Description du poste, missions, lieu, etc."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Assistance Technique</label>
+      <textarea formControlName="assistanceTechnique" rows="5"
+        placeholder="Ex : Détails techniques, matériel requis, etc."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Profil Recherché</label>
+      <textarea formControlName="profil" rows="5"
+        placeholder="Ex : Autonomie, rigueur, expérience 3–5 ans, etc."></textarea>
+    </div>
+    <div class="signature-section">
+      <h4>Conditions de règlement :</h4>
+      <div class="signature-inputs">
+        <div>
+          <label>Signature client :</label>
+          <input type="file" accept="image/*" (change)="onClientSignatureSelected($event)">
+        </div>
+        <div>
+          <label>Signature entreprise :</label>
+          <input type="file" accept="image/*" (change)="onCompanySignatureSelected($event)">
         </div>
       </div>
-    </div>
 
-    <!-- ✅ Lignes du devis -->
-    <div class="card p-3 mb-4 shadow-sm">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="mb-0">Lignes du devis</h5>
-        <button type="button" class="btn btn-sm btn-primary" (click)="addLigne()">+ Ajouter une ligne</button>
-      </div>
-
-      <div *ngIf="lignes.length === 0" class="text-muted mb-2">Aucune ligne ajoutée.</div>
-
-      <!-- ✅ FormArray pour les lignes -->
-      <div formArrayName="lignes">
-        <div *ngFor="let ligne of lignes.controls; let i = index" [formGroupName]="i" class="mb-3 border rounded p-2">
-          <div class="row g-2 align-items-end">
-            <div class="col-md-5">
-              <label class="form-label">Désignation</label>
-              <input formControlName="designation" class="form-control" placeholder="Désignation" />
-              <div class="text-danger small" *ngIf="ligne.get('designation')?.invalid && ligne.get('designation')?.touched">
-                Désignation requise.
-              </div>
-            </div>
-
-            <div class="col-md-2">
-              <label class="form-label">Quantité</label>
-              <input formControlName="quantite" type="number" min="1" class="form-control"
-                (input)="ligne.get('montantTotal')?.setValue( (ligne.get('quantite')?.value || 0) * (ligne.get('prixUnitaire')?.value || 0) )" />
-            </div>
-
-            <div class="col-md-2">
-              <label class="form-label">Prix unitaire</label>
-              <input formControlName="prixUnitaire" type="number" min="0" class="form-control"
-                (input)="ligne.get('montantTotal')?.setValue( (ligne.get('quantite')?.value || 0) * (ligne.get('prixUnitaire')?.value || 0) )" />
-            </div>
-
-            <div class="col-md-2">
-              <label class="form-label">Montant</label>
-              <input formControlName="montantTotal" readonly class="form-control" />
-            </div>
-
-            <div class="col-md-1 text-end">
-              <button type="button" class="btn btn-outline-danger btn-sm" (click)="lignes.removeAt(i)">✖</button>
-            </div>
-          </div>
-        </div>
+      <div class="preview-signatures">
+        <img *ngIf="clientSignature" [src]="clientSignature" alt="Signature client">
+        <img *ngIf="companySignature" [src]="companySignature" alt="Signature entreprise">
       </div>
     </div>
+    <!-- === TABLEAU RÉCAPITULATIF === -->
+    <h3 class="section-title">RÉCAPITULATIF Total Travaux OUVRAGES Phase 1</h3>
 
-    <!-- ✅ Fournitures -->
-    <div class="card p-3 mb-4 shadow-sm">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="mb-0">Fournitures</h5>
-        <button type="button" class="btn btn-sm btn-secondary" (click)="addFourniture()">+ Ajouter une fourniture</button>
-      </div>
+    <table class="recap-table">
+      <thead>
+        <tr>
+          <th>Total Heures</th>
+          <th>RÉCAPITULATIF Travaux / Ouvrages</th>
+          <th>Total H.T.</th>
+          <th></th>
+        </tr>
+      </thead>
 
-      <div *ngIf="fournituresArray.length === 0" class="text-muted mb-2">Aucune fourniture ajoutée.</div>
+      <tbody formArrayName="travaux">
+        <tr *ngFor="let ligne of travaux.controls; let i = index" [formGroupName]="i">
+          <td class="heures">0,00h</td>
+          <td><input formControlName="description" placeholder="Description du poste" /></td>
+          <td><input type="number" formControlName="montant" /></td>
+          <td><button type="button" (click)="removeLigne(i)">🗑️</button></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- ✅ FormArray pour les fournitures -->
-      <div formArrayName="fournitures">
-        <div *ngFor="let f of fournituresArray.controls; let j = index" [formGroupName]="j" class="mb-3 border rounded p-2">
-          <div class="row g-2 align-items-end">
-            <div class="col-md-4">
-              <label class="form-label">Désignation</label>
-              <input formControlName="designation" class="form-control" placeholder="Désignation" />
-            </div>
+    <button type="button" (click)="addLigne()">+ Ajouter une ligne</button>
 
-            <div class="col-md-2">
-              <label class="form-label">Unité</label>
-              <input formControlName="unite" class="form-control" placeholder="ex: m, unité" />
-            </div>
+    <div class="total">
+      <strong>TOTAL € HT Travaux OUVRAGES Phase 1 :</strong>
+      <span>{{ totalHT | number:'1.2-2' }} €</span>
+    </div>
+    <h3 class="section-title">Tableau Travaux / Ouvrages</h3>
 
-            <div class="col-md-2">
-              <label class="form-label">Quantité</label>
-              <input formControlName="quantite" type="number" min="0.1" step="0.1" class="form-control"
-                (input)="f.get('montantTotal')?.setValue( (f.get('quantite')?.value || 0) * (f.get('prixUnitaire')?.value || 0) )" />
-            </div>
+    <table class="table-ouvrages" formArrayName="lignesOuvrages">
+      <thead>
+        <tr>
+          <th>Temps M.O.</th>
+          <th>Désignations d’Ouvrages</th>
+          <th>U</th>
+          <th>Prix unit. HT</th>
+          <th>Qté</th>
+          <th>Montant Total H.T.</th>
+          <th>Tps Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ligne of lignesOuvrages().controls; let i = index" [formGroupName]="i">
+          <td><input type="text" formControlName="tempsMO" placeholder="Ex: 2,00h"></td>
+          <td><textarea formControlName="designation" placeholder="Détails du travail..."></textarea></td>
+          <td><input type="text" formControlName="unite" placeholder="u / Ens"></td>
+          <td><input type="number" formControlName="prixUnitaireHT" (input)="updateMontant(i)"></td>
+          <td><input type="number" formControlName="quantite" (input)="updateMontant(i)"></td>
+          <td>{{ ligne.get('montantTotalHT')?.value | number:'1.2-2' }} €</td>
+          <td><input type="text" formControlName="tpsTotal" placeholder="Ex: 3,00h"></td>
+          <td><button type="button" (click)="removeLigneOuvrage(i)">🗑️</button></td>
+        </tr>
+      </tbody>
+    </table>
 
-            <div class="col-md-2">
-              <label class="form-label">Prix unitaire</label>
-              <input formControlName="prixUnitaire" type="number" min="0" class="form-control"
-                (input)="f.get('montantTotal')?.setValue( (f.get('quantite')?.value || 0) * (f.get('prixUnitaire')?.value || 0) )" />
-            </div>
+    <button type="button" (click)="addLigneOuvrage()">+ Ajouter une ligne</button>
 
-            <div class="col-md-1">
-              <label class="form-label">Type</label>
-              <select formControlName="type" class="form-select">
-                <option *ngFor="let t of typeOptions" [value]="t">{{ t }}</option>
-              </select>
-            </div>
-
-            <div class="col-md-1 text-end">
-              <button type="button" class="btn btn-outline-danger btn-sm" (click)="fournituresArray.removeAt(j)">✖</button>
-            </div>
-          </div>
-
-          <div class="mt-2">
-            <small>Montant fourniture : <strong>{{ f.get('montantTotal')?.value || 0 | number:'1.2-2' }}</strong></small>
-          </div>
-        </div>
-      </div>
+    <div class="total">
+      <strong>Total Travaux OUVRAGES Phase 1 :</strong>
+      <span>{{ totalHT | number:'1.2-2' }} €</span>
     </div>
 
-    <!-- ✅ Récapitulatif -->
-<!-- ✅ Récapitulatif -->
-<div class="card p-3 mb-4 shadow-sm">
-  <div class="row g-3 align-items-center">
-    <div class="col-md-3">
-      <label class="form-label">Total HT (€)</label>
-      <input formControlName="totalHT" readonly class="form-control" />
+    <div class="actions">
+      <button type="button" (click)="generatePdf()">📄 Générer le PDF</button>
+      <button type="submit" [disabled]="!devisForm.valid">💾 Enregistrer & Télécharger PDF</button>
     </div>
-
-    <div class="col-md-2">
-      <label class="form-label">TVA (%)</label>
-      <input formControlName="tva" type="number" min="0" class="form-control" />
-      <!-- 💰 Montant TVA dynamique -->
-      <div class="mt-1 text-muted small">
-        TVA : <strong>{{ montantTVA | number:'1.2-2' }} €</strong>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <label class="form-label">Total TTC (€)</label>
-      <input formControlName="totalTTC" readonly class="form-control" />
-    </div>
-
-    <div class="col-md-4 text-end">
-      <button type="submit" [disabled]="devisForm.invalid" class="btn btn-success mt-2">
-        💾 Enregistrer le devis
-      </button>
-      <button
-        type="button"
-        class="btn btn-outline-secondary mt-2 ms-2"
-        (click)="devisForm.reset(); lignes.clear(); fournituresArray.clear(); montantTVA = 0;"
-      >
-        🔄 Réinitialiser
-      </button>
-    </div>
-  </div>
+  </form>
 </div>
 
-  </form>
+<!-- === 🧾 TABLEAU DES DEVIS ENREGISTRÉS === -->
+<h3 class="section-title" style="margin-top: 40px;">📂 Devis Enregistrés</h3>
 
-  <!-- ✅ Liste des devis existants -->
-  <div class="card p-3 shadow-sm">
-    <h5>Devis existants</h5>
-    <div *ngIf="devisList.length === 0" class="text-muted">Aucun devis trouvé.</div>
+<table class="saved-devis-table" *ngIf="listeDevis && listeDevis.length > 0; else aucunDevis">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Numéro</th>
+      <th>Client</th>
+      <th>Date</th>
+      <th>Total HT</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of listeDevis; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ d.number }}</td>
+      <td>{{ d.clientName }}</td>
+      <td>{{ d.dateEmission | date }}</td>
+      <td>{{ d.totalHt || '—' }}</td>
+      <td>
+        <button (click)="telechargerPdf(d)">⬇️ Télécharger PDF</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-    <div *ngFor="let d of devisList" class="border-bottom py-2 d-flex justify-content-between align-items-center">
-      <div>
-        <strong>#{{ d.numero }}</strong> — {{ d.clientNom }} <small class="text-muted">({{ d.date }})</small>
-        <div class="small">Total TTC: {{ d.totalTTC || d.total || 0 | number:'1.2-2' }}</div>
-      </div>
 
-      <div>
-        <button class="btn btn-sm btn-outline-primary me-2">Voir</button>
-        <button class="btn btn-sm btn-danger" (click)="deleteDevis(d.id)">Supprimer</button>
-      </div>
-    </div>
-  </div>
-</section>
+<ng-template #aucunDevis>
+  <p>Aucun devis enregistré pour le moment.</p>
+</ng-template>

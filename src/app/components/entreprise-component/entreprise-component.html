@@ -1,0 +1,148 @@
+<div class="entreprise-page">
+
+  <!-- === HEADER BLEU AVEC IMAGE === -->
+  <header class="header-banner text-white text-center py-5 mb-4">
+    <div class="overlay"></div>
+    <div class="container position-relative">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/1034/1034332.png"
+        alt="Gestion des Entreprises"
+        class="header-icon mb-3"
+      />
+      <h1 class="fw-bold display-6">Gestion des Entreprises</h1>
+      <p class="lead text-light">Gérez efficacement les informations de vos partenaires et sociétés.</p>
+    </div>
+  </header>
+
+  <div class="content-section container py-4">
+    <!-- ✅ Messages -->
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <!-- 🧾 Formulaire entreprise -->
+    <form [formGroup]="entrepriseForm" (ngSubmit)="saveEntreprise()" class="card p-4 shadow-lg mb-4 bg-light">
+      <h4 class="text-primary mb-3 border-bottom pb-2">
+        {{ editMode ? '✏️ Modifier une entreprise' : '➕ Ajouter une entreprise' }}
+      </h4>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Nom</label>
+          <input type="text" class="form-control" formControlName="nom" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Portable</label>
+          <input type="text" class="form-control" formControlName="portable" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Adresse</label>
+          <input type="text" class="form-control" formControlName="adresse" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Téléphone</label>
+          <input type="text" class="form-control" formControlName="telephone" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">SIRET</label>
+          <input type="text" class="form-control" formControlName="siret" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Code APE</label>
+          <input type="text" class="form-control" formControlName="codeApe" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Numéro TVA</label>
+          <input type="text" class="form-control" formControlName="numeroTva" />
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label fw-bold">Dirigeant / Responsable</label>
+          <input type="text" class="form-control" formControlName="dirigeant" />
+        </div>
+      </div>
+
+      <!-- 🔹 Informations supplémentaires -->
+      <h5 class="mt-4 text-primary border-top pt-3">Informations supplémentaires</h5>
+      <div class="row g-3 mt-2">
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Indice</label>
+          <input type="text" class="form-control" formControlName="indice" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Numéro de Lot</label>
+          <input type="text" class="form-control" formControlName="numeroLot" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Lieu</label>
+          <input type="text" class="form-control" formControlName="lieu" />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Département</label>
+          <input type="text" class="form-control" formControlName="departement" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Référence</label>
+          <input type="text" class="form-control" formControlName="reference" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Affaire N°</label>
+          <input type="text" class="form-control" formControlName="affaire" />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-4">
+        <button type="submit" class="btn btn-primary me-2" [disabled]="loading">
+          {{ editMode ? '💾 Mettre à jour' : '➕ Ajouter' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="resetForm()">🔄 Réinitialiser</button>
+      </div>
+    </form>
+
+    <!-- 📋 Tableau liste entreprises -->
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white fw-bold">Liste des entreprises</div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover mb-0">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Portable</th>
+              <th>Téléphone</th>
+              <th>Email</th>
+              <th>Dirigeant</th>
+              <th>Indice</th>
+              <th>Affaire</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of entreprises">
+              <td>{{ e.nom }}</td>
+              <td>{{ e.portable }}</td>
+              <td>{{ e.telephone }}</td>
+              <td>{{ e.email }}</td>
+              <td>{{ e.dirigeant }}</td>
+              <td>{{ e.indice }}</td>
+              <td>{{ e.affaire }}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-warning me-1" (click)="editEntreprise(e)">✏️</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteEntreprise(e.id!)">🗑️</button>
+              </td>
+            </tr>
+            <tr *ngIf="entreprises.length === 0">
+              <td colspan="8" class="text-center text-muted">Aucune entreprise enregistrée.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
