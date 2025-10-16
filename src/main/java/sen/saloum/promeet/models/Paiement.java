@@ -32,9 +32,9 @@ import java.time.OffsetDateTime;
         private Reservation reservation;
 
 
-        @OneToOne
-        @JoinColumn(name = "facture_id")
-        private Facture facture;
+//        @OneToOne
+//        @JoinColumn(name = "facture_id")
+//        private Facture facture;
 
         @PrePersist
         public void prePersist() {
@@ -57,8 +57,8 @@ import java.time.OffsetDateTime;
         public void setTelephone(String telephone) { this.telephone = telephone; }
         public StatutPaiement getStatut() { return statut; }
         public void setStatut(StatutPaiement statut) { this.statut = statut; }
-        public Facture getFacture() { return facture; }
-        public void setFacture(Facture facture) { this.facture = facture; }
+//        public Facture getFacture() { return facture; }
+//        public void setFacture(Facture facture) { this.facture = facture; }
 
         public String getLienPaiement() {
             return lienPaiement;

@@ -1,18 +1,19 @@
 package sen.saloum.promeet.mapstracts;
 
-import org.mapstruct.InheritInverseConfiguration;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import sen.saloum.promeet.dto.DevisDTO;
 import sen.saloum.promeet.models.Devis;
 
-@Mapper(componentModel = "spring", uses = { LigneDevisMapper.class, FournitureMapper.class })
+@Mapper(componentModel = "spring")
 public interface DevisMapper {
 
-    @Mapping(target = "lignes", source = "lignes")
-    @Mapping(target = "fournitures", source = "fournitures")
-    DevisDTO toDto(Devis devis);
+    @Mapping(target = "entreprise", source = "entreprise")
+    @Mapping(target = "items", source = "items")
+    DevisDTO toDto(Devis entity);
 
-    @InheritInverseConfiguration
+    @Mapping(target = "entreprise", source = "entreprise")
+    @Mapping(target = "items", source = "items")
     Devis toEntity(DevisDTO dto);
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +18,95 @@ public class Devis {
   private Long id;
 
   private String numero;
-  private LocalDate date;
-  private String clientNom;
-  private String clientAdresse;
-  private String clientVille;
-  private String clientTel;
-  private String description;
-  private Double totalHT;
-  private Double tva;
-  private Double totalTTC;
+  private LocalDate dateDevis;
+  private String clientName;
+  private String clientContact;
+  private String clientEmail;
+  private String clientPhone;
+  private String clientAddress;
+  private String projet;
+  private String lieu;
+  private String departement;
+  private String affaireNumero;
+  private String reference;
+  private BigDecimal tva;
+  private BigDecimal totalTtc;
+  private BigDecimal acompte;
 
-  @OneToMany(mappedBy = "devis", cascade = CascadeType.ALL)
-  private List<LigneDevis> lignes = new ArrayList<>();
+
+  @Column(length = 2000)
+  private String posteTitle;
+  @Column(length = 2000)
+  private String descriptionPoste;
+  @Column(length = 2000)
+  private String assistanceTechnique;
+  @Column(length = 2000)
+  private String profil;
+  // ✅ Total HT
+  private Double totalHt;
+
+  // ✅ Liste des travaux associés
+  @ElementCollection
+  @CollectionTable(name = "devis_travaux", joinColumns = @JoinColumn(name = "devis_id"))
+  private List<TravauxItem> travaux;
+
   @OneToMany(mappedBy = "devis", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Fourniture> fournitures;
+  private List<DevisItem> items = new ArrayList<>();
 
-  public List<Fourniture> getFournitures() {
-    return fournitures;
+  @ManyToOne
+  private Entreprise entreprise;
+  private String siret;
+
+  public String getSiret() {
+    return siret;
   }
 
-  public void setFournitures(List<Fourniture> fournitures) {
-    this.fournitures = fournitures;
+  public void setSiret(String siret) {
+    this.siret = siret;
+  }
+
+  public void setTotalHt(Double totalHt) {
+    this.totalHt = totalHt;
+  }
+
+  public List<TravauxItem> getTravaux() {
+    return travaux;
+  }
+
+  public void setTravaux(List<TravauxItem> travaux) {
+    this.travaux = travaux;
+  }
+
+  public String getPosteTitle() {
+    return posteTitle;
+  }
+
+  public void setPosteTitle(String posteTitle) {
+    this.posteTitle = posteTitle;
+  }
+
+  public String getDescriptionPoste() {
+    return descriptionPoste;
+  }
+
+  public void setDescriptionPoste(String descriptionPoste) {
+    this.descriptionPoste = descriptionPoste;
+  }
+
+  public String getAssistanceTechnique() {
+    return assistanceTechnique;
+  }
+
+  public void setAssistanceTechnique(String assistanceTechnique) {
+    this.assistanceTechnique = assistanceTechnique;
+  }
+
+  public String getProfil() {
+    return profil;
+  }
+
+  public void setProfil(String profil) {
+    this.profil = profil;
   }
 
   public Long getId() {
@@ -56,83 +125,131 @@ public class Devis {
     this.numero = numero;
   }
 
-  public LocalDate getDate() {
-    return date;
+  public LocalDate getDateDevis() {
+    return dateDevis;
   }
 
-  public void setDate(LocalDate date) {
-    this.date = date;
+  public void setDateDevis(LocalDate dateDevis) {
+    this.dateDevis = dateDevis;
   }
 
-  public String getClientNom() {
-    return clientNom;
+  public String getClientName() {
+    return clientName;
   }
 
-  public void setClientNom(String clientNom) {
-    this.clientNom = clientNom;
+  public void setClientName(String clientName) {
+    this.clientName = clientName;
   }
 
-  public String getClientAdresse() {
-    return clientAdresse;
+  public String getClientContact() {
+    return clientContact;
   }
 
-  public void setClientAdresse(String clientAdresse) {
-    this.clientAdresse = clientAdresse;
+  public void setClientContact(String clientContact) {
+    this.clientContact = clientContact;
   }
 
-  public String getClientVille() {
-    return clientVille;
+  public String getClientEmail() {
+    return clientEmail;
   }
 
-  public void setClientVille(String clientVille) {
-    this.clientVille = clientVille;
+  public void setClientEmail(String clientEmail) {
+    this.clientEmail = clientEmail;
   }
 
-  public String getClientTel() {
-    return clientTel;
+  public String getClientPhone() {
+    return clientPhone;
   }
 
-  public void setClientTel(String clientTel) {
-    this.clientTel = clientTel;
+  public void setClientPhone(String clientPhone) {
+    this.clientPhone = clientPhone;
   }
 
-  public String getDescription() {
-    return description;
+  public String getClientAddress() {
+    return clientAddress;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setClientAddress(String clientAddress) {
+    this.clientAddress = clientAddress;
   }
 
-  public Double getTotalHT() {
-    return totalHT;
+  public String getProjet() {
+    return projet;
   }
 
-  public void setTotalHT(Double totalHT) {
-    this.totalHT = totalHT;
+  public void setProjet(String projet) {
+    this.projet = projet;
   }
 
-  public Double getTva() {
+  public String getLieu() {
+    return lieu;
+  }
+
+  public void setLieu(String lieu) {
+    this.lieu = lieu;
+  }
+
+  public String getDepartement() {
+    return departement;
+  }
+
+  public void setDepartement(String departement) {
+    this.departement = departement;
+  }
+
+  public String getAffaireNumero() {
+    return affaireNumero;
+  }
+
+  public void setAffaireNumero(String affaireNumero) {
+    this.affaireNumero = affaireNumero;
+  }
+
+  public String getReference() {
+    return reference;
+  }
+
+  public void setReference(String reference) {
+    this.reference = reference;
+  }
+
+  public BigDecimal getTva() {
     return tva;
   }
 
-  public void setTva(Double tva) {
+  public void setTva(BigDecimal tva) {
     this.tva = tva;
   }
 
-  public Double getTotalTTC() {
-    return totalTTC;
+  public BigDecimal getTotalTtc() {
+    return totalTtc;
   }
 
-  public void setTotalTTC(Double totalTTC) {
-    this.totalTTC = totalTTC;
+  public void setTotalTtc(BigDecimal totalTtc) {
+    this.totalTtc = totalTtc;
   }
 
-  public List<LigneDevis> getLignes() {
-    return lignes;
+  public BigDecimal getAcompte() {
+    return acompte;
   }
 
-  public void setLignes(List<LigneDevis> lignes) {
-    this.lignes = lignes;
+  public void setAcompte(BigDecimal acompte) {
+    this.acompte = acompte;
+  }
+
+  public List<DevisItem> getItems() {
+    return items;
+  }
+
+  public void setItems(List<DevisItem> items) {
+    this.items = items;
+  }
+
+  public Entreprise getEntreprise() {
+    return entreprise;
+  }
+
+  public void setEntreprise(Entreprise entreprise) {
+    this.entreprise = entreprise;
   }
 }

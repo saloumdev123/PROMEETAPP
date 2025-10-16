@@ -1,0 +1,154 @@
+package sen.saloum.promeet.models;
+
+import jakarta.persistence.*;
+import lombok.*;
+import sen.saloum.promeet.enums.DocumentType;
+
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "document-info")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class DocumentInfo { 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private DocumentType documentType; // facture | devis | avoir
+
+    private String documentNumber;
+    private LocalDate documentDate;
+    private String reference;
+    private String modeReglement;
+    private String echeance;
+    private String nIdCee;
+    private Double tauxEuro;
+    private Double remiseGlobale;
+    private Double tauxTva;
+    private String remarks;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private CompanyInfo company;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private ClientInfo client;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public DocumentType getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public LocalDate getDocumentDate() {
+        return documentDate;
+    }
+
+    public void setDocumentDate(LocalDate documentDate) {
+        this.documentDate = documentDate;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getModeReglement() {
+        return modeReglement;
+    }
+
+    public void setModeReglement(String modeReglement) {
+        this.modeReglement = modeReglement;
+    }
+
+    public String getEcheance() {
+        return echeance;
+    }
+
+    public void setEcheance(String echeance) {
+        this.echeance = echeance;
+    }
+
+    public String getnIdCee() {
+        return nIdCee;
+    }
+
+    public void setnIdCee(String nIdCee) {
+        this.nIdCee = nIdCee;
+    }
+
+    public Double getTauxEuro() {
+        return tauxEuro;
+    }
+
+    public void setTauxEuro(Double tauxEuro) {
+        this.tauxEuro = tauxEuro;
+    }
+
+    public Double getRemiseGlobale() {
+        return remiseGlobale;
+    }
+
+    public void setRemiseGlobale(Double remiseGlobale) {
+        this.remiseGlobale = remiseGlobale;
+    }
+
+    public Double getTauxTva() {
+        return tauxTva;
+    }
+
+    public void setTauxTva(Double tauxTva) {
+        this.tauxTva = tauxTva;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public CompanyInfo getCompany() {
+        return company;
+    }
+
+    public void setCompany(CompanyInfo company) {
+        this.company = company;
+    }
+
+    public ClientInfo getClient() {
+        return client;
+    }
+
+    public void setClient(ClientInfo client) {
+        this.client = client;
+    }
+}

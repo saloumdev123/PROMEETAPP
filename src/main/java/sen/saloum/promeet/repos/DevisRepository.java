@@ -10,12 +10,19 @@ import java.util.Optional;
 @Repository
 public interface DevisRepository extends JpaRepository<Devis, Long> {
 
-    // 🔹 Rechercher un devis par son numéro
+    // 🔹 Rechercher un devis par numéro
     Optional<Devis> findByNumero(String numero);
 
-    // 🔹 Rechercher les devis d’un client par son nom
-    List<Devis> findByClientNomContainingIgnoreCase(String clientNom);
+    // 🔹 Rechercher tous les devis d’un client donné
+    List<Devis> findByClientNameContainingIgnoreCase(String clientName);
 
-    // 🔹 Récupérer les devis triés par date décroissante
-    List<Devis> findAllByOrderByDateDesc();
+    // 🔹 Rechercher par responsable entreprise (utile pour SEN FIBEM)
+    List<Devis> findByEntreprise_Dirigeant(String dirigeant);
+
+
+    // 🔹 Rechercher les devis d’une entreprise
+    List<Devis> findByEntreprise_Nom(String entrepriseNom);
+
+    // 🔹 Supprimer tous les devis liés à une entreprise
+    void deleteByEntreprise_Id(Long entrepriseId);
 }

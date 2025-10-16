@@ -12,12 +12,12 @@ public interface CommandePrestationMapper {
 
     @Mapping(source = "client.id", target = "clientId")
     @Mapping(source = "prestation.id", target = "prestationId")
-    @Mapping(source = "facture.id", target = "factureId")
+//    @Mapping(source = "facture.id", target = "factureId")
     CommandePrestationDto toDto(CommandePrestation commandePrestation);
 
     @Mapping(source = "clientId", target = "client.id")
     @Mapping(source = "prestationId", target = "prestation.id")
-    @Mapping(source = "factureId", target = "facture.id")
+//    @Mapping(source = "factureId", target = "facture.id")
     CommandePrestation toEntity(CommandePrestationDto dto);
 
     List<CommandePrestationDto> toDtoList(List<CommandePrestation> commandes);

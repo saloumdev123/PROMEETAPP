@@ -52,13 +52,31 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/produits/**").hasRole("ADMIN")    // Modification uniquement Admin
                         .requestMatchers(HttpMethod.DELETE, "/api/produits/**").hasRole("ADMIN") // Suppression uniquement Admin
 
+                                // --- AVOIRS ---
+                                .requestMatchers(HttpMethod.GET, "/api/avoirs/**").permitAll()        // Lecture publique (si tu veux afficher sans login)
+                                .requestMatchers(HttpMethod.POST, "/api/avoirs/**").permitAll()       // Création accessible (tu peux restreindre à ADMIN si nécessaire)
+                                .requestMatchers(HttpMethod.PUT, "/api/avoirs/**").permitAll()        // Modification accessible
+                                .requestMatchers(HttpMethod.DELETE, "/api/avoirs/**").hasRole("ADMIN") // Suppression réservée à ADMIN
 
-                        .requestMatchers(HttpMethod.GET, "/api/auth/profile").authenticated()
+                                // --- LIGNE OUVRAGES ---
+                                .requestMatchers(HttpMethod.GET, "/api/ligne-ouvrages/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/ligne-ouvrages/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/ligne-ouvrages/**").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/api/ligne-ouvrages/**").hasRole("ADMIN")
+
+
+                                .requestMatchers(HttpMethod.GET, "/api/auth/profile").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/utilisateurs/**").hasAnyRole("ADMIN", "PARTICULIER", "PROFESSIONNEL")
                         .requestMatchers(HttpMethod.PUT, "/api/auth/profile").hasAnyRole("PARTICULIER","PROFESSIONNEL","ADMIN")
 
+                                // --- CLIENT INFO ---
+                                .requestMatchers(HttpMethod.GET, "/api/client-info/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/client-info/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/client-info/**").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/api/client-info/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
+
+                                .requestMatchers(HttpMethod.GET, "/api/offres/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/paiements/callback").permitAll()
 
@@ -124,6 +142,63 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/fournitures/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
                         .requestMatchers(HttpMethod.PUT, "/api/fournitures/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
                         .requestMatchers(HttpMethod.DELETE, "/api/fournitures/**").hasRole("ADMIN")
+
+                        // ====================================================
+                        // 🔐 ENDPOINTS DEVIS DE0031, ENTREPRISE, CLIENT, LIGNES
+                        // ====================================================
+
+                        // --- ENTREPRISE ---
+                        .requestMatchers(HttpMethod.GET, "/api/entreprises/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/entreprises/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/entreprises/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/entreprises/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/clients/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/clients/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/clients/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/clients/**").permitAll()
+
+// --- COMPANY INFO ---
+                                .requestMatchers(HttpMethod.GET, "/api/company-info/**").permitAll()        // Lecture publique
+                                .requestMatchers(HttpMethod.POST, "/api/company-info/**").permitAll()      // Création réservée à ADMIN
+                                .requestMatchers(HttpMethod.PUT, "/api/company-info/**").permitAll()       // Modification réservée à ADMIN
+                                .requestMatchers(HttpMethod.DELETE, "/api/company-info/**").hasRole("ADMIN") // Suppression réservée à ADMIN
+
+                        // --- FACTURES ---
+                        .requestMatchers(HttpMethod.GET, "/api/invoices/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/invoices/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/invoices/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/invoices/**").permitAll()
+
+// --- DEVELOPPEURS ---
+                                .requestMatchers(HttpMethod.GET, "/api/developpeurs/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/developpeurs/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/developpeurs/**").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/api/developpeurs/**").permitAll()
+// --- COMPANY INFO ---
+                                .requestMatchers(HttpMethod.GET, "/api/company-info/**").permitAll()        // Lecture publique
+                                .requestMatchers(HttpMethod.POST, "/api/company-info/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/company-info/**").permitAll()     // Modification réservée aux admins
+                                .requestMatchers(HttpMethod.DELETE, "/api/company-info/**").permitAll()  // Suppression réservée aux admins
+
+// --- PROJETS ---
+                                .requestMatchers(HttpMethod.GET, "/api/projets/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/projets/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/projets/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/projets/**").permitAll()
+
+
+                                // --- DOCUMENT INFO ---
+                                .requestMatchers(HttpMethod.GET, "/api/document-info/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/document-info/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/document-info/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                                .requestMatchers(HttpMethod.DELETE, "/api/document-info/**").hasRole("ADMIN")
+
+                                // --- DOCUMENT ITEM ---
+                                .requestMatchers(HttpMethod.GET, "/api/document-items/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/document-items/**").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/api/document-items/**").hasAnyRole("ADMIN", "PROFESSIONNEL")
+                                .requestMatchers(HttpMethod.DELETE, "/api/document-items/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

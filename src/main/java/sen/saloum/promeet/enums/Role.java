@@ -4,7 +4,9 @@ public enum Role {
     PARTICULIER,
     CANDIDAT,
     PARTENAIRE,
-    ADMIN
+    ADMIN,
+    DEVELOPPEUR,
+    CHEF_DE_PROJET
 }
 
 

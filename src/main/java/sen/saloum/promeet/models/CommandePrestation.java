@@ -30,8 +30,8 @@ public class CommandePrestation {
     private Prestation prestation;
     @Enumerated(EnumType.STRING)
     private StatutCommande statut = StatutCommande.EN_ATTENTE;
-    @OneToOne(mappedBy = "commandePrestation")
-    private Facture facture;
+//    @OneToOne(mappedBy = "commandePrestation")
+//    private Facture facture;
 
     public Long getId() {
         return id;
@@ -73,13 +73,13 @@ public class CommandePrestation {
         this.prestation = prestation;
     }
 
-    public Facture getFacture() {
-        return facture;
-    }
-
-    public void setFacture(Facture facture) {
-        this.facture = facture;
-    }
+//    public Facture getFacture() {
+//        return facture;
+//    }
+//
+//    public void setFacture(Facture facture) {
+//        this.facture = facture;
+//    }
 
     public StatutCommande getStatut() {
         return statut;
